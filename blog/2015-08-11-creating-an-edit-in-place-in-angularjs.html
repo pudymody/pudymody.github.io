@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no"><meta name="title" content="Creating an edit-in-place in AngularJS"><meta name="description" content="Hi, im a young web developer from Buenos Aires, Argentina."><meta property="og:title" content="Creating an edit-in-place in AngularJS"><meta property="og:image" content="/avatar.jpg"><title>pudymody - An invisible dev</title><link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700"><link rel="stylesheet" type="text/css" href="/style.css"><link rel="stylesheet" type="text/css" href="/post.css"></head><body><h1 class="post__title">Creating an edit-in-place in AngularJS</h1><div class="post__content"><p>Today we are going to create an edit in place directive for angularjs. <a href="http://pudymody.github.io/angular-edit-in-place/">Here</a> you got a demo so you can see what it&#39;s about or if you already have some knowledge about angular and just only want to read the code <a href="https://github.com/pudymody/angular-edit-in-place">here</a> its the repository</p>
+<p>So, lets start building things.
+First, we need a simple structure for our project, and angular attributes so we can bootstrap it.</p>
+<pre><code class="lang-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot; ng-app=&quot;App&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body ng-controller=&quot;main&quot;&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Now, we have to create our controller so we can bootstrap our app, and add an scope var to store our model.</p>
+<pre><code class="lang-js">var App = angular.module(&#39;App&#39;, [] );
+    App.controller(&#39;main&#39;, function( $scope ){
+        $scope.name = &#39;Federico&#39;;
+    });
+</code></pre>
+<p>Then, we need to create a new file called <em>edit-in-place.js</em> where we are going to make our directive (<em>im going to explain it after</em>)</p>
+<pre><code class="lang-js">var App = angular.module(&#39;EditInPlace&#39;, []);
+App.directive(&quot;clickToEdit&quot;, function() {
+    var editorTemplate = &#39;&lt;div class=&quot;click-to-edit&quot;&gt;&#39; +
+                            &#39;&lt;div ng-hide=&quot;view.editorEnabled&quot; ng-click=&quot;enableEditor()&quot; class=&quot;click-to-edit-value&quot;&gt;&#39; +
+                                &#39;{{value}} &#39; +
+                            &#39;&lt;/div&gt;&#39; +
+                            &#39;&lt;div ng-show=&quot;view.editorEnabled&quot;&gt;&#39; +
+                                &#39;&lt;input class=&quot;click-to-edit-input&quot; ng-model=&quot;view.editableValue&quot;&gt;&#39; +
+                                &#39;&lt;a ng-click=&quot;save()&quot; class=&quot;click-to-edit-btn save&quot;&gt;Save&lt;/a&gt;&#39; +
+                                &#39;&lt;a ng-click=&quot;disableEditor()&quot; class=&quot;click-to-edit-btn close&quot;&gt;Cancel&lt;/a&gt;.&#39; +
+                            &#39;&lt;/div&gt;&#39; +
+                        &#39;&lt;/div&gt;&#39;;
+
+    return {
+        restrict: &quot;A&quot;,
+        replace: true,
+        template: editorTemplate,
+        scope: {
+            value: &quot;=clickToEdit&quot;,
+        },
+        controller: function($scope, $element) {
+            $scope.view = {
+                editableValue: $scope.value,
+                editorEnabled: false
+            };
+
+            $scope.enableEditor = function() {
+                $scope.view.editorEnabled = true;
+                $scope.view.editableValue = $scope.value;
+            };
+
+            $scope.disableEditor = function() {
+                $scope.view.editorEnabled = false;
+            };
+
+            $scope.save = function() {
+                $scope.value = $scope.view.editableValue;
+                $scope.disableEditor();
+            };
+        }
+    };
+});
+</code></pre>
+<p>Now im going to explain whats happening here.</p>
+<p>In the first line, we are creating a module name <em>EditInPlace</em> to store our directive, and in the following one, we are declarating our directive called <em>clickToEdit</em>.
+After that, we declare a var with our template, which works the following way.</p>
+<ul>
+<li>When the editor is disabled, we hide our first div which yous our value, and when clicked, we enable the editor.</li>
+<li>When the editor is enabled, we show the second div which is our editor. It has an input binded to the model <em>editableValue</em>. And then the two inputs for Save and cancel.</li>
+</ul>
+<p>In our directive declaration we have to return an object with some properties ( <a href="https://docs.angularjs.org/guide/directive">You can read the docs for more info</a> ), here we are returning the following ones:</p>
+<ul>
+<li><em>restrict:</em> Here we define if our directive is restricted to an <strong>Attribute (A)</strong> , <strong>Element (E)</strong> or <strong>Class (C)</strong>. In our case we are going to use attributes</li>
+<li><em>replace:</em> Here we&#39;re telling angular to replace our element with our defined template</li>
+<li><em>template:</em> I think its self explained, but in case not, it defines our directive template</li>
+<li><em>scope:</em> This is one of the most imporant things in our template, here we are retrieving the attribute called click-to-edit and two-ways binding it to our scope, so whatever change made to it, will be reflected everywhere.</li>
+<li><em>controller:</em> Here we define our controller functions. First, we set the editor as disabled, and store our attributed passed. Then we define our 3 main functions.<ul>
+<li>enableEditor: Here we set the editor as enabled, and retrieve the current value to our <em>internal</em> model.</li>
+<li>disableEditor: We disable our editor (<em>Really?</em>)</li>
+<li>save: Here we set our value to the current <em>internal</em> value and disable the editor.</li>
+</ul>
+</li>
+</ul>
+<p>Now, we have to append our script and inject it, so after our angular injection we are going to add our current file</p>
+<pre><code class="lang-html">&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;edit-in-place.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>And in our app declaration we have to insert it as a dependency</p>
+<pre><code class="lang-js">var App = angular.module(&#39;Ingresos&#39;, [&#39;EditInPlace&#39;] );
+</code></pre>
+<p>Now we only need to add an element, add our new attribute and pass it our model of our scope</p>
+<pre><code class="lang-html">&lt;span click-to-edit=&quot;name&quot;&gt;&lt;/span&gt;
+</code></pre>
+</div><script src="/prism.js"></script></body></html>

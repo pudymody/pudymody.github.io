@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, user-scalable=no"><meta name="title" content="Recreating Tinder swipe effect with css3"><meta name="description" content="Hi, im a young web developer from Buenos Aires, Argentina."><meta property="og:title" content="Recreating Tinder swipe effect with css3"><meta property="og:image" content="/avatar.jpg"><title>pudymody - An invisible dev</title><link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700"><link rel="stylesheet" type="text/css" href="/style.css"><link rel="stylesheet" type="text/css" href="/post.css"></head><body><h1 class="post__title">Recreating Tinder swipe effect with css3</h1><div class="post__content"><p>Today its a rainy day here and you cant do so much things on a rainy sunday, so we are going to recreate the tinder swipe effect with the power of css3.</p>
+<p>First of all, i know you like seeing the final effect before reading the post, so here you <a href="http://pudymody.github.io/tinderSwipe/">got it</a> and if you want just to read the code <a href="https://github.com/pudymody/tinderSwipe">here</a> you got the repository</p>
+<p>First we begin creating a simple html structure for our project.</p>
+<pre><code class="lang-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=&quot;view&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Then we create a simple function to get random user data from <a href="https://randomuser.me">https://randomuser.me</a> and append it to our stored view div (<em>The markup and styles used here are just to this project, they arent needed to work, you can use whatever you want</em>).</p>
+<pre><code class="lang-js">var $VIEW = document.querySelector(&#39;.view&#39;);
+function getPerson(cb){
+    var url = &quot;https://randomuser.me/api/?gender=female&quot;;
+
+    var oReq = new XMLHttpRequest();
+        oReq.addEventListener(&#39;load&#39;, function(){
+            var data = JSON.parse(this.responseText);
+            data = data.results[0].user;
+
+            var html = &#39;&lt;div class=&quot;user-card&quot;&gt;&lt;img class=&quot;user-card__picture&quot; src=&quot;&#39;+data.picture.large+&#39;&quot;&gt;&lt;/img&gt;&lt;h1 class=&quot;user-card__name&quot;&gt;&#39;+data.name.first+&#39; &#39;+data.name.last+&#39;&lt;/h1&gt;&lt;/div&gt;&#39;;
+            $VIEW.innerHTML = html;
+        });
+        oReq.open(&quot;get&quot;, url, true);
+        oReq.send();
+}
+
+getPerson();
+</code></pre>
+<p>We proceed to style this cards.</p>
+<pre><code class="lang-css">body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.user-card {
+    max-width: 500px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    box-shadow: 0px 2px 5px 0px #ccc;
+}
+
+.user-card__picture {
+    width: 100%;
+    display: block;
+}
+
+.user-card__name {
+    margin-bottom: 0;
+    margin-top: 8px;
+}
+</code></pre>
+<p>Till now, we only have one card with random people&#39;s faces and names, so here it comes the magic. First we need to create two classes, one for the left-swipe and one for the right-swipe</p>
+<pre><code class="lang-css">.swipe-left {}
+.swipe-right {}
+</code></pre>
+<p>Now, we have to create the two animations (<em>here i use the unprefixed versions, but you can/must use the prefixied ones</em>)</p>
+<pre><code class="lang-css">@keyframes swipe-left {
+    to {
+        transform: rotate(-13deg) translate3d(-100%, 0, 0)
+        opacity: 0;
+    }
+}
+
+@keyframes swipe-right {
+    to {
+        transform: rotate(13deg) translate3d(100%, 0, 0)
+        opacity: 0;
+    }
+}
+</code></pre>
+<p>So, what are we doing here? We are creating two animations (swipe-left and swipe-right) which takes the element being applied, rotates it 13 degs and moves it to its left or right ( the params for translate3d are x,y,z ), and reduce its opacity till 0 to make it fade</p>
+<p>Now we have our two classes, and our two animations we only just have to link them</p>
+<pre><code class="lang-css">.swipe-left {
+    animation: swipe-left 1s forwards;
+}
+
+.swipe-right {
+    animation: swipe-right 1s forwards;
+}
+</code></pre>
+<p>And here we end, now the only thing you have to do its apply this two classes <em>swipe-left</em> and <em>swipe-right</em> to whatever element you want.</p>
+<p>Another useful tip its to listen for the animationend event from javascript and delete the element. <a href="http://davidwalsh.name/css-animation-callback">Good post about it</a></p>
+</div><script src="/prism.js"></script></body></html>

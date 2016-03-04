@@ -26,16 +26,19 @@
 <h2 id="writing">Writing</h2>
 <p>We are going to start writing the client app. First, we need to check that the given file exists, but we are going to do that lately when we watch for file changes, and that we are given a valid token. They are two simple arguments, we are not going to use any module to parse them.</p>
 <p>To watch for file changes, i used the <em>unstable</em> api of the fs core module, but in windows it fires two times, and we dont want our participants to drink when they dont. So i searched for which module uses gulp, and we are going to use <strong>chokidar</strong></p>
-<pre><code>npm install chokidar --save
-</code></pre><p>So we add our check that the file exists, and if it does, start watching for change events.</p>
+<pre><code class="lang-sh">npm install chokidar --save
+</code></pre>
+<p>So we add our check that the file exists, and if it does, start watching for change events.</p>
 <p>Nice, now whenever the file changes, we get an event which we are listening for, so we now need to read its content and send it to the server. As we currently dont have any server, we are going to write it.
 First we are going to write the logic to the websocket interface which will get the contents of the files, lint it, and check the output value.</p>
 <p>For the socket interface im going to use the <strong>ws</strong> module</p>
-<pre><code>npm install --save ws
-</code></pre><p>We create our websocket server. Now, we need our client to connect to this server, and at this point i think that it would be nice if anyone who wants to use this app could give the server ip by argument, so im going to modify our client connection to handle that, connect to the sv and send the data.</p>
+<pre><code class="lang-sh">npm install --save ws
+</code></pre>
+<p>We create our websocket server. Now, we need our client to connect to this server, and at this point i think that it would be nice if anyone who wants to use this app could give the server ip by argument, so im going to modify our client connection to handle that, connect to the sv and send the data.</p>
 <p>Now we get our data, we need to lint it to check for errors, for this task im going to use <strong>eslint</strong></p>
-<pre><code>npm install eslint --save
-</code></pre><p>I forgot to write some kind of handlers for sockets actions, so im going to use the following format: an js object with the key <em>action</em> which is the function to call, and a key <em>data</em> which is an array of arguments for the function.</p>
+<pre><code class="lang-sh">npm install eslint --save
+</code></pre>
+<p>I forgot to write some kind of handlers for sockets actions, so im going to use the following format: an js object with the key <em>action</em> which is the function to call, and a key <em>data</em> which is an array of arguments for the function.</p>
 <p>Now with the handler for actions, we need to lint the submitted content. We need to check the linter result, and trigger a drink action for the current user if we have any error and show everything in console.</p>
 <p>At this point i found out that, we dont need to create a token for every user, just pass the username and make a dictionary with the usernames and total drinks.</p>
 <p>We have almost everything, a server which expose a websocket connection, parses the content for errors, a client who takes a file, username and ip and connects, we only need to check if the given file produces the expected result.</p>

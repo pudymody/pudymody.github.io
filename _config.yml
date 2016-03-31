@@ -17,7 +17,7 @@ disqus_shortname: 'pudymody'
 url:            'http://pudymody.github.io'
 author:         'Federico Scodelaro'
 
-permalink:       /:year-:month-:day-:slug
+permalink:       /blog/:year-:month-:day-:slug
 
 defaults:
     -

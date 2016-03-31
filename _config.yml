@@ -7,7 +7,7 @@ aboutPage: true
 highlighter: rouge
 
 paginate: 20
-baseurl: /
+baseurl: 
 domain_name: 'http://pudymody.github.io'
 google_analytics: 'UA-75819066-1'
 disqus: true

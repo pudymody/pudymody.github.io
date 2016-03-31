@@ -1,0 +1,40 @@
+name: Federico Scodelaro
+description: An invisible dev
+meta_description: "Hi, im a young web developer from Buenos Aires, Argentina."
+
+aboutPage: true
+
+highlighter: rouge
+
+paginate: 20
+baseurl: /
+domain_name: 'http://pudymody.github.io'
+google_analytics: 'UA-XXXXXXXX-X'
+disqus: true
+disqus_shortname: 'pudymody'
+
+# Details for the RSS feed generator
+url:            'http://pudymody.github.io'
+author:         'Federico Scodelaro'
+
+permalink:       /:year-:month-:day-:slug
+
+defaults:
+    -
+        scope:
+            path: "" # empty string for all files
+            type: pages
+        values:
+            layout: default
+    -
+        scope:
+            path: "" # empty string for all files
+            type: posts
+        values:
+            layout: post
+    -
+        scope:
+            path: ""
+            type: drafts
+        values:
+            layout: post

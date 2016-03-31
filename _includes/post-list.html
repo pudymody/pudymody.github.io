@@ -1,0 +1,11 @@
+<ul class="post-list">
+    {% for post in paginator.posts %}
+        <li class="post-list__item">
+            <a class="post-list__item__link" href="{{ site.baseurl }}{{ post.url | remove_first: '/' }}"><aside class="post-list__item__date">{{ post.date | date:"%b %d" }}</aside> {{ post.title }} <h2 class="post-list__item__desc">{{ post.description }}</h2></a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% if paginator.previous_page or paginator.next_page %}
+    {% include pagination.html %}
+{% endif %}

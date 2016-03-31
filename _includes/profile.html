@@ -1,0 +1,12 @@
+<section class="wrapper profile">
+    {% if site.aboutPage %}
+        <a href="{{ site.baseurl }}about">
+            <img class="profile__avatar" class="2x" src="{{ site.baseurl }}assets/images/avatar.jpg"/>
+        </a>
+    {% else %}
+        <img class="profile__avatar" class="2x" src="{{ site.baseurl }}assets/images/avatar.jpg"/>
+    {% endif %}
+        <h1 class="profile__name">{{ site.author }}</h1>
+        <h2 class="profile__extra">{{ site.description }}</h2>
+		<h2 class="profile__extra"><a href="mailto:federicoscodelaro@gmail.com" target="_blank">Email</a> - <a href="https://github.com/pudymody" target="_blank">Github</a> - <a href="https://www.linkedin.com/profile/view?id=440166410" target="_blank">Linkedin</a></h2>
+</section>

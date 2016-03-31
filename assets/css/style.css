@@ -666,6 +666,10 @@ _____          _
  	  letter-spacing: 2px;
  	  display: inline-block;
  }
+ 
+ .post__footer {
+ 	padding: 20px 0;
+ }
 
  @font-face {
    font-family: octicons-link;

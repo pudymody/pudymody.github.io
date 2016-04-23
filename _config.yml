@@ -7,14 +7,14 @@ aboutPage: true
 highlighter: rouge
 
 paginate: 20
-baseurl: 
-domain_name: 'http://pudymody.github.io'
+baseurl:
+domain_name: 'https://pudymody.github.io'
 google_analytics: 'UA-75819066-1'
 disqus: true
 disqus_shortname: 'pudymody'
 
 # Details for the RSS feed generator
-url:            'http://pudymody.github.io'
+url:            'https://pudymody.github.io'
 author:         'Federico Scodelaro'
 
 permalink:       /blog/:year-:month-:day-:slug

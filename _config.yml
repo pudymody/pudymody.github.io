@@ -18,9 +18,9 @@ url:            'https://pudymody.github.io'
 author:         'Federico Scodelaro'
 
 permalink:       /blog/:year-:month-:day-:slug
-# gems:
-#    - jekyll-feed
-#    - jekyll-sitemap
+gems:
+    - jekyll-feed
+    - jekyll-sitemap
 
 defaults:
     -

@@ -623,7 +623,7 @@ _____          _     _ _     _
  .post-list__item__link {
  	color: #333;
  	display: block;
- 	font: bold 19px/1.7 "Helvetica Neue",helvetica,Arial,sans-serif;
+ 	font: 19px/1.7 "Helvetica Neue",helvetica,Arial,sans-serif;
  }
 
  .post-list__item__date {
@@ -666,7 +666,7 @@ _____          _
  	  letter-spacing: 2px;
  	  display: inline-block;
  }
- 
+
  .post__footer {
  	padding: 20px 0;
  }
@@ -1362,6 +1362,22 @@ _____          _
 /* Media Queries */
 @media screen and (max-width: 540px) {
 	.wrapper { padding: 20px; }
+	.showcase__panel {
+		width: auto;
+		display: block;
+	}
+}
+
+.showcase {
+	margin-top: 20px;
+}
+
+.showcase__panel {
+	width: 50%;
+	display: inline-block;
+	vertical-align: top;
+	padding: 10px 0;
+	box-sizing: border-box;
 }
 
 .highlight  { background: #ffffff; }

@@ -20,6 +20,7 @@ author:         'Federico Scodelaro'
 permalink:       /blog/:year-:month-:day-:slug
 gems:
     - jekyll-sitemap
+    - jekyll-feed
 defaults:
     -
         scope:

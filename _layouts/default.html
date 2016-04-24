@@ -9,7 +9,11 @@
   <link rel="shortcut icon" href="/assets/images/favicon.ico">
   <link rel="stylesheet" href="/assets/css/style.css">
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml" />
-  
+  <meta name="title" content="{{ site.name }}{% if page.title %} - {{ page.title }}{% endif %}">
+  <meta name="description" content="Hi, im a young web developer from Buenos Aires, Argentina. I love programming because it reminds me when i was a kid, joining lego bricks. At the moment i’m trying to improve and develop my skills. I’m available for freelance project so don’t be scared of getting in touch with me.">
+  <meta property="og:title" content="{{ site.name }}{% if page.title %} - {{ page.title }}{% endif %}" />
+  <meta property="og:description" content="Hi, im a young web developer from Buenos Aires, Argentina. I love programming because it reminds me when i was a kid, joining lego bricks. At the moment i’m trying to improve and develop my skills. I’m available for freelance project so don’t be scared of getting in touch with me." />
+  <meta property="og:type" content="website" />
 </head>
 <body>
 

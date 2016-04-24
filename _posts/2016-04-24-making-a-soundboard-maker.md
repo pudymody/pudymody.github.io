@@ -2,21 +2,24 @@
 title: Making a soundboard maker
 ---
 
-The title is a little "metaish" *(making a maker)*, isnt it?. Nevermind, this all started because with my friends we are use to play the sound when you level up in the [MuOnline](https://en.wikipedia.org/wiki/Mu_Online) game whenever someone of us did something stupid. One friday night, i was so bored that i made a [little soundboard](https://pudymody.github.io/argenmu-soundboard/) with sounds of the game, you can read the [source](https://github.com/pudymody/argenmu-soundboard) but if you are going to read this post, you will see it here. The next day, when i showed it to my friends, they went crazy, the wanted to make soundboards for everything you could think of. The first thing that came to my mind was "Why dont i make an app to make soundboards? I bet the web can do that". Another boring night and i came up with this app which im going to explain in this post.
+The title is a little "metaish" *(making a maker)*, isnt it?. Nevermind, this all started because with my friends we are use to play the sound when you level up in the [MuOnline](https://en.wikipedia.org/wiki/Mu_Online) game whenever someone of us did something stupid. One friday night, i was so bored that i made a [little soundboard](https://pudymody.github.io/argenmu-soundboard/) with sounds of the game, you can read the [source](https://github.com/pudymody/argenmu-soundboard) but if you are going to read this post, you will see it here. The next day, when i showed it to my friends, they went crazy, the wanted to make soundboards for everything you could think of. The first thing that came to my mind was "Why dont i make an app to make soundboards? I bet the web can do that". Another boring night and i came up with this app which im going to explain in this post. If you just want to use the app, [here you have](https://pudymody.github.io/soundboard-maker/)
 
 # Guide
 This post is going to be divided in different sections.
+
 1. Maker code
 	0. Dependencies
 	1. Getting  the dropped files
 	2. Making a reusable component to handle the name and category of the file
 	3. Generating the file
 	4. Making the web offline first
+
 2. Soundboard code
 	0. Playing the selected sound
 	1. Making the soundboard offline first
 
 ## Maker code
+
 ### 1. Dependencies
 For the visual design, im going to use [Material Design Lite](https://getmdl.io) *(im not going to explain the html and css used, if you want to know about it, visit the mdl docs)*, an [extra-extra small pubsub implementation](https://github.com/dciccale/xxspubsub) to handle the events and [JSZip](https://stuk.github.io/jszip/) to make the final zip file with the soundboard code.
 
@@ -241,6 +244,7 @@ The *init* function its our starting point, what make the app run. First, it cal
 To make the web offline first, we are going to use the current hot topic, Service workers. The worker its documented itself, and its based in the one from [CSSTricks](https://css-tricks.com/serviceworker-for-offline/), so you can read the source or read more in his blog post.
 
 ## Soundboard code
+
 ### Playing the selected sound
 To do this, we are going to use a technique called event delegation. This is, we listen for every click in the document, and if we meet a certain criteria, we fire certain callback. You can read more about this technique in [this awesome post](http://codepen.io/32bitkid/post/understanding-delegated-javascript-events)
 

@@ -17,7 +17,7 @@ logo: "/assets/images/me.jpg"
 cover: "/assets/images/cover.jpg"
 
 # Details for the RSS feed generator
-url:            'https://pudymody.github.io/'
+url:            'https://pudymody.github.io'
 name: 'Federico Scodelaro'
 author: 'Federico Scodelaro'
 author_image: "/assets/images/me.jpg"

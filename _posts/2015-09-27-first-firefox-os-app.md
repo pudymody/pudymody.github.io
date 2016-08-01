@@ -1,5 +1,7 @@
 ---
 title: Making our first Firefox OS App (NoCrop)
+layout: post
+date: 2015-09-27
 ---
 
 **I've currently made a submission to the firefox marketplace, so whenever its available i will post the link here**

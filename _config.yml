@@ -1,42 +1,85 @@
-name: Federico Scodelaro
-description: An invisible dev
-meta_description: "Hi, im a young web developer from Buenos Aires, Argentina."
-
-aboutPage: true
+# Build settings
+gems:
+    - jemoji
+    - jekyll-paginate
+    - jekyll-sitemap
+    - jekyll-feed
 
 highlighter: rouge
 
-paginate: 20
-baseurl:
-domain_name: 'https://pudymody.github.io'
-google_analytics: 'UA-75819066-1'
-disqus: true
-disqus_shortname: 'pudymody'
+# Site settings
+title: Federico Scodelaro
+description: Hi, im a young web developer from Buenos Aires, Argentina. I love programming because it reminds me when i was a kid, joining lego bricks. At the moment i'm trying to improve and develop my skills. I'm available for freelance project so don't be scared of getting in touch with me.
+email: federicoscodelaro@gmail.com
+#blog logo
+logo: "/assets/images/me.jpg"
+# blog cover
+cover: "/assets/images/cover.jpg"
 
 # Details for the RSS feed generator
-url:            'https://pudymody.github.io'
-author:         'Federico Scodelaro'
+url:            'https://pudymody.github.io/'
+name: 'Federico Scodelaro'
+author: 'Federico Scodelaro'
+author_image: "/assets/images/me.jpg"
+
+paginate:	5
 
 permalink:       /blog/:year-:month-:day-:slug
-gems:
-    - jekyll-sitemap
-    - jekyll-feed
-defaults:
-    -
-        scope:
-            path: "" # empty string for all files
-            type: pages
-        values:
-            layout: default
-    -
-        scope:
-            path: "" # empty string for all files
-            type: posts
-        values:
-            layout: post
-    -
-        scope:
-            path: ""
-            type: drafts
-        values:
-            layout: post
+baseurl: ""
+#used to display twitter cards
+#twitter_handle: '@'
+
+#fill in disqus shortname to use disqus
+disqus: pudymody
+google_analytics: 'UA-75819066-1'
+
+# social icons and sharing options
+social:
+  # - icon:	twitter
+  #   url:	https://twitter.com/dirkfabisch
+  #   desc: Follow me on twitter
+  #   share_url: http://twitter.com/share
+  #   share_title: ?text=
+  #   share_link: "&amp;url="
+
+#  - icon:	facebook
+#    url:	https://facebook.com/???
+#    desc: Connect with me facebook
+#    share_url: https://www.facebook.com/sharer.php
+#    share_title: ?t=
+#    share_link: "&amp;u="
+
+  - icon:	github
+    url:	https://github.com/pudymody
+    desc:	Find me on github
+    share_url:
+    share_title:
+    share_link:
+
+  - icon:	linkedin
+    url:	https://ar.linkedin.com/in/federicoscodelaro
+    desc:   Find me on Linkedin
+    share_url:
+    share_title:
+    share_link:
+
+  - icon:	paper-plane-o
+    url:	https://telegram.me/pudymody
+    desc:   Talk to me on Telegram
+    share_url:
+    share_title:
+    share_link:
+
+  - icon:	envelope-o
+    url:	mailto:federicoscodelaro@gmail.com
+    desc:   Send me an email
+    share_url:
+    share_title:
+    share_link:
+
+#  - icon:	google-plus
+#    url:	https://google.com/???
+#    desc:	Add me on google+
+#    share_url:
+#    share_title:
+#    share_link:

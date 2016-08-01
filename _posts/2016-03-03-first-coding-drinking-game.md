@@ -1,5 +1,7 @@
 ---
 title: The first drinking coding game in JS
+layout: post
+date: 2016-03-03
 ---
 
 Its been a long time since i write my last post, so here we are.

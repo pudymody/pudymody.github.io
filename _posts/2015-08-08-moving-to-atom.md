@@ -1,5 +1,7 @@
 ---
 title: Moving from sublime to atom
+layout: post
+date: 2015-08-08
 ---
 
 *This is my first post, so im all ears to suggestions.*

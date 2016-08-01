@@ -63,14 +63,14 @@ social:
     share_title:
     share_link:
 
-  - icon:	paper-plane-o
+  - icon:	telegram
     url:	https://telegram.me/pudymody
     desc:   Talk to me on Telegram
     share_url:
     share_title:
     share_link:
 
-  - icon:	envelope-o
+  - icon:	email
     url:	mailto:federicoscodelaro@gmail.com
     desc:   Send me an email
     share_url:

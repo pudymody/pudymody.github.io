@@ -17,8 +17,8 @@ layout: default
     <div class="custom-links">
       {% for social in site.social %}
         {% if social.url %}
-            <a target="_blank" class="icon-{{ social.icon }}" href="{{ social.url }}" {% if social.desc %} title="{{ social.desc }}"{% endif %}">
-              <i class="fa fa-{{ social.icon }}"></i>
+            <a target="_blank" href="{{ social.url }}" {% if social.desc %} title="{{ social.desc }}"{% endif %}">
+              <svg class="icon icon-{{ social.icon }}"><use xlink:href="#icon-{{ social.icon }}"></use></svg>
             </a>
             &nbsp;&nbsp;·&nbsp;&nbsp;
         {% endif %}

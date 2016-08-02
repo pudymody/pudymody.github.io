@@ -10,8 +10,9 @@
 
 $rs: 16px
 
-$font-serif: Linux Libertine, "Helvetica Neue", Arial, Helvetica, sans-serif
-$font-sans: Open Sans, MundoSans, "Helvetica Neue", Arial, Helvetica, sans-serif
+$font-fallback: "Helvetica Neue", Arial, Helvetica, sans-serif
+$font-serif: Linux Libertine
+$font-sans: Open Sans, MundoSans
 
 
 @mixin respond-to($breakpoint)
@@ -28,7 +29,9 @@ main
 
 
 body
-  font-family: $font-sans
+  .wf-active &
+    font-family: $font-sans
+  font-family: $font-fallback
   margin: 0
   padding: 0
   text-rendering: optimizeLegibility
@@ -211,8 +214,10 @@ body
   letter-spacing: -0.02em
   font-weight: 400
   font-style: normal
-  font-family: $font-sans
+  font-family: $font-fallback
   z-index: 999
+  .wf-active &
+    font-family: $font-sans
 .tag-articleimage .post-reading
   color: rgba(255,255,255,0.9)
   text-shadow: 0px 1px 4px rgba(0,0,0,0.25), 0px 0px 1px rgba(0,0,0,0.5)
@@ -272,7 +277,9 @@ body
       left: 30%
       right: 30%
       z-index: 9
-      font-family: $font-sans
+      font-family: $font-fallback
+	  .wf-active &
+	    font-family: $font-sans
       @include box-sizing(border-box)
       @include respond-to(800)
         left: $rs
@@ -307,9 +314,11 @@ body
       text-shadow: 0px 1px 4px rgba(0,0,0,0.25), 0px 0px 1px rgba(0,0,0,0.5)
       font-size: 14px
       overflow: hidden
-      font-family: $font-sans
+      font-family: $font-fallback
       white-space: nowrap
       text-overflow: ellipsis
+	  .wf-active &
+	    font-family: $font-sans
       a
         color: rgba(255,255,255,0.75)
         &:hover
@@ -324,8 +333,10 @@ body
       text-decoration: underline
   .noarticleimage
     .post-meta
-      font-family: $font-sans
+      font-family: $font-fallback
       padding-top: 60px
+	  .wf-active &
+	    font-family: $font-sans
     .post-title
       font-weight: 700
       font-style: normal
@@ -354,15 +365,22 @@ body
       font-style: normal
       font-size: 14px
       overflow: hidden
-      font-family: $font-sans
+      font-family: $font-fallback
       white-space: nowrap
       text-overflow: ellipsis
+	  .wf-active &
+	    font-family: $font-sans
   .post-content
     width: 100%
-    font-family: $font-serif
+    font-family: $font-fallback
     color: #333
+
+    .wf-active &
+      font-family: $font-serif
     h1, h2, h3
-      font-family: $font-sans
+      font-family: $font-fallback
+	  .wf-active &
+	    font-family: $font-sans
     h3, h4, h5, h6
       letter-spacing: -0.02em
       font-weight: 700
@@ -370,8 +388,10 @@ body
       font-size: 24px
       line-height: 1.3
       margin: 0
-      font-family: $font-sans
+      font-family: $font-fallback
       margin-bottom: 4px
+	  .wf-active &
+	    font-family: $font-sans
     h2, h1
       letter-spacing: -0.02em
       font-weight: 700
@@ -448,7 +468,9 @@ body
       list-style-type: decimal
   .bottom-teaser
     padding: 50px 0
-    font-family: $font-sans
+    font-family: $font-fallback
+	.wf-active &
+      font-family: $font-sans
     hr
       border: 0
       padding: 0

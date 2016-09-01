@@ -17,4 +17,3 @@ permalink: /about/
 * [Atom twilight](https://atom.io/themes/twilight-updated-syntax) - Forked and maintained version of the ssteinker Twilight theme from Michael Sheets for Atom editor
 * [Atom smart-tags](https://atom.io/packages/smart-tags) - Prevent double input of brackets, curly braces, and quotes when you are before one.
 * [Choose who to pray for](https://pudymody.github.io/choose-who-to-pray-for/) - An app to overlay into your photo whatever flag you want. Like Facebook did for France, but for everyone you want.
-* [Soundboard maker](https://pudymody.github.io/soundboard-maker/) - An app to create soundboards which can be uploaded to any static server.

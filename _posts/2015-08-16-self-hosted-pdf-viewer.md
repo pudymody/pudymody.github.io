@@ -4,7 +4,7 @@ layout: post
 date: 2015-08-16
 ---
 
-In this post we are going to write a command line program which generates a version of the pdf viewer of [Issuu](http://issuu.com/).
+In this post we are going to write a command line program which generates a version of the pdf viewer of [Issuu](http://issuu.com/). [Here](https://pudymody.github.io/Isu) you can see an example.
 
 First of all you need [NodeJS](http://nodejs.org/), i think there are a lot of posts teaching you how to install it.
 Then we need to install [GraphicsMagick](http://www.graphicsmagick.org/), under windows this is done by an installer, on linux i think you have to add some repositories, but you could google that, there are lots of results. And under mac you could use [Homebrew](http://brew.sh/)

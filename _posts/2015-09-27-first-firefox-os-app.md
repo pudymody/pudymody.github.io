@@ -6,6 +6,8 @@ date: 2015-09-27
 
 **I've currently made a submission to the firefox marketplace, so whenever its available i will post the link here**
 
+[Browser version](https://pudymody.github.io/NoCrop-fxos/)
+
 During the last months, there is a new trending type of images at least in my social networks. What are they about? They are square photos, with the main photo centered, and in the background the same image blurred. Dont get it? Here you have an example
 
 ![Example](http://i.imgur.com/MhiKn7K.png)

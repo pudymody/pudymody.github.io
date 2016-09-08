@@ -10,6 +10,7 @@ You can use it right now from your browser [here](https://pudymody.github.io/ima
 ![Example](http://i.imgur.com/NznlVm1.jpg)
 
 In this post we're going to use the following Apis, you only need to know the basics
+
 * [WebWorkers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
 * [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
 * [Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
@@ -67,7 +68,7 @@ $file.addEventListener('change', function(e){
 {% endhighlight %}
 
 ## WebWorker code
-Now here is where all the magic happens, first we need to create a new file called worker.js. There we are going to make two functions which will help us convert colors from rgb to hex and import our *js-xlsx* file
+Now here is where all the magic happens, first we need to create a new file called *worker.js*. There we are going to make two functions which will help us convert colors from rgb to hex and import our *js-xlsx* file
 
 {% highlight js %}
 importScripts("xlsx.core.min.js");
@@ -87,7 +88,7 @@ Then we are going to attach a function to be executed everytime we get data into
 self.onmessage = function(){}
 {% endhighlight %}
 
-** The following code is going to be inside in our *onmessage* function, i've stripped it to explain it piece by piece **
+**The following code is going to be inside in our *onmessage* function, i've stripped it to explain it piece by piece**
 
 First of all, we get our imageData passed, which is a flatten array, and convert it to an array of objects with its rgba values separated
 {% highlight js %}
@@ -126,7 +127,7 @@ var dataFile = parsed.data.reduce(function( prev, current, index ){
 }, {});
 {% endhighlight %}
 
-Now we need to set our range of cells, and set the column width to be 1px. As neither of two allow us to set our row height, i have to edit the file and set it manually, so no step for this. We also need to make our workbook object, which is goin to be written.
+Now we need to set our range of cells, and set the column width to be 1px. As neither of two allow us to set our row height, i have to edit the file and set it manually, so no step for this. We also need to make our workbook object, which is going to be written.
 {% highlight js %}
 dataFile["!ref"] = XLSX.utils.encode_range({
 	s : { c: 0, r: 0},
@@ -175,3 +176,5 @@ imageWorker.onmessage = function(e){
 	document.body.classList.remove('is-loading');
 };
 {% endhighlight %}
+
+And thats all the magic you need to know!

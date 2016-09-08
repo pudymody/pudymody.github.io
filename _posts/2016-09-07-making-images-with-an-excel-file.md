@@ -180,4 +180,5 @@ imageWorker.onmessage = function(e){
 And thats all the magic you need to know!
 
 *PD: Yes, i know i could use Service Workers to make it a fully operational web app, but thats not the point of the post*
+
 *PD II: Yes, i also know that i could use webworkers in previous posts, but i dont know why i didnt*

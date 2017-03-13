@@ -6,7 +6,7 @@ date: 2017-03-13
 
 # Intro
 
-This month im moving to a new house, and one of the questions that came out was "*Which color should i paint the walls?*". I thought it would be nice to have some kind of "prototype" in which i could see how good selection a color would be. I inmediatly remembered that [Aframe](https://aframe.io) its the new hot topic, and with a panorama photo, you could see it in 360 degress. So i decided to bake this prototype which you could see a working example [here](https://pudymody.github.io/aframe-room-painter/) or you can watch a video [here](https://www.youtube.com/watch?v=LQ3nlGC_uYE). (*That's not actually part of my house because i couldnt take any equirectangular photo, but at least i have a cool prototype working*)
+This month im moving to a new house, and one of the questions that came out was "*Which color should i paint the walls?*". I thought it would be nice to have some kind of "prototype" in which i could see how good selection a color would be. I inmediatly remembered that [Aframe](https://aframe.io) its the new hot topic, and with a panorama photo, you could see it in 360 degress. So i decided to bake this prototype which you could see a working example [here](https://pudymody.github.io/aframe-room-painter/), watch a video [here](https://www.youtube.com/watch?v=LQ3nlGC_uYE) or if you like reading source code without explanation, [here](https://github.com/pudymody/aframe-room-painter). (*That's not actually part of my house because i couldnt take any equirectangular photo, but at least i have a cool prototype working*)
 
 
 ## Getting the walls separately
@@ -252,3 +252,6 @@ self.addEventListener('message', function( evt ){
     }
 })
 ```
+
+## Final thoughts
+This is not the best way to accomplish this task, but i think it shows the power the web have nowadays, and it also is IMHO a good example use case of the proposed [OffScreenCanvas](https://developer.mozilla.org/es/docs/Web/API/OffscreenCanvas) which would allow this app to run almost entirely in the worker.

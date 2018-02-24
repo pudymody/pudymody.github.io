@@ -76,14 +76,14 @@
 
 <p>The first step was to get an image who works as a 360 degreess image with Aframe, thats a equirectangular photo. Im going to use the following.</p>
 
-<p><img src="http://i.imgur.com/dLWLQP6.jpg" alt="Image" /></p>
+<p><img src="4.jpg" alt="Image" /></p>
 
 <p>The next step was to get some kind of reference for every wall that we want to paint, so i made a transparent image with the same size, but with the actual wall being referenced colored in pure green, some kind of &ldquo;chroma key&rdquo; but only for the wall</p>
 
-<p><img src="http://i.imgur.com/vyvbd4P.png" alt="Image" />
-<img src="http://i.imgur.com/TzXvmKT.png" alt="Image" />
-<img src="http://i.imgur.com/D2bK5w1.png" alt="Image" />
-<img src="http://i.imgur.com/4obMrsJ.png" alt="Image" /></p>
+<p><img src="0.png" alt="Image" />
+<img src="1.png" alt="Image" />
+<img src="2.png" alt="Image" />
+<img src="3.png" alt="Image" /></p>
 
 <p>For this example, i ended with 5 images, the actual equirectangular image, and four more one for each wall.</p>
 
@@ -194,7 +194,7 @@ First, we make a copy of our main image canvas object, get its 2d context and se
         <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$ctx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCanvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;2d&#39;</span>);
             <span style="color:#a6e22e">$ctx</span>.<span style="color:#a6e22e">globalCompositeOperation</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;multiply&#34;</span>;
 
-        
+
         <span style="color:#a6e22e">updatedWalls</span>
             .<span style="color:#a6e22e">map</span>( <span style="color:#a6e22e">ImageDataToCanvas</span> )
             .<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">wall</span> ){
@@ -233,7 +233,7 @@ First, we make a copy of our main image canvas object, get its 2d context and se
 	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">destroyScene</span>(){
 	    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Sky</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;a-sky&#39;</span>);
 	    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Scene</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;a-scene&#39;</span>);
-	
+
 	    <span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">Scene</span> ){
 	        <span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">revokeObjectURL</span>( <span style="color:#a6e22e">Sky</span>.<span style="color:#a6e22e">getAttribute</span>(<span style="color:#e6db74">&#39;src&#39;</span>) );
 	        <span style="color:#a6e22e">Scene</span>.<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">removeChild</span>(<span style="color:#a6e22e">Scene</span>)

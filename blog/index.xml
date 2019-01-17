@@ -6,10 +6,19 @@
     <description>Recent content in Blogs on Federico Scodelaro</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Mar 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 16 Jan 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://pudymody.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hacking Arkanoid: Making a level editor.</title>
+      <link>https://pudymody.github.io/blog/2019-01-16-hacking-arkanoid-making-level-editor/</link>
+      <pubDate>Wed, 16 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://pudymody.github.io/blog/2019-01-16-hacking-arkanoid-making-level-editor/</guid>
+      <description>Intro This post is going to be another i-write-as-i-make, so you are going to see all the thinking and progress as i do. The idea is the following, the other day playing some old PSX games, i was playing Arkanoid 2000 when i saw the level editor and i thought, &amp;ldquo;wouldnt it be cool if we could take any image and made it a playable level?&amp;rdquo;, so let put hands to work.</description>
+    </item>
     
     <item>
       <title>Painting my room with WebVR</title>

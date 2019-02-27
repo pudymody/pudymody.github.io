@@ -1,0 +1,14 @@
+{{ partial "header.html" . }}
+<div class="article-meta">
+<h1>{{ .Title }}</h1>
+{{ if .Params.date }}<h2 class="date">{{ .Date.Format "2006/01/02" }}</h2>{{ end }}
+</div>
+
+{{ if .Params.toc }}
+{{ .TableOfContents }}
+{{ end }}
+
+<main>
+{{ .Content }}
+</main>
+{{ partial "footer.html" . }}

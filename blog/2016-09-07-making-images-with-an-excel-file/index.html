@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The other day, i was with a friend and after a few beers, the idea of resizing every cell to a 1x1 pixel size in an excel file and styling its background to match a pixel in an image came out. Loving to make apps and script without any sense, i decided to make a web app who would do it. So this post is going to be about its making." />
+    <meta property="og:site_name" content="Federico Scodelaro" />
+    <meta property="og:title" content="Making images with an excel file | Federico Scodelaro"/>
+    <meta property="og:description" content="The other day, i was with a friend and after a few beers, the idea of resizing every cell to a 1x1 pixel size in an excel file and styling its background to match a pixel in an image came out. Loving to make apps and script without any sense, i decided to make a web app who would do it. So this post is going to be about its making." />
+    <meta property="og:image" content="https://pudymody.github.io/static/me.jpg" />
+    <meta property="og:url" content="https://pudymody.github.io/blog/2016-09-07-making-images-with-an-excel-file/" >
+    <meta property="og:type" content="blog" />
+    
+      <meta property="article:published_time" content="2016-09-07 00:00:00 &#43;0000 UTC">
+    
+    <title>Making images with an excel file | Federico Scodelaro</title>
+    <link rel="stylesheet" href="https://pudymody.github.io/static/style.css" />
+    <link rel="shortcut icon" href="https://pudymody.github.io/static/favicon.png" type="image/png">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pudymody.github.io/index.xml">
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li>
+            <a href="https://pudymody.github.io/">/home/federico scodelaro</a>
+          </li>
+          <li>
+            <a target="_blank" rel="noopener" href="https://github.com/pudymody">Github</a>
+          </li>
+          <li>
+            <a target="_blank" rel="noopener" href="https://telegram.me/pudymody">Telegram</a>
+          </li>
+          <li>
+            <a target="_blank" rel="noopener" href="mailto:federicoscodelaro@gmail.com">Email</a>
+          </li>
+          
+
+          
+          
+          <li>
+            <a href="/index.xml">~/subscribe</a>
+          </li>
+          
+        </ul>
+      </nav>
+    </header>
+<div class="article-meta">
+<h1>Making images with an excel file</h1>
+<h2 class="date">2016/09/07</h2>
+</div>
+
+
+
+<main>
+
+
+<p>The other day, i was with a friend and after a few beers, the idea of resizing every cell to a 1x1 pixel size in an excel file and styling its background to match a pixel in an image came out. Loving to make apps and script without any sense, i decided to make a web app who would do it. So this post is going to be about its making.</p>
+
+<p>You can use it right now from your browser <a href="https://pudymody.github.io/image-to-excel-grid/">here</a> and this is what you get using the classical lenna image (<em>i like showing the final product first</em>)
+<img src="http://i.imgur.com/NznlVm1.jpg" alt="Example" /></p>
+
+<p>In this post we&rsquo;re going to use the following Apis, you only need to know the basics</p>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers">WebWorkers</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas</a></li>
+</ul>
+
+<p>First of all, we are going to make an input to select our image, and include our js file and a little modified version of <a href="https://github.com/SheetJS/js-xlsx">JS-xlsx</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn--upload&#34;</span>&gt;
+	&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span>&gt;
+	Please, select your image.
+&lt;/<span style="color:#f92672">label</span>&gt;
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app.js&#34;</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;xlsx.core.min.js&#34;</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;</code></pre></div>
+<p>Now, in our app.js file, first we are going to get a reference to our input and create a new instance of our WebWorker</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$file</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;input&#39;</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">imageWorker</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Worker</span>(<span style="color:#e6db74">&#39;worker.js&#39;</span>);</code></pre></div>
+<p>Then we are going to listen for the <em>change</em> event in our input, get its first file, and call our <em>makeCanvas</em> function which will return a <em>promise</em> with a canvas with the image drawn on it. Then we are going to pass the imageData of our canvas into our WebWorker</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">makeCanvas</span>( <span style="color:#a6e22e">file</span> ){
+	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span> ){
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">createObjectURL</span>(<span style="color:#a6e22e">file</span>);
+		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">img</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Image</span>();
+		<span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">onload</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){
+			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">canvas</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;canvas&#39;</span>);
+				<span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">width</span>;
+				<span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">height</span>;
+
+			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ctx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;2d&#39;</span>);
+			<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">drawImage</span>( <span style="color:#66d9ef">this</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span> );
+			<span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">revokeObjectURL</span>( <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">src</span> );
+			<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">canvas</span>);
+		};
+		<span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">onerror</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">reject</span>;
+		<span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">url</span>;
+	});
+}
+
+<span style="color:#a6e22e">$file</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;change&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>){
+	document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;is-loading&#39;</span>);
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">file</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">files</span>[<span style="color:#ae81ff">0</span>];
+	<span style="color:#a6e22e">makeCanvas</span>(<span style="color:#a6e22e">file</span>)
+		.<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">canvas</span> ){
+			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">imageData</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;2d&#39;</span>).<span style="color:#a6e22e">getImageData</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">width</span>, <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">height</span> );
+			<span style="color:#a6e22e">imageWorker</span>.<span style="color:#a6e22e">postMessage</span>(<span style="color:#a6e22e">imageData</span>);
+		})
+		.<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>);
+});</code></pre></div>
+<h2 id="webworker-code">WebWorker code</h2>
+
+<p>Now here is where all the magic happens, first we need to create a new file called <em>worker.js</em>. There we are going to make two functions which will help us convert colors from rgb to hex and import our <em>js-xlsx</em> file</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">importScripts</span>(<span style="color:#e6db74">&#34;xlsx.core.min.js&#34;</span>);
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">componentToHex</span>(<span style="color:#a6e22e">c</span>) {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">hex</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#ae81ff">16</span>);
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">hex</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">hex</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">hex</span>;
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">rgbToHex</span>(<span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">g</span>, <span style="color:#a6e22e">b</span>) {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">componentToHex</span>(<span style="color:#a6e22e">r</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">componentToHex</span>(<span style="color:#a6e22e">g</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">componentToHex</span>(<span style="color:#a6e22e">b</span>);
+}</code></pre></div>
+<p>Then we are going to attach a function to be executed everytime we get data into our webworker.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(){}</code></pre></div>
+<p><strong>The following code is going to be inside in our <em>onmessage</em> function, i&rsquo;ve stripped it to explain it piece by piece</strong></p>
+
+<p>First of all, we get our imageData passed, which is a flatten array, and convert it to an array of objects with its rgba values separated</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">data</span>;
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">parsed</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">height</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">height</span>, <span style="color:#a6e22e">width</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">width</span>, <span style="color:#a6e22e">data</span> <span style="color:#f92672">:</span> [] };
+<span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">l</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">l</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">+=</span><span style="color:#ae81ff">4</span>){
+	<span style="color:#a6e22e">parsed</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">push</span>({
+		<span style="color:#a6e22e">r</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>],
+		<span style="color:#a6e22e">g</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>],
+		<span style="color:#a6e22e">b</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>],
+		<span style="color:#a6e22e">a</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>]
+	});
+}</code></pre></div>
+<p>Now we need to make our spreadsheet object. To do this, first we are going to figure out in wich row and column we are. Then we convert this to a valid cell id, and set it as the key in our object and its value to a style with our pixel color as background. The &ldquo;official&rdquo; version of js-xlsx doesnt allow custom styles to be set, so i have to use <a href="https://github.com/protobi/js-xlsx">protobi&rsquo;s version</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">dataFile</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">parsed</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">reduce</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">prev</span>, <span style="color:#a6e22e">current</span>, <span style="color:#a6e22e">index</span> ){
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">currentRow</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(<span style="color:#a6e22e">index</span> <span style="color:#960050;background-color:#1e0010">/ parsed.width);</span>
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">currentColumn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">%</span> (<span style="color:#a6e22e">parsed</span>.<span style="color:#a6e22e">width</span>);
+
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">id</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">XLSX</span>.<span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">encode_cell</span>({ <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">currentColumn</span> , <span style="color:#a6e22e">r</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">currentRow</span>});
+	<span style="color:#a6e22e">prev</span>[<span style="color:#a6e22e">id</span>] <span style="color:#f92672">=</span> {
+		<span style="color:#a6e22e">t</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;s&#39;</span>,
+		<span style="color:#a6e22e">v</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;&#34;</span>,
+		<span style="color:#a6e22e">s</span> <span style="color:#f92672">:</span> {
+			<span style="color:#a6e22e">fill</span> <span style="color:#f92672">:</span> {
+				<span style="color:#a6e22e">patternType</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;solid&#34;</span>,
+				<span style="color:#a6e22e">fgColor</span> <span style="color:#f92672">:</span> { <span style="color:#a6e22e">rgb</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">rgbToHex</span>(<span style="color:#a6e22e">current</span>.<span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">current</span>.<span style="color:#a6e22e">g</span>, <span style="color:#a6e22e">current</span>.<span style="color:#a6e22e">b</span>) },
+				<span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>
+			}
+		}
+	};
+
+	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">prev</span>;
+}, {});</code></pre></div>
+<p>Now we need to set our range of cells, and set the column width to be 1px. As neither of two allow us to set our row height, i have to edit the file and set it manually, so no step for this. We also need to make our workbook object, which is going to be written.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">dataFile</span>[<span style="color:#e6db74">&#34;!ref&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">XLSX</span>.<span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">encode_range</span>({
+	<span style="color:#a6e22e">s</span> <span style="color:#f92672">:</span> { <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">r</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>},
+	<span style="color:#a6e22e">e</span> <span style="color:#f92672">:</span> { <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">r</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>},
+});
+
+<span style="color:#a6e22e">dataFile</span>[<span style="color:#e6db74">&#34;!cols&#34;</span>] <span style="color:#f92672">=</span> [];
+<span style="color:#66d9ef">for</span>( <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">width</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
+	<span style="color:#a6e22e">dataFile</span>[<span style="color:#e6db74">&#34;!cols&#34;</span>].<span style="color:#a6e22e">push</span>({
+		<span style="color:#a6e22e">wpx</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>
+	});
+}
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wb</span> <span style="color:#f92672">=</span> {
+	<span style="color:#a6e22e">SheetNames</span> <span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;Image&#34;</span>],
+	<span style="color:#a6e22e">Sheets</span> <span style="color:#f92672">:</span> {
+		<span style="color:#e6db74">&#34;Image&#34;</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">dataFile</span>
+	}
+};</code></pre></div>
+<p>Finally, we write our wokbook, create a blob for it and a url which is going to be passed to our main thread.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">s2ab</span>(<span style="color:#a6e22e">s</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">buf</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ArrayBuffer</span>(<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">length</span>);
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">view</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Uint8Array</span>(<span style="color:#a6e22e">buf</span>);
+  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">!=</span><span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">length</span>; <span style="color:#f92672">++</span><span style="color:#a6e22e">i</span>) <span style="color:#a6e22e">view</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">charCodeAt</span>(<span style="color:#a6e22e">i</span>) <span style="color:#f92672">&amp;</span> <span style="color:#ae81ff">0xFF</span>;
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">buf</span>;
+}
+
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wbout</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">XLSX</span>.<span style="color:#a6e22e">write</span>(<span style="color:#a6e22e">wb</span>, {<span style="color:#a6e22e">bookType</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#39;xlsx&#39;</span>, <span style="color:#a6e22e">bookSST</span><span style="color:#f92672">:</span><span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;binary&#39;</span>});
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">blob</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Blob</span>([<span style="color:#a6e22e">s2ab</span>(<span style="color:#a6e22e">wbout</span>)], {<span style="color:#a6e22e">type</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;application/octet-stream&#34;</span>});
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">createObjectURL</span>(<span style="color:#a6e22e">blob</span>);
+<span style="color:#a6e22e">postMessage</span>(<span style="color:#a6e22e">url</span>);</code></pre></div>
+<p>Our final step is to handle our data back from the worker so in our app.js file we need to listen for the onmessage event. What we are only doing here is creating a new <em>a</em> tag with the url to our workbook&rsquo;s blob and appending it to the body.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">imageWorker</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>){
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;a&#39;</span>);
+		<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">download</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;image.xlsx&#34;</span>;
+		<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">href</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">data</span>;
+		<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Download image&#34;</span>;
+		<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;btn btn--download&#34;</span>;
+	document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">a</span>);
+	document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#39;is-loading&#39;</span>);
+};</code></pre></div>
+<p>And thats all the magic you need to know!</p>
+
+<p><em>PD: Yes, i know i could use Service Workers to make it a fully operational web app, but thats not the point of the post</em></p>
+
+<p><em>PD II: Yes, i also know that i could use webworkers in previous posts, but i dont know why i didnt</em></p>
+
+</main>
+</body>
+</html>

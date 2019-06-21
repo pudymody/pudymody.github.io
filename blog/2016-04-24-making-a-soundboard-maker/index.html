@@ -14,7 +14,7 @@
       <meta property="article:published_time" content="2016-04-24 00:00:00 &#43;0000 UTC">
     
     <title>Making a soundboard maker | Federico Scodelaro</title>
-    <link rel="stylesheet" href="https://pudymody.github.io/static/style.css" />
+    <link rel="stylesheet" href="https://pudymody.github.io/static/tufte.min.css" />
     <link rel="shortcut icon" href="https://pudymody.github.io/static/favicon.png" type="image/png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pudymody.github.io/index.xml">
   </head>
@@ -28,15 +28,19 @@
           <li>
             <a href="https://pudymody.github.io/">/home/federico scodelaro</a>
           </li>
+          -
           <li>
             <a target="_blank" rel="noopener" href="https://github.com/pudymody">Github</a>
           </li>
+          -
           <li>
             <a target="_blank" rel="noopener" href="https://telegram.me/pudymody">Telegram</a>
           </li>
+          -
           <li>
             <a target="_blank" rel="noopener" href="mailto:federicoscodelaro@gmail.com">Email</a>
           </li>
+          -
           
 
           
@@ -48,14 +52,13 @@
         </ul>
       </nav>
     </header>
-<div class="article-meta">
+    <article>
+<section>
 <h1>Making a soundboard maker</h1>
-<h2 class="date">2016/04/24</h2>
-</div>
+<p class="subtitle">2016/04/24</p>
 
 
 
-<main>
 
 
 <p>The title is a little &ldquo;metaish&rdquo; <em>(making a maker)</em>, isnt it?. Nevermind, this all started because with my friends we are use to play the sound when you level up in the <a href="https://en.wikipedia.org/wiki/Mu_Online">MuOnline</a> game whenever someone of us did something stupid. One friday night, i was so bored that i made a <a href="https://pudymody.github.io/argenmu-soundboard/">little soundboard</a> with sounds of the game, you can read the <a href="https://github.com/pudymody/argenmu-soundboard">source</a> but if you are going to read this post, you will see it here. The next day, when i showed it to my friends, they went crazy, the wanted to make soundboards for everything you could think of. The first thing that came to my mind was &ldquo;Why dont i make an app to make soundboards? I bet the web can do that&rdquo;. Another boring night and i came up with this app which im going to explain in this post. If you just want to use the app, <a href="https://pudymody.github.io/soundboard-maker/">here you have</a></p>
@@ -92,37 +95,37 @@
 <h3 id="2-getting-the-dropped-files">2. Getting the dropped files</h3>
 
 <p>To get the dropped files, first of all we have to make an element where files will be dropped, in our case is a div with the class <em>drop__container</em> and add the following js.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">	&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;drop__container&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">dropZone</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.drop__container&#39;</span>);
-	<span style="color:#a6e22e">dropZone</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;dragenter&#39;</span>, <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleDragEnter</span>( <span style="color:#a6e22e">evt</span> ){
-		<span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#39;drop__container--success&#39;</span>);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">	&lt;div class=<span style="color:#a31515">&#34;drop__container&#34;</span>&gt;&lt;/div&gt;</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> dropZone = document.querySelector(<span style="color:#a31515">&#39;.drop__container&#39;</span>);
+	dropZone.addEventListener(<span style="color:#a31515">&#39;dragenter&#39;</span>, <span style="color:#00f">function</span> handleDragEnter( evt ){
+		evt.target.classList.add(<span style="color:#a31515">&#39;drop__container--success&#39;</span>);
 	});
 
-	<span style="color:#a6e22e">dropZone</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;dragleave&#39;</span>, <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleDragLeave</span>( <span style="color:#a6e22e">evt</span> ){
-		<span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#39;drop__container--success&#39;</span>);
+	dropZone.addEventListener(<span style="color:#a31515">&#39;dragleave&#39;</span>, <span style="color:#00f">function</span> handleDragLeave( evt ){
+		evt.target.classList.remove(<span style="color:#a31515">&#39;drop__container--success&#39;</span>);
 	});
 
-	<span style="color:#a6e22e">dropZone</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;dragover&#39;</span>, <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleDragOver</span>( <span style="color:#a6e22e">evt</span> ){
-		<span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">stopPropagation</span>();
-		<span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">preventDefault</span>();
-		<span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">dataTransfer</span>.<span style="color:#a6e22e">dropEffect</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;copy&#39;</span>; <span style="color:#75715e">// Explicitly show this is a copy.
-</span><span style="color:#75715e"></span>	});
+	dropZone.addEventListener(<span style="color:#a31515">&#39;dragover&#39;</span>, <span style="color:#00f">function</span> handleDragOver( evt ){
+		evt.stopPropagation();
+		evt.preventDefault();
+		evt.dataTransfer.dropEffect = <span style="color:#a31515">&#39;copy&#39;</span>; <span style="color:#008000">// Explicitly show this is a copy.
+</span><span style="color:#008000"></span>	});
 
-	<span style="color:#a6e22e">dropZone</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;drop&#39;</span>, <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleDrop</span>( <span style="color:#a6e22e">evt</span> ){
-		<span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">stopPropagation</span>();
-		<span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">preventDefault</span>();
-		<span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">classList</span>.<span style="color:#a6e22e">remove</span>(<span style="color:#e6db74">&#39;drop__container--success&#39;</span>);
+	dropZone.addEventListener(<span style="color:#a31515">&#39;drop&#39;</span>, <span style="color:#00f">function</span> handleDrop( evt ){
+		evt.stopPropagation();
+		evt.preventDefault();
+		evt.target.classList.remove(<span style="color:#a31515">&#39;drop__container--success&#39;</span>);
 
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">droppedFiles</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">dataTransfer</span>.<span style="color:#a6e22e">files</span>,
-			<span style="color:#a6e22e">files</span> <span style="color:#f92672">=</span> [],
-			<span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">l</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">droppedFiles</span>.<span style="color:#a6e22e">length</span>;
+		<span style="color:#00f">var</span> droppedFiles = evt.dataTransfer.files,
+			files = [],
+			i = 0, l = droppedFiles.length;
 
-		<span style="color:#66d9ef">for</span>( ; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">l</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
-			<span style="color:#a6e22e">files</span>.<span style="color:#a6e22e">push</span>( <span style="color:#a6e22e">droppedFiles</span>[<span style="color:#a6e22e">i</span>].<span style="color:#a6e22e">name</span> );
+		<span style="color:#00f">for</span>( ; i &lt; l; i++){
+			files.push( droppedFiles[i].name );
 		}
 
-		<span style="color:#a6e22e">XXSPubSub</span>.<span style="color:#a6e22e">publish</span>(<span style="color:#e6db74">&#39;drop.add&#39;</span>, [<span style="color:#a6e22e">files</span>]);
+		XXSPubSub.publish(<span style="color:#a31515">&#39;drop.add&#39;</span>, [files]);
 
-	}, <span style="color:#66d9ef">false</span>);</code></pre></div>
+	}, <span style="color:#00f">false</span>);</code></pre></div>
 <p>In the first line, we get a reference to our DOM object using the querySelector function and then we attach drag and drop events.</p>
 
 <p>In the <em>dragenter</em> and <em>dragleave</em>, we only toggle a class to let the user know that he can drop the files (it turns the div into green).</p>
@@ -134,65 +137,65 @@
 <h3 id="3-making-a-reusable-component-to-handle-the-name-and-category-of-the-file">3. Making a reusable component to handle the name and category of the file</h3>
 
 <p>This is just beacuse i dont want to use any framework, but you could use whatever you want, angular, jquery, react, o whatever framework is the hot topic at the moment you are reading this.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Sound</span>( <span style="color:#a6e22e">data</span> ){
-	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>;
-	<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_buildDOM</span>();
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">function</span> Sound( data ){
+	<span style="color:#00f">this</span>.data = data;
+	<span style="color:#00f">this</span>._buildDOM();
 }
 
-<span style="color:#a6e22e">Sound</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> {
-	<span style="color:#a6e22e">data</span> <span style="color:#f92672">:</span> {},
-	<span style="color:#a6e22e">$</span> <span style="color:#f92672">:</span> {},
+Sound.prototype = {
+	data : {},
+	$ : {},
 
-	<span style="color:#a6e22e">_buildDOM</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+	_buildDOM : <span style="color:#00f">function</span>(){
 
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">inputOuter</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;div&#39;</span>);
-			<span style="color:#a6e22e">inputOuter</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield&#34;</span>;
+		<span style="color:#00f">var</span> inputOuter = document.createElement(<span style="color:#a31515">&#39;div&#39;</span>);
+			inputOuter.className = <span style="color:#a31515">&#34;mdl-cell mdl-cell--12-col mdl-textfield mdl-js-textfield&#34;</span>;
 
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;input&#39;</span>);
-			<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;text&#39;</span>;
-			<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mdl-textfield__input&#34;</span>;
-			<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">placeholder</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Name of the sound&#39;</span>;
-			<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">required</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-			<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;blur&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">evt</span>){
-				<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>;
-			}.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>));
+		<span style="color:#00f">var</span> name = document.createElement(<span style="color:#a31515">&#39;input&#39;</span>);
+			name.type = <span style="color:#a31515">&#39;text&#39;</span>;
+			name.className = <span style="color:#a31515">&#34;mdl-textfield__input&#34;</span>;
+			name.placeholder = <span style="color:#a31515">&#39;Name of the sound&#39;</span>;
+			name.required = <span style="color:#00f">true</span>;
+			name.addEventListener(<span style="color:#a31515">&#39;blur&#39;</span>, <span style="color:#00f">function</span>(evt){
+				<span style="color:#00f">this</span>.data.name = evt.target.value;
+			}.bind(<span style="color:#00f">this</span>));
 
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">nameOuter</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">inputOuter</span>.<span style="color:#a6e22e">cloneNode</span>();
-			<span style="color:#a6e22e">nameOuter</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">name</span>);
+		<span style="color:#00f">var</span> nameOuter = inputOuter.cloneNode();
+			nameOuter.appendChild(name);
 
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">category</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;input&#39;</span>);
-			<span style="color:#a6e22e">category</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;text&#39;</span>;
-			<span style="color:#a6e22e">category</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mdl-textfield__input&#34;</span>;
-			<span style="color:#a6e22e">category</span>.<span style="color:#a6e22e">placeholder</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Category of the sound&#39;</span>;
-			<span style="color:#a6e22e">category</span>.<span style="color:#a6e22e">required</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
-			<span style="color:#a6e22e">category</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;blur&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">evt</span>){
-				<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">category</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>;
-			}.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>));
+		<span style="color:#00f">var</span> category = document.createElement(<span style="color:#a31515">&#39;input&#39;</span>);
+			category.type = <span style="color:#a31515">&#39;text&#39;</span>;
+			category.className = <span style="color:#a31515">&#34;mdl-textfield__input&#34;</span>;
+			category.placeholder = <span style="color:#a31515">&#39;Category of the sound&#39;</span>;
+			category.required = <span style="color:#00f">true</span>;
+			category.addEventListener(<span style="color:#a31515">&#39;blur&#39;</span>, <span style="color:#00f">function</span>(evt){
+				<span style="color:#00f">this</span>.data.category = evt.target.value;
+			}.bind(<span style="color:#00f">this</span>));
 
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">categoryOuter</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">inputOuter</span>.<span style="color:#a6e22e">cloneNode</span>();
-			<span style="color:#a6e22e">categoryOuter</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">category</span>);
+		<span style="color:#00f">var</span> categoryOuter = inputOuter.cloneNode();
+			categoryOuter.appendChild(category);
 
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">title</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;span&#39;</span>);
-			<span style="color:#a6e22e">title</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mdl-cell mdl-cell--12-col&#39;</span>;
-			<span style="color:#a6e22e">title</span>.<span style="color:#a6e22e">innerText</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">file</span>;
+		<span style="color:#00f">var</span> title = document.createElement(<span style="color:#a31515">&#39;span&#39;</span>);
+			title.className = <span style="color:#a31515">&#39;mdl-cell mdl-cell--12-col&#39;</span>;
+			title.innerText = <span style="color:#00f">this</span>.data.file;
 
-		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wrapper</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;li&#39;</span>);
-			<span style="color:#a6e22e">wrapper</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;mdl-list__item mdl-grid&#39;</span>;
-			<span style="color:#a6e22e">wrapper</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">title</span>);
-			<span style="color:#a6e22e">wrapper</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">nameOuter</span>);
-			<span style="color:#a6e22e">wrapper</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">categoryOuter</span>);
+		<span style="color:#00f">var</span> wrapper = document.createElement(<span style="color:#a31515">&#39;li&#39;</span>);
+			wrapper.className = <span style="color:#a31515">&#39;mdl-list__item mdl-grid&#39;</span>;
+			wrapper.appendChild(title);
+			wrapper.appendChild(nameOuter);
+			wrapper.appendChild(categoryOuter);
 
-		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>;
-		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">category</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">category</span>;
-		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">wrapper</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">wrapper</span>;
+		<span style="color:#00f">this</span>.$.name = name;
+		<span style="color:#00f">this</span>.$.category = category;
+		<span style="color:#00f">this</span>.$.wrapper = wrapper;
 	},
 
-	<span style="color:#a6e22e">getDOMNode</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
-		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">wrapper</span>;
+	getDOMNode : <span style="color:#00f">function</span>(){
+		<span style="color:#00f">return</span> <span style="color:#00f">this</span>.$.wrapper;
 	},
 
-	<span style="color:#a6e22e">getJSON</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
-		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">data</span>;
+	getJSON : <span style="color:#00f">function</span>(){
+		<span style="color:#00f">return</span> <span style="color:#00f">this</span>.data;
 	}
 };</code></pre></div>
 <p><em>You could easily make it an ES6 class (indeed i think its the best idea, but i wanted to give some fallback without any transpiler)</em></p>
@@ -208,82 +211,82 @@
 <h3 id="4-generating-the-file">4. Generating the file</h3>
 
 <p>Until now, we have the reusable sound element, and the dropped files event, but they arent tie, so we are going to do that.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">App</span> <span style="color:#f92672">=</span> {
-	<span style="color:#a6e22e">_sounds</span> <span style="color:#f92672">:</span> [],
-	<span style="color:#a6e22e">$</span> <span style="color:#f92672">:</span> {},
-	<span style="color:#a6e22e">init</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">files</span> ){
-		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_buildDOM</span>();
-		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_bindEvents</span>();
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> App = {
+	_sounds : [],
+	$ : {},
+	init : <span style="color:#00f">function</span>( files ){
+		<span style="color:#00f">this</span>._buildDOM();
+		<span style="color:#00f">this</span>._bindEvents();
 	},
 
-	<span style="color:#a6e22e">addFiles</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">files</span> ){
-		<span style="color:#a6e22e">files</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">item</span>){
-			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">song</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Sound</span>({ <span style="color:#a6e22e">file</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">item</span> });
-			<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_sounds</span>.<span style="color:#a6e22e">push</span>( <span style="color:#a6e22e">song</span> );
-			<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">list</span>.<span style="color:#a6e22e">appendChild</span>( <span style="color:#a6e22e">song</span>.<span style="color:#a6e22e">getDOMNode</span>() );
-		}.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>));
+	addFiles : <span style="color:#00f">function</span>( files ){
+		files.forEach(<span style="color:#00f">function</span>(item){
+			<span style="color:#00f">var</span> song = <span style="color:#00f">new</span> Sound({ file : item });
+			<span style="color:#00f">this</span>._sounds.push( song );
+			<span style="color:#00f">this</span>.$.list.appendChild( song.getDOMNode() );
+		}.bind(<span style="color:#00f">this</span>));
 	},
 
-	<span style="color:#a6e22e">_buildDOM</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
-		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">form</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.wrapper&#39;</span>);
-		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;appName&#39;</span>);
-		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">list</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.item-list&#39;</span>);
+	_buildDOM : <span style="color:#00f">function</span>(){
+		<span style="color:#00f">this</span>.$.form = document.querySelector(<span style="color:#a31515">&#39;.wrapper&#39;</span>);
+		<span style="color:#00f">this</span>.$.name = document.getElementById(<span style="color:#a31515">&#39;appName&#39;</span>);
+		<span style="color:#00f">this</span>.$.list = <span style="color:#00f">this</span>.$.form.querySelector(<span style="color:#a31515">&#39;.item-list&#39;</span>);
 	},
 
-	<span style="color:#a6e22e">_bindEvents</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+	_bindEvents : <span style="color:#00f">function</span>(){
 
-		<span style="color:#a6e22e">XXSPubSub</span>.<span style="color:#a6e22e">subscribe</span>(<span style="color:#e6db74">&#39;drop.add&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">addFiles</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>));
-		<span style="color:#a6e22e">XXSPubSub</span>.<span style="color:#a6e22e">subscribe</span>(<span style="color:#e6db74">&#39;app.build&#39;</span>, <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">create</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>));
+		XXSPubSub.subscribe(<span style="color:#a31515">&#39;drop.add&#39;</span>, <span style="color:#00f">this</span>.addFiles.bind(<span style="color:#00f">this</span>));
+		XXSPubSub.subscribe(<span style="color:#a31515">&#39;app.build&#39;</span>, <span style="color:#00f">this</span>.create.bind(<span style="color:#00f">this</span>));
 
-		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">form</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;submit&#39;</span>, <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">e</span> ){
-			<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">preventDefault</span>();
-			<span style="color:#a6e22e">XXSPubSub</span>.<span style="color:#a6e22e">publish</span>(<span style="color:#e6db74">&#39;app.build&#39;</span>);
+		<span style="color:#00f">this</span>.$.form.addEventListener(<span style="color:#a31515">&#39;submit&#39;</span>, <span style="color:#00f">function</span>( e ){
+			e.preventDefault();
+			XXSPubSub.publish(<span style="color:#a31515">&#39;app.build&#39;</span>);
 		});
 	},
 
-	<span style="color:#a6e22e">create</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(){
+	create : <span style="color:#00f">function</span>(){
 
-		<span style="color:#75715e">// get files
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">files</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_sounds</span>.<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">sound</span> ){
-			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sound</span>.<span style="color:#a6e22e">getJSON</span>();
+		<span style="color:#008000">// get files
+</span><span style="color:#008000"></span>		<span style="color:#00f">var</span> files = <span style="color:#00f">this</span>._sounds.map(<span style="color:#00f">function</span>( sound ){
+			<span style="color:#00f">return</span> sound.getJSON();
 		});
 
-		<span style="color:#75715e">// create first service worker
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">sw</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_generateSW</span>( <span style="color:#a6e22e">files</span> );
+		<span style="color:#008000">// create first service worker
+</span><span style="color:#008000"></span>		<span style="color:#00f">var</span> sw = <span style="color:#00f">this</span>._generateSW( files );
 
-		<span style="color:#75715e">// make an object with the sounds grouped by category
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">categories</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">files</span>.<span style="color:#a6e22e">reduce</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">prev</span>, <span style="color:#a6e22e">current</span> ){
-			<span style="color:#a6e22e">current</span>.<span style="color:#a6e22e">category</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">current</span>.<span style="color:#a6e22e">category</span>.<span style="color:#a6e22e">trim</span>().<span style="color:#a6e22e">toLowerCase</span>();
-			<span style="color:#66d9ef">if</span>( <span style="color:#f92672">!</span><span style="color:#a6e22e">prev</span>.<span style="color:#a6e22e">hasOwnProperty</span>( <span style="color:#a6e22e">current</span>.<span style="color:#a6e22e">category</span> ) ){
-				<span style="color:#a6e22e">prev</span>[ <span style="color:#a6e22e">current</span>.<span style="color:#a6e22e">category</span> ] <span style="color:#f92672">=</span> [];
+		<span style="color:#008000">// make an object with the sounds grouped by category
+</span><span style="color:#008000"></span>		<span style="color:#00f">var</span> categories = files.reduce(<span style="color:#00f">function</span>( prev, current ){
+			current.category = current.category.trim().toLowerCase();
+			<span style="color:#00f">if</span>( !prev.hasOwnProperty( current.category ) ){
+				prev[ current.category ] = [];
 			}
 
-			<span style="color:#a6e22e">prev</span>[ <span style="color:#a6e22e">current</span>.<span style="color:#a6e22e">category</span> ].<span style="color:#a6e22e">push</span>( <span style="color:#a6e22e">current</span> );
+			prev[ current.category ].push( current );
 
-			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">prev</span>;
+			<span style="color:#00f">return</span> prev;
 		}, {});
 
-		<span style="color:#75715e">// make tabs and containers in index
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_generateIndex</span>({ <span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">value</span>, <span style="color:#a6e22e">files</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">categories</span> });
+		<span style="color:#008000">// make tabs and containers in index
+</span><span style="color:#008000"></span>		<span style="color:#00f">var</span> index = <span style="color:#00f">this</span>._generateIndex({ name : <span style="color:#00f">this</span>.$.name.value, files : categories });
 
-		<span style="color:#75715e">// make zip
-</span><span style="color:#75715e"></span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">zip</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">JSZip</span>();
-			<span style="color:#a6e22e">zip</span>.<span style="color:#a6e22e">file</span>(<span style="color:#e6db74">&#34;sw.js&#34;</span>, <span style="color:#a6e22e">sw</span>);
-			<span style="color:#a6e22e">zip</span>.<span style="color:#a6e22e">file</span>(<span style="color:#e6db74">&#34;index.html&#34;</span>, <span style="color:#a6e22e">index</span>);
+		<span style="color:#008000">// make zip
+</span><span style="color:#008000"></span>		<span style="color:#00f">var</span> zip = <span style="color:#00f">new</span> JSZip();
+			zip.file(<span style="color:#a31515">&#34;sw.js&#34;</span>, sw);
+			zip.file(<span style="color:#a31515">&#34;index.html&#34;</span>, index);
 
-			<span style="color:#a6e22e">zip</span>.<span style="color:#a6e22e">file</span>(<span style="color:#e6db74">&#34;material.min.js&#34;</span>, <span style="color:#e6db74">&#34;material.min.js file content&#34;</span>);
-			<span style="color:#a6e22e">zip</span>.<span style="color:#a6e22e">file</span>(<span style="color:#e6db74">&#34;material.min.css&#34;</span>, <span style="color:#e6db74">&#34;material.min.css file content&#34;</span>);
+			zip.file(<span style="color:#a31515">&#34;material.min.js&#34;</span>, <span style="color:#a31515">&#34;material.min.js file content&#34;</span>);
+			zip.file(<span style="color:#a31515">&#34;material.min.css&#34;</span>, <span style="color:#a31515">&#34;material.min.css file content&#34;</span>);
 
-		<span style="color:#a6e22e">zip</span>.<span style="color:#a6e22e">generateAsync</span>({<span style="color:#a6e22e">type</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;blob&#34;</span>}).<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">content</span>){
-			<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;a&#39;</span>);
-				<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">download</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;soundboard.zip&#39;</span>;
-				<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">href</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">createObjectURL</span>(<span style="color:#a6e22e">content</span>);
-				<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">click</span>();
+		zip.generateAsync({type:<span style="color:#a31515">&#34;blob&#34;</span>}).then(<span style="color:#00f">function</span>(content){
+			<span style="color:#00f">var</span> a = document.createElement(<span style="color:#a31515">&#39;a&#39;</span>);
+				a.download = <span style="color:#a31515">&#39;soundboard.zip&#39;</span>;
+				a.href = URL.createObjectURL(content);
+				a.click();
 		});
 	},
 };
 
-<span style="color:#a6e22e">App</span>.<span style="color:#a6e22e">init</span>();</code></pre></div>
+App.init();</code></pre></div>
 <p>First of all we make an App object with our entire app logic. The <em>_sounds</em> property will hold our sounds objects and the <em>$</em> will hold references to our DOM objects.</p>
 
 <p>The <em>init</em> function its our starting point, what make the app run. First, it calls the <em>_buildDOM</em> function, which only gets references of DOM objects of the main form, the input with our app name, and the ul where we are going to store our sounds objects and saves them. It also calls the <em>_bindEvents</em> function, which subscribes to the <em>drop.add</em> event with the <em>addFiles</em> function, and to <em>app.build</em> with the <em>create</em> function. And whenever the main form is submited, it publish to the <em>app.build</em> event.</p>
@@ -301,28 +304,29 @@
 <h3 id="playing-the-selected-sound">Playing the selected sound</h3>
 
 <p>To do this, we are going to use a technique called event delegation. This is, we listen for every click in the document, and if we meet a certain criteria, we fire certain callback. You can read more about this technique in <a href="http://codepen.io/32bitkid/post/understanding-delegated-javascript-events">this awesome post</a></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">playAudio</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">function</span>(){
-	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$AUDIO</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementsByTagName</span>(<span style="color:#e6db74">&#39;audio&#39;</span>)[<span style="color:#ae81ff">0</span>];
-	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">url</span> ){
-		<span style="color:#66d9ef">if</span>( <span style="color:#f92672">!</span><span style="color:#a6e22e">$AUDIO</span>.<span style="color:#a6e22e">paused</span> ){
-			<span style="color:#a6e22e">$AUDIO</span>.<span style="color:#a6e22e">pause</span>();
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> playAudio = (<span style="color:#00f">function</span>(){
+	<span style="color:#00f">var</span> $AUDIO = document.getElementsByTagName(<span style="color:#a31515">&#39;audio&#39;</span>)[0];
+	<span style="color:#00f">return</span> <span style="color:#00f">function</span>( url ){
+		<span style="color:#00f">if</span>( !$AUDIO.paused ){
+			$AUDIO.pause();
 		}
-		<span style="color:#a6e22e">$AUDIO</span>.<span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">url</span>;
-		<span style="color:#a6e22e">$AUDIO</span>.<span style="color:#a6e22e">play</span>();
+		$AUDIO.src = url;
+		$AUDIO.play();
 	}
 }());
-document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>){
-	<span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">dataset</span>.<span style="color:#a6e22e">hasOwnProperty</span>(<span style="color:#e6db74">&#39;url&#39;</span>) ){
-		<span style="color:#a6e22e">playAudio</span>(<span style="color:#e6db74">&#39;sounds/&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">dataset</span>.<span style="color:#a6e22e">url</span>);
-		<span style="color:#66d9ef">return</span>;
+document.addEventListener(<span style="color:#a31515">&#39;click&#39;</span>, <span style="color:#00f">function</span>(e){
+	<span style="color:#00f">if</span>( e.target.dataset.hasOwnProperty(<span style="color:#a31515">&#39;url&#39;</span>) ){
+		playAudio(<span style="color:#a31515">&#39;sounds/&#39;</span> + e.target.dataset.url);
+		<span style="color:#00f">return</span>;
 	}
-}, <span style="color:#66d9ef">false</span>);</code></pre></div>
+}, <span style="color:#00f">false</span>);</code></pre></div>
 <p>What we are doing here in the playAudio variable is calling a self executing fuction, which returns a function, that plays the given url audio. And we listen for every click in the document, and when the target has the data-url attribute, we play that url.</p>
 
 <h3 id="making-the-soundboard-offline-first">Making the soundboard offline first</h3>
 
 <p>This is the same as before, you can read the source of the previous one, or read the blog post.</p>
 
-</main>
+</section>
+</article>
 </body>
 </html>

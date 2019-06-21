@@ -14,7 +14,7 @@
       <meta property="article:published_time" content="2017-03-13 00:00:00 &#43;0000 UTC">
     
     <title>Painting my room with WebVR | Federico Scodelaro</title>
-    <link rel="stylesheet" href="https://pudymody.github.io/static/style.css" />
+    <link rel="stylesheet" href="https://pudymody.github.io/static/tufte.min.css" />
     <link rel="shortcut icon" href="https://pudymody.github.io/static/favicon.png" type="image/png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pudymody.github.io/index.xml">
   </head>
@@ -28,15 +28,19 @@
           <li>
             <a href="https://pudymody.github.io/">/home/federico scodelaro</a>
           </li>
+          -
           <li>
             <a target="_blank" rel="noopener" href="https://github.com/pudymody">Github</a>
           </li>
+          -
           <li>
             <a target="_blank" rel="noopener" href="https://telegram.me/pudymody">Telegram</a>
           </li>
+          -
           <li>
             <a target="_blank" rel="noopener" href="mailto:federicoscodelaro@gmail.com">Email</a>
           </li>
+          -
           
 
           
@@ -48,10 +52,10 @@
         </ul>
       </nav>
     </header>
-<div class="article-meta">
+    <article>
+<section>
 <h1>Painting my room with WebVR</h1>
-<h2 class="date">2017/03/13</h2>
-</div>
+<p class="subtitle">2017/03/13</p>
 
 
 <nav id="TableOfContents">
@@ -68,7 +72,6 @@
 </nav>
 
 
-<main>
 
 
 <h1 id="intro">Intro</h1>
@@ -93,9 +96,9 @@
 <h2 id="skeleton-and-dependencies">Skeleton and dependencies</h2>
 
 <p>First, we create a file called <em>index.html</em> with a simple HTML5 template, and inside our <em>body</em> we insert the following</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;assets/dat.gui.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
-&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://aframe.io/releases/0.3.2/aframe.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
-&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;assets/app.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;script type=<span style="color:#a31515">&#34;text/javascript&#34;</span> src=<span style="color:#a31515">&#34;assets/dat.gui.js&#34;</span>&gt;&lt;/script&gt;
+&lt;script src=<span style="color:#a31515">&#34;https://aframe.io/releases/0.3.2/aframe.min.js&#34;</span>&gt;&lt;/script&gt;
+&lt;script src=<span style="color:#a31515">&#34;assets/app.js&#34;</span>&gt;&lt;/script&gt;</code></pre></div>
 <ul>
 <li><p><a href="https://github.com/dataarts/dat.gui">dat.gui</a>: Provides a gui to control js object propertys</p></li>
 
@@ -107,199 +110,200 @@
 <h2 id="application-code">Application code</h2>
 
 <p>First, we need to load the images, and paint them to a canvas. To do this im going to use the <em>fetch</em>, to load them, then im going to create a bitmap representation with the <em>createImageBitmap</em> call, and after that, im going to paint that bitmap to a canvas, everything with the new promise ways. We also make an array of those promises.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">ImageBitmapToCanvas</span>( <span style="color:#a6e22e">imgBitmap</span> ){
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$canvas</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;canvas&#39;</span>);
-        <span style="color:#a6e22e">$canvas</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">imgBitmap</span>.<span style="color:#a6e22e">width</span>;
-        <span style="color:#a6e22e">$canvas</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">imgBitmap</span>.<span style="color:#a6e22e">height</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">function</span> ImageBitmapToCanvas( imgBitmap ){
+    <span style="color:#00f">var</span> $canvas = document.createElement(<span style="color:#a31515">&#39;canvas&#39;</span>);
+        $canvas.width = imgBitmap.width;
+        $canvas.height = imgBitmap.height;
 
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$ctx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$canvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;2d&#39;</span>);
-        <span style="color:#a6e22e">$ctx</span>.<span style="color:#a6e22e">drawImage</span>( <span style="color:#a6e22e">imgBitmap</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span> );
+    <span style="color:#00f">var</span> $ctx = $canvas.getContext(<span style="color:#a31515">&#39;2d&#39;</span>);
+        $ctx.drawImage( imgBitmap, 0, 0 );
 
-        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">$canvas</span>;
+        <span style="color:#00f">return</span> $canvas;
 }
 
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Load</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;img/img.jpg&#34;</span>,<span style="color:#e6db74">&#34;img/01.png&#34;</span>, <span style="color:#e6db74">&#34;img/02.png&#34;</span>, <span style="color:#e6db74">&#34;img/03.png&#34;</span>, <span style="color:#e6db74">&#34;img/04.png&#34;</span>].<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">item</span> ){
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#a6e22e">item</span>)
-        .<span style="color:#a6e22e">then</span>( <span style="color:#a6e22e">r</span> =&gt; <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">blob</span>() )
-        .<span style="color:#a6e22e">then</span>( <span style="color:#a6e22e">createImageBitmap</span> )
-        .<span style="color:#a6e22e">then</span>( <span style="color:#a6e22e">ImageBitmapToCanvas</span> );
+<span style="color:#00f">var</span> Load = [<span style="color:#a31515">&#34;img/img.jpg&#34;</span>,<span style="color:#a31515">&#34;img/01.png&#34;</span>, <span style="color:#a31515">&#34;img/02.png&#34;</span>, <span style="color:#a31515">&#34;img/03.png&#34;</span>, <span style="color:#a31515">&#34;img/04.png&#34;</span>].map(<span style="color:#00f">function</span>( item ){
+    <span style="color:#00f">return</span> fetch(item)
+        .then( r =&gt; r.blob() )
+        .then( createImageBitmap )
+        .then( ImageBitmapToCanvas );
 });</code></pre></div>
 <p>After every image is loaded, we store our full image for future uses, loop through each &ldquo;chroma wall&rdquo; to get and store its imageData, an array filled with four values, rgba, so we can manipulate its color. We create a gui controller to select each color, and we tell our worker to call the <em>setup</em> action. In case of any error, we log the output to the console, its just a prototype.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">Promise.<span style="color:#a6e22e">all</span>(<span style="color:#a6e22e">Load</span>)
-    .<span style="color:#a6e22e">then</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">canvases</span> ){
-        <span style="color:#a6e22e">Handler</span>.<span style="color:#a6e22e">_canvas</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvases</span>[<span style="color:#ae81ff">0</span>];
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">Promise.all(Load)
+    .then(<span style="color:#00f">function</span>( canvases ){
+        Handler._canvas = canvases[0];
 
-        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">WallData</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvases</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span>).<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">wall</span> ){
-            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">wall</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;2d&#39;</span>).<span style="color:#a6e22e">getImageData</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">wall</span>.<span style="color:#a6e22e">width</span>, <span style="color:#a6e22e">wall</span>.<span style="color:#a6e22e">height</span>);
+        <span style="color:#00f">var</span> WallData = canvases.slice(1).map(<span style="color:#00f">function</span>( wall ){
+            <span style="color:#00f">return</span> wall.getContext(<span style="color:#a31515">&#39;2d&#39;</span>).getImageData(0, 0, wall.width, wall.height);
         });
 
-        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">l</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">WallData</span>.<span style="color:#a6e22e">length</span>;
-        <span style="color:#66d9ef">for</span>( ; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">l</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>){
-            <span style="color:#a6e22e">colors</span>[<span style="color:#e6db74">&#34;color&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> { <span style="color:#a6e22e">r</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">g</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">255</span>, <span style="color:#a6e22e">b</span> <span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span> };
-            <span style="color:#a6e22e">gui</span>.<span style="color:#a6e22e">addColor</span>(<span style="color:#a6e22e">colors</span>, <span style="color:#e6db74">&#34;color&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">i</span>);
+        <span style="color:#00f">var</span> i = 0, l = WallData.length;
+        <span style="color:#00f">for</span>( ; i &lt; l; i++){
+            colors[<span style="color:#a31515">&#34;color&#34;</span> + i] = { r : 0, g : 255, b : 0 };
+            gui.addColor(colors, <span style="color:#a31515">&#34;color&#34;</span> + i);
         }
 
-        <span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">postMessage</span>({
-            <span style="color:#a6e22e">action</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;SETUP&#39;</span>,
-            <span style="color:#a6e22e">data</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">WallData</span>
+        worker.postMessage({
+            action : <span style="color:#a31515">&#39;SETUP&#39;</span>,
+            data : WallData
         });
     })
-    .<span style="color:#66d9ef">catch</span>( <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span> );</code></pre></div>
+    .<span style="color:#00f">catch</span>( console.error );</code></pre></div>
 <p>If you are asking why im using a worker, the answer is because dealing with big immages and lots of lots of pixels, its some heavy computing stuff and i dont want to block the UI, so i prefer to spawn another process for this. But for now, lets explain how we deal with its communication.
 First we create a new worker with the <em>worker.js</em> file, and when a new message is received, we check if the <em>Hanfler</em> object has the method <em>action</em>, if it has it, we call it with the data passed. Currently, in the main thread, we only have one method, update, which is responsible of showing the final image.
 First, we make a copy of our main image canvas object, get its 2d context and set its composite method to multiply, thats where almost all the magic happens, the colors of the chroma pages blends making you get a guess of how everything could look. Then we loop through each updatedWalls object, which is a imageData object, make a canvas out of it, and paints it to the main cloned canvas. Finally, we get a blob out of this canvas, creates a url for it, and calls the <em>makeScene</em> method with it. Which is going to append the <strong>a-frame</strong> tags needed.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">ImageDataToCanvas</span>(<span style="color:#a6e22e">data</span>){
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$internalCanvas</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;canvas&#39;</span>);
-        <span style="color:#a6e22e">$internalCanvas</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">width</span>;
-        <span style="color:#a6e22e">$internalCanvas</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">height</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">function</span> ImageDataToCanvas(data){
+    <span style="color:#00f">var</span> $internalCanvas = document.createElement(<span style="color:#a31515">&#39;canvas&#39;</span>);
+        $internalCanvas.width = data.width;
+        $internalCanvas.height = data.height;
 
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$internalCtx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$internalCanvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;2d&#39;</span>);
-        <span style="color:#a6e22e">$internalCtx</span>.<span style="color:#a6e22e">putImageData</span>( <span style="color:#a6e22e">data</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span> );
+    <span style="color:#00f">var</span> $internalCtx = $internalCanvas.getContext(<span style="color:#a31515">&#39;2d&#39;</span>);
+        $internalCtx.putImageData( data, 0, 0 );
 
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">$internalCanvas</span>
+    <span style="color:#00f">return</span> $internalCanvas
 }
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">cloneCanvas</span>(<span style="color:#a6e22e">oldCanvas</span>) {
+<span style="color:#00f">function</span> cloneCanvas(oldCanvas) {
 
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newCanvas</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;canvas&#39;</span>);
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">context</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCanvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;2d&#39;</span>);
+    <span style="color:#00f">var</span> newCanvas = document.createElement(<span style="color:#a31515">&#39;canvas&#39;</span>);
+    <span style="color:#00f">var</span> context = newCanvas.getContext(<span style="color:#a31515">&#39;2d&#39;</span>);
 
-    <span style="color:#a6e22e">newCanvas</span>.<span style="color:#a6e22e">width</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCanvas</span>.<span style="color:#a6e22e">width</span>;
-    <span style="color:#a6e22e">newCanvas</span>.<span style="color:#a6e22e">height</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">oldCanvas</span>.<span style="color:#a6e22e">height</span>;
+    newCanvas.width = oldCanvas.width;
+    newCanvas.height = oldCanvas.height;
 
-    <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">drawImage</span>(<span style="color:#a6e22e">oldCanvas</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+    context.drawImage(oldCanvas, 0, 0);
 
-    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">newCanvas</span>;
+    <span style="color:#00f">return</span> newCanvas;
 }
 
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">makeScene</span>( <span style="color:#a6e22e">url</span> ){
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Scene</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;a-scene&#39;</span>);
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Sky</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">createElement</span>(<span style="color:#e6db74">&#39;a-sky&#39;</span>);
-        <span style="color:#a6e22e">Sky</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#e6db74">&#39;src&#39;</span>, <span style="color:#a6e22e">url</span>);
-        <span style="color:#a6e22e">Sky</span>.<span style="color:#a6e22e">setAttribute</span>(<span style="color:#e6db74">&#39;rotation&#39;</span>, <span style="color:#e6db74">&#39;0 -130 0&#39;</span>);
+<span style="color:#00f">function</span> makeScene( url ){
+    <span style="color:#00f">var</span> Scene = document.createElement(<span style="color:#a31515">&#39;a-scene&#39;</span>);
+    <span style="color:#00f">var</span> Sky = document.createElement(<span style="color:#a31515">&#39;a-sky&#39;</span>);
+        Sky.setAttribute(<span style="color:#a31515">&#39;src&#39;</span>, url);
+        Sky.setAttribute(<span style="color:#a31515">&#39;rotation&#39;</span>, <span style="color:#a31515">&#39;0 -130 0&#39;</span>);
 
-    <span style="color:#a6e22e">Scene</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">Sky</span>);
-    document.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">appendChild</span>(<span style="color:#a6e22e">Scene</span>);
+    Scene.appendChild(Sky);
+    document.body.appendChild(Scene);
 }
 
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">worker</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Worker</span>(<span style="color:#e6db74">&#39;worker.js&#39;</span>);
-<span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;message&#39;</span>, <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">evt</span> ){
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">data</span>;
-    <span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">Handler</span>.<span style="color:#a6e22e">hasOwnProperty</span>( <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">action</span> ) ){
-        <span style="color:#a6e22e">Handler</span>[ <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">action</span> ].<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">Handler</span>, <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">data</span>);
+<span style="color:#00f">var</span> worker = <span style="color:#00f">new</span> Worker(<span style="color:#a31515">&#39;worker.js&#39;</span>);
+worker.addEventListener(<span style="color:#a31515">&#39;message&#39;</span>, <span style="color:#00f">function</span>( evt ){
+    <span style="color:#00f">var</span> data = evt.data;
+    <span style="color:#00f">if</span>( Handler.hasOwnProperty( data.action ) ){
+        Handler[ data.action ].call(Handler, data.data);
     }
 })
 
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Handler</span> <span style="color:#f92672">=</span> {
-    <span style="color:#a6e22e">_canvas</span> <span style="color:#f92672">:</span> [],
-    <span style="color:#a6e22e">UPDATE</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">updatedWalls</span> ){
-        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newCanvas</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cloneCanvas</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_canvas</span>);
-        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$ctx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">newCanvas</span>.<span style="color:#a6e22e">getContext</span>(<span style="color:#e6db74">&#39;2d&#39;</span>);
-            <span style="color:#a6e22e">$ctx</span>.<span style="color:#a6e22e">globalCompositeOperation</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;multiply&#34;</span>;
+<span style="color:#00f">var</span> Handler = {
+    _canvas : [],
+    UPDATE : <span style="color:#00f">function</span>( updatedWalls ){
+        <span style="color:#00f">var</span> newCanvas = cloneCanvas(<span style="color:#00f">this</span>._canvas);
+        <span style="color:#00f">var</span> $ctx = newCanvas.getContext(<span style="color:#a31515">&#39;2d&#39;</span>);
+            $ctx.globalCompositeOperation = <span style="color:#a31515">&#34;multiply&#34;</span>;
 
 
-        <span style="color:#a6e22e">updatedWalls</span>
-            .<span style="color:#a6e22e">map</span>( <span style="color:#a6e22e">ImageDataToCanvas</span> )
-            .<span style="color:#a6e22e">forEach</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">wall</span> ){
-                <span style="color:#a6e22e">$ctx</span>.<span style="color:#a6e22e">drawImage</span>(<span style="color:#a6e22e">wall</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
+        updatedWalls
+            .map( ImageDataToCanvas )
+            .forEach(<span style="color:#00f">function</span>( wall ){
+                $ctx.drawImage(wall, 0, 0);
             });
 
-        <span style="color:#a6e22e">newCanvas</span>.<span style="color:#a6e22e">toBlob</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">blob</span> ){
-            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">createObjectURL</span>(<span style="color:#a6e22e">blob</span>);
-            <span style="color:#a6e22e">makeScene</span>(<span style="color:#a6e22e">url</span>);
+        newCanvas.toBlob(<span style="color:#00f">function</span>( blob ){
+            <span style="color:#00f">var</span> url = URL.createObjectURL(blob);
+            makeScene(url);
         })
     }
 };</code></pre></div>
 <p>Finally, we also need a function to delete the scene, and to create the controls of the ui. I think this are pretty straight forward to explain.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">colors</span> <span style="color:#f92672">=</span> {};
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">gui</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">dat</span>.<span style="color:#a6e22e">gui</span>.<span style="color:#a6e22e">GUI</span>();
-    <span style="color:#a6e22e">gui</span>.<span style="color:#a6e22e">remember</span>(<span style="color:#a6e22e">colors</span>);
-    <span style="color:#a6e22e">gui</span>.<span style="color:#a6e22e">__save_row</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">evt</span> ){
-        <span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">className</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;button save&#34;</span> ){
-            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newColors</span> <span style="color:#f92672">=</span> Object.<span style="color:#a6e22e">keys</span>(<span style="color:#a6e22e">colors</span>).<span style="color:#a6e22e">sort</span>().<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">key</span> ){
-                <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">colors</span>[<span style="color:#a6e22e">key</span>];
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> colors = {};
+<span style="color:#00f">var</span> gui = <span style="color:#00f">new</span> dat.gui.GUI();
+    gui.remember(colors);
+    gui.__save_row.addEventListener(<span style="color:#a31515">&#39;click&#39;</span>, <span style="color:#00f">function</span>( evt ){
+        <span style="color:#00f">if</span>( evt.target.className === <span style="color:#a31515">&#34;button save&#34;</span> ){
+            <span style="color:#00f">var</span> newColors = Object.keys(colors).sort().map(<span style="color:#00f">function</span>( key ){
+                <span style="color:#00f">return</span> colors[key];
             });
 
-            <span style="color:#a6e22e">worker</span>.<span style="color:#a6e22e">postMessage</span>({
-                <span style="color:#a6e22e">action</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;UPDATE&#39;</span>,
-                <span style="color:#a6e22e">data</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">newColors</span>
+            worker.postMessage({
+                action : <span style="color:#a31515">&#39;UPDATE&#39;</span>,
+                data : newColors
             });
         }
     })
 
-	document.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;keyup&#39;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">evt</span>){
-	    <span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">keyCode</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">27</span> ){
-	        <span style="color:#a6e22e">destroyScene</span>();
+	document.addEventListener(<span style="color:#a31515">&#39;keyup&#39;</span>, <span style="color:#00f">function</span>(evt){
+	    <span style="color:#00f">if</span>( evt.keyCode == 27 ){
+	        destroyScene();
 	    }
 	})
 
-	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">destroyScene</span>(){
-	    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Sky</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;a-sky&#39;</span>);
-	    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Scene</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;a-scene&#39;</span>);
+	<span style="color:#00f">function</span> destroyScene(){
+	    <span style="color:#00f">var</span> Sky = document.querySelector(<span style="color:#a31515">&#39;a-sky&#39;</span>);
+	    <span style="color:#00f">var</span> Scene = document.querySelector(<span style="color:#a31515">&#39;a-scene&#39;</span>);
 
-	    <span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">Scene</span> ){
-	        <span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">revokeObjectURL</span>( <span style="color:#a6e22e">Sky</span>.<span style="color:#a6e22e">getAttribute</span>(<span style="color:#e6db74">&#39;src&#39;</span>) );
-	        <span style="color:#a6e22e">Scene</span>.<span style="color:#a6e22e">parentNode</span>.<span style="color:#a6e22e">removeChild</span>(<span style="color:#a6e22e">Scene</span>)
+	    <span style="color:#00f">if</span>( Scene ){
+	        URL.revokeObjectURL( Sky.getAttribute(<span style="color:#a31515">&#39;src&#39;</span>) );
+	        Scene.parentNode.removeChild(Scene)
 	    }
 	}</code></pre></div>
 <h2 id="worker-code">Worker code</h2>
 
 <p>And this is where all the magic of turning green walls to other colors happens. The communication way its the same. The setup method only stores the data received, which is an array of imageDatas. The update method is where everything happens, it receievs an array with the new colors. It loops through each imageData stored, get the color with the same index, creates a new <em>Uint8ClampedArray</em>, used to create a new imageData, and loop through the original. If its a pure green (0,255,0), changes it to the color wanted, and then return the new one. After all, call the <em>update</em> method in the client with the new imageDatas.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">Handler</span> <span style="color:#f92672">=</span> {
-    <span style="color:#a6e22e">_DATA</span> <span style="color:#f92672">:</span> [],
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> Handler = {
+    _DATA : [],
 
-    <span style="color:#a6e22e">SETUP</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">data</span> ){
-        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_DATA</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>;
+    SETUP : <span style="color:#00f">function</span>( data ){
+        <span style="color:#00f">this</span>._DATA = data;
     },
 
-    <span style="color:#a6e22e">UPDATE</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">colors</span> ){
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[WORKER] Start new update&#34;</span>);
-        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">returnData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">_DATA</span>.<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">item</span>, <span style="color:#a6e22e">index</span> ){
+    UPDATE : <span style="color:#00f">function</span>( colors ){
+        console.log(<span style="color:#a31515">&#34;[WORKER] Start new update&#34;</span>);
+        <span style="color:#00f">var</span> returnData = <span style="color:#00f">this</span>._DATA.map(<span style="color:#00f">function</span>( item, index ){
 
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[WORKER][WALL&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">index</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;] Start painting&#34;</span>);
-            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">newColor</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">colors</span>[<span style="color:#a6e22e">index</span>],
-                <span style="color:#a6e22e">newData</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Uint8ClampedArray</span>( <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">length</span> ),
-                <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, <span style="color:#a6e22e">l</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">length</span>;
+            console.log(<span style="color:#a31515">&#34;[WORKER][WALL&#34;</span>+index+<span style="color:#a31515">&#34;] Start painting&#34;</span>);
+            <span style="color:#00f">var</span> newColor = colors[index],
+                newData = <span style="color:#00f">new</span> Uint8ClampedArray( item.data.length ),
+                i = 0, l = item.data.length;
 
-            <span style="color:#66d9ef">for</span>( ; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">l</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">4</span> ){
-                <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">r</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>];
-                <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">g</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>];
-                <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>];
-                <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>];
-                <span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">r</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">g</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">255</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">b</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span> ){
-                    <span style="color:#a6e22e">newData</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">newColor</span>.<span style="color:#a6e22e">r</span>;
-                    <span style="color:#a6e22e">newData</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">newColor</span>.<span style="color:#a6e22e">g</span>;
-                    <span style="color:#a6e22e">newData</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">newColor</span>.<span style="color:#a6e22e">b</span>;
-                    <span style="color:#a6e22e">newData</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>;
-                }<span style="color:#66d9ef">else</span>{
-                    <span style="color:#a6e22e">newData</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">r</span>;
-                    <span style="color:#a6e22e">newData</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">g</span>;
-                    <span style="color:#a6e22e">newData</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">b</span>;
-                    <span style="color:#a6e22e">newData</span>[<span style="color:#a6e22e">i</span><span style="color:#f92672">+</span><span style="color:#ae81ff">3</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">a</span>;
+            <span style="color:#00f">for</span>( ; i &lt; l; i += 4 ){
+                <span style="color:#00f">var</span> r = item.data[i];
+                <span style="color:#00f">var</span> g = item.data[i+1];
+                <span style="color:#00f">var</span> b = item.data[i+2];
+                <span style="color:#00f">var</span> a = item.data[i+3];
+                <span style="color:#00f">if</span>( r === 0 &amp;&amp; g === 255 &amp;&amp; b === 0 ){
+                    newData[i] = newColor.r;
+                    newData[i+1] = newColor.g;
+                    newData[i+2] = newColor.b;
+                    newData[i+3] = a;
+                }<span style="color:#00f">else</span>{
+                    newData[i] = r;
+                    newData[i+1] = g;
+                    newData[i+2] = b;
+                    newData[i+3] = a;
                 }
             }
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[WORKER][WALL&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">index</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#34;] Finish painting&#34;</span>);
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ImageData</span>(<span style="color:#a6e22e">newData</span>, <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">width</span>, <span style="color:#a6e22e">item</span>.<span style="color:#a6e22e">height</span>);
+            console.log(<span style="color:#a31515">&#34;[WORKER][WALL&#34;</span>+index+<span style="color:#a31515">&#34;] Finish painting&#34;</span>);
+            <span style="color:#00f">return</span> <span style="color:#00f">new</span> ImageData(newData, item.width, item.height);
         });
 
-        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;[WORKER] Post back data&#34;</span>);
-        <span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">postMessage</span>({
-            <span style="color:#a6e22e">action</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;UPDATE&#39;</span>,
-            <span style="color:#a6e22e">data</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">returnData</span>
+        console.log(<span style="color:#a31515">&#34;[WORKER] Post back data&#34;</span>);
+        self.postMessage({
+            action : <span style="color:#a31515">&#39;UPDATE&#39;</span>,
+            data : returnData
         })
     }
 };
 
-<span style="color:#a6e22e">self</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;message&#39;</span>, <span style="color:#66d9ef">function</span>( <span style="color:#a6e22e">evt</span> ){
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">data</span>;
-    <span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">Handler</span>.<span style="color:#a6e22e">hasOwnProperty</span>( <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">action</span> ) ){
-        <span style="color:#a6e22e">Handler</span>[ <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">action</span> ].<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">Handler</span>, <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">data</span>);
+self.addEventListener(<span style="color:#a31515">&#39;message&#39;</span>, <span style="color:#00f">function</span>( evt ){
+    <span style="color:#00f">var</span> data = evt.data;
+    <span style="color:#00f">if</span>( Handler.hasOwnProperty( data.action ) ){
+        Handler[ data.action ].call(Handler, data.data);
     }
 })</code></pre></div>
 <h2 id="final-thoughts">Final thoughts</h2>
 
 <p>This is not the best way to accomplish this task, but i think it shows the power the web have nowadays, and it also is IMHO a good example use case of the proposed <a href="https://developer.mozilla.org/es/docs/Web/API/OffscreenCanvas">OffScreenCanvas</a> which would allow this app to run almost entirely in the worker.</p>
 
-</main>
+</section>
+</article>
 </body>
 </html>

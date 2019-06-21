@@ -18,7 +18,7 @@ First we begin creating a simple html structure for our project." />
       <meta property="article:published_time" content="2015-08-09 00:00:00 &#43;0000 UTC">
     
     <title>Recreating Tinder swipe effect with css3 | Federico Scodelaro</title>
-    <link rel="stylesheet" href="https://pudymody.github.io/static/style.css" />
+    <link rel="stylesheet" href="https://pudymody.github.io/static/tufte.min.css" />
     <link rel="shortcut icon" href="https://pudymody.github.io/static/favicon.png" type="image/png">
     <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pudymody.github.io/index.xml">
   </head>
@@ -32,15 +32,19 @@ First we begin creating a simple html structure for our project." />
           <li>
             <a href="https://pudymody.github.io/">/home/federico scodelaro</a>
           </li>
+          -
           <li>
             <a target="_blank" rel="noopener" href="https://github.com/pudymody">Github</a>
           </li>
+          -
           <li>
             <a target="_blank" rel="noopener" href="https://telegram.me/pudymody">Telegram</a>
           </li>
+          -
           <li>
             <a target="_blank" rel="noopener" href="mailto:federicoscodelaro@gmail.com">Email</a>
           </li>
+          -
           
 
           
@@ -52,101 +56,101 @@ First we begin creating a simple html structure for our project." />
         </ul>
       </nav>
     </header>
-<div class="article-meta">
+    <article>
+<section>
 <h1>Recreating Tinder swipe effect with css3</h1>
-<h2 class="date">2015/08/09</h2>
-</div>
+<p class="subtitle">2015/08/09</p>
 
 
 
-<main>
 <p>Today its a rainy day here and you cant do so much things on a rainy sunday, so we are going to recreate the tinder swipe effect with the power of css3.</p>
 
 <p>First of all, i know you like seeing the final effect before reading the post, so here you <a href="http://pudymody.github.io/tinderSwipe/">got it</a> and if you want just to read the code <a href="https://github.com/pudymody/tinderSwipe">here</a> you got the repository</p>
 
 <p>First we begin creating a simple html structure for our project.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
-&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
-&lt;<span style="color:#f92672">head</span>&gt;
-    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
-    &lt;<span style="color:#f92672">title</span>&gt;Document&lt;/<span style="color:#f92672">title</span>&gt;
-&lt;/<span style="color:#f92672">head</span>&gt;
-&lt;<span style="color:#f92672">body</span>&gt;
-    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;view&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
-&lt;/<span style="color:#f92672">body</span>&gt;
-&lt;/<span style="color:#f92672">html</span>&gt;</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#00f">&lt;!DOCTYPE html&gt;</span>
+&lt;html lang=<span style="color:#a31515">&#34;en&#34;</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span style="color:#a31515">&#34;UTF-8&#34;</span>&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class=<span style="color:#a31515">&#34;view&#34;</span>&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
 <p>Then we create a simple function to get random user data from <a href="https://randomuser.me">https://randomuser.me</a> and append it to our stored view div (<em>The markup and styles used here are just to this project, they arent needed to work, you can use whatever you want</em>).</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">$VIEW</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;.view&#39;</span>);
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getPerson</span>(<span style="color:#a6e22e">cb</span>){
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://randomuser.me/api/?gender=female&#34;</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> $VIEW = document.querySelector(<span style="color:#a31515">&#39;.view&#39;</span>);
+<span style="color:#00f">function</span> getPerson(cb){
+    <span style="color:#00f">var</span> url = <span style="color:#a31515">&#34;https://randomuser.me/api/?gender=female&#34;</span>;
 
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">oReq</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">XMLHttpRequest</span>();
-        <span style="color:#a6e22e">oReq</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;load&#39;</span>, <span style="color:#66d9ef">function</span>(){
-            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">responseText</span>);
-            <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">results</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">user</span>;
+    <span style="color:#00f">var</span> oReq = <span style="color:#00f">new</span> XMLHttpRequest();
+        oReq.addEventListener(<span style="color:#a31515">&#39;load&#39;</span>, <span style="color:#00f">function</span>(){
+            <span style="color:#00f">var</span> data = JSON.parse(<span style="color:#00f">this</span>.responseText);
+            data = data.results[0].user;
 
-            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">html</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&lt;div class=&#34;user-card&#34;&gt;&lt;img class=&#34;user-card__picture&#34; src=&#34;&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">picture</span>.<span style="color:#a6e22e">large</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&#34;&gt;&lt;/img&gt;&lt;h1 class=&#34;user-card__name&#34;&gt;&#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">first</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39; &#39;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">last</span><span style="color:#f92672">+</span><span style="color:#e6db74">&#39;&lt;/h1&gt;&lt;/div&gt;&#39;</span>;
-            <span style="color:#a6e22e">$VIEW</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">html</span>;
+            <span style="color:#00f">var</span> html = <span style="color:#a31515">&#39;&lt;div class=&#34;user-card&#34;&gt;&lt;img class=&#34;user-card__picture&#34; src=&#34;&#39;</span>+data.picture.large+<span style="color:#a31515">&#39;&#34;&gt;&lt;/img&gt;&lt;h1 class=&#34;user-card__name&#34;&gt;&#39;</span>+data.name.first+<span style="color:#a31515">&#39; &#39;</span>+data.name.last+<span style="color:#a31515">&#39;&lt;/h1&gt;&lt;/div&gt;&#39;</span>;
+            $VIEW.innerHTML = html;
         });
-        <span style="color:#a6e22e">oReq</span>.<span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#34;get&#34;</span>, <span style="color:#a6e22e">url</span>, <span style="color:#66d9ef">true</span>);
-        <span style="color:#a6e22e">oReq</span>.<span style="color:#a6e22e">send</span>();
+        oReq.open(<span style="color:#a31515">&#34;get&#34;</span>, url, <span style="color:#00f">true</span>);
+        oReq.send();
 }
 
-<span style="color:#a6e22e">getPerson</span>();</code></pre></div>
+getPerson();</code></pre></div>
 <p>We proceed to style this cards.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css"><span style="color:#f92672">body</span> {
-    <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">font-family</span>: <span style="color:#66d9ef">sans-serif</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">body {
+    <span style="color:#00f">margin</span>: 0;
+    <span style="color:#00f">font-family</span>: <span style="color:#00f">sans-serif</span>;
 }
 
-.<span style="color:#a6e22e">user-card</span> {
-    <span style="color:#66d9ef">max-width</span>: <span style="color:#ae81ff">500</span><span style="color:#66d9ef">px</span>;
-    <span style="color:#66d9ef">margin</span>: <span style="color:#ae81ff">10</span><span style="color:#66d9ef">px</span>;
-    <span style="color:#66d9ef">border</span>: <span style="color:#ae81ff">1</span><span style="color:#66d9ef">px</span> <span style="color:#66d9ef">solid</span> <span style="color:#ae81ff">#ccc</span>;
-    <span style="color:#66d9ef">padding</span>: <span style="color:#ae81ff">8</span><span style="color:#66d9ef">px</span>;
-    <span style="color:#66d9ef">box-shadow</span>: <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">2</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">5</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">0</span><span style="color:#66d9ef">px</span> <span style="color:#ae81ff">#ccc</span>;
+.<span style="color:#2b91af">user-card</span> {
+    <span style="color:#00f">max-width</span>: 500<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">margin</span>: 10<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">border</span>: 1<span style="color:#2b91af">px</span> <span style="color:#00f">solid</span> #ccc;
+    <span style="color:#00f">padding</span>: 8<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">box-shadow</span>: 0<span style="color:#2b91af">px</span> 2<span style="color:#2b91af">px</span> 5<span style="color:#2b91af">px</span> 0<span style="color:#2b91af">px</span> #ccc;
 }
 
-.<span style="color:#a6e22e">user-card__picture</span> {
-    <span style="color:#66d9ef">width</span>: <span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>;
-    <span style="color:#66d9ef">display</span>: <span style="color:#66d9ef">block</span>;
+.<span style="color:#2b91af">user-card__picture</span> {
+    <span style="color:#00f">width</span>: 100<span style="color:#2b91af">%</span>;
+    <span style="color:#00f">display</span>: <span style="color:#00f">block</span>;
 }
 
-.<span style="color:#a6e22e">user-card__name</span> {
-    <span style="color:#66d9ef">margin-bottom</span>: <span style="color:#ae81ff">0</span>;
-    <span style="color:#66d9ef">margin-top</span>: <span style="color:#ae81ff">8</span><span style="color:#66d9ef">px</span>;
+.<span style="color:#2b91af">user-card__name</span> {
+    <span style="color:#00f">margin-bottom</span>: 0;
+    <span style="color:#00f">margin-top</span>: 8<span style="color:#2b91af">px</span>;
 }</code></pre></div>
 <p>Till now, we only have one card with random people&rsquo;s faces and names, so here it comes the magic. First we need to create two classes, one for the left-swipe and one for the right-swipe</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">swipe-left</span> {}
-.<span style="color:#a6e22e">swipe-right</span> {}</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#2b91af">swipe-left</span> {}
+.<span style="color:#2b91af">swipe-right</span> {}</code></pre></div>
 <p>Now, we have to create the two animations (<em>here i use the unprefixed versions, but you can/must use the prefixied ones</em>)</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">@<span style="color:#66d9ef">keyframes</span> <span style="color:#f92672">swipe-left</span> {
-    <span style="color:#f92672">to</span> {
-        <span style="color:#66d9ef">transform</span>: rotate(<span style="color:#ae81ff">-13</span><span style="color:#66d9ef">deg</span>) translate3d(<span style="color:#ae81ff">-100</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)
-        <span style="color:#66d9ef">opacity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">@<span style="color:#00f">keyframes</span> swipe-left {
+    to {
+        <span style="color:#00f">transform</span>: rotate(-13<span style="color:#2b91af">deg</span>) translate3d(-100<span style="color:#2b91af">%</span>, 0, 0)
+        <span style="color:#00f">opacity</span>: 0;
     }
 }
 
-@<span style="color:#66d9ef">keyframes</span> <span style="color:#f92672">swipe-right</span> {
-    <span style="color:#f92672">to</span> {
-        <span style="color:#66d9ef">transform</span>: rotate(<span style="color:#ae81ff">13</span><span style="color:#66d9ef">deg</span>) translate3d(<span style="color:#ae81ff">100</span><span style="color:#66d9ef">%</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)
-        <span style="color:#66d9ef">opacity</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>;
+@<span style="color:#00f">keyframes</span> swipe-right {
+    to {
+        <span style="color:#00f">transform</span>: rotate(13<span style="color:#2b91af">deg</span>) translate3d(100<span style="color:#2b91af">%</span>, 0, 0)
+        <span style="color:#00f">opacity</span>: 0;
     }
 }</code></pre></div>
 <p>So, what are we doing here? We are creating two animations (swipe-left and swipe-right) which takes the element being applied, rotates it 13 degs and moves it to its left or right ( the params for translate3d are x,y,z ), and reduce its opacity till 0 to make it fade</p>
 
 <p>Now we have our two classes, and our two animations we only just have to link them</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#a6e22e">swipe-left</span> {
-    <span style="color:#66d9ef">animation</span>: swipe-left <span style="color:#ae81ff">1</span><span style="color:#66d9ef">s</span> <span style="color:#66d9ef">forwards</span>;
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">.<span style="color:#2b91af">swipe-left</span> {
+    <span style="color:#00f">animation</span>: swipe-left 1<span style="color:#2b91af">s</span> <span style="color:#00f">forwards</span>;
 }
 
-.<span style="color:#a6e22e">swipe-right</span> {
-    <span style="color:#66d9ef">animation</span>: swipe-right <span style="color:#ae81ff">1</span><span style="color:#66d9ef">s</span> <span style="color:#66d9ef">forwards</span>;
+.<span style="color:#2b91af">swipe-right</span> {
+    <span style="color:#00f">animation</span>: swipe-right 1<span style="color:#2b91af">s</span> <span style="color:#00f">forwards</span>;
 }</code></pre></div>
 <p>And here we end, now the only thing you have to do its apply this two classes <em>swipe-left</em> and <em>swipe-right</em> to whatever element you want.</p>
 
 <p>Another useful tip its to listen for the animationend event from javascript and delete the element. <a href="http://davidwalsh.name/css-animation-callback">Good post about it</a></p>
 
-</main>
+</section>
+</article>
 </body>
 </html>

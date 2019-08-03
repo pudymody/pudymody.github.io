@@ -53,6 +53,7 @@
       </nav>
     </header>
     <article>
+
 <section>
 <h1>Painting my room with WebVR</h1>
 <p class="subtitle">2017/03/13</p>
@@ -126,7 +127,8 @@
         .then( r =&gt; r.blob() )
         .then( createImageBitmap )
         .then( ImageBitmapToCanvas );
-});</code></pre></div>
+});
+</code></pre></div>
 <p>After every image is loaded, we store our full image for future uses, loop through each &ldquo;chroma wall&rdquo; to get and store its imageData, an array filled with four values, rgba, so we can manipulate its color. We create a gui controller to select each color, and we tell our worker to call the <em>setup</em> action. In case of any error, we log the output to the console, its just a prototype.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">Promise.all(Load)
     .then(<span style="color:#00f">function</span>( canvases ){
@@ -147,7 +149,8 @@
             data : WallData
         });
     })
-    .<span style="color:#00f">catch</span>( console.error );</code></pre></div>
+    .<span style="color:#00f">catch</span>( console.error );
+</code></pre></div>
 <p>If you are asking why im using a worker, the answer is because dealing with big immages and lots of lots of pixels, its some heavy computing stuff and i dont want to block the UI, so i prefer to spawn another process for this. But for now, lets explain how we deal with its communication.
 First we create a new worker with the <em>worker.js</em> file, and when a new message is received, we check if the <em>Hanfler</em> object has the method <em>action</em>, if it has it, we call it with the data passed. Currently, in the main thread, we only have one method, update, which is responsible of showing the final image.
 First, we make a copy of our main image canvas object, get its 2d context and set its composite method to multiply, thats where almost all the magic happens, the colors of the chroma pages blends making you get a guess of how everything could look. Then we loop through each updatedWalls object, which is a imageData object, make a canvas out of it, and paints it to the main cloned canvas. Finally, we get a blob out of this canvas, creates a url for it, and calls the <em>makeScene</em> method with it. Which is going to append the <strong>a-frame</strong> tags needed.</p>
@@ -212,7 +215,8 @@ worker.addEventListener(<span style="color:#a31515">&#39;message&#39;</span>, <s
             makeScene(url);
         })
     }
-};</code></pre></div>
+};
+</code></pre></div>
 <p>Finally, we also need a function to delete the scene, and to create the controls of the ui. I think this are pretty straight forward to explain.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> colors = {};
 <span style="color:#00f">var</span> gui = <span style="color:#00f">new</span> dat.gui.GUI();
@@ -244,7 +248,8 @@ worker.addEventListener(<span style="color:#a31515">&#39;message&#39;</span>, <s
 	        URL.revokeObjectURL( Sky.getAttribute(<span style="color:#a31515">&#39;src&#39;</span>) );
 	        Scene.parentNode.removeChild(Scene)
 	    }
-	}</code></pre></div>
+	}
+</code></pre></div>
 <h2 id="worker-code">Worker code</h2>
 
 <p>And this is where all the magic of turning green walls to other colors happens. The communication way its the same. The setup method only stores the data received, which is an array of imageDatas. The update method is where everything happens, it receievs an array with the new colors. It loops through each imageData stored, get the color with the same index, creates a new <em>Uint8ClampedArray</em>, used to create a new imageData, and loop through the original. If its a pure green (0,255,0), changes it to the color wanted, and then return the new one. After all, call the <em>update</em> method in the client with the new imageDatas.</p>
@@ -298,7 +303,8 @@ self.addEventListener(<span style="color:#a31515">&#39;message&#39;</span>, <spa
     <span style="color:#00f">if</span>( Handler.hasOwnProperty( data.action ) ){
         Handler[ data.action ].call(Handler, data.data);
     }
-})</code></pre></div>
+})
+</code></pre></div>
 <h2 id="final-thoughts">Final thoughts</h2>
 
 <p>This is not the best way to accomplish this task, but i think it shows the power the web have nowadays, and it also is IMHO a good example use case of the proposed <a href="https://developer.mozilla.org/es/docs/Web/API/OffscreenCanvas">OffScreenCanvas</a> which would allow this app to run almost entirely in the worker.</p>

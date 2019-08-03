@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bueno, boludeando por internet y con el YQL (Yahoo! Query Language), el cual es un sevicio que con una sintaxis similar a la de sql, podes acceder a distintos servicios webs, se me ocurrio realizar en js(javascript) una funcion para obtener el titulo,descripcion y favicon de una url pasada, tal y como hace facebook cuando vas a publicar una.
+El unico requisito es Tener incluido Jquery 1.0 o superior
+1) Funcion comun de js." />
+    <meta property="og:site_name" content="Federico Scodelaro" />
+    <meta property="og:title" content="[Aporte][JS] Obtener datos web como facebook | Federico Scodelaro"/>
+    <meta property="og:description" content="Bueno, boludeando por internet y con el YQL (Yahoo! Query Language), el cual es un sevicio que con una sintaxis similar a la de sql, podes acceder a distintos servicios webs, se me ocurrio realizar en js(javascript) una funcion para obtener el titulo,descripcion y favicon de una url pasada, tal y como hace facebook cuando vas a publicar una.
+El unico requisito es Tener incluido Jquery 1.0 o superior
+1) Funcion comun de js." />
+    <meta property="og:image" content="https://pudymody.github.io/static/me.jpg" />
+    <meta property="og:url" content="https://pudymody.github.io/taringa/aporte-js-obtener-datos-web-como-facebook/" >
+    <meta property="og:type" content="blog" />
+    
+      <meta property="article:published_time" content="2012-01-12 00:00:00 &#43;0000 UTC">
+    
+    <title>[Aporte][JS] Obtener datos web como facebook | Federico Scodelaro</title>
+    <link rel="stylesheet" href="https://pudymody.github.io/static/tufte.min.css" />
+    <link rel="shortcut icon" href="https://pudymody.github.io/static/favicon.png" type="image/png">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pudymody.github.io/index.xml">
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li>
+            <a href="https://pudymody.github.io/">/home/federico scodelaro</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="https://github.com/pudymody">Github</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="https://telegram.me/pudymody">Telegram</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="mailto:federicoscodelaro@gmail.com">Email</a>
+          </li>
+          -
+          
+
+          
+          
+          <li>
+            <a href="/index.xml">~/subscribe</a>
+          </li>
+          
+        </ul>
+      </nav>
+    </header>
+    <article>
+
+<section>
+<h1>[Aporte][JS] Obtener datos web como facebook</h1>
+<p class="subtitle">2012/01/12</p>
+
+
+
+<p>Bueno, boludeando por internet y con el <a href="http://developer.yahoo.com/yql/">YQL (Yahoo! Query Language)</a>, el cual es un sevicio que con una sintaxis similar a la de sql, podes acceder a distintos servicios webs, se me ocurrio realizar en js(javascript) una funcion para obtener el titulo,descripcion y favicon de una url pasada, tal y como hace facebook cuando vas a publicar una.</p>
+
+<p>El unico requisito es Tener incluido Jquery 1.0 o superior</p>
+
+<p>1) Funcion comun de js. ejemplo: <code>js var MyData = GetURLData('http://www.cuevana.tv/#!/peliculas/17/');</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">function</span> GetURLData(url){
+    <span style="color:#00f">var</span> data = {};
+    $.getJSON(<span style="color:#a31515">&#34;http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22&#34;</span> + encodeURIComponent(url) + <span style="color:#a31515">&#34;%22%20and%20xpath%3D&#39;%2F%2Fhead&#39;&amp;format=json&amp;callback=?&#34;</span>,<span style="color:#00f">function</span>(h){
+        <span style="color:#00f">if</span>(h.query.count &lt;= 0){<span style="color:#00f">return</span> data[<span style="color:#a31515">&#39;status&#39;</span>] =0;}
+
+        data[<span style="color:#a31515">&#39;url&#39;</span>] = url;
+        data[<span style="color:#a31515">&#39;title&#39;</span>] = h.query.results.head.title;
+        data[<span style="color:#a31515">&#39;favicon&#39;</span>] = <span style="color:#a31515">&#34;http://www.google.com/s2/favicons?domain=&#34;</span> + url.replace(<span style="color:#a31515">/^http:/</span><span style="color:#008000">//,&#39;&#39;).replace(//.*/,&#39;&#39;);
+</span><span style="color:#008000"></span>        data[<span style="color:#a31515">&#39;description&#39;</span>] = <span style="color:#a31515">&#39;&#39;</span>;
+        data[<span style="color:#a31515">&#39;status&#39;</span>] = 1;
+
+        <span style="color:#00f">for</span>(<span style="color:#00f">var</span> i=0;i&lt;h.query.results.head.meta.length;i++){
+            <span style="color:#00f">if</span>(h.query.results.head.meta[i].name == <span style="color:#a31515">&#39;description&#39;</span>){
+                data[<span style="color:#a31515">&#39;description&#39;</span>] = h.query.results.head.meta[i].content;
+            }
+        }
+
+    });
+    <span style="color:#00f">return</span> data;
+}
+</code></pre></div>
+<p>2) Igual a la anterior pero minificada (Borrados espacios,tabulaciones,etc)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">function</span> GetURLData(url){<span style="color:#00f">var</span> data = {};$.getJSON(<span style="color:#a31515">&#34;http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22&#34;</span> + encodeURIComponent(url) + <span style="color:#a31515">&#34;%22%20and%20xpath%3D&#39;%2F%2Fhead&#39;&amp;format=json&amp;callback=?&#34;</span>,<span style="color:#00f">function</span>(h){<span style="color:#00f">if</span>(h.query.count &lt;= 0){<span style="color:#00f">return</span> data[<span style="color:#a31515">&#39;status&#39;</span>] =0;}data[<span style="color:#a31515">&#39;url&#39;</span>] = url;data[<span style="color:#a31515">&#39;title&#39;</span>] = h.query.results.head.title;data[<span style="color:#a31515">&#39;favicon&#39;</span>] = <span style="color:#a31515">&#34;http://www.google.com/s2/favicons?domain=&#34;</span> + url.replace(<span style="color:#a31515">/^http:/</span><span style="color:#008000">//,&#39;&#39;).replace(//.*/,&#39;&#39;);data[&#39;description&#39;] = &#39;&#39;;data[&#39;status&#39;] = 1;for(var i=0;i&lt;h.query.results.head.meta.length;i++){if(h.query.results.head.meta[i].name == &#39;description&#39;){data[&#39;description&#39;] = h.query.results.head.meta[i].content;}}});return data;}
+</span></code></pre></div>
+<p>3) Funcion de jquery. ejemplo: <code>js var MyData = $.GetURLData('http://www.cuevana.tv/#!/peliculas/17/');</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">(<span style="color:#00f">function</span>($){
+    $.GetURLData = <span style="color:#00f">function</span>(url){
+        <span style="color:#00f">var</span> data = {};
+        $.getJSON(<span style="color:#a31515">&#34;http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22&#34;</span> + encodeURIComponent(url) + <span style="color:#a31515">&#34;%22%20and%20xpath%3D&#39;%2F%2Fhead&#39;&amp;format=json&amp;callback=?&#34;</span>,<span style="color:#00f">function</span>(h){
+            <span style="color:#00f">if</span>(h.query.count &lt;= 0){<span style="color:#00f">return</span> data[<span style="color:#a31515">&#39;status&#39;</span>] =0;}
+
+            data[<span style="color:#a31515">&#39;url&#39;</span>] = url;
+            data[<span style="color:#a31515">&#39;title&#39;</span>] = h.query.results.head.title;
+            data[<span style="color:#a31515">&#39;favicon&#39;</span>] = <span style="color:#a31515">&#34;http://www.google.com/s2/favicons?domain=&#34;</span> + url.replace(<span style="color:#a31515">/^http:/</span><span style="color:#008000">//,&#39;&#39;).replace(//.*/,&#39;&#39;);
+</span><span style="color:#008000"></span>            data[<span style="color:#a31515">&#39;description&#39;</span>] = <span style="color:#a31515">&#39;&#39;</span>;
+            data[<span style="color:#a31515">&#39;status&#39;</span>] = 1;
+
+            <span style="color:#00f">for</span>(<span style="color:#00f">var</span> i=0;i&lt;h.query.results.head.meta.length;i++){
+                <span style="color:#00f">if</span>(h.query.results.head.meta[i].name == <span style="color:#a31515">&#39;description&#39;</span>){
+                    data[<span style="color:#a31515">&#39;description&#39;</span>] = h.query.results.head.meta[i].content;
+                }
+            }
+
+        });
+        <span style="color:#00f">return</span> data;
+    };
+})(jQuery);
+</code></pre></div>
+<p>4) Igual a la anterior pero minificada (Borrados espacios,tabulaciones,etc)</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">(<span style="color:#00f">function</span>($){$.GetURLData = <span style="color:#00f">function</span>(url){<span style="color:#00f">var</span> data = {};$.getJSON(<span style="color:#a31515">&#34;http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22&#34;</span> + encodeURIComponent(url) + <span style="color:#a31515">&#34;%22%20and%20xpath%3D&#39;%2F%2Fhead&#39;&amp;format=json&amp;callback=?&#34;</span>,<span style="color:#00f">function</span>(h){<span style="color:#00f">if</span>(h.query.count &lt;= 0){<span style="color:#00f">return</span> data[<span style="color:#a31515">&#39;status&#39;</span>] =0;}data[<span style="color:#a31515">&#39;url&#39;</span>] = url;data[<span style="color:#a31515">&#39;title&#39;</span>] = h.query.results.head.title;data[<span style="color:#a31515">&#39;favicon&#39;</span>] = <span style="color:#a31515">&#34;http://www.google.com/s2/favicons?domain=&#34;</span> + url.replace(<span style="color:#a31515">/^http:/</span><span style="color:#008000">//,&#39;&#39;).replace(//.*/,&#39;&#39;);data[&#39;description&#39;] = &#39;&#39;;data[&#39;status&#39;] = 1;for(var i=0;i&lt;h.query.results.head.meta.length;i++){if(h.query.results.head.meta[i].name == &#39;description&#39;){data[&#39;description&#39;] = h.query.results.head.meta[i].content;}}});return data;};})(jQuery);
+</span></code></pre></div>
+<p>Los datos que devuelve es un array con los siguientes valores:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">status = 1 (exito) o 0 (error)
+title = <span style="color:#a31515">&#39;Cuevana | Inicio&#39;</span> (titulo de la web)
+favicon = <span style="color:#a31515">&#39;http://www.google.com/s2/favicons?domain=www.cuevana.tv&#39;</span> (favicon en formato png)
+description = <span style="color:#a31515">&#39;Índice de películas y series online. Cortos, noticias, recomendaciones y más.&#39;</span> (descripcion de la web, tag description)
+url = <span style="color:#a31515">&#39;http://www.cuevana.tv/#!/peliculas/17/&#39;</span> (url de la web)tatus = 1 (exito) o 0 (error)
+title = <span style="color:#a31515">&#39;Cuevana | Inicio&#39;</span> (titulo de la web)
+favicon = <span style="color:#a31515">&#39;http://www.google.com/s2/favicons?domain=www.cuevana.tv&#39;</span> (favicon en formato png)
+description = <span style="color:#a31515">&#39;Índice de películas y series online. Cortos, noticias, recomendaciones y más.&#39;</span> (descripcion de la web, tag description)
+url = <span style="color:#a31515">&#39;http://www.cuevana.tv/#!/peliculas/17/&#39;</span> (url de la web)
+</code></pre></div>
+</section>
+</article>
+</body>
+</html>

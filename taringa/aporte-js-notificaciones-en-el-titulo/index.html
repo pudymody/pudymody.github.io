@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bueno, esta vez vengo a dejarles un plugin Jquery, con el cual pueden colocar notificaciones en el titulo, como las que tiene Facebook cuando te llega un mensaje del chat, es decir, alternando el titulo por otro cada x segundos.
+1: Crean un archivo llamado TitleBlink.js con el siguiente contenido
+(function($){ $.TitleBlink = function(msg,sec){ var options = { &#39;OldTitle&#39; : document.title, &#39;NewTitle&#39; : (!msg) ? &#39;Tienes Movimientos&#39; : msg, &#39;Interval&#39; : (typeof sec !" />
+    <meta property="og:site_name" content="Federico Scodelaro" />
+    <meta property="og:title" content="[Aporte][JS] Notificaciones en el titulo | Federico Scodelaro"/>
+    <meta property="og:description" content="Bueno, esta vez vengo a dejarles un plugin Jquery, con el cual pueden colocar notificaciones en el titulo, como las que tiene Facebook cuando te llega un mensaje del chat, es decir, alternando el titulo por otro cada x segundos.
+1: Crean un archivo llamado TitleBlink.js con el siguiente contenido
+(function($){ $.TitleBlink = function(msg,sec){ var options = { &#39;OldTitle&#39; : document.title, &#39;NewTitle&#39; : (!msg) ? &#39;Tienes Movimientos&#39; : msg, &#39;Interval&#39; : (typeof sec !" />
+    <meta property="og:image" content="https://pudymody.github.io/static/me.jpg" />
+    <meta property="og:url" content="https://pudymody.github.io/taringa/aporte-js-notificaciones-en-el-titulo/" >
+    <meta property="og:type" content="blog" />
+    
+      <meta property="article:published_time" content="2012-03-08 00:00:00 &#43;0000 UTC">
+    
+    <title>[Aporte][JS] Notificaciones en el titulo | Federico Scodelaro</title>
+    <link rel="stylesheet" href="https://pudymody.github.io/static/tufte.min.css" />
+    <link rel="shortcut icon" href="https://pudymody.github.io/static/favicon.png" type="image/png">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pudymody.github.io/index.xml">
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li>
+            <a href="https://pudymody.github.io/">/home/federico scodelaro</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="https://github.com/pudymody">Github</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="https://telegram.me/pudymody">Telegram</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="mailto:federicoscodelaro@gmail.com">Email</a>
+          </li>
+          -
+          
+
+          
+          
+          <li>
+            <a href="/index.xml">~/subscribe</a>
+          </li>
+          
+        </ul>
+      </nav>
+    </header>
+    <article>
+
+<section>
+<h1>[Aporte][JS] Notificaciones en el titulo</h1>
+<p class="subtitle">2012/03/08</p>
+
+
+
+<p>Bueno, esta vez vengo a dejarles un plugin Jquery, con el cual pueden colocar notificaciones en el titulo, como las que tiene Facebook cuando te llega un mensaje del chat, es decir, alternando el titulo por otro cada x segundos.</p>
+
+<p>1: Crean un archivo llamado TitleBlink.js con el siguiente contenido</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">(<span style="color:#00f">function</span>($){
+$.TitleBlink = <span style="color:#00f">function</span>(msg,sec){
+<span style="color:#00f">var</span> options = {
+<span style="color:#a31515">&#39;OldTitle&#39;</span> : document.title,
+<span style="color:#a31515">&#39;NewTitle&#39;</span> : (!msg) ? <span style="color:#a31515">&#39;Tienes Movimientos&#39;</span> : msg,
+<span style="color:#a31515">&#39;Interval&#39;</span> : (<span style="color:#00f">typeof</span> sec != <span style="color:#a31515">&#39;number&#39;</span>) ? 1000 : sec*1000
+};
+
+<span style="color:#00f">var</span> Blinker = setInterval(<span style="color:#00f">function</span>() {
+document.title = (document.title == options.OldTitle) ? options.NewTitle : options.OldTitle;
+}, options.Interval);
+
+$(window).bind(<span style="color:#a31515">&#39;mousemove&#39;</span>,<span style="color:#00f">function</span>(){
+clearInterval(Blinker);
+document.title = options.OldTitle;
+$(window).unbind(<span style="color:#a31515">&#39;mousemove&#39;</span>);
+});
+    };
+})(jQuery);
+</code></pre></div>
+<p>2: En su archivo html, lo incluyen junto a jquery</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;script type=<span style="color:#a31515">&#34;text/javascript&#34;</span> src=<span style="color:#a31515">&#34;http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&#34;</span>&gt;&lt;/script&gt;
+&lt;script type=<span style="color:#a31515">&#34;text/javascript&#34;</span> src=<span style="color:#a31515">&#34;TitleBlink.js&#34;</span>&gt;&lt;/script&gt;</code></pre></div>
+<p>3: Y cuando deseen ejecutarlo, lo pueden hacer en sus llamadas ajax,en el ready,donde deseen, solo tienen que hacer asi:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;script type=<span style="color:#a31515">&#34;text/javascript&#34;</span>&gt;
+    <span style="color:#008000">//...
+</span><span style="color:#008000"></span>    $.TitleBlink(<span style="color:#a31515">&#39;Mensaje A Alternar&#39;</span>,<span style="color:#a31515">&#39;Duracion en segundos&#39;</span>);
+    <span style="color:#008000">//...
+</span><span style="color:#008000"></span>&lt;/script&gt;</code></pre></div>
+<p>Cualquier duda,sugerencia,error, no duden en comentar.</p>
+
+</section>
+</article>
+</body>
+</html>

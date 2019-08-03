@@ -57,6 +57,7 @@ So, lets start building things. First, we need a simple structure for our projec
       </nav>
     </header>
     <article>
+
 <section>
 <h1>Creating an edit-in-place in AngularJS</h1>
 <p class="subtitle">2015/08/11</p>
@@ -81,7 +82,8 @@ First, we need a simple structure for our project, and angular attributes so we 
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> App = angular.module(<span style="color:#a31515">&#39;App&#39;</span>, [] );
 	App.controller(<span style="color:#a31515">&#39;main&#39;</span>, <span style="color:#00f">function</span>( $scope ){
 		$scope.name = <span style="color:#a31515">&#39;Federico&#39;</span>;
-	});</code></pre></div>
+	});
+</code></pre></div>
 <p>Then, we need to create a new file called <em>edit-in-place.js</em> where we are going to make our directive (<em>im going to explain it after</em>)</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> App = angular.module(<span style="color:#a31515">&#39;EditInPlace&#39;</span>, []);
 App.directive(<span style="color:#a31515">&#34;clickToEdit&#34;</span>, <span style="color:#00f">function</span>() {
@@ -124,7 +126,8 @@ App.directive(<span style="color:#a31515">&#34;clickToEdit&#34;</span>, <span st
 			};
 		}
 	};
-});</code></pre></div>
+});
+</code></pre></div>
 <p>Now im going to explain whats happening here.</p>
 
 <p>In the first line, we are creating a module name <em>EditInPlace</em> to store our directive, and in the following one, we are declarating our directive called <em>clickToEdit</em>.
@@ -155,7 +158,8 @@ After that, we declare a var with our template, which works the following way.</
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;script src=<span style="color:#a31515">&#34;https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js&#34;</span>&gt;&lt;/script&gt;
 &lt;script src=<span style="color:#a31515">&#34;edit-in-place.js&#34;</span>&gt;&lt;/script&gt;</code></pre></div>
 <p>And in our app declaration we have to insert it as a dependency</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> App = angular.module(<span style="color:#a31515">&#39;Ingresos&#39;</span>, [<span style="color:#a31515">&#39;EditInPlace&#39;</span>] );</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> App = angular.module(<span style="color:#a31515">&#39;Ingresos&#39;</span>, [<span style="color:#a31515">&#39;EditInPlace&#39;</span>] );
+</code></pre></div>
 <p>Now we only need to add an element, add our new attribute and pass it our model of our scope</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;span click-to-edit=<span style="color:#a31515">&#34;name&#34;</span>&gt;&lt;/span&gt;</code></pre></div>
 </section>

@@ -3,32 +3,163 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://pudymody.github.io/</loc>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pudymody.github.io/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://pudymody.github.io/</loc>
-    <priority>0</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://pudymody.github.io/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://pudymody.github.io/</loc>
+    <loc>https://pudymody.github.io/blog/</loc>
+    <lastmod>2019-01-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://pudymody.github.io/blog/2019-01-16-hacking-arkanoid-making-level-editor/</loc>
+    <lastmod>2019-01-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://pudymody.github.io/</loc>
+    <lastmod>2019-01-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2017-03-13-painting-my-room-with-webvr/</loc>
+    <lastmod>2017-03-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2016-09-07-making-images-with-an-excel-file/</loc>
+    <lastmod>2016-09-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2016-04-24-making-a-soundboard-maker/</loc>
+    <lastmod>2016-04-24T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2016-03-03-first-coding-drinking-game/</loc>
+    <lastmod>2016-03-03T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2015-09-27-first-firefox-os-app/</loc>
+    <lastmod>2015-09-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2015-09-18-weather-widget-es6/</loc>
+    <lastmod>2015-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2015-08-16-self-hosted-pdf-viewer/</loc>
+    <lastmod>2015-08-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2015-08-11-creating-an-edit-in-place-in-angularjs/</loc>
+    <lastmod>2015-08-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2015-08-09-tinder-like-swipe/</loc>
+    <lastmod>2015-08-09T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2015-08-08-moving-to-atom/</loc>
+    <lastmod>2015-08-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/blog/2015-08-08-my-first-package/</loc>
+    <lastmod>2015-08-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/steam-en-tu-moneda-natal/</loc>
+    <lastmod>2013-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/</loc>
+    <lastmod>2013-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-clevercss-en-sublime-text/</loc>
+    <lastmod>2012-11-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-jquery-yql-jquery-plugin/</loc>
+    <lastmod>2012-05-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-js-notificaciones-en-el-titulo/</loc>
+    <lastmod>2012-03-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-php-class-recaptcha/</loc>
+    <lastmod>2012-03-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-js-obtener-datos-web-como-facebook/</loc>
+    <lastmod>2012-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-js-get-y-cookie/</loc>
+    <lastmod>2012-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-jquery-fadetoggle/</loc>
+    <lastmod>2011-09-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-php-class-youtube-bbc-parser/</loc>
+    <lastmod>2011-09-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-php-class-sistema-de-mensajeria-para-tu-sitio/</loc>
+    <lastmod>2011-04-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-php5-traduci-con-la-api-de-google/</loc>
+    <lastmod>2011-04-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-php-funcion-obtener-datos-post-taringa/</loc>
+    <lastmod>2011-04-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-php5-twitter-fan-list/</loc>
+    <lastmod>2011-04-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-php-extraer-seguidores-de-twitter/</loc>
+    <lastmod>2011-04-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-php-mysql-ajax-agregale-ajax-al-sistema-de-user/</loc>
+    <lastmod>2011-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/taringa/aporte-php-mysql-sistema-de-usuarios/</loc>
+    <lastmod>2011-04-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pudymody.github.io/books/</loc>
   </url>
   
 </urlset>

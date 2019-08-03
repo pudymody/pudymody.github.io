@@ -55,6 +55,7 @@ First of all you need NodeJS, i think there are a lot of posts teaching you how 
       </nav>
     </header>
     <article>
+
 <section>
 <h1>Self hosted pdf viewer like issuu</h1>
 <p class="subtitle">2015/08/16</p>
@@ -86,7 +87,8 @@ gm(<span style="color:#a31515">&#39;./1.pdf&#39;</span>)
 		<span style="color:#00f">if</span>( err ){
 			console.log(<span style="color:#a31515">&#34;Error: &#34;</span>, err);
 		}
-	});</code></pre></div>
+	});
+</code></pre></div>
 <p>Currently what this does its:
 * First, it loads the GraphicksMagick bindings
 * Loads the file 1.pdf which its in the same folder
@@ -101,27 +103,33 @@ gm(<span style="color:#a31515">&#39;./1.pdf&#39;</span>)
 
 <p>Now we have to load our library like this, and also the filesystem apis to check if the passed file exists</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> argv = require(<span style="color:#a31515">&#39;yargs&#39;</span>).argv,
-	fs = require(<span style="color:#a31515">&#39;fs&#39;</span>);</code></pre></div>
+	fs = require(<span style="color:#a31515">&#39;fs&#39;</span>);
+</code></pre></div>
 <p>Before converting our files, we have to check if the passed <em>file</em> arguments its a valid file, in case it isnt, we show a message in our console and stop the execution. Here i used the sync version of exists beacuse as a one-call command i think there isnt any performance issue in this case.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">if</span>( !argv.file || !fs.existsSync(argv.file) ){
 	console.log(<span style="color:#a31515">&#39;The file &#39;</span> + argv.file + <span style="color:#a31515">&#39; isnt a valid file&#39;</span>);
 	process.exit(1);
-}</code></pre></div>
+}
+</code></pre></div>
 <p>And we also have to replace our gm function with our passed file</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">gm(argv.file)</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">gm(argv.file)
+</code></pre></div>
 <p>For better organization we&rsquo;ll create a new folder called <em>dist</em> where we are going to store our finished page, and inside this we are going to create another one called <em>imgs</em> to store our pdf images.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">fs.mkdirSync(<span style="color:#a31515">&#39;./dist&#39;</span>);
-fs.mkdirSync(<span style="color:#a31515">&#39;./dist/imgs&#39;</span>);</code></pre></div>
+fs.mkdirSync(<span style="color:#a31515">&#39;./dist/imgs&#39;</span>);
+</code></pre></div>
 <p>We have to change our write function to write our files inside this new folder</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">.write(<span style="color:#a31515">&#39;./dist/imgs/%02d.png&#39;</span>, <span style="color:#00f">function</span>(err){
 	<span style="color:#00f">if</span>( err ){
 		console.log(<span style="color:#a31515">&#34;Error writing file: &#34;</span>, err);
 	}
-});</code></pre></div>
+});
+</code></pre></div>
 <p>Now we can call our app with the following way <em>node index &ndash;file=1.pdf</em></p>
 
 <p>Aaaand, we have finished with the process of preparing our file, now we have to move to the viewer. First we are going to create a new folder called tpls where we are going to store our templates files which we are going to compile with jade. So we have to install the <a href="https://www.npmjs.com/package/jade">jade module</a> with <em>npm install jade &ndash;save</em> and load it to our app</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> jade = require(<span style="color:#a31515">&#39;jade&#39;</span>);</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> jade = require(<span style="color:#a31515">&#39;jade&#39;</span>);
+</code></pre></div>
 <p>Inside our tpls folder we are going to create a new file called <em>index.jade</em> with the following simple structure</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jade" data-lang="jade">doctype html
 html(lang=&#34;en&#34;)
@@ -177,7 +185,8 @@ body</code></pre></div>
 		<span style="color:#00f">var</span> html = jade.renderFile(<span style="color:#a31515">&#39;./tpls/index.jade&#39;</span>, { fileName : argv.file, cover : cover, back : back,  pages : data });
 		fs.writeFileSync(<span style="color:#a31515">&#39;./dist/index.html&#39;</span>, html);
 	});
-});</code></pre></div>
+});
+</code></pre></div>
 <p>You also have to add the chunk function to the same file</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">function</span> chunk (arr, len) {
 
@@ -190,7 +199,8 @@ body</code></pre></div>
 	}
 
 	<span style="color:#00f">return</span> chunks;
-}</code></pre></div>
+}
+</code></pre></div>
 <p>And our new template looks like this.</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jade" data-lang="jade">doctype html
 html(lang=&#34;en&#34;)
@@ -213,11 +223,14 @@ html(lang=&#34;en&#34;)
 <p>What are we doing here? First we create a section with our cover page. Then we loop through each group of pages and create a section for that group. Inside each group we loop through its pages and add them. After that, we create our section for our back page.</p>
 
 <p>If you now open our dist file, you will see that everything its unstyled and broken, thats because we havent copy our style file from our tpls folder to our dist folder, so we are going to do this after we write the index file. You will be saying <strong>Hey i&rsquo;ve read the docs and node dont have a method to copy files</strong> and i know, thats why we are going to install a new module called <a href="https://www.npmjs.com/package/fs-extra">fs-extra</a> which solves this problem and a lot more. <em>npm install &ndash;save fs-extra</em>. We need to replace our current system apis with this new ones.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">fs = require(<span style="color:#a31515">&#39;fs-extra&#39;</span>);</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">fs = require(<span style="color:#a31515">&#39;fs-extra&#39;</span>);
+</code></pre></div>
 <p>And with this module, we dont need to create our two folder alone, we could create them with just one call. Awesome! So we get rid of those two mkdirSync calls and replace them with this one.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">fs.mkdirsSync(<span style="color:#a31515">&#39;./dist/imgs&#39;</span>);</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">fs.mkdirsSync(<span style="color:#a31515">&#39;./dist/imgs&#39;</span>);
+</code></pre></div>
 <p>And after our function which writes our index file we add</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">fs.copySync(<span style="color:#a31515">&#39;./tpls/style.css&#39;</span>, <span style="color:#a31515">&#39;./dist/style.css&#39;</span>);</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">fs.copySync(<span style="color:#a31515">&#39;./tpls/style.css&#39;</span>, <span style="color:#a31515">&#39;./dist/style.css&#39;</span>);
+</code></pre></div>
 <p>Now we have everything working, but HEY i cant change pages/i can only read the first one. Take it easy boy, step by step, now we are going to create inside our tpl folder a new file called <em>app.js</em> in which we are going to handle this kind of things.</p>
 
 <p>First we are going to create an object called App to store everything we need.</p>
@@ -262,7 +275,8 @@ html(lang=&#34;en&#34;)
 
 		<span style="color:#00f">this</span>.go( <span style="color:#00f">this</span>._currentPage-- );
 	}
-}</code></pre></div>
+}
+</code></pre></div>
 <p>If you are a developer and like moving through pages with the console now you can use it, but hey! we want a finished product for the final user, so now we need two things, navigate through pages with our keyboard and our mouse.</p>
 
 <p>For our keyboard we are going to listen for the keyup event on the document, and if its the left or the right we are going to move pages.</p>
@@ -282,14 +296,15 @@ html(lang=&#34;en&#34;)
 
 document.addEventListener(<span style="color:#a31515">&#39;mouseup&#39;</span>, <span style="color:#00f">function</span>(e){
 	<span style="color:#00f">var</span> pos = e.clientX,
-		halfScreen = document.body.clientWidth <span style="">/ 2;</span>
+		halfScreen = document.body.clientWidth / 2;
 
 	<span style="color:#00f">if</span>( pos &gt; halfScreen ){
 		App.next();
 	}<span style="color:#00f">else</span>{
 		App.prev();
 	}
-}, <span style="color:#00f">false</span>);</code></pre></div>
+}, <span style="color:#00f">false</span>);
+</code></pre></div>
 <p>&ldquo;Its not moving when we change pages&rdquo; Thats beacuse i forgot to add the transition property to the body element. Sorry :)</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">body {
 	<span style="color:#00f">background-color</span>: #111111;
@@ -347,13 +362,15 @@ html(lang=&#34;en&#34;)
 		<span style="color:#00f">this</span>._wrapper.style.transform = <span style="color:#a31515">&#34;translate3d( &#34;</span>+ (page*100*-1) +<span style="color:#a31515">&#34;%,0,0)&#34;</span>;
 	}
 };
-App._paginator.innerHTML = (App._currentPage + 1) + <span style="color:#a31515">&#34; of &#34;</span> + App._totalPages.length;</code></pre></div>
+App._paginator.innerHTML = (App._currentPage + 1) + <span style="color:#a31515">&#34; of &#34;</span> + App._totalPages.length;
+</code></pre></div>
 <p>Now everything is working YEEY!!!. But i want to use this as a global module. Dont worry, we only need to make some changes.  First, we need to require the paths apis, and then we need to change the three calls to the files inside the tpl folder to this</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> path = require(<span style="color:#a31515">&#39;path&#39;</span>);
 
 <span style="color:#00f">var</span> html = jade.renderFile(path.join(__dirname, <span style="color:#a31515">&#39;tpls&#39;</span>, <span style="color:#a31515">&#39;index.jade&#39;</span>), { fileName : argv.file, cover : cover, back : back,  pages : data });
 fs.copySync(path.join(__dirname, <span style="color:#a31515">&#39;tpls&#39;</span>, <span style="color:#a31515">&#39;style.css&#39;</span>), <span style="color:#a31515">&#39;./dist/style.css&#39;</span>);
-fs.copySync(path.join(__dirname, <span style="color:#a31515">&#39;tpls&#39;</span>, <span style="color:#a31515">&#39;app.js&#39;</span>), <span style="color:#a31515">&#39;./dist/app.js&#39;</span>);</code></pre></div>
+fs.copySync(path.join(__dirname, <span style="color:#a31515">&#39;tpls&#39;</span>, <span style="color:#a31515">&#39;app.js&#39;</span>), <span style="color:#a31515">&#39;./dist/app.js&#39;</span>);
+</code></pre></div>
 </section>
 </article>
 </body>

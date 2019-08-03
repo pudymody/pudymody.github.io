@@ -57,6 +57,7 @@ First, we begin creating our index file with a simple structure, and loading the
       </nav>
     </header>
     <article>
+
 <section>
 <h1>Creating a weather widget with es6 and flexbox</h1>
 <p class="subtitle">2015/09/18</p>
@@ -192,7 +193,8 @@ fetch(<span style="color:#a31515">&#34;http://api.openweathermap.org/data/2.5/we
 	.then(<span style="color:#00f">function</span>( data ){
 		document.getElementsByClassName(<span style="color:#a31515">&#39;degrees&#39;</span>)[0].innerHTML = <span style="color:#a31515">`</span><span style="color:#a31515">${</span>Math.floor(data.main.temp_min)<span style="color:#a31515">}</span><span style="color:#a31515"> º / </span><span style="color:#a31515">${</span>Math.ceil(data.main.temp_max)<span style="color:#a31515">}</span><span style="color:#a31515"> º`</span>;
 		document.getElementsByTagName(<span style="color:#a31515">&#39;use&#39;</span>)[0].setAttributeNS(<span style="color:#a31515">&#39;http://www.w3.org/1999/xlink&#39;</span>, <span style="color:#a31515">&#39;href&#39;</span>, <span style="color:#a31515">`#icon-</span><span style="color:#a31515">${</span>Icons[data.weather[0].icon]<span style="color:#a31515">}</span><span style="color:#a31515">`</span>);
-	});</code></pre></div>
+	});
+</code></pre></div>
 <p>In the first variable <em>Icons</em> we make a map of our api code responses to the correct icon. In <em>Days</em> we map the days names with its index. Then we create a time object and get its week day index ( 0-6 ), its day name, and the month&rsquo;s day and we show it inside the .time object using the new es6 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/template_strings">templates strings</a></p>
 
 <p>Now we make a request to the openweathermap api ( you can change here your city using the format City,country code ) using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">fetch api</a>, after returning its json body, we set inside the .degrees item the min and max temperature, and we show the icon mapping the result code to its icon inside the <em>Icons</em> var</p>

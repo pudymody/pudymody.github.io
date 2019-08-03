@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bueno, En Base A Mi Tema Anterior Hice Esta Lista&#43;CSS Donde Muestra El Total De Seguidores De Twitter De Cierto Usuario,Link Para Seguir,Y 12 Usuarios Seguidores Al Azar Con Link A Sus Respectivos Twitters.
+SeguidoresTwitter.php
+&lt;?php function SeguidoresTwitter($user){ echo&#39;&lt;link href=&#34;SeguidoresTwitter.css&#34; type=&#34;text/css&#34; rel=&#34;stylesheet&#34;&gt;&#39;; $usuario = simplexml_load_file(&#34;http://api.twitter.com/1/statuses/followers.xml?screen_name=&#34;.$user); $TotalSeguidores = simplexml_load_file(&#34;http://api.twitter.com/1/users/show.xml?screen_name=&#34;.$user); $TotalSeguidores = (int)$TotalSeguidores-&gt;followers_count; $Total=0; echo&#39;&lt;div id=&#34;twitterfanslist&#34;&gt;&#39;; echo&#39;&lt;center class=&#34;botontwitterfanslist&#34;&gt;Fans En Twitter&lt;br&gt;(&#39;, $TotalSeguidores ,&#39;)&lt;/center&gt;&lt;div class=&#34;cajatwitterfanslist&#34;&gt;&#39;; foreach($usuario-&gt;user as $seguidor){ if($Total == 12){ break; } echo &#39;&lt;a href=&#34;http://twitter." />
+    <meta property="og:site_name" content="Federico Scodelaro" />
+    <meta property="og:title" content="[Aporte][PHP5] Twitter fan list | Federico Scodelaro"/>
+    <meta property="og:description" content="Bueno, En Base A Mi Tema Anterior Hice Esta Lista&#43;CSS Donde Muestra El Total De Seguidores De Twitter De Cierto Usuario,Link Para Seguir,Y 12 Usuarios Seguidores Al Azar Con Link A Sus Respectivos Twitters.
+SeguidoresTwitter.php
+&lt;?php function SeguidoresTwitter($user){ echo&#39;&lt;link href=&#34;SeguidoresTwitter.css&#34; type=&#34;text/css&#34; rel=&#34;stylesheet&#34;&gt;&#39;; $usuario = simplexml_load_file(&#34;http://api.twitter.com/1/statuses/followers.xml?screen_name=&#34;.$user); $TotalSeguidores = simplexml_load_file(&#34;http://api.twitter.com/1/users/show.xml?screen_name=&#34;.$user); $TotalSeguidores = (int)$TotalSeguidores-&gt;followers_count; $Total=0; echo&#39;&lt;div id=&#34;twitterfanslist&#34;&gt;&#39;; echo&#39;&lt;center class=&#34;botontwitterfanslist&#34;&gt;Fans En Twitter&lt;br&gt;(&#39;, $TotalSeguidores ,&#39;)&lt;/center&gt;&lt;div class=&#34;cajatwitterfanslist&#34;&gt;&#39;; foreach($usuario-&gt;user as $seguidor){ if($Total == 12){ break; } echo &#39;&lt;a href=&#34;http://twitter." />
+    <meta property="og:image" content="https://pudymody.github.io/static/me.jpg" />
+    <meta property="og:url" content="https://pudymody.github.io/taringa/aporte-php5-twitter-fan-list/" >
+    <meta property="og:type" content="blog" />
+    
+      <meta property="article:published_time" content="2011-04-17 00:00:00 &#43;0000 UTC">
+    
+    <title>[Aporte][PHP5] Twitter fan list | Federico Scodelaro</title>
+    <link rel="stylesheet" href="https://pudymody.github.io/static/tufte.min.css" />
+    <link rel="shortcut icon" href="https://pudymody.github.io/static/favicon.png" type="image/png">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pudymody.github.io/index.xml">
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li>
+            <a href="https://pudymody.github.io/">/home/federico scodelaro</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="https://github.com/pudymody">Github</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="https://telegram.me/pudymody">Telegram</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="mailto:federicoscodelaro@gmail.com">Email</a>
+          </li>
+          -
+          
+
+          
+          
+          <li>
+            <a href="/index.xml">~/subscribe</a>
+          </li>
+          
+        </ul>
+      </nav>
+    </header>
+    <article>
+
+<section>
+<h1>[Aporte][PHP5] Twitter fan list</h1>
+<p class="subtitle">2011/04/17</p>
+
+
+
+<p>Bueno, En Base A Mi Tema Anterior Hice Esta Lista+CSS Donde Muestra El Total De Seguidores De Twitter De Cierto Usuario,Link Para Seguir,Y 12 Usuarios Seguidores Al Azar Con Link A Sus Respectivos Twitters.</p>
+
+<p><img src="demo.png" alt="Demo del listado" /></p>
+
+<p><strong>SeguidoresTwitter.php</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+<span style="color:#00f">function</span> SeguidoresTwitter($user){
+    <span style="color:#00f">echo</span><span style="color:#a31515">&#39;&lt;link href=&#34;SeguidoresTwitter.css&#34; type=&#34;text/css&#34; rel=&#34;stylesheet&#34;&gt;&#39;</span>;
+    $usuario = simplexml_load_file(<span style="color:#a31515">&#34;http://api.twitter.com/1/statuses/followers.xml?screen_name=&#34;</span>.$user);
+    $TotalSeguidores = simplexml_load_file(<span style="color:#a31515">&#34;http://api.twitter.com/1/users/show.xml?screen_name=&#34;</span>.$user);
+    $TotalSeguidores = (int)$TotalSeguidores-&gt;followers_count;
+    $Total=0;
+    <span style="color:#00f">echo</span><span style="color:#a31515">&#39;&lt;div id=&#34;twitterfanslist&#34;&gt;&#39;</span>;
+    <span style="color:#00f">echo</span><span style="color:#a31515">&#39;&lt;center class=&#34;botontwitterfanslist&#34;&gt;Fans En Twitter&lt;br&gt;(&#39;</span>, $TotalSeguidores ,<span style="color:#a31515">&#39;)&lt;/center&gt;&lt;div class=&#34;cajatwitterfanslist&#34;&gt;&#39;</span>;
+    <span style="color:#00f">foreach</span>($usuario-&gt;user <span style="color:#00f">as</span> $seguidor){
+    
+            <span style="color:#00f">if</span>($Total == 12){
+                <span style="color:#00f">break</span>;
+            }
+            
+            <span style="color:#00f">echo</span> <span style="color:#a31515">&#39;&lt;a href=&#34;http://twitter.com/#!/&#39;</span>, $seguidor-&gt;screen_name ,<span style="color:#a31515">&#39;&#34;&gt;&lt;img style=&#34;margin:2px;&#34; title=&#34;&#39;</span>, $seguidor-&gt;screen_name ,<span style="color:#a31515">&#39;&#34; src=&#34;&#39;</span>, $seguidor-&gt;profile_image_url ,<span style="color:#a31515">&#39;&#34;&gt;&lt;/a&gt;&#39;</span>;
+            $Total++;
+        }
+    <span style="color:#00f">echo</span><span style="color:#a31515">&#39;&lt;/div&gt;&lt;a href=&#34;http://twitter.com/#!/&#39;</span>, $user ,<span style="color:#a31515">&#39;&#34; class=&#34;botontwitterfanslist&#34;&gt;Join&lt;/a&gt;&#39;</span>;
+    <span style="color:#00f">echo</span><span style="color:#a31515">&#39;&lt;/div&gt;&#39;</span>;
+}
+<span style="color:#00f">?&gt;</span>
+</code></pre></div>
+<p><strong>SeguidoresTwitter.css</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">#twitterfanslist{
+<span style="color:#00f">width</span>:162<span style="color:#2b91af">px</span>;
+<span style="color:#00f">background</span>:#A2D876;
+<span style="color:#00f">padding</span>:5<span style="color:#2b91af">px</span>;
+<span style="color:#00f">-webkit-</span><span style="color:#00f">border-radius</span>: 10<span style="color:#2b91af">px</span>;
+<span style="color:#00f">-moz-</span><span style="color:#00f">border-radius</span>: 10<span style="color:#2b91af">px</span>;
+<span style="color:#00f">border-radius</span>: 10<span style="color:#2b91af">px</span>;
+<span style="color:#00f">border</span>:1<span style="color:#2b91af">px</span> <span style="color:#00f">solid</span>;
+}
+
+.<span style="color:#2b91af">botontwitterfanslist</span>{
+    <span style="color:#00f">-moz-</span>border-bottom-colors: <span style="color:#00f">none</span>;
+    <span style="color:#00f">-moz-</span><span style="color:#00f">border-image</span>: <span style="color:#00f">none</span>;
+    <span style="color:#00f">-moz-</span>border-left-colors: <span style="color:#00f">none</span>;
+    <span style="color:#00f">-moz-</span>border-right-colors: <span style="color:#00f">none</span>;
+    <span style="color:#00f">-moz-</span>border-top-colors: <span style="color:#00f">none</span>;
+    <span style="color:#00f">background</span>: #7FBF4D; <span style="color:#008000">/* old browsers */</span>
+    <span style="color:#00f">background</span>: <span style="color:#00f">-moz-</span>linear-gradient(<span style="color:#00f">top</span>, #7FBF4D 0<span style="color:#2b91af">%</span>, #63A62F 100<span style="color:#2b91af">%</span>); <span style="color:#008000">/* firefox */</span>
+    <span style="color:#00f">background</span>: <span style="color:#00f">-webkit-</span>gradient(<span style="color:#00f">linear</span>, <span style="color:#00f">left</span> <span style="color:#00f">top</span>, <span style="color:#00f">left</span> <span style="color:#00f">bottom</span>, color-stop(0<span style="color:#2b91af">%</span>,#7FBF4D), color-stop(100<span style="color:#2b91af">%</span>,#63A62F)); <span style="color:#008000">/* webkit */</span>
+    <span style="color:#00f">filter</span>: progid:DXImageTransform.Microsoft.gradient( startColorstr<span style="">=</span><span style="color:#a31515">&#39;#7FBF4D&#39;</span>, endColorstr<span style="">=</span><span style="color:#a31515">&#39;#63A62F&#39;</span>,GradientType<span style="">=</span>0 ); <span style="color:#008000">/* ie */</span>
+    <span style="color:#00f">border-color</span>: #63A62F #63A62F #5B992B;
+    <span style="color:#00f">border-radius</span>: 3<span style="color:#2b91af">px</span> 3<span style="color:#2b91af">px</span> 3<span style="color:#2b91af">px</span> 3<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">border-style</span>: <span style="color:#00f">solid</span>;
+    <span style="color:#00f">border-width</span>: 1<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">box-shadow</span>: 0 1<span style="color:#2b91af">px</span> 0 0 #96CA6D <span style="color:#00f">inset</span>;
+    <span style="color:#00f">color</span>: #FFFFFF;
+    <span style="color:#00f">font-family</span>: <span style="color:#a31515">&#34;Lucida Grande&#34;</span>,<span style="color:#a31515">&#34;Lucida Sans Unicode&#34;</span>,<span style="color:#a31515">&#34;Lucida Sans&#34;</span>,Geneva,Verdana,<span style="color:#00f">sans-serif</span>;
+    <span style="color:#00f">font-size</span>: 11<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">font-weight</span>: <span style="color:#00f">bold</span>;
+    <span style="color:#00f">line-height</span>: 1;
+    <span style="color:#00f">padding</span>: 7<span style="color:#2b91af">px</span> 5<span style="color:#2b91af">px</span> 8<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">text-align</span>: <span style="color:#00f">center</span>;
+    <span style="color:#00f">text-shadow</span>: 0 -1<span style="color:#2b91af">px</span> 0 #4C9021;
+    <span style="color:#00f">display</span>:<span style="color:#00f">block</span>;
+}
+
+.<span style="color:#2b91af">botontwitterfanslist</span>:hover {
+    <span style="color:#00f">background</span>: #76B347; <span style="color:#008000">/* old browsers */</span>
+    <span style="color:#00f">background</span>: <span style="color:#00f">-moz-</span>linear-gradient(<span style="color:#00f">top</span>, #76B347 0<span style="color:#2b91af">%</span>, #5E9E2E 100<span style="color:#2b91af">%</span>); <span style="color:#008000">/* firefox */</span>
+    <span style="color:#00f">background</span>: <span style="color:#00f">-webkit-</span>gradient(<span style="color:#00f">linear</span>, <span style="color:#00f">left</span> <span style="color:#00f">top</span>, <span style="color:#00f">left</span> <span style="color:#00f">bottom</span>, color-stop(0<span style="color:#2b91af">%</span>,#76B347), color-stop(100<span style="color:#2b91af">%</span>,#5E9E2E)); <span style="color:#008000">/* webkit */</span>
+    <span style="color:#00f">filter</span>: progid:DXImageTransform.Microsoft.gradient( startColorstr<span style="">=</span><span style="color:#a31515">&#39;#76B347&#39;</span>, endColorstr<span style="">=</span><span style="color:#a31515">&#39;#5E9E2E&#39;</span>,GradientType<span style="">=</span>0 ); <span style="color:#008000">/* ie */</span>
+    <span style="color:#00f">box-shadow</span>: 0 1<span style="color:#2b91af">px</span> 0 0 #8DBF67 <span style="color:#00f">inset</span>;
+    <span style="color:#00f">cursor</span>: <span style="color:#00f">pointer</span>;
+}
+
+.<span style="color:#2b91af">cajatwitterfanslist</span>{
+    <span style="color:#00f">padding</span>:2<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">background</span>: #7FBF4D; <span style="color:#008000">/* old browsers */</span>
+    <span style="color:#00f">background</span>: <span style="color:#00f">-moz-</span>linear-gradient(<span style="color:#00f">top</span>, #7FBF4D 0<span style="color:#2b91af">%</span>, #63A62F 100<span style="color:#2b91af">%</span>); <span style="color:#008000">/* firefox */</span>
+    <span style="color:#00f">background</span>: <span style="color:#00f">-webkit-</span>gradient(<span style="color:#00f">linear</span>, <span style="color:#00f">left</span> <span style="color:#00f">top</span>, <span style="color:#00f">left</span> <span style="color:#00f">bottom</span>, color-stop(0<span style="color:#2b91af">%</span>,#7FBF4D), color-stop(100<span style="color:#2b91af">%</span>,#63A62F)); <span style="color:#008000">/* webkit */</span>
+    <span style="color:#00f">filter</span>: progid:DXImageTransform.Microsoft.gradient( startColorstr<span style="">=</span><span style="color:#a31515">&#39;#7FBF4D&#39;</span>, endColorstr<span style="">=</span><span style="color:#a31515">&#39;#63A62F&#39;</span>,GradientType<span style="">=</span>0 ); <span style="color:#008000">/* ie */</span>
+    <span style="color:#00f">border-color</span>: #63A62F #63A62F #5B992B;
+    <span style="color:#00f">border-radius</span>: 3<span style="color:#2b91af">px</span> 3<span style="color:#2b91af">px</span> 3<span style="color:#2b91af">px</span> 3<span style="color:#2b91af">px</span>;
+    <span style="color:#00f">border-style</span>: <span style="color:#00f">solid</span>;
+    <span style="color:#00f">border-width</span>: 1<span style="color:#2b91af">px</span>;<span style="color:#00f">margin</span>:5<span style="color:#2b91af">px</span> 0<span style="color:#2b91af">px</span>;
+}</code></pre></div>
+<p>Y Para Usarlo Solo Tienen Que Llamarlo Asi..</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+SeguidoresTwitter(<span style="color:#a31515">&#39;USERAMOSTRAR&#39;</span>);
+<span style="color:#00f">?&gt;</span> 
+</code></pre></div>
+</section>
+</article>
+</body>
+</html>

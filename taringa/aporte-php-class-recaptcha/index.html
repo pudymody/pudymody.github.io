@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="bueno, esta vez vengo a entregarles, una clase en php para el uso de ReCaptcha. Antes que todo, tienen que registrase aca y crear un par de llaves (si estan logeados con una cuenta de google, no necesitaran registrarse.)
+luego de crear las llaves, creamos un archivo llamado recaptcha.class.php, con el siguiente contenido en el:
+&lt;?php class Recaptcha { private $public_key,$secret_key; public function __construct($public,$secret){ $this-&gt;public_key = $public; $this-&gt;secret_key = $secret; } public function show($theme = &#39;white&#39;){ $themes = array(&#39;red&#39;,&#39;white&#39;,&#39;blackglass&#39;,&#39;clean&#39;); if(!" />
+    <meta property="og:site_name" content="Federico Scodelaro" />
+    <meta property="og:title" content="[Aporte][PHP][Class] Recaptcha | Federico Scodelaro"/>
+    <meta property="og:description" content="bueno, esta vez vengo a entregarles, una clase en php para el uso de ReCaptcha. Antes que todo, tienen que registrase aca y crear un par de llaves (si estan logeados con una cuenta de google, no necesitaran registrarse.)
+luego de crear las llaves, creamos un archivo llamado recaptcha.class.php, con el siguiente contenido en el:
+&lt;?php class Recaptcha { private $public_key,$secret_key; public function __construct($public,$secret){ $this-&gt;public_key = $public; $this-&gt;secret_key = $secret; } public function show($theme = &#39;white&#39;){ $themes = array(&#39;red&#39;,&#39;white&#39;,&#39;blackglass&#39;,&#39;clean&#39;); if(!" />
+    <meta property="og:image" content="https://pudymody.github.io/static/me.jpg" />
+    <meta property="og:url" content="https://pudymody.github.io/taringa/aporte-php-class-recaptcha/" >
+    <meta property="og:type" content="blog" />
+    
+      <meta property="article:published_time" content="2012-03-06 00:00:00 &#43;0000 UTC">
+    
+    <title>[Aporte][PHP][Class] Recaptcha | Federico Scodelaro</title>
+    <link rel="stylesheet" href="https://pudymody.github.io/static/tufte.min.css" />
+    <link rel="shortcut icon" href="https://pudymody.github.io/static/favicon.png" type="image/png">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://pudymody.github.io/index.xml">
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li>
+            <a href="https://pudymody.github.io/">/home/federico scodelaro</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="https://github.com/pudymody">Github</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="https://telegram.me/pudymody">Telegram</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="mailto:federicoscodelaro@gmail.com">Email</a>
+          </li>
+          -
+          
+
+          
+          
+          <li>
+            <a href="/index.xml">~/subscribe</a>
+          </li>
+          
+        </ul>
+      </nav>
+    </header>
+    <article>
+
+<section>
+<h1>[Aporte][PHP][Class] Recaptcha</h1>
+<p class="subtitle">2012/03/06</p>
+
+
+
+<p>bueno, esta vez vengo a entregarles, una clase en php para el uso de <a href="http://www.google.com/recaptcha/learnmore">ReCaptcha</a>. Antes que todo, tienen que registrase <a href="https://www.google.com/recaptcha/admin/create">aca</a> y crear un par de llaves (si estan logeados con una cuenta de google, no necesitaran registrarse.)</p>
+
+<p>luego de crear las llaves, creamos un archivo llamado recaptcha.class.php, con el siguiente contenido en el:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+<span style="color:#00f">class</span> <span style="color:#2b91af">Recaptcha</span> {
+    <span style="color:#00f">private</span> $public_key,$secret_key;
+
+    <span style="color:#00f">public</span> <span style="color:#00f">function</span> __construct($public,$secret){
+        $this-&gt;public_key = $public;
+        $this-&gt;secret_key = $secret;
+    }
+
+    <span style="color:#00f">public</span> <span style="color:#00f">function</span> show($theme = <span style="color:#a31515">&#39;white&#39;</span>){
+        $themes = <span style="color:#00f">array</span>(<span style="color:#a31515">&#39;red&#39;</span>,<span style="color:#a31515">&#39;white&#39;</span>,<span style="color:#a31515">&#39;blackglass&#39;</span>,<span style="color:#a31515">&#39;clean&#39;</span>);
+        <span style="color:#00f">if</span>(!in_array($theme,$themes)){$theme = <span style="color:#a31515">&#39;white&#39;</span>;}
+
+        <span style="color:#00f">return</span> <span style="color:#a31515">&#39;
+</span><span style="color:#a31515">            &lt;script type=&#34;text/javascript&#34;&gt;var RecaptchaOptions = {theme : &#39;&#39;.$theme.&#39;&#39;};&lt;/script&gt;
+</span><span style="color:#a31515">            &lt;script type=&#34;text/javascript&#34; src=&#34;http://www.google.com/recaptcha/api/challenge?k=&#39;</span>.$this-&gt;public_key.<span style="color:#a31515">&#39;&#34;&gt;&lt;/script&gt;
+</span><span style="color:#a31515">            &lt;noscript&gt;
+</span><span style="color:#a31515">                &lt;iframe src=&#34;http://www.google.com/recaptcha/api/noscript?k=&#39;</span>.$this-&gt;public_key.<span style="color:#a31515">&#39;&#34; height=&#34;300&#34; width=&#34;500&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;&lt;br&gt;
+</span><span style="color:#a31515">                &lt;textarea name=&#34;recaptcha_challenge_field&#34; rows=&#34;3&#34; cols=&#34;40&#34;&gt;&lt;/textarea&gt;
+</span><span style="color:#a31515">                &lt;input type=&#34;hidden&#34; name=&#34;recaptcha_response_field&#34; value=&#34;manual_challenge&#34;&gt;
+</span><span style="color:#a31515">            &lt;/noscript&gt;
+</span><span style="color:#a31515">        &#39;</span>;
+    }
+
+    <span style="color:#00f">public</span> <span style="color:#00f">function</span> check($challenge,$response){
+        $file = file_get_contents(<span style="color:#a31515">&#34;http://www.google.com/recaptcha/api/verify?privatekey=</span><span style="color:#a31515">{</span>$this-&gt;secret_key<span style="color:#a31515">}</span><span style="color:#a31515">&amp;remoteip=</span><span style="color:#a31515">{</span>$_SERVER[&#39;REMOTE_ADDR&#39;]<span style="color:#a31515">}</span><span style="color:#a31515">&amp;challenge=</span><span style="color:#a31515">{</span>$challenge<span style="color:#a31515">}</span><span style="color:#a31515">&amp;response=&#34;</span>.urlencode($response));
+        $respuesta = explode(<span style="color:#a31515">&#34;n&#34;</span>,$file);
+        <span style="color:#00f">if</span>($respuesta[0] == <span style="color:#a31515">&#39;true&#39;</span>){
+            <span style="color:#00f">return</span> <span style="color:#00f">true</span>;
+        }<span style="color:#00f">else</span>{
+            <span style="color:#00f">return</span> <span style="color:#00f">false</span>;
+        }
+    }
+}
+</code></pre></div>
+<p>ahora para usarlo solo tienen que hacer lo siguiente.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+<span style="color:#00f">require_once</span>(<span style="color:#a31515">&#39;recaptcha.class.php&#39;</span>);
+$captcha = <span style="color:#00f">new</span> Recaptcha(<span style="color:#a31515">&#39;ACA TU KEY PUBLICA&#39;</span>,<span style="color:#a31515">&#39;ACA TU KEY SECRETA&#39;</span>);
+</code></pre></div>
+<p>para mostrarlo se hace de la siguiente manera:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+$captcha-&gt;show(<span style="color:#a31515">&#39;DISEÑO DESEADO&#39;</span>);
+</code></pre></div>
+<p>el diseño puede ser: red, white, blackglass, clean
+<img src="designs.png" alt="Diseños de los distintos temas" /></p>
+
+<p>y despues para comprobar solo tienen que hacer</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+<span style="color:#00f">if</span>($captcha-&gt;check($challenge,$response)){
+<span style="color:#00f">echo</span> <span style="color:#a31515">&#39;captcha correcto&#39;</span>;
+}<span style="color:#00f">else</span>{
+<span style="color:#00f">echo</span> <span style="color:#a31515">&#39;captcha incorrecto&#39;</span>;
+}
+<span style="color:#00f">?&gt;</span>
+</code></pre></div>
+<p>$challenge y $response son dos variables con los valores de los campos del captcha del formulario,</p>
+
+<p>que los pueden obtener via $_POST cuando hacen el submit.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+$challenge = $_POST[<span style="color:#a31515">&#39;recaptcha_challenge_field&#39;</span>];
+$response = $_POST[<span style="color:#a31515">&#39;recaptcha_response_field&#39;</span>];
+<span style="color:#00f">?&gt;</span>
+</code></pre></div>
+<p>o via jquery si desean enviarlo por ajax</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> challenge = $(<span style="color:#a31515">&#39;#recaptcha_challenge_field&#39;</span>).val();
+<span style="color:#00f">var</span> response = $(<span style="color:#a31515">&#39;#recaptcha_response_field&#39;</span>).val();
+</code></pre></div>
+</section>
+</article>
+</body>
+</html>

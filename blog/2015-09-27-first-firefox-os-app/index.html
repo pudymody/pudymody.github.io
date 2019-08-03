@@ -59,6 +59,7 @@ How and why are they made?" />
       </nav>
     </header>
     <article>
+
 <section>
 <h1>Making our first Firefox OS App (NoCrop)</h1>
 <p class="subtitle">2015/09/27</p>
@@ -139,7 +140,8 @@ body.<span style="color:#2b91af">is-wrong</span> {
 
 <p>Inside it we are going to put our <em><a href="http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html">StackBlur</a></em> dependency, but we need to make a little change.
 Look for the line which says <em>function stackBlurCanvasRGB</em>, after that, there is a line where it declares a var called canvas, you have to change its value to <em>id</em></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> canvas  = id;</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> canvas  = id;
+</code></pre></div>
 <p>We have to do this, so we can blur a canvas passing its dom object, and not its ID.</p>
 
 <p>From now on, we are going to make a lot use of Promises, so if you dont know you must read <a href="http://www.html5rocks.com/en/tutorials/es6/promises/?redirect_from_locale=es">this article</a></p>
@@ -162,7 +164,8 @@ Look for the line which says <em>function stackBlurCanvasRGB</em>, after that, t
 			reject(<span style="color:#00f">this</span>.error);
 		};
 	});
-}</code></pre></div>
+}
+</code></pre></div>
 <p>First we declare a function called pickPrmoised which returns a promise. Inside our promise, we create a new activity which calls the pick action allowing it only select images. And resolve the promise depending its result</p>
 
 <p>The next function is one which takes a blob image, and return a Image object because we need to get its width and height to do some math fun.</p>
@@ -182,7 +185,8 @@ Look for the line which says <em>function stackBlurCanvasRGB</em>, after that, t
 			}
 
 	});
-}</code></pre></div>
+}
+</code></pre></div>
 <p>Again it returns a promise, in which we are going to convert our blob to a string available to use as a src object. Then we create a new image, set its src and resolve our promise according to the result.</p>
 
 <p>If you are tired or dont feel well, come back later, because here is where we are going to do all the math crazy stuff.</p>
@@ -200,24 +204,24 @@ Look for the line which says <em>function stackBlurCanvasRGB</em>, after that, t
 
 		<span style="color:#00f">var</span> finalHeight, finalWidth,
 			bgX, bgY,
-			imgRatio = ( width <span style="">/ height );</span>
+			imgRatio = ( width / height );
 
 		<span style="color:#00f">if</span>( width &gt; height ){
 			x = 0;
-			y = (size <span style="color:#a31515">/ 2) - (height /</span> 2);
+			y = (size / 2) - (height / 2);
 
 			finalHeight = size;
 			finalWidth = (size * imgRatio);
 		}<span style="color:#00f">else</span>{
 			y = 0;
-			x = (size <span style="color:#a31515">/ 2) - (width /</span> 2);
+			x = (size / 2) - (width / 2);
 
 			finalWidth = size;
-			finalHeight = (size <span style="">/ imgRatio);</span>
+			finalHeight = (size / imgRatio);
 		}
 
-		bgX = Math.abs((finalWidth - size) <span style="">/ 2) * -1;</span>
-		bgY = Math.abs((finalHeight - size) <span style="">/ 2) * -1;</span>
+		bgX = Math.abs((finalWidth - size) / 2) * -1;
+		bgY = Math.abs((finalHeight - size) / 2) * -1;
 
 		$Context.drawImage( img, bgX, bgY, finalWidth, finalHeight );
 		stackBlurCanvasRGB($Canvas, 0, 0, size, size, 15)
@@ -227,7 +231,8 @@ Look for the line which says <em>function stackBlurCanvasRGB</em>, after that, t
 		<span style="color:#00f">delete</span> img;
 
 		<span style="color:#00f">return</span> $Canvas;
-}</code></pre></div>
+}
+</code></pre></div>
 <ul>
 <li>First we define a function called imgToCanvas which takes the image object as argument.</li>
 <li>Then we define some variables with its width, height, and the size we are going to square. Because we dont want to cut the image, we need to get the maximum number.</li>
@@ -255,7 +260,8 @@ Look for the line which says <em>function stackBlurCanvasRGB</em>, after that, t
 			resolve(blob);
 		});
 	});
-}</code></pre></div>
+}
+</code></pre></div>
 <p>This function takes a canvas, object and return the toBlob method as a promise. Nothing strange to explain here.</p>
 
 <p>Now we have our blob object, but we need to save it. Functions to the rescue</p>
@@ -272,7 +278,8 @@ Look for the line which says <em>function stackBlurCanvasRGB</em>, after that, t
 			reject(<span style="color:#00f">this</span>.error);
 		}
 	});
-}</code></pre></div>
+}
+</code></pre></div>
 <p>I guess that you already know that this function takes the file as an argument and return a promise. Inside it we first get the <em>pictures</em> storage and assign it to a variable. Then we call the <em>add</em> method to save our file to the storage. And then we resolve our promise according to its result.</p>
 
 <p>We have every part of our app, now we need to create a function to chain everything.</p>
@@ -285,17 +292,21 @@ Look for the line which says <em>function stackBlurCanvasRGB</em>, after that, t
 		.then( saveFile )
 		.then( e =&gt; alert(<span style="color:#a31515">&#39;Success&#39;</span>) )
 		.<span style="color:#00f">catch</span>( e =&gt; alert(e) );
-}</code></pre></div>
+}
+</code></pre></div>
 <p>It first called our pickPromised method, then using arrow functions to keep the syntax clean we return the blob property form the selected file, And call our chain of functions. If everything was ok, we alert a successful message, otherwise we alert the error.</p>
 
 <p>Great, now we have everything, but we need to call our pickImage function, so we listen for click events and call it.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">document.body.addEventListener(<span style="color:#a31515">&#39;click&#39;</span>, pickImage, <span style="color:#00f">false</span>);</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">document.body.addEventListener(<span style="color:#a31515">&#39;click&#39;</span>, pickImage, <span style="color:#00f">false</span>);
+</code></pre></div>
 <p>Now, before picking our image, we need to stop listening for our click event, to prevent double image submit. So before our pickPromised call, we remove the listener</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">	document.body.removeEventListener(<span style="color:#a31515">&#39;click&#39;</span>, pickImage);</code></pre></div>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">	document.body.removeEventListener(<span style="color:#a31515">&#39;click&#39;</span>, pickImage);
+</code></pre></div>
 <p>And inside our success callback, we are going to change the background and the text of the body. The same for the error callback</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">	.then( saveFile )
 	.then( e =&gt; { document.body.classList.add(<span style="color:#a31515">&#39;is-success&#39;</span>); document.body.innerHTML = <span style="color:#a31515">&#39;Success, see it inside your gallery&#39;</span>; } )
-	.<span style="color:#00f">catch</span>( e =&gt; { document.body.classList.add(<span style="color:#a31515">&#39;is-wrong&#39;</span>); document.body.innerHTML = <span style="color:#a31515">&#39;Something went wrong&#39;</span> } );</code></pre></div>
+	.<span style="color:#00f">catch</span>( e =&gt; { document.body.classList.add(<span style="color:#a31515">&#39;is-wrong&#39;</span>); document.body.innerHTML = <span style="color:#a31515">&#39;Something went wrong&#39;</span> } );
+</code></pre></div>
 <p>We&rsquo;re done, now you can test it inside the simulator or if you have a FirefoxOS cellphone inside it.</p>
 
 <p>With this post i want to show how easy is to build apps for this platform and how web technologies are approaching towards native apps.</p>

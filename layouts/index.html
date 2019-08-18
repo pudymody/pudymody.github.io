@@ -1,0 +1,13 @@
+{{ partial "header.html" . }}
+<h1>{{ .Title }}</h1>
+{{ if .Params.date }}<p class="subtitle">{{ .Date.Format "2006/01/02" }}</p>{{ end }}
+
+<section>
+
+{{ if .Params.toc }}
+{{ .TableOfContents }}
+{{ end }}
+
+{{ .Content }}
+</section>
+{{ partial "footer.html" . }}

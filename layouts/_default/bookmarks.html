@@ -1,0 +1,12 @@
+{{ partial "header.html" . }}
+<h1>{{ .Title }}</h1>
+<section>
+
+{{ .Content }}
+
+{{ range $.Site.Data.bookmarks }}
+	{{ partial "bookmark_entry.html" . }}
+{{ end }}
+
+</section>
+{{ partial "footer.html" . }}

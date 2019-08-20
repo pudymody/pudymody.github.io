@@ -1,0 +1,11 @@
+<ul>
+	<li><h3>{{ .name }}</h3></li>
+	<ul>
+		{{ range .links }}
+			<li><a href="{{.href}}" target="_blank" rel="nofollow">{{.name}}</a></li>
+		{{ end }}
+	</ul>
+	{{ range .folders }}
+		{{ partial "bookmark_entry.html" . }}
+	{{ end }}
+</ul>

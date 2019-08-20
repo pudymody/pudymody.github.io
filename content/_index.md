@@ -8,3 +8,5 @@ At the moment i’m studying computer science and trying to improve and develop 
 You can read the things i write in my [blog](/blog) or if you know spanish you can read about my first [baby steps](/taringa) in this world called programming.
 
 Or you can take a peek in the [list of books](/books) i want to read forward.
+
+In an attempt to remove Google of my life, i also started posting [my bookmarks and interesting links](/bookmarks)

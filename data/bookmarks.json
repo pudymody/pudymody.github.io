@@ -1,6 +1,87 @@
 [
 	{
 		"links": [
+			{
+				"name": "The bug I wish I hadn't caught",
+				"href" : "https://roganmurley.com/2019/06/08/the-bug.html",
+				"type": "link"
+			},
+			{
+				"name": "DataGenetics - Battleship",
+				"href" : "http://www.datagenetics.com/blog/december32011/",
+				"type": "link"
+			},
+			{
+				"name": "Breaking the physical limits of fonts",
+				"href" : "https://github.com/graphitemaster/breaking_the_physical_limits_of_fonts",
+				"type": "link"
+			},
+			{
+				"name": "Bit flip - Radiolab",
+				"href" : "https://player.fm/series/radiolab-from-wnyc/bit-flip",
+				"type": "link"
+			},
+			{
+				"name": "Spurious correlations",
+				"href" : "https://tylervigen.com/spurious-correlations",
+				"type": "link"
+			},
+			{
+				"name": "Forcé a un bot a leer todas las letras del Flaco Spinetta y después hice que escribiese una canción. Estos son los resultados.",
+				"href" : "https://www.reddit.com/r/argentina/comments/bfbosf/forc%C3%A9_a_un_bot_a_leer_todas_las_letras_del_flaco/",
+				"type": "link"
+			},
+			{
+				"name": "Forcé a un bot a leer todas las letras del Flaco Spinetta y después hice que escribiese una canción. Estos son los resultados. (Link del articulo)",
+				"href" : "https://medium.com/datos-y-ciencia/oraciones-artificiales-88b8c66a6e3d",
+				"type": "link"
+			},
+			{
+				"name": "ARIANE 5 Failure - Full Report",
+				"href" : "http://www-users.math.umn.edu/~arnold/disasters/ariane5rep.html",
+				"type": "link"
+			},
+			{
+				"name": "Let’s make a nurse call system Turing complete! | Autom8 lab notebook",
+				"href" : "https://eriknl.github.io/hack/2019/02/02/Netrix-computer.html",
+				"type": "link"
+			},
+			{
+				"name": "Incidente del equinoccio de otoño",
+				"href" : "https://es.wikipedia.org/wiki/Incidente_del_equinoccio_de_oto%C3%B1o",
+				"type": "link"
+			},
+			{
+				"name": "The case of the 500-mile email",
+				"href" : "https://www.ibiblio.org/harris/500milemail.html",
+				"type": "link"
+			},
+			{
+				"name": "Using Memory Errors to Attack a Virtual Machine",
+				"href" : "https://www.cs.princeton.edu/~appel/papers/memerr.pdf",
+				"type": "link"
+			},
+			{
+				"name": "I cannot print on tuesdays!?!",
+				"href" : "https://bugs.launchpad.net/ubuntu/+source/cupsys/+bug/255161/comments/28",
+				"type": "link"
+			},
+			{
+				"name": "Only crash leaving it on over night!?!",
+				"href" : "https://mobile.twitter.com/mmalex/status/1066111290580582403",
+				"type": "link"
+			},
+			{
+				"name": "Software disenchantment",
+				"href" : "https://tonsky.me/blog/disenchantment/",
+				"type": "link"
+			}
+		],
+		"type": "folder",
+		"name": "Bizarre/Funny/Interesting Bugs-Articles"
+	},
+	{
+		"links": [
 		{
 			"name": "4walled",
 			"href": "http://4walled.cc/",

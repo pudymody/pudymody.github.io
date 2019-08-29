@@ -26,19 +26,7 @@
           {{ $title := lower .Title }}
           {{ $section := lower .Section }}
           <li>
-            <a href="{{ .Site.BaseURL }}">/home/{{ lower .Site.Title}}</a>
-          </li>
-          -
-          <li>
-            <a target="_blank" rel="noopener" href="https://github.com/pudymody">Github</a>
-          </li>
-          -
-          <li>
-            <a target="_blank" rel="noopener" href="https://telegram.me/pudymody">Telegram</a>
-          </li>
-          -
-          <li>
-            <a target="_blank" rel="noopener" href="mailto:federicoscodelaro@gmail.com">Email</a>
+            <a href="{{ .Site.BaseURL }}">~/{{ lower .Site.Title}}</a>
           </li>
           -
           {{ range .Site.Menus.main }}
@@ -48,13 +36,24 @@
           </li>
           -
           {{end}}
-
           {{ range .Site.Menus.feed }}
           {{ $name := lower .Name}}
           <li>
             <a href="{{ .URL }}">~/{{ lower .Name}}</a>
           </li>
           {{end}}
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="https://github.com/pudymody">/github</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="https://telegram.me/pudymody">/telegram</a>
+          </li>
+          -
+          <li>
+            <a target="_blank" rel="noopener" href="mailto:federicoscodelaro@gmail.com">/email</a>
+          </li>
         </ul>
       </nav>
     </header>

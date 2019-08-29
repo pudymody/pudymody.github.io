@@ -8,6 +8,18 @@ pygmentsCodefences=true
 pygmentsStyle="vs"
 pluralizeListTitles  = false
 [taxonomies]
+[[menu.main]]
+    name = "baby steps"
+    url = "/taringa"
+[[menu.main]]
+    name = "blog"
+    url = "/blog"
+[[menu.main]]
+    name = "readlist"
+    url = "/books"
+[[menu.main]]
+    name = "bookmarks"
+    url = "/bookmarks"
 [[menu.feed]]
     name = "Subscribe"
     url = "/index.xml"

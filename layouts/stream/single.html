@@ -1,5 +1,7 @@
 {{ partial "header.html" . }}
-<section>
-	{{ .Render (printf "tpl_%s" .Params.layout) }}
-</section>
+<article>
+	<section>
+		{{ .Render (printf "tpl_%s" .Params.layout) }}
+	</section>
+</article>
 {{ partial "footer.html" . }}

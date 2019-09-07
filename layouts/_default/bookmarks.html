@@ -1,12 +1,14 @@
 {{ partial "header.html" . }}
-<h1>{{ .Title }}</h1>
-<section>
+<article>
+	<h1>{{ .Title }}</h1>
+	<section>
 
-{{ .Content }}
+	{{ .Content }}
 
-{{ range $.Site.Data.bookmarks }}
-	{{ partial "bookmark_entry.html" . }}
-{{ end }}
+	{{ range $.Site.Data.bookmarks }}
+		{{ partial "bookmark_entry.html" . }}
+	{{ end }}
 
-</section>
+	</section>
+</article>
 {{ partial "footer.html" . }}

@@ -1,16 +1,18 @@
 {{ partial "header.html" . }}
-<h1>{{ .Title }}</h1>
-<section class="h-feed">
+<article>
+  <h1>{{ .Title }}</h1>
+  <section class="h-feed">
 
-{{ .Content }}
+  {{ .Content }}
 
-{{ range (.Paginator 20).Pages }}
-  {{ .Render (printf "tpl_%s" .Params.layout) }}
-{{ end }}
-<ul class="paginator">
-  <li><a {{ if .Paginator.HasPrev }}href="{{ .Paginator.Prev.URL }}"{{ end }}>< Previous</a></li>
-  <li>{{.Paginator.PageNumber}}/{{.Paginator.TotalPages}}</li>
-  <li><a {{ if .Paginator.HasNext }}href="{{ .Paginator.Next.URL }}"{{ end }}>Next ></a></li>
-</ul>
-</section>
+  {{ range (.Paginator 20).Pages }}
+    {{ .Render (printf "tpl_%s" .Params.layout) }}
+  {{ end }}
+  <ul class="paginator">
+    <li><a {{ if .Paginator.HasPrev }}href="{{ .Paginator.Prev.URL }}"{{ end }}>< Previous</a></li>
+    <li>{{.Paginator.PageNumber}}/{{.Paginator.TotalPages}}</li>
+    <li><a {{ if .Paginator.HasNext }}href="{{ .Paginator.Next.URL }}"{{ end }}>Next ></a></li>
+  </ul>
+  </section>
+</article>
 {{ partial "footer.html" . }}

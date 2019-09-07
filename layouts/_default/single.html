@@ -1,12 +1,14 @@
 {{ partial "header.html" . }}
-<h1>{{ .Title }}</h1>
-{{ if .Params.date }}<p class="subtitle">{{ .Date.Format "January 2, 2006" }}</p>{{ end }}
-<section>
+<article class="h-entry">
+	<h1 class="p-name">{{ .Title }}</h1>
+	{{ if .Params.date }}<p class="subtitle dt-published">{{ .Date.Format "January 2, 2006" }}</p>{{ end }}
+	<section class="e-content">
 
-{{ if .Params.toc }}
-{{ .TableOfContents }}
-{{ end }}
+	{{ if .Params.toc }}
+	{{ .TableOfContents }}
+	{{ end }}
 
-{{ .Content }}
-</section>
+	{{ .Content }}
+	</section>
+</article>
 {{ partial "footer.html" . }}

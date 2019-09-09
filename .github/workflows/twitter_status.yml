@@ -20,7 +20,7 @@ jobs:
       - run: git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
       - run: git checkout master
       - run: git add .
-      - run: git commit -m "ci: Added twitter posts for $GITHUB_SHA"
+      - run: git commit -m "ci Added twitter posts for $GITHUB_SHA"
       - run: git push "https://$ACCESS_TOKEN@github.com/$GITHUB_REPOSITORY.git" master
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}

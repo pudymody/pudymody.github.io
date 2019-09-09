@@ -11,11 +11,11 @@ jobs:
       - uses: actions/checkout@master
       - uses: pudymody/action_twitter-poll@master
         with:
-          base: "./"
-          image_path: "./"
+          base: "./stream/"
+          image_path: "./static/stream/"
           token: ${{ secrets.TWITTER_TOKEN }}
           user: "pudymody"
-          count: 10
+          count: 200
       - run: git config user.name "$GITHUB_ACTOR"
       - run: git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
       - run: git checkout master

@@ -1,0 +1,26 @@
+name: Tweet sync
+on:
+  schedule:
+  - cron: 0 0 * * 1
+
+jobs:
+  tweets:
+    name: Poll
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: pudymody/action_twitter-poll@master
+        with:
+          base: "./"
+          image_path: "./"
+          token: ${{ secrets.TWITTER_TOKEN }}
+          user: "pudymody"
+          count: 10
+      - run: git config user.name "$GITHUB_ACTOR"
+      - run: git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      - run: git checkout master
+      - run: git add .
+      - run: git commit -m "ci: Added twitter posts for $GITHUB_SHA"
+      - run: git push "https://$ACCESS_TOKEN@github.com/$GITHUB_REPOSITORY.git" master
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}

@@ -20,6 +20,9 @@ pluralizeListTitles  = false
 [[menu.main]]
     name = "bookmarks"
     url = "/bookmarks"
+[[menu.main]]
+    name = "stream"
+    url = "/stream"
 [[menu.feed]]
     name = "Subscribe"
     url = "/index.xml"

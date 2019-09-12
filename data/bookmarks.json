@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name": "thanks to Excel '1 in 5' genetics papers contain errors in gene names",
+				"href" : "https://www.sciencemag.org/news/2016/08/one-five-genetics-papers-contains-errors-thanks-microsoft-excel",
+				"type": "link"
+			},
+			{
 				"name": "The bug I wish I hadn't caught",
 				"href" : "https://roganmurley.com/2019/06/08/the-bug.html",
 				"type": "link"

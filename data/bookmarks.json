@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name": "How did MS-DOS decide that two seconds was the amount of time to keep the floppy disk cache valid?",
+				"href" : "https://devblogs.microsoft.com/oldnewthing/20190924-00/?p=102915",
+				"type": "link"
+			},
+			{
 				"name": "thanks to Excel '1 in 5' genetics papers contain errors in gene names",
 				"href" : "https://www.sciencemag.org/news/2016/08/one-five-genetics-papers-contains-errors-thanks-microsoft-excel",
 				"type": "link"

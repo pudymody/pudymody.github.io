@@ -23,6 +23,9 @@ pluralizeListTitles  = false
 [[menu.main]]
     name = "stream"
     url = "/stream"
+[[menu.main]]
+    name = "likes"
+    url = "/likes"
 [[menu.feed]]
     name = "Subscribe"
     url = "/index.xml"

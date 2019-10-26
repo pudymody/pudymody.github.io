@@ -10,3 +10,5 @@ You can read the things i write in my [blog](/blog) or if you know spanish you c
 Or you can take a peek in the [list of books](/books) i want to read forward.
 
 In an attempt to remove Google of my life, i also started posting [my bookmarks and interesting links](/bookmarks)
+
+I also started posting my [tweets here](/stream) trying to approach the indieweb movement.

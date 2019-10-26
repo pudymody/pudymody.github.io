@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@master
       - uses: pudymody/action_twitter-poll-likes@master
         with:
-          base: "./stream/"
+          base: "./data/likes.yaml"
           token: ${{ secrets.TWITTER_TOKEN }}
           user: "pudymody"
           count: 200

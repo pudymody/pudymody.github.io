@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name" : "Light Commands: Laser-Based Audio InjectionAttacks on Voice-Controllable Systems",
+				"href" : "https://lightcommands.com/",
+				"type" : "link"
+			},
+			{
 				"name": "How did MS-DOS decide that two seconds was the amount of time to keep the floppy disk cache valid?",
 				"href" : "https://devblogs.microsoft.com/oldnewthing/20190924-00/?p=102915",
 				"type": "link"

@@ -21,7 +21,6 @@ This is a list of books i would like to put my hand on when i have the time
 * **Serving In Time** by *Gordon Eklund*
 * **La Ultima Nave Estelar De La Tierra** by *John Boyd*
 * **The Alteration** by *Kingsley Amis*
-* **Pavana** by *Keith Roberts*
 * **Latinoamérica Fantástica** by *Augusto Uribe*
 * **Los Señores De La Instrumentalidad** by *Cordwainer Smith*
 * **Fin De La Infancia** by *Arthur Clarke*
@@ -46,6 +45,7 @@ This is a list of books i would like to put my hand on when i have the time
 * **Que Pasaría Si?** by *Randall Munroe*
 * **The Martian** by *Andy Weir*
 * **El Origen De Las Especies** by *Charles Darwin*
+* **El arte de la guerra** by *Sun Tzu*
 * **Moby Dick** by *Herman Melville*
 * **El Eternauta** by *Hector Oesterheld*
 * **Mago De Oz** by *Lyman Baum*

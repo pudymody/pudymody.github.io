@@ -39,7 +39,6 @@ This is a list of books i would like to put my hand on when i have the time
 * **Sol Artificial** by *J.P. Zooey*
 * **Muerta En Vida** by *Elizabeth Scott*
 * **Amor Liquido** by *Bauman*
-* **Pensamientos** by *Blaise Pascal*
 * **Las Intermitencias De La Muerte** by *Jose Saramago*
 * **La Física De Los Superheroes** by *Kakalios*
 * **Que Pasaría Si?** by *Randall Munroe*

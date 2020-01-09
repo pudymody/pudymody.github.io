@@ -23,7 +23,6 @@ This is a list of books i would like to put my hand on when i have the time
 * **The Alteration** by *Kingsley Amis*
 * **Latinoamérica Fantástica** by *Augusto Uribe*
 * **Los Señores De La Instrumentalidad** by *Cordwainer Smith*
-* **Fin De La Infancia** by *Arthur Clarke*
 * **Do You Love Me** by *R.D. Laing*
 * **La Rebelión De Atlas** by *Ayn Rand*
 * **Divina Comedia** by *Dante Alighieri*

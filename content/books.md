@@ -42,7 +42,6 @@ This is a list of books i would like to put my hand on when i have the time
 * **La Física De Los Superheroes** by *Kakalios*
 * **Que Pasaría Si?** by *Randall Munroe*
 * **The Martian** by *Andy Weir*
-* **El Origen De Las Especies** by *Charles Darwin*
 * **Moby Dick** by *Herman Melville*
 * **El Eternauta** by *Hector Oesterheld*
 * **Mago De Oz** by *Lyman Baum*

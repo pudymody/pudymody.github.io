@@ -10,11 +10,6 @@ This is a list of books i would like to put my hand on when i have the time
 * **Mundo Disco** by *Terry Pratcher*
 * **Geralt de Rivia** by *Andrzej Sapkowski*
 
-# Shorts
-* **Filmando El Pasado** by *Dudley Dell*
-* **Los Hombres Que Asesinaron A Mahoma** by *Alfred Bester*
-* **Me, Myself And I (Of All Possible Worlds)** by *William Tenn*
-
 # Books
 * **La Luna Es Una Cruel Amante** by *Robert Heinlein*
 * **The Fall Of Chronopolis** by *Barrington J Bayley*

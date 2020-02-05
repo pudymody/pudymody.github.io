@@ -991,8 +991,13 @@
 			"type": "link"
 		},
 		{
-			"name": "geojson.io: Edit GeoJSON",
+			"name": "geojson.io: Edit GeoJSON [DEPRECATED]",
 			"href": "http://geojson.io/#map=19/-34.61042/-58.46759",
+			"type": "link"
+		},
+		{
+			"name": "Geoman - GeoJSON Editor, Leaflet-Plugins and more tools for your teams",
+			"href": "https://geoman.io/",
 			"type": "link"
 		},
 		{

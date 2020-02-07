@@ -22,7 +22,6 @@ This is a list of books i would like to put my hand on when i have the time
 * **La Rebelión De Atlas** by *Ayn Rand*
 * **Divina Comedia** by *Dante Alighieri*
 * **Don Quijote De La Mancha** by *Miguel De Cervantes*
-* **Intangibles Sa** by *Brian Aldiss*
 * **Las Ventajas De Ser Invisible** by *Stephen Chbosky*
 * **Madre Noche** by *Kurt Vonnegut*
 * **Gödel, Escher, Bach: Un Eterno Y Grácil Bucle** by *Douglas Hofstadter*

@@ -39,5 +39,4 @@ This is a list of books i would like to put my hand on when i have the time
 * **Moby Dick** by *Herman Melville*
 * **El Eternauta** by *Hector Oesterheld*
 * **Mago De Oz** by *Lyman Baum*
-* **La Trama Celeste** by *Bioy Casares*
 * **El fantasma de la ópera** by *Gastón Leroux*

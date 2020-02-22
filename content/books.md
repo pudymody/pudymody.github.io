@@ -23,7 +23,6 @@ This is a list of books i would like to put my hand on when i have the time
 * **Divina Comedia** by *Dante Alighieri*
 * **Don Quijote De La Mancha** by *Miguel De Cervantes*
 * **Las Ventajas De Ser Invisible** by *Stephen Chbosky*
-* **Madre Noche** by *Kurt Vonnegut*
 * **Gödel, Escher, Bach: Un Eterno Y Grácil Bucle** by *Douglas Hofstadter*
 * **Stories Of Your Life And Others** by *Ted Chiang*
 * **How To Live Safely In A Science Fictional Universe** by *Charles Yu*

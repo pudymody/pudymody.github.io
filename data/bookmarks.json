@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name" : "Computer Vision Basics in Microsoft Excel",
+				"href" : "https://github.com/amzn/computer-vision-basics-in-microsoft-excel",
+				"type" : "link"
+			},
+			{
 				"name" : "Light Commands: Laser-Based Audio InjectionAttacks on Voice-Controllable Systems",
 				"href" : "https://lightcommands.com/",
 				"type" : "link"
@@ -12228,6 +12233,16 @@
 		{
 			"name": "Literature Notes | Homework Help | Study Guides | Test Prep | CliffsNotes",
 			"href": "https://www.cliffsnotes.com/literature",
+			"type": "link"
+		},
+		{
+			"name": "Graph Theory",
+			"href": "http://compalg.inf.elte.hu/~tony/Oktatas/TDK/FINAL/",
+			"type": "link"
+		},
+		{
+			"name": "NanoNeuron is an over-simplified version of the Neuron concept from Neural Networks",
+			"href": "https://github.com/trekhleb/nano-neuron",
 			"type": "link"
 		}
 		],

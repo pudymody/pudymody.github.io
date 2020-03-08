@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name" : "Community Built Wireless ISP - Doe Bay Internet Users Association",
+				"href" : "https://www.youtube.com/watch?v=dBiBLG9wnDU",
+				"type" : "link"
+			},
+			{
 				"name" : "Computer Vision Basics in Microsoft Excel",
 				"href" : "https://github.com/amzn/computer-vision-basics-in-microsoft-excel",
 				"type" : "link"

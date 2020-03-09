@@ -23,25 +23,21 @@
     <header class="h-card">
       <a href="{{ .Site.BaseURL }}"><img src="/static/me.jpg" alt="Photo of Federico Scodelaro" class="u-photo"></a>
       <div>
-        <div>
-            Personal website of <a href="{{ .Site.BaseURL }}" class="p-name u-url">{{.Site.Title }}</a> AKA @<span class="p-nickname">pudymody</span> on <a target="_blank" href="https://twitter.com/pudymody" rel="me">twitter</a> - <a target="_blank" href="https://github.com/pudymody" rel="me">github</a> - <a target="_blank" href="https://telegram.me/pudymody" rel="me">telegram</a> - <a target="_blank" href="mailto:federicoscodelaro@gmail.com" rel="me" class="u-email">email</a>
-        </div>
-        <nav>
-            <ul>
-              {{ range .Site.Menus.main }}
-              {{ $name := lower .Name }}
-              <li>
-                <a href="{{ .URL }}">~/{{ lower .Name }}</a>
-              </li>
-              -
-              {{end}}
-              {{ range .Site.Menus.feed }}
-              {{ $name := lower .Name}}
-              <li>
-                <a href="{{ .URL }}">~/{{ lower .Name}}</a>
-              </li>
-              {{end}}
-            </ul>
-          </nav>
+          <h1><a href="{{ .Site.BaseURL }}" class="p-name u-url">{{.Site.Title }} or @<span class="p-nickname">pudymody</span></a></h1>
+          <a target="_blank" href="https://twitter.com/pudymody" rel="me">twitter</a> - <a target="_blank" href="https://github.com/pudymody" rel="me">github</a> - <a target="_blank" href="https://telegram.me/pudymody" rel="me">telegram</a> - <a target="_blank" href="mailto:federicoscodelaro@gmail.com" rel="me" class="u-email">email</a>
+          {{ range .Site.Menus.feed }}
+           - <a href="{{ .URL }}">{{ lower .Name}}</a>
+          {{end}}
       </div>
     </header>
+    <nav class="main-nav">
+      <ul>
+        {{ range .Site.Menus.main }}
+        {{ $name := lower .Name }}
+        <li>
+          <a href="{{ .URL }}">~/{{ lower .Name }}</a>
+        </li>
+        -
+        {{end}}
+      </ul>
+    </nav>

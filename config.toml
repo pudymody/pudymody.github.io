@@ -27,7 +27,7 @@ pluralizeListTitles  = false
     name = "likes"
     url = "/likes"
 [[menu.feed]]
-    name = "Subscribe"
+    name = "rss"
     url = "/index.xml"
 
 [params]

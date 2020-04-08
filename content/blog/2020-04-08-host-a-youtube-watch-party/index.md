@@ -1,7 +1,6 @@
 ---
 title: Host a Youtube watch party
 date: 2020-04-08
-toc: true
 ---
 
 # Intro
@@ -9,6 +8,7 @@ During this COVID lockdown, with a group of friends we are doing what i call a *
 
 # Install
 First, you need to install the following software. This guide is made for windows users but the three of them provides Unix and Mac versions.
+
 1. [MPV](https://mpv.io/installation/) - [Windows builds](https://sourceforge.net/projects/mpv-player-windows/files/stable/)
 2. [Youtube-dl](https://ytdl-org.github.io/youtube-dl/download.html)
 3. [Syncplay](https://syncplay.pl/)

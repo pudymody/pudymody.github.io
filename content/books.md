@@ -4,13 +4,13 @@ title: "Books"
 
 This is a list of books i would like to put my hand on when i have the time
 
-# Sagas
+## Sagas
 * **Millennium** by *Stieg Larsson*
 * **Fundación e Imperio** by *Asimov*
 * **Mundo Disco** by *Terry Pratcher*
 * **Geralt de Rivia** by *Andrzej Sapkowski*
 
-# Books
+## Books
 * **La Luna Es Una Cruel Amante** by *Robert Heinlein*
 * **The Fall Of Chronopolis** by *Barrington J Bayley*
 * **Serving In Time** by *Gordon Eklund*

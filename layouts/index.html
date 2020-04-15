@@ -1,15 +1,31 @@
 {{ partial "header.html" . }}
-<article>
-	<h1>{{ .Title }}</h1>
-	{{ if .Params.date }}<p class="subtitle">{{ .Date.Format "2006/01/02" }}</p>{{ end }}
+<article class="h-card">
+	<h1><img src="/static/me.jpg" alt="Photo of Federico Scodelaro" class="u-photo"> <span class="p-name">Federico Scodelaro</span> (<span class="p-nickname">pudymody</span>)</h1>
 
 	<section>
-
-	{{ if .Params.toc }}
-	{{ .TableOfContents }}
-	{{ end }}
-
-	{{ .Content }}
+		<h2 id="hola">Hola!</h2>
+		<p>My name is Federico, or <strong>pudymody</strong> as i call myself on the interwebz. Im a computer science student currently living in Argentina looking to improve and develope my skills. Fluid in Javascript, know some CSS and HTML, and played with Rust and C#, but willing to learn any language or any technology</p>
+		<h2 id="things-i-like">Things i like</h2>
+		<ul>
+			<li>Simplicity and minimalism</li>
+			<li>Being owner of my <a href="/stream">own</a> <a href="/bookmarks">data</a></li>
+			<li>Pushing technology to help people and do absurd things</li>
+			<li>Read <a href="/books">books</a></li>
+		</ul>
+		<h2 id="lastest-post">Lastest posts</h2>
+		<ul>
+			{{ $paginator := .Paginate (where .Site.RegularPages "Type" "blog") 4 }}
+			{{ range $paginator.Pages }}
+				<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+			{{ end }}
+		</ul>
+		<h2 id="me-on-the-networks">Me on the networks</h2>
+		<ul>
+			<li><a target="_blank" rel="me" href="https://twitter.com/pudymody">Twitter</a></li>
+			<li><a target="_blank" rel="me" href="https://github.com/pudymody">Github</a></li>
+			<li><a target="_blank" rel="me" href="https://telegram.me/pudymody">Telegram</a></li>
+			<li><a target="_blank" rel="me" href="mailto:federicoscodelaro@gmail.com" class="u-email">Email</a></li>
+		</ul>
 	</section>
 </article>
 {{ partial "footer.html" . }}

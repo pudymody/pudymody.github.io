@@ -5,14 +5,13 @@
 
   {{ .Content }}
 
-  <ul>
-    {{ range .Data.Pages }}
-    <li class="h-entry">
-      <span class="date dt-published">{{ .Date.Format "2006/01/02" }}</span>
-      <a href="{{ .Permalink }}" class="p-name u-url">{{ .Title }}</a>
-    </li>
-    {{ end }}
-  </ul>
+  {{ range .Data.Pages }}
+  <div class="h-entry">
+    <h2><a href="{{ .Permalink }}" class="p-name u-url">{{ .Title }}</a></h2>
+    <p class="date dt-published subtitle">{{ .Date.Format "2006/01/02" }}</p>
+  </div>
+  <hr>
+  {{ end }}
   </section>
 </article>
 {{ partial "footer.html" . }}

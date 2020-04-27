@@ -1,4 +1,4 @@
-name: Tweet sync
+name: Tweet sync likes
 on:
   schedule:
   - cron: 0 0 * * *

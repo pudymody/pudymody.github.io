@@ -9,9 +9,6 @@ pygmentsStyle="vs"
 pluralizeListTitles  = false
 [taxonomies]
 [[menu.main]]
-    name = "baby steps"
-    url = "/taringa"
-[[menu.main]]
     name = "blog"
     url = "/blog"
 [[menu.main]]

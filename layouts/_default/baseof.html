@@ -31,16 +31,24 @@
         <li>
           <a href="/">~/home</a>
         </li>
-        {{ range .Site.Menus.main }}
         <li>
-          <a href="{{ .URL }}">~/{{ lower .Name }}</a>
+          <a href="/blog">~/blog</a>
         </li>
-        {{end}}
-        {{ range .Site.Menus.feed }}
         <li>
-          <a href="{{ .URL }}">~/{{ lower .Name}}</a>
+          <a href="/bookmarks">~/bookmarks</a>
         </li>
-        {{end}}
+        <li>
+          <a href="/likes">~/likes</a>
+        </li>
+        <li>
+          <a href="/books">~/readlist</a>
+        </li>
+        <li>
+          <a href="/stream">~/stream</a>
+        </li>
+        <li>
+          <a href="/index.xml">~/rss</a>
+        </li>
       </ul>
     </nav>
     {{ block "main" . }}{{ end }}

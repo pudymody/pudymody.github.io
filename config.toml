@@ -8,24 +8,5 @@ pygmentsCodefences=true
 pygmentsStyle="vs"
 pluralizeListTitles  = false
 [taxonomies]
-[[menu.main]]
-    name = "blog"
-    url = "/blog"
-[[menu.main]]
-    name = "readlist"
-    url = "/books"
-[[menu.main]]
-    name = "bookmarks"
-    url = "/bookmarks"
-[[menu.main]]
-    name = "stream"
-    url = "/stream"
-[[menu.main]]
-    name = "likes"
-    url = "/likes"
-[[menu.feed]]
-    name = "rss"
-    url = "/index.xml"
-
 [params]
     description = "My name is Federico, or pudymody as i call myself on the interwebz. Im a computer science student currently living in Argentina looking to improve and develope my skills. Fluid in Javascript, know some CSS and HTML, and played with Rust and C#, but willing to learn any language or any technology"

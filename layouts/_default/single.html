@@ -1,4 +1,4 @@
-{{ partial "header.html" . }}
+{{ define "main" }}
 <article class="h-entry">
 	<h1 class="p-name">{{ .Title }}</h1>
 	{{ if .Params.date }}<p class="subtitle dt-published">{{ .Date.Format "January 2, 2006" }}</p>{{ end }}
@@ -11,4 +11,4 @@
 	{{ .Content }}
 	</section>
 </article>
-{{ partial "footer.html" . }}
+{{ end }}

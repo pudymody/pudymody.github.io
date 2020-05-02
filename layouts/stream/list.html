@@ -1,4 +1,4 @@
-{{ partial "header.html" . }}
+{{ define "main" }}
 <article class="h-feed">
   <h1 class="p-name">{{ .Title }}</h1>
   <section>
@@ -15,4 +15,4 @@
   </ul>
   </section>
 </article>
-{{ partial "footer.html" . }}
+{{ end }}

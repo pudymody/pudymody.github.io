@@ -14,8 +14,7 @@
 		</ul>
 		<h2 id="lastest-post">Lastest posts</h2>
 		<ul>
-			{{ $paginator := .Paginate (where .Site.RegularPages "Type" "blog") 4 }}
-			{{ range $paginator.Pages }}
+			{{ range first 4 (where .Site.RegularPages "Type" "blog") }}
 				<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
 			{{ end }}
 		</ul>

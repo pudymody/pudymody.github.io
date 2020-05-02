@@ -20,17 +20,13 @@
   </head>
 
   <body>
-    {{ if not .IsHome }}
-      <header class="h-card">
-        <img src="/static/me.jpg" alt="Photo of Federico Scodelaro" class="u-photo">
-        <h1><a href="{{ .Site.BaseURL }}" class="p-name u-url">{{.Site.Title }} (<span class="p-nickname">pudymody</span>)</a></h1>
-      </header>
-    {{ end }}
     <nav class="main-nav">
       <ul>
-        <li>
-          <a href="/">~/home</a>
-        </li>
+        {{ if not .IsHome }}
+          <li>
+            <a href="/"><b>Federico Scodelaro</b></a>
+          </li>
+        {{ end }}
         <li>
           <a href="/blog">~/blog</a>
         </li>

@@ -1,4 +1,5 @@
 {{ define "main" }}
+<style>h3{display:inline-block;margin:1rem 0}.list-none{list-style:none}</style>
 <article>
 	<h1>{{ .Title }}</h1>
 	<section>
@@ -7,6 +8,7 @@
 
 	{{ range $.Site.Data.bookmarks }}
 		{{ partial "bookmark_entry.html" . }}
+		<hr>
 	{{ end }}
 
 	</section>

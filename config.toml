@@ -1,4 +1,4 @@
-baseURL = "https://pudymody.netlify.com/"
+baseURL = "https://pudymody.netlify.app/"
 languageCode = "en-us"
 title = "Federico Scodelaro"
 googleAnalytics = "UA-75819066-1"
@@ -7,6 +7,6 @@ ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 pygmentsCodefences=true
 pygmentsStyle="vs"
 pluralizeListTitles  = false
-[taxonomies]
+disableKinds = ["sitemap", "taxonomy", "taxonomyTerm"]
 [params]
     description = "My name is Federico, or pudymody as i call myself on the interwebz. Im a computer science student currently living in Argentina looking to improve and develope my skills. Fluid in Javascript, know some CSS and HTML, and played with Rust and C#, but willing to learn any language or any technology"

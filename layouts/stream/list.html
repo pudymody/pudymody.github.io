@@ -1,11 +1,11 @@
 {{ define "main" }}
 <article class="h-feed">
-  <h1 class="p-name">{{ .Title }}</h1>
+  <h1 class="p-name">{{ .Date.Format "January 2006" }}</h1>
   <section>
 
   {{ .Content }}
 
-  {{ range (.Paginator 20).Pages }}
+  {{ range (.Paginator 100).Pages }}
     {{ .Render (printf "tpl_%s" .Params.layout) }}
   {{ end }}
   <ul class="paginator">

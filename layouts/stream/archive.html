@@ -1,0 +1,18 @@
+{{ define "main" }}
+	<article>
+		<h1>{{ .Title }}</h1>
+		<section>
+			{{ .Content }}
+			<div>
+			{{ range .Pages.GroupByDate "2006" }}
+				<h3>{{ .Key }}</h3>
+				<p>
+					{{ range .Pages }}
+						<a href="{{ .Permalink }}">{{ .Date.Format "Jan" }}</a> -
+					{{ end }}
+				</p>
+			{{ end }}
+			</div>
+		</section>
+	</article>
+{{ end }}

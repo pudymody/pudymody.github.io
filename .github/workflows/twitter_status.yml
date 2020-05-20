@@ -12,7 +12,7 @@ jobs:
       - uses: pudymody/action_twitter-poll@master
         with:
           base: "./content/stream/"
-          image_path: "./static/static/stream/"
+          image_path: "static/stream/"
           token: ${{ secrets.TWITTER_TOKEN }}
           user: "pudymody"
           count: 200

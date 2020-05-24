@@ -2,6 +2,21 @@
 	{
 		"links": [
 			{
+				"name" : "How the Sony PlayStation PS1 Security was defeated | MVG",
+				"href" : "https://www.youtube.com/watch?v=7HOBQ7HifLE",
+				"type" : "link"
+			},
+			{
+				"name" : "Side-Channel Attack Turns Power Supply Into Speakers",
+				"href" : "https://hackaday.com/2020/05/11/side-channel-attack-turns-power-supply-into-speakers/",
+				"type" : "link"
+			},
+			{
+				"name" : "Ray Tracing In Notepad.exe At 30 FPS",
+				"href" : "http://kylehalladay.com/blog/2020/05/20/Rendering-With-Notepad.html",
+				"type" : "link"
+			},
+			{
 				"name" : "Controlling my A/C with a Gameboy",
 				"href" : "http://jg.sn.sg/ir/",
 				"type" : "link"

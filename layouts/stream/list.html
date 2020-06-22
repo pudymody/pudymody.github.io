@@ -1,6 +1,8 @@
 {{ define "main" }}
 <article class="h-feed">
-  <h1 class="p-name">{{ .Date.Format "January 2006" }}</h1>
+  <header>
+    <h1 class="p-name">{{ .Date.Format "January 2006" }}</h1>
+  </header>
   <section>
 
   {{ .Content }}

@@ -1,11 +1,13 @@
 {{ define "main" }}
 	<article>
-		<h1>{{ .Title }}</h1>
-		<section>
+		<header>
+			<h1>{{ .Title }}</h1>
 			{{ .Content }}
+		</header>
+		<section>
 			<div>
 			{{ range .Pages.GroupByDate "2006" }}
-				<h3>{{ .Key }}</h3>
+				<h2>{{ .Key }}</h2>
 				<p>
 					{{ range .Pages }}
 						<a href="{{ .Permalink }}">{{ .Date.Format "Jan" }}</a> -

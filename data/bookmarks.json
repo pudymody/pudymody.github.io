@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name" : "FreeDVDBoot - Hacking the PlayStation 2 through its DVD player",
+				"href" : "https://cturt.github.io/freedvdboot.html",
+				"type" : "link"
+			},
+			{
 				"name" : "Build Your Own Dial-Up ISP – Now With Modem Pool!",
 				"href" : "https://dogemicrosystems.ca/wiki/Dial-up_pool",
 				"type" : "link"

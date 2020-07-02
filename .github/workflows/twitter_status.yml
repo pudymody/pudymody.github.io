@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - uses: pudymody/action_twitter-poll@master
+      - uses: pudymody/action_twitter-poll@b9eaf35de60a3de5b22135b67929c095635c44c0
         with:
-          base: "./content/stream/"
-          image_path: "static/stream/"
+          base: "./stream/"
+          image_path: "./static/stream/"
           token: ${{ secrets.TWITTER_TOKEN }}
           user: "pudymody"
           count: 200

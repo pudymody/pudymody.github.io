@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name" : "Memory & Storage: Crash Course Computer Science #19",
+				"href" : "https://www.youtube.com/watch?v=TQCr9RV7twk&feature=youtu.be&t=1m55s",
+				"type" : "link"
+			},
+			{
 				"name" : "FreeDVDBoot - Hacking the PlayStation 2 through its DVD player",
 				"href" : "https://cturt.github.io/freedvdboot.html",
 				"type" : "link"

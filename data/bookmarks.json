@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name" : "WebTV briefly classified as a weapon",
+				"href" : "https://en.wikipedia.org/wiki/MSN_TV#WebTV_briefly_classified_as_a_weapon",
+				"type" : "link"
+			},
+			{
 				"name" : "Memory & Storage: Crash Course Computer Science #19",
 				"href" : "https://www.youtube.com/watch?v=TQCr9RV7twk&feature=youtu.be&t=1m55s",
 				"type" : "link"

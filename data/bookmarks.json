@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name" : "How Sega bet against Reverse Engineering...and lost | MVG",
+				"href" : "https://www.youtube.com/watch?v=-aLfKnJAe0Y",
+				"type" : "link"
+			},
+			{
 				"name" : "Cooperative Linux (Linux as a Windows driver)",
 				"href" : "http://colinux.org/?section=home",
 				"type" : "link"

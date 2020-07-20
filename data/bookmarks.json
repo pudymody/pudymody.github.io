@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name" : "Fixing Mass Effect black blobs on modern AMD CPUs",
+				"href" : "https://cookieplmonster.github.io/2020/07/19/silentpatch-mass-effect/",
+				"type" : "link"
+			},
+			{
 				"name" : "How Sega bet against Reverse Engineering...and lost | MVG",
 				"href" : "https://www.youtube.com/watch?v=-aLfKnJAe0Y",
 				"type" : "link"
@@ -99,11 +104,6 @@
 			{
 				"name": "Spurious correlations",
 				"href" : "https://tylervigen.com/spurious-correlations",
-				"type": "link"
-			},
-			{
-				"name": "Forcé a un bot a leer todas las letras del Flaco Spinetta y después hice que escribiese una canción. Estos son los resultados.",
-				"href" : "https://www.reddit.com/r/argentina/comments/bfbosf/forc%C3%A9_a_un_bot_a_leer_todas_las_letras_del_flaco/",
 				"type": "link"
 			},
 			{

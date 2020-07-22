@@ -43,7 +43,6 @@ This is a list of books i would like to put my hand on when i have the time
 * **La isla del Dr Moreau** by *H. G. Wells*
 * **Good omens** by *Terry Pratchett* and *Neil Gaiman*
 * **The Handmaid's Tale** by *Margaret Atwood*
-* **Sobre heroes y tumbas** by *Ernesto Sabato*
 * **El ultimo hombre** by *Mary Shelley*
 * **Lolita** by *Vladimir Nabokov*
 * **El color purpura** by *Alice Walker*

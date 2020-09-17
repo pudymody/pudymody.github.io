@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name" : "The Nuclear Fallout They Kept Secret",
+				"href" : "https://www.youtube.com/watch?v=7pSqk-XV2QM",
+				"type" : "link"
+			},
+			{
 				"name" : "Fixing Mass Effect black blobs on modern AMD CPUs",
 				"href" : "https://cookieplmonster.github.io/2020/07/19/silentpatch-mass-effect/",
 				"type" : "link"

@@ -2,6 +2,11 @@
 	{
 		"links": [
 			{
+				"name" : "Illegal prime number",
+				"href" : "https://en.wikipedia.org/wiki/Illegal_prime",
+				"type" : "link"
+			},
+			{
 				"name" : "The Nuclear Fallout They Kept Secret",
 				"href" : "https://www.youtube.com/watch?v=7pSqk-XV2QM",
 				"type" : "link"

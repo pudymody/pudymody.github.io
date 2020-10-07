@@ -24,3 +24,8 @@ Asi que ayer, despues de terminar de ver capitulos de la segunda temporada, deci
 {{< figure src="darkoracle.jpg" title="Los misterios del oraculo (Dark Oracle)" caption="Absolutamente ningun recuerdo de esta. Es como si no hubiera existido directamente en mi mundo." >}}
 
 Comentarios en el video aseguran que tambien habia un septimo programa llamado *Historias de Miedo (True Real Scary Stories/ Scary but True)* pero de esa tampoco tengo memoria alguna.
+
+*EDIT 2020/10/07*: Despues de haber visto So Weird completa, hay un hecho que me parece genial y fantastico de internet. Sin importar que tan unico y singular que creas que es tu interes, siempre va a existir una pequeña comunidad de ello. En este caso, [un foro](https://so-weird.proboards.com/), [un podcast realizado por un grupo de fans](https://www.youtube.com/c/SoWeirdonDisney/videos) quienes incluso lograron [entrevistar a distintos actores de la serie](https://www.youtube.com/playlist?list=PLHVe9-_pxmZmReO5lQe8CatajAkVYOIjf)
+ o [al escritor principal](https://www.youtube.com/watch?v=UrrcK-RKom4&list=PLHVe9-_pxmZmReO5lQe8CatajAkVYOIjf&index=3) y hablar de cuales eran sus planes para la tercera temporada que nunca se realizo. **(Te odio Disney, raton maligno)**
+
+Respecto al episodio del incendio, era el  S02E15 "Destiny", que no casualmente tambien aparece el "espiritu maligno".

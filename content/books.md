@@ -34,7 +34,6 @@ This is a list of books i would like to put my hand on when i have the time
 * **Las Intermitencias De La Muerte** by *Jose Saramago*
 * **La Física De Los Superheroes** by *Kakalios*
 * **Que Pasaría Si?** by *Randall Munroe*
-* **The Martian** by *Andy Weir*
 * **Moby Dick** by *Herman Melville*
 * **El Eternauta** by *Hector Oesterheld*
 * **Mago De Oz** by *Lyman Baum*

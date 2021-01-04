@@ -1,31 +1,20 @@
 {{ define "main" }}
 <article class="h-card">
-	<h1><img src="/static/me.jpg" alt="Photo of Federico Scodelaro" class="u-photo"> <span class="p-name">Federico Scodelaro</span> (<span class="p-nickname">pudymody</span>)</h1>
+	<h1><img src="/static/me.jpg" alt="Photo of Federico Scodelaro" class="u-photo"><span class="p-name">Federico Scodelaro</span> (<span class="p-nickname">pudymody</span>)</h1>
 
 	<section>
 		<h2 id="hola">Hola!</h2>
-		<p class="p-note">My name is Federico, or <strong>pudymody</strong> as i call myself on the interwebz. Im a computer science student currently living in Argentina looking to improve and develope my skills. Fluid in Javascript, know some CSS and HTML, and played with Rust and C#, but willing to learn any language or any technology.
+		<p class="p-note">My name is Federico, or <strong>pudymody</strong> as i call myself on the interwebz. Im a computer science student currently living in Argentina looking to improve and develope my skills. Fluid in Javascript, know CSS, HTML, and played with Rust and C#, but willing to learn any language or any technology.
 			<br>
 			<br>
-			Between the things i like are simplicity and minimalism, being owner of my <a href="/stream">own</a> <a href="/bookmarks">data</a>, push technology to its absurd limits and read <a href="/books">books</a>.
+			Sometimes i write about things in my <a href="/blog"><strong>blog</strong></a> and sometimes i make <a href="/experiments"><strong>experiments</strong></a>.
+			<br>
+			<br>
+			Between the things i like are simplicity and minimalism, being owner of my own data (like <a href="/stream">tweets</a> and <a href="/bookmarks">bookmarks</a>), push technology to its absurd limits and read <a href="/books">books</a>.
 			<br>
 			<br>
 			You could also find me in other places like <a target="_blank" rel="me" href="https://twitter.com/pudymody">Twitter</a> / <a target="_blank" rel="me" href="https://github.com/pudymody">Github</a> / <a target="_blank" rel="me" href="https://telegram.me/pudymody">Telegram</a> / <a target="_blank" rel="me" href="mailto:federicoscodelaro@gmail.com" class="u-email">Email</a>
 		</p>
-		<h2 id="lastest-post">Lastest posts</h2>
-		<ul>
-			{{ range first 4 (where .Site.RegularPages "Type" "blog") }}
-				<li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-			{{ end }}
-		</ul>
-		<h2 id="side-projects">Some side projects</h2>
-		<ul>
-			<li><a target="_blank" href="https://github.com/pudymody/action_twitter-poll">action_twitter-poll</a> / <a href="/blog/2019-09-09-towards-an-indie-web/">Blog post</a><p>Github action to poll for new tweets and export them into Hugo content files. Currently used in this site.</p></li>
-			<li><a target="_blank" href="https://pudymody.github.io/comparate-forbes-argentina/">comparate-forbes-argentina</a> / <a target="_blank" href="https://github.com/pudymody/comparate-forbes-argentina">Source</a><p>Little WebApp/Experiment to calculate how long you would have to work to be in the Top 5 Forbes Argentina.</p></li>
-			<li><a target="_blank" href="https://pudymody.github.io/puppies/">puppies</a> / <a target="_blank" href="https://github.com/pudymody/puppies">Source</a><p>Little app experiment using vue to display images from r/PuppySmiles</p></li>
-			<li><a target="_blank" href="https://addons.mozilla.org/en-US/firefox/addon/qr-code-address-bar/">firefox-qr</a> / <a target="_blank" href="https://github.com/pudymody/firefox-qr">Source</a><p>This is a project to get a QR code of the current url as a firefox extension.</p></li>
-		</ul>
-		<p><a target="_blank" href="https://github.com/pudymody?tab=repositories">Look around all of them in my Github account.</a></p>
 	</section>
 </article>
 {{ end }}

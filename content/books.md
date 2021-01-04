@@ -1,9 +1,7 @@
 ---
 title: "Books"
+desc: "This is a list of books i would like to put my hand on when i have the time"
 ---
-
-This is a list of books i would like to put my hand on when i have the time
-
 ## Sagas
 * **Millennium** by *Stieg Larsson*
 * **Fundación e Imperio** by *Asimov*

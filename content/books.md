@@ -14,7 +14,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Serving In Time** by *Gordon Eklund*
 * **La Ultima Nave Estelar De La Tierra** by *John Boyd*
 * **The Alteration** by *Kingsley Amis*
-* **Latinoamérica Fantástica** by *Augusto Uribe*
 * **Los Señores De La Instrumentalidad** by *Cordwainer Smith*
 * **Do You Love Me** by *R.D. Laing*
 * **La Rebelión De Atlas** by *Ayn Rand*

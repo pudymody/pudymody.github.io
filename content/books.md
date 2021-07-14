@@ -40,5 +40,4 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **The Handmaid's Tale** by *Margaret Atwood*
 * **El ultimo hombre** by *Mary Shelley*
 * **Lolita** by *Vladimir Nabokov*
-* **El color purpura** by *Alice Walker*
 * **Flores para Algernon** by *Daniel Keyes*

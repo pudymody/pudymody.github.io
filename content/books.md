@@ -33,7 +33,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Que Pasaría Si?** by *Randall Munroe*
 * **Moby Dick** by *Herman Melville*
 * **El Eternauta** by *Hector Oesterheld*
-* **Mago De Oz** by *Lyman Baum*
 * **Juan raro** by *Olaf Stapledon*
 * **La isla del Dr Moreau** by *H. G. Wells*
 * **Good omens** by *Terry Pratchett* and *Neil Gaiman*

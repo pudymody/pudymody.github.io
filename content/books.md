@@ -40,3 +40,4 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El ultimo hombre** by *Mary Shelley*
 * **Flores para Algernon** by *Daniel Keyes*
 * **IBM y el holocausto** by *Edwin Black*
+* **Kentukis** by *Samanta Schweblin*

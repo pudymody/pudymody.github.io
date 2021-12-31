@@ -36,7 +36,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Juan raro** by *Olaf Stapledon*
 * **La isla del Dr Moreau** by *H. G. Wells*
 * **Good omens** by *Terry Pratchett* and *Neil Gaiman*
-* **The Handmaid's Tale** by *Margaret Atwood*
 * **El ultimo hombre** by *Mary Shelley*
 * **Flores para Algernon** by *Daniel Keyes*
 * **IBM y el holocausto** by *Edwin Black*

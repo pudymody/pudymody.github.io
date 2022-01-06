@@ -9,7 +9,7 @@ date: 2015-09-27
 
 During the last months, there is a new trending type of images at least in my social networks. What are they about? They are square photos, with the main photo centered, and in the background the same image blurred. Dont get it? Here you have an example
 
-![Example](1.png)
+![Example](/static/imgs/first-firefox-os-app/1.png)
 
 How and why are they made?
 

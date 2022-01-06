@@ -59,7 +59,8 @@ $captcha->show('DISEÑO DESEADO');
 ```
 
 el diseño puede ser: red, white, blackglass, clean
-![Diseños de los distintos temas](designs.png)
+
+![Diseños de los distintos temas](/static/imgs/aporte-php-class-recaptcha/designs.png)
 
 y despues para comprobar solo tienen que hacer
 

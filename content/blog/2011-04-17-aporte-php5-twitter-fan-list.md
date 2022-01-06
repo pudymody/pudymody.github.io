@@ -4,7 +4,7 @@ date: 2011-04-17
 ---
 Bueno, En Base A Mi Tema Anterior Hice Esta Lista+CSS Donde Muestra El Total De Seguidores De Twitter De Cierto Usuario,Link Para Seguir,Y 12 Usuarios Seguidores Al Azar Con Link A Sus Respectivos Twitters.
 
-![Demo del listado](demo.png)
+![Demo del listado](/static/imgs/aporte-php5-twitter-fan-list/demo.png)
 
 **SeguidoresTwitter.php**
 ```php

@@ -13,14 +13,14 @@ This month im moving to a new house, and one of the questions that came out was 
 
 The first step was to get an image who works as a 360 degreess image with Aframe, thats a equirectangular photo. Im going to use the following.
 
-![Image](4.jpg)
+![Image](/static/imgs/painting-my-room-with-webvr/4.jpg)
 
 The next step was to get some kind of reference for every wall that we want to paint, so i made a transparent image with the same size, but with the actual wall being referenced colored in pure green, some kind of "chroma key" but only for the wall
 
-![Image](0.png)
-![Image](1.png)
-![Image](2.png)
-![Image](3.png)
+![Image](/static/imgs/painting-my-room-with-webvr/0.png)
+![Image](/static/imgs/painting-my-room-with-webvr/1.png)
+![Image](/static/imgs/painting-my-room-with-webvr/2.png)
+![Image](/static/imgs/painting-my-room-with-webvr/3.png)
 
 For this example, i ended with 5 images, the actual equirectangular image, and four more one for each wall.
 

@@ -7,7 +7,7 @@ date: 2019-08-20
 In my attempt to ditch google out of my life, i have been using Firefox for about a year (*few months after the [Firefox Quantum release](https://blog.mozilla.org/blog/2017/11/introducing-firefox-quantum/) which was on November 14, 2017*), but i always had my Chrome profile and settings *just-in-case*. Until now. After this year using it, i found out that i could live without my Chrome data, so i decided to finally delete it. But its difficult to delete your 8 years old collection of bookmarks like that. After curating and peeking around them, i found out that most of them were just a collection of interesting links,articles or webapps. So i decided to save them for historical reasons here. The first logical step is to curate them, remove all sensitive links, remove duplicates and try to fix or delete broken links.
 
 > As you can see, i have made this account 8 year ago, thats waaay older than i though
-![Image showing the creation date of google account: 25/5/11](account_age.png)
+![Image showing the creation date of google account: 25/5/11](/static/imgs/managing-bookmarks-with-hugo/account_age.png)
 
 ## Curating
 After some googling i found [this Chrome extension](https://chrome.google.com/webstore/detail/bookmarks-clean-up/oncbjlgldmiagjophlhobkogeladjijl) which does exactly that, find duplicate links in my bookmarks, and check for errors. I only have to run it, and do some googling to fix some broken links.

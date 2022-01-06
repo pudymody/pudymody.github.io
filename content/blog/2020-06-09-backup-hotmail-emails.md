@@ -15,8 +15,8 @@ The first step its to download and install [Thunderbird](https://www.thunderbird
 
 The first time you open it, you will see this dialog where you can put your email data. After accepting, the same dialog will show you the available methods with its settings for retrieving emails. For this task IMAP worked just fine.
 
-![Dialog to setup your account](account-setup.jpg)
-![Dialog to setup your accounts servers](account-setup-servers.jpg)
+![Dialog to setup your account](/static/imgs/backup-hotmail-emails/account-setup.jpg)
+![Dialog to setup your accounts servers](/static/imgs/backup-hotmail-emails/account-setup-servers.jpg)
 
 Now you have Thunderbird configured with your outlook email. From here you can read your emails and answer them, the main task for what this app was made. Now its time to export all your emails. To do this, you need to install the following addon: **ImportExportTools NG**.
 
@@ -24,14 +24,16 @@ Now you have Thunderbird configured with your outlook email. From here you can r
 
 First click on the "hamburger menu" on the top right and go to the addons menu item. From there click the addons button again. If you find it in the *Featured addons* list, click it and hit *Add to thunderbird*. If you dont find it, you can click on the *Extensions* button on the sidebar on the left, and from there search it. After installing it, it will ask to restart Thunderbird, do it.
 
-![Main menu](addons-menu.jpg)
-![Addons button](addons-menu-2.jpg)
-![Install addon](install-addon.jpg)
+![Main menu](/static/imgs/backup-hotmail-emails/addons-menu.jpg)
+
+![Addons button](/static/imgs/backup-hotmail-emails/addons-menu-2.jpg)
+
+![Install addon](/static/imgs/backup-hotmail-emails/install-addon.jpg)
 
 ## Exporting
 Now is just a matter of going folder by folder exporting them. I say this because when i tried to export everything, some werent exported, and i needed to do it one by one. This is done by right clicking on the folder -> ImportExportTools NG -> Export all messages in this folder -> HTML format (with attachments). I choose HTML format because i wanted them in a readable format, but you could choose the one you like. The important thing for me was the *(with attachments)* option, because that way it also exports received files.
 
-![Export menu](export.jpg)
+![Export menu](/static/imgs/backup-hotmail-emails/export.jpg)
 
 
 And that's everything you need to do to export your outlook emails. Now I can continue fighting services to delete my account.

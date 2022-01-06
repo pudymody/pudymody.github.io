@@ -37,7 +37,7 @@ My hope was to find some payload which represents some kind of grid with the til
 # Another way
 Looking at the first map, i tried to do it the hard way, i opened the rom, and started looking for the following: ```value1 00 00 00 00 00 00 00 00 value1 00 value2 00 value2``` because of the map format.
 
-![First level of the game](firstLevel.png)
+![First level of the game](/static/imgs/hacking-arkanoid-making-level-editor/firstLevel.png)
 
 After hours of search and reading, i could find it in the following address **0x07000a**, after editing it to make sure it was, i found that this is indeed the first map. Next step, deciphering the brick format.
 

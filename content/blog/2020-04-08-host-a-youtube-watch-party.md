@@ -20,18 +20,18 @@ After you extract the MPV file, put the *youtube-dl.exe* file you have just down
 
 Now its time to setup everything. Open the Syncplay program and you will be greeted with a config screen. In the *server address* option select one, and make sure everyone selects the same. Under *username* put yours, to make sure everyone recognices you. Under *default room* put the name of your room and make sure everyone also puts the same. This is the same as a chat room, to talk with them, everyone needs to be in the same room. Finally in *path to media player* press in browse and search for the *mpv.exe* file you downloaded previously. Hit *Store configuration and run Syncplay* and you should be inside the room.
 
-![Syncplay config box](syncplay-config.jpg)
+![Syncplay config box](/static/imgs/host-a-youtube-watch-party/syncplay-config.jpg)
 
 # Room settings
 Here you have two modes. Managed room and Non-managed room (default option). The difference between the two is that in a managed room, only people with the password can manage the playback options as play status, media playing, position. And everyone else could only watch and chat. This is useful if you dont want to give everyone power over what is playing. To create one of these you need to go to *Advanced -> Create managed room* and in the notification box you should see the new name and password for that room. Using the *Advanced -> Identify as room operator* option you would be asked for the previous password and would be able to control the room.
 
-![Syncplay creating a managed room](syncplay-managed.jpg)
-![Syncplay created managed room information](syncplay-managed-created.jpg)
+![Syncplay creating a managed room](/static/imgs/host-a-youtube-watch-party/syncplay-managed.jpg)
+![Syncplay created managed room information](/static/imgs/host-a-youtube-watch-party/syncplay-managed-created.jpg)
 
 # Usage
 From the playlist menu is where you can put your links to be watched by everyone. You need to right click and select *Add url(s) to bottom of playlist*, there in the popup menu, you insert your link and press ok. Now everyone should have the video playing in their player. When everyone has marked as ready in the main interface, the manager can start the playback.
 
-![Syncplay playlist](syncplay-playlist.jpg)
+![Syncplay playlist](/static/imgs/host-a-youtube-watch-party/syncplay-playlist.jpg)
 
 **The way i think this works is by only syncing the playback status, thats why if you want to play a local file, everyone needs to have it.** Doesnt need to be the same file, but at least have the same duration and name. To do this, you need to add the folder to the sources in *File -> Set media directories*. Thats the list of folders the player will search when it needs to play a local file.
 

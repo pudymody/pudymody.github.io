@@ -31,7 +31,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Las Intermitencias De La Muerte** by *Jose Saramago*
 * **La Física De Los Superheroes** by *Kakalios*
 * **Que Pasaría Si?** by *Randall Munroe*
-* **Moby Dick** by *Herman Melville*
 * **El Eternauta** by *Hector Oesterheld*
 * **Juan raro** by *Olaf Stapledon*
 * **La isla del Dr Moreau** by *H. G. Wells*

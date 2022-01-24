@@ -25,9 +25,9 @@
 		<span class="e-content">{{ .Content }}</span>
 
 		{{ if isset .Params "media" }}
-			{{ range .Params.media}}
-				<a href="{{.}}" class="u-photo"><img src="{{.}}" alt=""></a>
-			{{end}}
+			<div class="h-entry__media">
+			{{ range .Params.media}}<a href="{{.}}" class="u-photo"><img src="{{.}}" alt=""></a>{{end}}
+			</div>
 		{{ end }}
 	</div>
 </div>

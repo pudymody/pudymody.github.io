@@ -1,6 +1,7 @@
 ---
 title: Creating an edit-in-place in AngularJS
 date: 2015-08-11
+issueId: 21
 ---
 
 Today we are going to create an edit in place directive for angularjs. [Here](http://pudymody.github.io/angular-edit-in-place/) you got a demo so you can see what it's about or if you already have some knowledge about angular and just only want to read the code [here](https://github.com/pudymody/angular-edit-in-place) its the repository

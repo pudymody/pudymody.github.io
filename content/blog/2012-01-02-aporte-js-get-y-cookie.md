@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][JS] $_GET y $_COOKIE"
 date: 2012-01-02
+issueId: 11
 ---
 Bueno, revisando el blog de aNieto2K, vi un aporte donde mostraba como usar el $_GET de php pero con javascript, ya sea porque necesitas obtener los datos con js,te es mas simple,curiosidad,te acostumbraste a php, o solo porque lo queres hacer.
 

@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][PHP] Extraer seguidores de twitter"
 date: 2011-04-16
+issueId: 4
 ---
 Bueno, Pelotudeando Cree Esta Funcion De PHP Que Devuelve En Un Array Todos Los Seguidores De Twitter, Solo Funca En PHP5
 

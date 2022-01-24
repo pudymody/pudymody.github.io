@@ -2,6 +2,7 @@
 title: Converting GIFs to PowerPoint with Rust
 date: 2019-12-15T21:54:36.727Z
 toc: true
+issueId: 34
 ---
 # Intro
 Time ago browsing Reddit I found the following meme, and I thought, this seems like a good exercise to practice some rust code. Although I'm going to do it only with GIFs.

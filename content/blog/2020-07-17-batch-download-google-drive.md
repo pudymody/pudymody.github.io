@@ -1,6 +1,7 @@
 ---
 title: "Batch download from Google Drive"
 date: 2020-07-17
+issueId: 39
 ---
 
 The other day a friend shared with me a link to a Google Drive folder with a lot of files. I wanted to download all of them, but i didnt want to use the native "Download folder" function, as it was a lot of GBs and also needed to start using the files as soon as i have them. Also, having a crappy internet connection means that i could lost all of the files because a single cut.

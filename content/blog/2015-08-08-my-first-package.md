@@ -1,6 +1,7 @@
 ---
 title: My first atom package
 date: 2015-08-08
+issueId: 18
 ---
 There was one thing that prevented me from making the change. When you autocomplete a snippet or an emmet expresion, and you type the final semicolon, it is inserted although it had been inserted by the snippet. Sublime handles this excelente moving the caret next to the char, but in atom it is inserted two times.
 

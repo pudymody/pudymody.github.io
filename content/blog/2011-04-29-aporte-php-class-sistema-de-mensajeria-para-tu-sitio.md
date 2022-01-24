@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][PHP][Class] Sistema de mensajeria para tu sitio"
 date: 2011-04-29
+issueId: 8
 ---
 Bueno, leyendo el siguiente [tema](http://www.taringa.net/comunidades/webdesign/2570503/%255BConsulta+PHP%255D+Mensajer%25C3%25ADa+interna%253A+usuario+elimina+sus+mp.html) de [@macadamQuejoso](https://www.taringa.net/macadamQuejoso) , se me ocurrio crear un sistema de mensajeria hecho en POO ( programacion orientada a objetos) para ir practicando un poco esto de POO, incluye lo escencial.
 

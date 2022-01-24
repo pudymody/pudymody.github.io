@@ -1,6 +1,7 @@
 ---
 title: The first drinking coding game in JS
 date: 2016-03-03
+issueId: 25
 ---
 
 Its been a long time since i write my last post, so here we are.

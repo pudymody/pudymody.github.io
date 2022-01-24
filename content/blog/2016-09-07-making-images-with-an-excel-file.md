@@ -1,6 +1,7 @@
 ---
 title: Making images with an excel file
 date: 2016-09-07
+issueId: 27
 ---
 
 The other day, i was with a friend and after a few beers, the idea of resizing every cell to a 1x1 pixel size in an excel file and styling its background to match a pixel in an image came out. Loving to make apps and script without any sense, i decided to make a web app who would do it. So this post is going to be about its making.

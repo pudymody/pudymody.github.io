@@ -2,6 +2,7 @@
 title: "Hacking Arkanoid: Making a level editor."
 date: 2019-01-16
 toc: true
+issueId: 29
 ---
 
 # Intro

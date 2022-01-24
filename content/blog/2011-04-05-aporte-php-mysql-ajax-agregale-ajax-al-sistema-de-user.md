@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][PHP][MySQL][AJAX] Agregale AJAX al sistema de user"
 date: 2011-04-05
+issueId: 3
 ---
 Bueno Siguiendo Con Mi Tema Anterior
 

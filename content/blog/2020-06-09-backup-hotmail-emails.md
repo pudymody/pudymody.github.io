@@ -1,6 +1,7 @@
 ---
 title: "Backup your hotmail account (with attachments)"
 date: 2020-06-09
+issueId: 38
 ---
 
 *(Yes, i put hotmail on purpouse because thats the way i first searched for it, and because searching for outlook give me answers for the software and not the email service)*

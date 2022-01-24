@@ -1,6 +1,7 @@
 ---
 title: "Steam en tu moneda natal"
 date: 2013-02-18
+issueId: 17
 ---
 
 ![Cabecera](/static/imgs/steam-en-tu-moneda-natal/top.jpg)

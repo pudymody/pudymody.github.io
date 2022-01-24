@@ -1,6 +1,7 @@
 ---
 title: Get youtube playlist length
 date: 2022-01-20
+issueId: 43
 ---
 
 Sometimes i need to know how long a youtube playlist is. To do this i always end in some random website that will calculate it for me. Yesterday i decided to make a little bookmarklet to have this info without navigating away. As always, this could fail in the future, but for now it works. Another drawback it has is that you need to scroll to the bottom of the page to load all the videos.

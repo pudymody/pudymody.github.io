@@ -1,6 +1,7 @@
 ---
 title: Managing my bookmarks with Hugo
 date: 2019-08-20
+issueId: 31
 ---
 
 ## Intro

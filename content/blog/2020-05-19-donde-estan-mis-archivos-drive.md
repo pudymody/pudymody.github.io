@@ -1,6 +1,7 @@
 ---
 title: "¿Donde estan mis archivos de Google Drive?"
 date: 2020-05-19
+issueId: 37
 ---
 ## Intro
 Todos usamos alguna vez Google Drive, ya sea para compartir archivos con un amigo, guardar los nuestros, o incluso para bajar peliculas de forma ilegal, pero nunca nos preguntamos "¿Donde se encuentran esos archivos?". Uno abre su trabajo practico o simplemente este archivo de texto y ya sabe que esta en el disco duro de su pc. El cual si se destruye o se daña nos deja sin posibilidad de aprobar la materia o una situacion mas real, se corta la luz y ya nos es imposible continuar editando el archivo desde nuestro celular. ¿Como es posible que a Google nunca se le corte la luz? ¿O que nunca se le dañen los discos duros? ¿Que clase de tecnologia ultra secreta usan? ¿Sera porque son del primer mundo?.

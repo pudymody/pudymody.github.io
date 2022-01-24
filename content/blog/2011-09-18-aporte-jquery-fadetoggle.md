@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][Jquery] FadeToggle"
 date: 2011-09-18
+issueId: 10
 ---
 bueno, desde hace mucho tiempo, viendo que existe .toggle, .slideToggle, y quejandome porque no hay un .fadeToggle, asi que investigando sobre como crear plugins jquery, me tope con una buena guia, y decidi crear el .fadeToggle
 

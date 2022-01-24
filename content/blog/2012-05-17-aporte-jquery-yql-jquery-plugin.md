@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][Jquery] YQL Jquery Plugin"
 date: 2012-05-17
+issueId: 15
 ---
 Bueno, boludeando por internet y con el [YQL (Yahoo! Query Language)](http://developer.yahoo.com/yql/), el cual es un sevicio que con una sintaxis similar a la de sql, podes acceder a distintos servicios webs, y en base a uno de los temas que aporte ([[Aporte][JS] Obtener datos web como facebook](/taringa/aporte-js-obtener-datos-web-como-facebook/)), se me ocurrio realizar en jquery un plugin para hacer mas simples las querys.
 

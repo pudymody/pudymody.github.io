@@ -1,6 +1,7 @@
 ---
 title: Creating a weather widget with es6 and flexbox
 date: 2015-09-18
+issueId: 23
 ---
 
 Today we are going to create as the title suggest a weather widget with some es6 features and the flexbox model. You can view the [demo](http://pudymody.github.io/es6-weather/)( currently it loads Argentina weather ) to see what it's about or see the [repository](https://github.com/pudymody/es6-weather) if you only want to read the code

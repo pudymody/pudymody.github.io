@@ -1,6 +1,7 @@
 ---
 title: Making a soundboard maker
 date: 2016-04-24
+issueId: 26
 ---
 
 The title is a little "metaish" *(making a maker)*, isnt it?. Nevermind, this all started because with my friends we are use to play the sound when you level up in the [MuOnline](https://en.wikipedia.org/wiki/Mu_Online) game whenever someone of us did something stupid. One friday night, i was so bored that i made a [little soundboard](https://pudymody.github.io/argenmu-soundboard/) with sounds of the game, you can read the [source](https://github.com/pudymody/argenmu-soundboard) but if you are going to read this post, you will see it here. The next day, when i showed it to my friends, they went crazy, the wanted to make soundboards for everything you could think of. The first thing that came to my mind was "Why dont i make an app to make soundboards? I bet the web can do that". Another boring night and i came up with this app which im going to explain in this post. If you just want to use the app, [here you have](https://pudymody.github.io/soundboard-maker/)

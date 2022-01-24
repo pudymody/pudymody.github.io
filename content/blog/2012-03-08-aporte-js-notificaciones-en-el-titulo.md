@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][JS] Notificaciones en el titulo"
 date: 2012-03-08
+issueId: 14
 ---
 Bueno, esta vez vengo a dejarles un plugin Jquery, con el cual pueden colocar notificaciones en el titulo, como las que tiene Facebook cuando te llega un mensaje del chat, es decir, alternando el titulo por otro cada x segundos.
 

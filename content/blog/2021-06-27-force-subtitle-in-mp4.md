@@ -1,6 +1,7 @@
 ---
 title: "Force subtitle in all videos inside a folder"
 date: 2021-06-27
+issueId: 42
 ---
 
 Lately i've found myself needing to force subtitles in video files so that my tv would display them more than i would like to admit. I always spent the same 5 minutes searching for the right combination of ffmpeg flags and windows cmd commands to do it over all the files in the folder. I always return to the same pages. Here is the snippet so i could find it without effort the next time. You need [FFmpeg](https://ffmpeg.org) and the subtitle and video files to have the same name.

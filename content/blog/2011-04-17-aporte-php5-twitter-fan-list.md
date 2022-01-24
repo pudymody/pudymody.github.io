@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][PHP5] Twitter fan list"
 date: 2011-04-17
+issueId: 5
 ---
 Bueno, En Base A Mi Tema Anterior Hice Esta Lista+CSS Donde Muestra El Total De Seguidores De Twitter De Cierto Usuario,Link Para Seguir,Y 12 Usuarios Seguidores Al Azar Con Link A Sus Respectivos Twitters.
 

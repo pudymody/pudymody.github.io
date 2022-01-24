@@ -1,0 +1,26 @@
+{{ define "main" }}
+<article class="h-entry">
+	<header>
+		<h1 class="p-name">{{ .Title }}</h1>
+		{{ if .Params.date }}<p class="subtitle dt-published">{{ .Date.Format "January 2, 2006" }}</p>{{ end }}
+		{{ if .Params.desc }}<p>{{ .Params.desc }}</p>{{ end }}
+	</header>
+	<section class="e-content">
+
+	{{ if .Params.toc }}
+	{{ .TableOfContents }}
+	{{ end }}
+
+	{{ .Content }}
+	</section>
+</article>
+	{{ with .Params.issueId }}
+		<section class="comments">
+			<p class="comments__add">Comments on this site are managed with <a href="https://github.com/pudymody/pudymody.github.io/issues/{{ . }}">Github issues</a>, you can post by <a href="https://github.com/pudymody/pudymody.github.io/issues/{{ . }}#issuecomment-new">commenting there</a> or send me an email/tweet with your comment and i will quote you there (unless you ask me not to).</p>
+<style>.comments__add{background:#454545;color:#fffff8;padding:0.5rem;margin:0.5rem 0;border-radius:0.25rem;text-align: center;}.comments__add a{color:#ff5252}.comment{border-top:1px solid;border-bottom:1px solid;padding:0.75rem 0}.comment__metadata{display:flex;flex-direction:row;align-items:center}.comment__metadata a:not(:last-child){margin-right:0.75rem}.comment__avatar{width:32px;height:32px;border-radius:50%;display:block}.comment__body p:last-of-type{margin-bottom:0}@media (prefers-color-scheme:dark){.comments__add{background:#fffff8;color:#222;}.comments__add a{color:#a00}}</style>
+			<script defer>
+				fetch("https://api.github.com/repos/pudymody/pudymody.github.io/issues/{{ . }}/comments?per_page=15",{headers:{"Accept":"application/vnd.github.VERSION.html+json"}}).then(function(r){return r.json();}).then(function(data){return data.map(function(c){return{body:c.body_html,url:c.html_url,user:c.user.login,avatar:c.user.avatar_url,time:new Date(c.updated_at).toLocaleDateString("en-GB")}}).map(function(c){return`<div class="comment"><div class="comment__metadata"><a href="https://github.com/${c.user}"><img class="comment__avatar" src="${c.avatar}" alt="${c.user}"></a><a href="https://github.com/${c.user}">${c.user}</a> <a href="${c.url}">${c.time}</a></div><div class="comment__body">${c.body}</div></div>`;}).join(""); }).then(function(html){const $box=document.querySelector(".comments");$box.innerHTML+=html})
+			</script>
+		</section>
+	{{ end }}
+{{ end }}

@@ -1,6 +1,7 @@
 ---
 title: "FingerChooser: Not everything needs to be an app"
 date: 2020-09-20
+issueId: 40
 ---
 
 Yes, i know the title is a little clickbait. Im not going to talk about how a super complex app could be made as a website, but a little one.

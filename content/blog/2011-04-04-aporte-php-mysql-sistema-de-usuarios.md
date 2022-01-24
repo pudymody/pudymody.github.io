@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][PHP][MySQL] Sistema de usuarios"
 date: 2011-04-04
+issueId: 2
 ---
 **Bueno Les Dejo Este Tutorial Hecho Por Mi En El Que Realizaremos Un Sistema De Usuarios Con PHP y MYSQL.Intentare Explicar Lo Mayor Posible Cada Archivo.**
 

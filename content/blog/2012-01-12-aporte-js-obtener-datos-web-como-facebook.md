@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][JS] Obtener datos web como facebook"
 date: 2012-01-12
+issueId: 12
 ---
 Bueno, boludeando por internet y con el [YQL (Yahoo! Query Language)](http://developer.yahoo.com/yql/), el cual es un sevicio que con una sintaxis similar a la de sql, podes acceder a distintos servicios webs, se me ocurrio realizar en js(javascript) una funcion para obtener el titulo,descripcion y favicon de una url pasada, tal y como hace facebook cuando vas a publicar una.
 

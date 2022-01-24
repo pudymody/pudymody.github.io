@@ -1,6 +1,7 @@
 ---
 title: Self hosted pdf viewer like issuu
 date: 2015-08-16
+issueId: 22
 ---
 
 In this post we are going to write a command line program which generates a version of the pdf viewer of [Issuu](http://issuu.com/). [Here](https://pudymody.github.io/Isu) you can see an example.

@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][PHP] Funcion obtener datos post Taringa"
 date: 2011-04-25
+issueId: 6
 ---
 Bueno Lo Siguiente Son Dos Funciones Que Devuelven En Un Array La Cantidad De Favoritos,Visitas,Puntos,Seguidores Y Comentarios De Un Post Pasado Como Parametro.
 

@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][PHP5] Traduci con la API de Google."
 date: 2011-04-25
+issueId: 7
 ---
 Bueno, Esta Vez Les Dejo Otra Funcion (Solo PHP5) Creada Por Mi Para Traducir Con La Api De Google.
 Se Debe Usar Asi:

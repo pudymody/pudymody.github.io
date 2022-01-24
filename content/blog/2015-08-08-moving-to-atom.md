@@ -1,6 +1,7 @@
 ---
 title: Moving from sublime to atom
 date: 2015-08-08
+issueId: 19
 ---
 
 *This is my first post, so im all ears to suggestions.*

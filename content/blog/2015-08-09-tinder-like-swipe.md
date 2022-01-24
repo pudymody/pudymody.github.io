@@ -1,6 +1,7 @@
 ---
 title: Recreating Tinder swipe effect with css3
 date: 2015-08-09
+issueId: 20
 ---
 
 Today its a rainy day here and you cant do so much things on a rainy sunday, so we are going to recreate the tinder swipe effect with the power of css3.

@@ -1,6 +1,7 @@
 ---
 title: Making our first Firefox OS App (NoCrop)
 date: 2015-09-27
+issueId: 24
 ---
 
 **I've currently made a submission to the firefox marketplace, so whenever its available i will post the link here**

@@ -1,6 +1,7 @@
 ---
 title: "Fox kids Mysteria"
 date: 2020-09-24
+issueId: 41
 ---
 
 Ese era el nombre del bloque que transmitia programas de terror sobrenatural pasadas las 21hs que tanto temor generaba. **Mysteria**. Hace **AÑOS** vengo buscando el nombre y los programas del mismo, y recien ayer despues de una larga investigacion que consistio en mirar publicidades de entre el 2000 y el 2004 pude encontrarlo. Incluso en un momento llegue a pensar que no existia, o que era producto de un falso recuerdo.

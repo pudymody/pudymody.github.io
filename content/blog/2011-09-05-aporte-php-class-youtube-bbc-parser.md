@@ -1,6 +1,7 @@
 ---
 title: "[Aporte][PHP][Class] Youtube BBC parser"
 date: 2011-09-05
+issueId: 9
 ---
 Bueno, esta vez les traigo un bbcode parser para youtube, el cual detecta los links que son antecedidos por un espacio o por el principio de la linea.
 Es mi primer code en POO, cualquier sugerencia es bienvenida.

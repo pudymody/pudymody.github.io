@@ -1,6 +1,7 @@
 ---
 title: Youtube channel RSS url
 date: 2020-05-11
+issueId: 36
 ---
 
 Since i dont have a Youtube account, but i still want to be subscribed to some great channels, i use their [RSS](https://en.wikipedia.org/wiki/RSS) url. The problem with this is that although they are available, Youtube doesnt make them public in their website. So i always return to this [excellent answer](https://webapps.stackexchange.com/a/116549). As i dont want to lose it, im going to copy it here.

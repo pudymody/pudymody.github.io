@@ -5,9 +5,11 @@
     {{ .Content }}
   </header>
   <section>
+    <ul>
   {{ range .Data.Pages }}
-    <a class="h-entry h-entry--post u-url" href="{{ .Permalink }}"><span class="date dt-published">{{ .Date.Format "2006/01/02" }}</span> <span class="p-name">{{ .Title }}</span></a>
+    <li><a class="h-entry h-entry--post u-url" href="{{ .Permalink }}"><p class="p-name">{{ .Title }}</p><p class="date dt-published">{{ .Date.Format "2006/01/02" }}</p></a></li>
   {{ end }}
+    </ul>
   </section>
 </article>
 {{ end }}

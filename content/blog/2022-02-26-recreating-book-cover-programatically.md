@@ -1,7 +1,7 @@
 ---
 title: Recreating a book cover programatically
 date: 2022-02-26
-issueId: 51
+issueId: 52
 ---
 
 ![Book cover](/static/imgs/recreating-book-cover-programatically/cover.jpg)

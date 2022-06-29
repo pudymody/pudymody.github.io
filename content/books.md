@@ -19,9 +19,7 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **La Rebelión De Atlas** by *Ayn Rand*
 * **Divina Comedia** by *Dante Alighieri*
 * **Don Quijote De La Mancha** by *Miguel De Cervantes*
-* **Las Ventajas De Ser Invisible** by *Stephen Chbosky*
 * **Gödel, Escher, Bach: Un Eterno Y Grácil Bucle** by *Douglas Hofstadter*
-* **Stories Of Your Life And Others** by *Ted Chiang*
 * **How To Live Safely In A Science Fictional Universe** by *Charles Yu*
 * **Bioshock Rapture** by *Shirley John*
 * **Redshirts** by *John Scalzi*
@@ -34,8 +32,7 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El Eternauta** by *Hector Oesterheld*
 * **Juan raro** by *Olaf Stapledon*
 * **La isla del Dr Moreau** by *H. G. Wells*
-* **Good omens** by *Terry Pratchett* and *Neil Gaiman*
 * **El ultimo hombre** by *Mary Shelley*
 * **Flores para Algernon** by *Daniel Keyes*
-* **IBM y el holocausto** by *Edwin Black*
 * **Kentukis** by *Samanta Schweblin*
+* **Cumbres Borrascosas** by *Emily Brontë*

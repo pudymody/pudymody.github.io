@@ -1,10 +1,10 @@
 {{ define "main" }}
-<article class="h-feed">
+<main>
   <header>
     <h1 class="p-name">Stream</h1>
     <p>This is a mirror of my tweets in an attempt to follow the indieweb movement.</p>
   </header>
-  <section>
+  <section class="h-feed">
 
   {{ .Content }}
 
@@ -17,5 +17,5 @@
     <li><a {{ if .Paginator.HasNext }}href="{{ .Paginator.Next.URL }}"{{ end }}>Next ></a></li>
   </ul>
   </section>
-</article>
+</main>
 {{ end }}

@@ -1,0 +1,508 @@
+/* @docs
+label: Core Remedies
+version: 0.1.0-beta.2
+
+note: |
+  These remedies are recommended
+  as a starter for any project.
+
+category: file
+*/
+
+
+/* @docs
+label: Box Sizing
+
+note: |
+  Use border-box by default, globally.
+
+category: global
+*/
+*, ::before, ::after { box-sizing: border-box; }
+
+
+/* @docs
+label: Line Sizing
+
+note: |
+  Consistent line-spacing,
+  even when inline elements have different line-heights.
+
+links:
+  - https://drafts.csswg.org/css-inline-3/#line-sizing-property
+
+category: global
+*/
+html { line-sizing: normal; }
+
+
+/* @docs
+label: Body Margins
+
+note: |
+  Remove the tiny space around the edge of the page.
+
+category: global
+*/
+body { margin: 0; }
+
+
+/* @docs
+label: Hidden Attribute
+
+note: |
+  Maintain `hidden` behaviour when overriding `display` values.
+
+  category: global
+*/
+[hidden] { display: none; }
+
+
+/* @docs
+label: Heading Sizes
+
+note: |
+  Switch to rem units for headings
+
+category: typography
+*/
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.17rem; }
+h4 { font-size: 1.00rem; }
+h5 { font-size: 0.83rem; }
+h6 { font-size: 0.67rem; }
+
+
+/* @docs
+label: H1 Margins
+
+note: |
+  Keep h1 margins consistent, even when nested.
+
+category: typography
+*/
+h1 { margin: 0.67em 0; }
+
+
+/* @docs
+label: Pre Wrapping
+
+note: |
+  Overflow by default is bad...
+
+category: typography
+*/
+pre { white-space: pre-wrap; }
+
+
+/* @docs
+label: Horizontal Rule
+
+note: |
+  1. Solid, thin horizontal rules
+  2. Remove Firefox `color: gray`
+  3. Remove default `1px` height, and common `overflow: hidden`
+
+category: typography
+*/
+hr {
+  border-style: solid;
+  border-width: 1px 0 0;
+  color: inherit;
+  height: 0;
+  overflow: visible;
+}
+
+
+/* @docs
+label: Responsive Embeds
+
+note: |
+  1. Block display is usually what we want
+  2. The `vertical-align` removes strange space-below in case authors overwrite the display value
+  3. Responsive by default
+  4. Audio without `[controls]` remains hidden by default
+
+category: embedded elements
+*/
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: block;
+  vertical-align: middle;
+  max-width: 100%;
+}
+audio:not([controls]) { display:none; }
+
+
+/* @docs
+label: Responsive Images
+
+note: |
+  These new elements display inline by default,
+  but that's not the expected behavior for either one.
+  This can interfere with proper layout and aspect-ratio handling.
+
+  1. Remove the unnecessary wrapping `picture`, while maintaining contents
+  2. Source elements have nothing to display, so we hide them entirely
+
+category: embedded elements
+*/
+picture { display: contents; }
+source { display: none; }
+
+
+/* @docs
+label: Aspect Ratios
+
+note: |
+  Maintain intrinsic aspect ratios when `max-width` is applied.
+  `iframe`, `embed`, and `object` are also embedded,
+  but have no intrinsic ratio,
+  so their `height` needs to be set explicitly.
+
+category: embedded elements
+*/
+img, svg, video, canvas {
+  height: auto;
+}
+
+
+/* @docs
+label: Audio Width
+
+note: |
+  There is no good reason elements default to 300px,
+  and audio files are unlikely to come with a width attribute.
+
+category: embedded elements
+*/
+audio { width: 100%; }
+
+/* @docs
+label: Image Borders
+
+note: |
+  Remove the border on images inside links in IE 10 and earlier.
+
+category: legacy browsers
+*/
+img { border-style: none; }
+
+
+/* @docs
+label: SVG Overflow
+
+note: |
+  Hide the overflow in IE 10 and earlier.
+
+category: legacy browsers
+*/
+svg { overflow: hidden; }
+
+
+/* @docs
+label: HTML5 Elements
+
+note: |
+  Default block display on HTML5 elements.
+  For oldIE to apply this styling one needs to add some JS as well (i.e. `document.createElement("main")`)
+
+links:
+  - https://www.sitepoint.com/html5-older-browsers-and-the-shiv/
+
+category: legacy browsers
+*/
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section {
+  display: block;
+}
+
+
+/* @docs
+label: Checkbox & Radio Inputs
+
+note: |
+  1. Add the correct box sizing in IE 10
+  2. Remove the padding in IE 10
+
+category: legacy browsers
+*/
+[type='checkbox'],
+[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+/* @docs
+label: Line Heights
+note: |
+  The default `normal` line-height is tightly spaced,
+  but takes font-metrics into account,
+  which is important for many fonts.
+  Looser spacing may improve readability in latin type,
+  but may cause problems in some scripts --
+  from cusrive/fantasy fonts to
+  [Javanese](https://jsbin.com/bezasax/1/edit?html,css,output),
+  [Persian](https://jsbin.com/qurecom/edit?html,css,output),
+  and CJK languages.
+links:
+  - https://github.com/mozdevs/cssremedy/issues/7
+  - https://jsbin.com/bezasax/1/edit?html,css,output
+  - https://jsbin.com/qurecom/edit?html,css,output
+todo: |
+  - Use `:lang(language-code)` selectors?
+  - Add typography remedies for other scripts & languages...
+category: typography
+*/
+
+html { line-height: 1.6; }
+h1, h2, h3, h4, h5, h6 { line-height: 1.25; }
+caption, figcaption, label, legend { line-height: 1.375; }
+
+html {
+	font-size: 20px;
+	font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	background: #F5F3FF;
+	color: #2D115A;
+}
+
+body {
+	max-width: 40rem;
+	margin:0 0.75rem;
+}
+
+@media (min-width: 46rem){
+		body {
+				margin: 0 3rem;
+		}
+}
+
+code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+a {
+	text-decoration: underline 2px;
+	text-underline-offset: 2px;
+	color: inherit;
+}
+
+a:hover {
+	color: #F5F3FF;
+	background: #2D115A;
+}
+
+header h1, header p {
+	margin: 0;
+}
+
+header {
+	border-top: 2px solid;
+	border-bottom: 2px solid;
+	padding: 1rem 0;
+	text-align: center;
+	margin-bottom: 1rem;
+}
+
+img {
+	margin: 0 auto;
+}
+
+blockquote {
+		font-style: italic;
+		padding: 0.5rem 0.75rem;
+		border-left: 3px solid;
+		background: #ECE9FF;
+}
+
+blockquote p:first-child {
+		margin-top: 0;
+}
+
+blockquote p:last-child {
+		margin-bottom: 0;
+}
+
+.main-nav ul {
+list-style: none;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+margin: 0;
+padding: 0;
+}
+
+.main-nav a {
+		display: block;
+		padding: 1rem;
+}
+
+.main-nav .home {
+ font-size: 2rem;
+text-align: center;
+}
+
+.h-card h1 {
+		display: flex;
+		align-items: center;
+}
+
+.h-card .u-photo {
+		border-radius: 50%;
+		margin: 0;
+    margin-right: 1rem;
+}
+
+.h-entry--stream {
+  border-bottom: 1px solid;
+  padding-bottom: 0.875rem;
+  margin-bottom: 0.875rem;
+}
+
+.h-entry__media .u-photo {
+  height: 200px;
+  width: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.h-entry__media .u-photo img {
+max-width: 100%;
+max-height: 100%;
+}
+
+.paginator {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list {
+ list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.h-entry--post {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem;
+}
+
+.post__end {
+  width:35%;
+  margin:0 auto;
+}
+
+pre.chroma {
+  overflow-x: auto;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+/* Background */ .bg { color: #f8f8f2; background-color: #272822; }
+/* PreWrapper */ .chroma { color: #f8f8f2; background-color: #272822; }
+/* Other */ .chroma .x {  }
+/* Error */ .chroma .err { color: #960050; background-color: #1e0010 }
+/* CodeLine */ .chroma .cl {  }
+/* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
+/* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; }
+/* LineHighlight */ .chroma .hl { background-color: #ffffcc }
+/* LineNumbersTable */ .chroma .lnt { white-space: pre; user-select: none; margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f }
+/* LineNumbers */ .chroma .ln { white-space: pre; user-select: none; margin-right: 0.4em; padding: 0 0.4em 0 0.4em;color: #7f7f7f }
+/* Line */ .chroma .line { display: flex; }
+/* Keyword */ .chroma .k { color: #66d9ef }
+/* KeywordConstant */ .chroma .kc { color: #66d9ef }
+/* KeywordDeclaration */ .chroma .kd { color: #66d9ef }
+/* KeywordNamespace */ .chroma .kn { color: #f92672 }
+/* KeywordPseudo */ .chroma .kp { color: #66d9ef }
+/* KeywordReserved */ .chroma .kr { color: #66d9ef }
+/* KeywordType */ .chroma .kt { color: #66d9ef }
+/* Name */ .chroma .n {  }
+/* NameAttribute */ .chroma .na { color: #a6e22e }
+/* NameBuiltin */ .chroma .nb {  }
+/* NameBuiltinPseudo */ .chroma .bp {  }
+/* NameClass */ .chroma .nc { color: #a6e22e }
+/* NameConstant */ .chroma .no { color: #66d9ef }
+/* NameDecorator */ .chroma .nd { color: #a6e22e }
+/* NameEntity */ .chroma .ni {  }
+/* NameException */ .chroma .ne { color: #a6e22e }
+/* NameFunction */ .chroma .nf { color: #a6e22e }
+/* NameFunctionMagic */ .chroma .fm {  }
+/* NameLabel */ .chroma .nl {  }
+/* NameNamespace */ .chroma .nn {  }
+/* NameOther */ .chroma .nx { color: #a6e22e }
+/* NameProperty */ .chroma .py {  }
+/* NameTag */ .chroma .nt { color: #f92672 }
+/* NameVariable */ .chroma .nv {  }
+/* NameVariableClass */ .chroma .vc {  }
+/* NameVariableGlobal */ .chroma .vg {  }
+/* NameVariableInstance */ .chroma .vi {  }
+/* NameVariableMagic */ .chroma .vm {  }
+/* Literal */ .chroma .l { color: #ae81ff }
+/* LiteralDate */ .chroma .ld { color: #e6db74 }
+/* LiteralString */ .chroma .s { color: #e6db74 }
+/* LiteralStringAffix */ .chroma .sa { color: #e6db74 }
+/* LiteralStringBacktick */ .chroma .sb { color: #e6db74 }
+/* LiteralStringChar */ .chroma .sc { color: #e6db74 }
+/* LiteralStringDelimiter */ .chroma .dl { color: #e6db74 }
+/* LiteralStringDoc */ .chroma .sd { color: #e6db74 }
+/* LiteralStringDouble */ .chroma .s2 { color: #e6db74 }
+/* LiteralStringEscape */ .chroma .se { color: #ae81ff }
+/* LiteralStringHeredoc */ .chroma .sh { color: #e6db74 }
+/* LiteralStringInterpol */ .chroma .si { color: #e6db74 }
+/* LiteralStringOther */ .chroma .sx { color: #e6db74 }
+/* LiteralStringRegex */ .chroma .sr { color: #e6db74 }
+/* LiteralStringSingle */ .chroma .s1 { color: #e6db74 }
+/* LiteralStringSymbol */ .chroma .ss { color: #e6db74 }
+/* LiteralNumber */ .chroma .m { color: #ae81ff }
+/* LiteralNumberBin */ .chroma .mb { color: #ae81ff }
+/* LiteralNumberFloat */ .chroma .mf { color: #ae81ff }
+/* LiteralNumberHex */ .chroma .mh { color: #ae81ff }
+/* LiteralNumberInteger */ .chroma .mi { color: #ae81ff }
+/* LiteralNumberIntegerLong */ .chroma .il { color: #ae81ff }
+/* LiteralNumberOct */ .chroma .mo { color: #ae81ff }
+/* Operator */ .chroma .o { color: #f92672 }
+/* OperatorWord */ .chroma .ow { color: #f92672 }
+/* Punctuation */ .chroma .p {  }
+/* Comment */ .chroma .c { color: #75715e }
+/* CommentHashbang */ .chroma .ch { color: #75715e }
+/* CommentMultiline */ .chroma .cm { color: #75715e }
+/* CommentSingle */ .chroma .c1 { color: #75715e }
+/* CommentSpecial */ .chroma .cs { color: #75715e }
+/* CommentPreproc */ .chroma .cp { color: #75715e }
+/* CommentPreprocFile */ .chroma .cpf { color: #75715e }
+/* Generic */ .chroma .g {  }
+/* GenericDeleted */ .chroma .gd { color: #f92672 }
+/* GenericEmph */ .chroma .ge { font-style: italic }
+/* GenericError */ .chroma .gr {  }
+/* GenericHeading */ .chroma .gh {  }
+/* GenericInserted */ .chroma .gi { color: #a6e22e }
+/* GenericOutput */ .chroma .go {  }
+/* GenericPrompt */ .chroma .gp {  }
+/* GenericStrong */ .chroma .gs { font-weight: bold }
+/* GenericSubheading */ .chroma .gu { color: #75715e }
+/* GenericTraceback */ .chroma .gt {  }
+/* GenericUnderline */ .chroma .gl {  }
+/* TextWhitespace */ .chroma .w {  }
+
+.chroma .line:nth-child(2n+1) {
+  background: rgba(255,255,255,.02);
+}
+
+@media(prefers-color-scheme: dark){
+  html {
+    color: #F5F3FF;
+    background: #2D115A;
+  }
+
+  a:hover {
+    background: #F5F3FF;
+    color: #2D115A;
+  }
+
+  blockquote {
+    background: #401881;
+  }
+}

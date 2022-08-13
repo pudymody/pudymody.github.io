@@ -1,7 +1,3 @@
 {{ define "main" }}
-<article>
-	<section>
-		{{ .Render (printf "tpl_%s" .Params.layout) }}
-	</section>
-</article>
+{{ .Render (printf "tpl_%s" .Params.layout) }}
 {{ end }}

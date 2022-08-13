@@ -15,9 +15,9 @@
 	<section>
 		<h2 id="blog">Blog</h2>
 		<p>This are my last posts. You can <a href="/blog"><strong>view them all</strong></a></p>
-		<ul>
+		<ul class="list">
 			{{ range (first 4 (where $.Site.RegularPages "Section" "blog")) }}
-			<li><a class="h-entry h-entry--post u-url" href="{{ .Permalink }}"><p class="p-name">{{ .Title }}</p><p class="date dt-published">{{ .Date.Format "2006/01/02" }}</p></a></li>
+			<li><a class="h-entry h-entry--post u-url" href="{{ .Permalink }}"><span class="p-name">{{ .Title }}</span><time class="date dt-published">{{ .Date.Format "2006/01/02" }}</time></a></li>
 			{{ end }}
 		</ul>
 	</section>

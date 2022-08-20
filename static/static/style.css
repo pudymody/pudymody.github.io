@@ -270,12 +270,6 @@ body {
 	margin:0 0.75rem;
 }
 
-@media (min-width: 46rem){
-		body {
-				margin: 0 3rem;
-		}
-}
-
 code {
 	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
@@ -387,7 +381,13 @@ max-height: 100%;
 .h-entry--post {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   padding: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.h-entry--post time {
+  font-size: 0.875rem;
 }
 
 .post__end {
@@ -505,4 +505,15 @@ pre.chroma {
   blockquote {
     background: #401881;
   }
+}
+
+@media (min-width: 46rem){
+		body {
+				margin: 0 3rem;
+		}
+
+		.h-entry--post {
+      flex-direction: row;
+      margin-bottom: 0;
+    }
 }

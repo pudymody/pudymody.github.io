@@ -1,15 +1,15 @@
 {{ define "main" }}
 <main class="h-feed">
+<section>
   <header>
     <h1 class="p-name">{{ .Title }}</h1>
     {{ .Content }}
   </header>
-  <section>
     <ul class="list">
   {{ range .Data.Pages }}
     <li><article><a class="h-entry h-entry--post u-url" href="{{ .Permalink }}"><span class="p-name">{{ .Title }}</span><time class="date dt-published">{{ .Date.Format "2006/01/02" }}</time></a></article></li>
   {{ end }}
     </ul>
-  </section>
+</section>
 </main>
 {{ end }}

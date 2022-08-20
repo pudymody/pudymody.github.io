@@ -1,4 +1,5 @@
 {{ define "main" }}
+<main>
 <article class="h-entry">
 	<header>
 		<h1 class="p-name">{{ .Title }}</h1>
@@ -22,4 +23,5 @@
 	<p>Leave your comment on the {{ with .Params.issueId }}<a href="https://github.com/pudymody/pudymody.github.io/issues/{{ . }}#issuecomment-new">github issue</a>, {{ end }}<a href="mailto: federicoscodelaro@gmail.com?subject=Re: {{ .Title }}">sending me an email</a> or <a href="https://twitter.com/pudymody">DMing me on twitter</a>
 	</p>
 </section>
+</main>
 {{ end }}

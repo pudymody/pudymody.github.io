@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> <!-- Codificacion del texto -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> <!-- Forzar ultimo motor reenderizado IE -->
+		<title>Hangar18 URL Shortner</title> <!-- Titulo mostrado por el navegador -->
+		<link rel="shortcut icon" href="favicon.ico"> <!-- Favicon -->
+		<style type="text/css">
+			body { font-size: 75%;color: #222;background: #dcdcdc;font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;}
+			.button-green { background: #00dc72;background: -moz-linear-gradient(top, #00db72 0%, #00b15b 100%);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00db72), to(#00b15b));border: 1px solid #148e00;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: inset 0 1px 0 0 #33e38e, 0 1px 2px 0 #b3b3b3;-webkit-box-shadow: inset 0 1px 0 0 #33e38e, 0 1px 2px 0 #b3b3b3;color: white;font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;font-size: 14px;font-weight: bold;line-height: 1;padding: 8px 14px;text-align: center;text-shadow: 0 1px 1px #029950;-webkit-background-clip: padding-box;-moz-user-select: none;-webkit-user-select: none;cursor: pointer;text-decoration: none;display:inline-block; }
+			.button-green:hover { background: -moz-linear-gradient(top, #56e8a1 0%, #2abe77 100%);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#56e8a1), to(#2abe77));-moz-box-shadow: 0 1px 2px 0 #b3b3b3;-webkit-box-shadow: 0 1px 2px 0 #b3b3b3;text-shadow: 0 1px 1px #24ab6a; }
+			.button-green:active { background: -moz-linear-gradient(top, #00db72 0%, #00b15b 100%);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#00db72), to(#00b15b));-moz-box-shadow: inset 0 0 6px 1px #00a958, 0 1px 0 0 #fff;-webkit-box-shadow: inset 0 0 6px 1px #00a958, 0 1px 0 0 #fff; }
+			.button-gray { background: #bbbbbb;background: -moz-linear-gradient(top, #bbbbbb 0%, #969696 100%);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#bbbbbb), to(#969696));border: 1px solid #777777;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;-moz-box-shadow: inset 0 1px 0 0 #c9c9c9, 0 1px 2px 0 #b3b3b3;-webkit-box-shadow: inset 0 1px 0 0 #c9c9c9, 0 1px 2px 0 #b3b3b3;color: white;font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;font-size: 14px;font-weight: bold;line-height: 1;padding: 8px 14px;text-align: center;text-shadow: 0 1px 1px #828282;-webkit-background-clip: padding-box;-moz-user-select: none;-webkit-user-select: none;cursor: pointer;text-decoration: none;display:inline-block; }
+			.button-gray:hover { background: -moz-linear-gradient(top, #d2d2d2 0%, #a8a8a8 100%);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#d2d2d2), to(#a8a8a8));-moz-box-shadow: 0 1px 2px 0 #b3b3b3;-webkit-box-shadow: 0 1px 2px 0 #b3b3b3;text-shadow: 0 1px 1px #969696; }
+			.button-gray:active { background: -moz-linear-gradient(top, #bbbbbb 0%, #969696 100%);background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#bbbbbb), to(#969696));-moz-box-shadow: inset 0 0 6px 1px #909090, 0 1px 0 0 #fff;-webkit-box-shadow: inset 0 0 6px 1px #909090, 0 1px 0 0 #fff; }
+			a:link,a:visited,a:active,a:hover {text-decoration: none;color:#FFF;}
+			input.link{ border:1px solid #000;font-size:13px;margin:0;margin-bottom:10px;padding:5px 0px;width:100%;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px; }
+			.box { border: 1px solid;margin-bottom: 10px;padding:5px; }
+			.box.success { color: #4F8A10;background: #DFF2BF; }
+			.box.error { color: #D8000C;background: #FFBABA; }
+			#result{ display:none; }
+		</style>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> <!-- Jquery-->  
+		<script type="text/javascript">
+			var Shortner = {
+				'Cache' : {},
+				'Working' : false,
+				'Acortar' : function(){
+								if(this.Working){
+									return false;
+								}
+								if($('#result').length){
+									$('#result').hide().removeClass().html();
+								}
+								var ACORTAR = encodeURIComponent($('input.link').val());
+								if(this.Cache[ACORTAR]){
+									$('#result').addClass('box success').html(this.Cache[ACORTAR]).slideDown('slow');
+									return false;
+								}
+								var url = 'https://api-ssl.bitly.com/v3/shorten?login=pudymody&apiKey=R_a286a7577aa16d78302ba2dbc33fec39&longUrl=' + ACORTAR + '&domain=j.mp&format=json';
+								this.Working = true;
+								$('#short').addClass('button-gray');
+								$.getJSON(url,function(data){
+									if(data.status_code == 200){
+										Shortner.Cache[ACORTAR] = data.data.url;
+										$('#result').addClass('box success').html(data.data.url).slideDown('slow');
+									}else{
+										if(data.status_code == 500){
+											$('#result').addClass('box error').html('Ingrese Una Url Valida').slideDown('slow');
+										}
+									}
+									Shortner.Working = false;
+									$('#short').removeClass('button-gray');
+								});
+				}
+			}
+		</script>
+	</head>
+	
+	<body>
+		<input type="text" class="link"/>
+		<div id="result"></div>
+		<a class="button-green" onclick="Shortner.Acortar()" id="short">Acortar</a>
+	</body>
+</html>

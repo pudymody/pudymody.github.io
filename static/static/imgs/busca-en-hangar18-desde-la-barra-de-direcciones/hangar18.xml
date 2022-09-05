@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+  <!-- Created on Thu, 26 May 2011 19:38:58 GMT -->
+  <ShortName>Hangar18!</ShortName>
+  <Description>Heavy Mental</Description>
+  <Url type="text/html" method="get" template="http://hangar18.com.ar/gsearch.php?cx=014500987766242255950%3Abtjnzmdwqji&amp;cof=FORID%3A10&amp;ie=UTF-8&amp;q={searchTerms}"/>
+  <Image width="16" height="16">data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAABMLAAATCwAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAl5eXMXFxcZBKSkrLODg44Dg4OOBISEjLb29vkJ2dnTAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAADS0tIIX1takhoVFPgmJib/Ojo6/0JCQv1AQED+Nzc3/ygoKP8p
+JCP4eXV0jtnZ2QcAAAAAAAAAAAAAAAC8vLwIUUtJtQcuNP8UWGT/HhkY/ioqKvw3Nzf6RkZG+E9P
+T/dHQUD4IlVf/hM6Qf9qZGKx3NzcBwAAAAAAAAAAbWdmkAUkKf8lrMb+KcLg/xg6P/4cFRP/Gxwb
+/x4fHv8uKij8NENG/EjQ6v9BxeD+ETA2/4B6eY0AAAAAtLKyLhQaG/wekKX/KsLf/yrJ5/8jma7/
+Hhwa/yUiIf8hHx7/GxQR/zaOn/1N5P//TuH//zKjuv8mKyz5ysjHLWtkY40LPUb/KbvW/ii92/8r
+wN3/L8zo/yBeaf8jGxj/IxsZ/yNLUv4tyuj/Rdfz/0va9v9K2/j+F01W/354do86NTTKGniJ/yzJ
+5v8qxuX/Lsrn/zbX9P8onrT+FBER/h8XFf0ggZL+JNb3/z3a+f9c6///WO///y6Qo/9QTEvGKSko
+4xlPWf4gbXv9Hmt5/SFsev4kc4H+HENJ/iIeHP45NDP5Hjk9+hpvfv0ldIP+OoOR/T6NnfsoZHD9
+PT492i4vLeIdGBb/IhoX/yIaF/8pHxz/Jx0a/yEcGf8hGhj/KiMh+h8bGfwfFRL/EgkH/y4nJfZW
+T03qPzk4+EFBQdpHR0bHGRoZ/ygoKP8qKyn/MTEv/y0rKv8nIiD/JFRd/iBdaP4eHBv/Hx8e/xQU
+FP89PT30YWBg6T09PfxVVVXEfH18gw4ODv8nJyf/Kywr/zg5OP80Ly3/Kz5B/jTC3P8vzOr/G0VN
+/xoSEP8WFxf/SkpK715eXukqKir/hYWFh8PDwyQgISD4GRkZ/ygpKP82NzX/NTAt/zCKmv41yOT/
+LcTi/yGasf8TExP/Hx0d/VpaWupGRkbzNzc388fHxycAAAAAfX19fgoKCv8gIB//Miwp/zJTV/08
+w9z+Mr7Z/ym71v8mw+D/E1Bb/zMrKfdTU1PuJiYm/4eHh4AAAAAAAAAAALq6ugNZWVmiDw0M/x0d
+HP85m6z5Rc7n/TK/2v8ovdn/JcPh/yqlvfwpLi/7KSgn/2pqaqKurq4EAAAAAAAAAAAAAAAAsrKy
+Am1sa30nKSjyGkNK/x9vfv8fhpn/G4aa/xNrfP8OO0P/LTAx8oWEhH2vr68DAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAlJSTJXdxb3xGQD++Jycm2SMiIdo2MC/AXFZVgJ6enScAAAAAAAAAAAAAAAAA
+AAAA+B///+AH///AA///gAH//4AB//8AAP//AAD//wAA//8AAP//AAD//wAA//+AAf//wAH//8AD
+///wD////B///w==</Image>
+  <Developer>Anon</Developer>
+  <InputEncoding>UTF-8</InputEncoding>
+  <moz:SearchForm>http://hangar18.com.ar/</moz:SearchForm>
+  <Url type="application/opensearchdescription+xml" rel="self" template="http://mycroft.mozdev.org/updateos.php/id0/.xml"/>
+  <moz:UpdateUrl>http://mycroft.mozdev.org/updateos.php/id0/.xml</moz:UpdateUrl>
+</OpenSearchDescription>

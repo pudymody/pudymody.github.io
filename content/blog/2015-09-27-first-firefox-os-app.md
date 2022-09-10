@@ -84,14 +84,14 @@ Nothing strange, just some basic styling.
 
 Here is where the magic starts, first we create a folder called js, and inside it our app.js file
 
-Inside it we are going to put our *[StackBlur](http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html)* dependency, but we need to make a little change.
+Inside it we are going to put our *[StackBlur](https://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html)* dependency, but we need to make a little change.
 Look for the line which says *function stackBlurCanvasRGB*, after that, there is a line where it declares a var called canvas, you have to change its value to *id*
 ```js
 var canvas  = id;
 ```
 We have to do this, so we can blur a canvas passing its dom object, and not its ID.
 
-From now on, we are going to make a lot use of Promises, so if you dont know you must read [this article](http://www.html5rocks.com/en/tutorials/es6/promises/?redirect_from_locale=es)
+From now on, we are going to make a lot use of Promises, so if you dont know you must read [this article](https://www.html5rocks.com/en/tutorials/es6/promises/?redirect_from_locale=es)
 
 FirefoxOS allows us to launch "WebActivies" which launches an action and let another app handle it, we are going to make one which let us select an image, no matter what app the user wants to use. And to prevent callback-hell we are going to "promisify" it
 ```js

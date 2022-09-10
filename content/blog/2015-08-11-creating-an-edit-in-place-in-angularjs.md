@@ -4,7 +4,7 @@ date: 2015-08-11
 issueId: 21
 ---
 
-Today we are going to create an edit in place directive for angularjs. [Here](http://pudymody.github.io/angular-edit-in-place/) you got a demo so you can see what it's about or if you already have some knowledge about angular and just only want to read the code [here](https://github.com/pudymody/angular-edit-in-place) its the repository
+Today we are going to create an edit in place directive for angularjs. [Here](https://pudymody.github.io/angular-edit-in-place/) you got a demo so you can see what it's about or if you already have some knowledge about angular and just only want to read the code [here](https://github.com/pudymody/angular-edit-in-place) its the repository
 
 So, lets start building things.
 First, we need a simple structure for our project, and angular attributes so we can bootstrap it.

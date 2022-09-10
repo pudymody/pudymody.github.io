@@ -6,7 +6,7 @@ issueId: 20
 
 Today its a rainy day here and you cant do so much things on a rainy sunday, so we are going to recreate the tinder swipe effect with the power of css3.
 
-First of all, i know you like seeing the final effect before reading the post, so here you [got it](http://pudymody.github.io/tinderSwipe/) and if you want just to read the code [here](https://github.com/pudymody/tinderSwipe) you got the repository
+First of all, i know you like seeing the final effect before reading the post, so here you [got it](https://pudymody.github.io/tinderSwipe/) and if you want just to read the code [here](https://github.com/pudymody/tinderSwipe) you got the repository
 
 First we begin creating a simple html structure for our project.
 ```html
@@ -106,4 +106,4 @@ Now we have our two classes, and our two animations we only just have to link th
 
 And here we end, now the only thing you have to do its apply this two classes *swipe-left* and *swipe-right* to whatever element you want.
 
-Another useful tip its to listen for the animationend event from javascript and delete the element. [Good post about it](http://davidwalsh.name/css-animation-callback)
+Another useful tip its to listen for the animationend event from javascript and delete the element. [Good post about it](https://davidwalsh.name/css-animation-callback)

@@ -6,7 +6,7 @@ issueId: 25
 
 Its been a long time since i write my last post, so here we are.
 
-Currently im on my holidays and i want to play some drinking games, but i couldnt find anyone who mix the fun of resolving some js problems while you drink. I only found one similar which is called [Crash and compile](http://crashandcompile.com) but it has to be played manually. So i thought, "why dont i build one who makes everything easier?"
+Currently im on my holidays and i want to play some drinking games, but i couldnt find anyone who mix the fun of resolving some js problems while you drink. I only found one similar which is called [Crash and compile](https://crashandcompile.com) but it has to be played manually. So i thought, "why dont i build one who makes everything easier?"
 
 **WARNING:** This is going to be a *i-write-as-i-code* post, so dont read it as a tutorial, read it as a chronicle of the developing process of this app.
 

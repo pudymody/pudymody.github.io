@@ -3,7 +3,7 @@ title: "[Aporte][PHP][Class] Recaptcha"
 date: 2012-03-06
 issueId: 13
 ---
-bueno, esta vez vengo a entregarles, una clase en php para el uso de [ReCaptcha](http://www.google.com/recaptcha/learnmore). Antes que todo, tienen que registrase [aca](https://www.google.com/recaptcha/admin/create) y crear un par de llaves (si estan logeados con una cuenta de google, no necesitaran registrarse.)
+bueno, esta vez vengo a entregarles, una clase en php para el uso de [ReCaptcha](https://www.google.com/recaptcha/learnmore). Antes que todo, tienen que registrase [aca](https://www.google.com/recaptcha/admin/create) y crear un par de llaves (si estan logeados con una cuenta de google, no necesitaran registrarse.)
 
 luego de crear las llaves, creamos un archivo llamado recaptcha.class.php, con el siguiente contenido en el:
 

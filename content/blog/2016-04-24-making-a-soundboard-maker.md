@@ -248,7 +248,7 @@ To make the web offline first, we are going to use the current hot topic, Servic
 ## Soundboard code
 
 ### Playing the selected sound
-To do this, we are going to use a technique called event delegation. This is, we listen for every click in the document, and if we meet a certain criteria, we fire certain callback. You can read more about this technique in [this awesome post](http://codepen.io/32bitkid/post/understanding-delegated-javascript-events)
+To do this, we are going to use a technique called event delegation. This is, we listen for every click in the document, and if we meet a certain criteria, we fire certain callback. You can read more about this technique in [this awesome post](https://codepen.io/32bitkid/post/understanding-delegated-javascript-events)
 
 ```js
 var playAudio = (function(){

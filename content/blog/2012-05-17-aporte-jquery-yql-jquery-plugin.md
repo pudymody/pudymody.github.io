@@ -3,7 +3,7 @@ title: "[Aporte][Jquery] YQL Jquery Plugin"
 date: 2012-05-17
 issueId: 15
 ---
-Bueno, boludeando por internet y con el [YQL (Yahoo! Query Language)](http://developer.yahoo.com/yql/), el cual es un sevicio que con una sintaxis similar a la de sql, podes acceder a distintos servicios webs, y en base a uno de los temas que aporte ([[Aporte][JS] Obtener datos web como facebook](/taringa/aporte-js-obtener-datos-web-como-facebook/)), se me ocurrio realizar en jquery un plugin para hacer mas simples las querys.
+Bueno, boludeando por internet y con el [YQL (Yahoo! Query Language)](https://developer.yahoo.com/yql/), el cual es un sevicio que con una sintaxis similar a la de sql, podes acceder a distintos servicios webs, y en base a uno de los temas que aporte ([[Aporte][JS] Obtener datos web como facebook](/taringa/aporte-js-obtener-datos-web-como-facebook/)), se me ocurrio realizar en jquery un plugin para hacer mas simples las querys.
 
 Las respuestas son en json, y en caso de error, el atributo "error" contendra un mensaje..
 
@@ -34,4 +34,4 @@ $.YQL("MI QUERY ACA",callback);
 $.YQL("MI QUERY ACA",function(h){//funcion a realizar});
 ```
 
-*Sobre las querys que se pueden realizar pueden averiguar mas en la [pagina oficial](http://developer.yahoo.com/yql/)*
+*Sobre las querys que se pueden realizar pueden averiguar mas en la [pagina oficial](https://developer.yahoo.com/yql/)*

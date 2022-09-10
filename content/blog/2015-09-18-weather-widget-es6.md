@@ -4,7 +4,7 @@ date: 2015-09-18
 issueId: 23
 ---
 
-Today we are going to create as the title suggest a weather widget with some es6 features and the flexbox model. You can view the [demo](http://pudymody.github.io/es6-weather/)( currently it loads Argentina weather ) to see what it's about or see the [repository](https://github.com/pudymody/es6-weather) if you only want to read the code
+Today we are going to create as the title suggest a weather widget with some es6 features and the flexbox model. You can view the [demo](https://pudymody.github.io/es6-weather/)( currently it loads Argentina weather ) to see what it's about or see the [repository](https://github.com/pudymody/es6-weather) if you only want to read the code
 
 First, we begin creating our index file with a simple structure, and loading the roboto font, and the [normalize.css](https://necolas.github.io/normalize.css/) library.
 ```html
@@ -108,8 +108,8 @@ body {
 ```
 
 Lets explain a little what are we doing here.
-First we set the body margin to 0, add a background to it, change its font family, and make it fill the entire screen. ( if you dont know about vh and vw units you can read more [here](http://snook.ca/archives/html_and_css/vm-vh-units) ) Nothing strange till now.
-The flexbox magic begins here, first, we set the body as a flexbox item, and its direction to the column, aka as vertical. With align-items we define how we are going to align the items along the cross axis, in this case the "horizontal" one. Justify contents, align the items along the main axis. You can read more about flexbox terminology [here](http://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+First we set the body margin to 0, add a background to it, change its font family, and make it fill the entire screen. ( if you dont know about vh and vw units you can read more [here](https://snook.ca/archives/html_and_css/vm-vh-units) ) Nothing strange till now.
+The flexbox magic begins here, first, we set the body as a flexbox item, and its direction to the column, aka as vertical. With align-items we define how we are going to align the items along the cross axis, in this case the "horizontal" one. Justify contents, align the items along the main axis. You can read more about flexbox terminology [here](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 We then define the styles for our .date, .degress, .city and .icon elements, nothing strange here, just font sizes, colors and margins.
 

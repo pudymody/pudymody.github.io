@@ -7,7 +7,7 @@ issueId: 27
 The other day, i was with a friend and after a few beers, the idea of resizing every cell to a 1x1 pixel size in an excel file and styling its background to match a pixel in an image came out. Loving to make apps and script without any sense, i decided to make a web app who would do it. So this post is going to be about its making.
 
 You can use it right now from your browser [here](https://pudymody.github.io/image-to-excel-grid/) and this is what you get using the classical lenna image (*i like showing the final product first*)
-![Example](http://i.imgur.com/NznlVm1.jpg)
+![Example](https://i.imgur.com/NznlVm1.jpg)
 
 In this post we're going to use the following Apis, you only need to know the basics
 

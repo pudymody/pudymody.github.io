@@ -58,7 +58,7 @@ javascript: (function(window){
 })(window);
 ```
 
-**4.** Navegá a la [tienda de Steam](http://store.steampowered.com/) y presioná sobre tu nuevo marcador
+**4.** Navegá a la [tienda de Steam](https://store.steampowered.com/) y presioná sobre tu nuevo marcador
 
 ![Paso 4](/static/imgs/steam-en-tu-moneda-natal/step4.png)
 

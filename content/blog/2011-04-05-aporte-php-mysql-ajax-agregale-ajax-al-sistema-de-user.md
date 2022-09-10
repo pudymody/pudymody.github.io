@@ -5,9 +5,9 @@ issueId: 3
 ---
 Bueno Siguiendo Con Mi Tema Anterior
 
-~~[http://www.taringa.net/comunidades/webdesign/2350804/%5BTutorial%5D%5BPHP+MYSQL%5D-Sistema-De-Usuarios.html](http://www.taringa.net/comunidades/webdesign/2350804/%5BTutorial%5D%5BPHP+MYSQL%5D-Sistema-De-Usuarios.html)~~
+~~[https://www.taringa.net/comunidades/webdesign/2350804/%5BTutorial%5D%5BPHP+MYSQL%5D-Sistema-De-Usuarios.html](https://www.taringa.net/comunidades/webdesign/2350804/%5BTutorial%5D%5BPHP+MYSQL%5D-Sistema-De-Usuarios.html)~~
 
-[/taringa/aporte-php-mysql-sistema-de-usuarios/](/taringa/aporte-php-mysql-sistema-de-usuarios/)
+[/blog/2011-04-04-aporte-php-mysql-sistema-de-usuarios//](/blog/2011-04-04-aporte-php-mysql-sistema-de-usuarios//)
 
 > Si Entendi Bien A Cada $_POST y $_GET deben encerralos con mysql_escape_real_string() para evitar intentons de injecion mysql, gracias por el dato pense que al hashearlos no era necesario 
 

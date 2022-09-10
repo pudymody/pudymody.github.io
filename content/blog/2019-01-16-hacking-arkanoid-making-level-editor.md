@@ -22,7 +22,7 @@ Reverse ingeneering a ps1 game seems a lot of work just for a fun project, lets 
 **Arkanoid: Doh It Again** being on SNES seems the perfect choice, as there are cool tools and forums around that console, and the complexity doesnt seem to high. And also, its just the previous released game to the one i was playing!.
 
 # Tools
-For the emulation im going to use [Snes9x](http://www.snes9x.com/) and for the hex manipulation [hexcmp](http://www.fairdell.com/hexcmp/) because they are the ones that google suggests. But after some uses, i was uncomfortable with hexcmp, so i decided to use [Frhed](http://frhed.sourceforge.net/en/).
+For the emulation im going to use [Snes9x](https://www.snes9x.com/) and for the hex manipulation [hexcmp](https://www.fairdell.com/hexcmp/) because they are the ones that google suggests. But after some uses, i was uncomfortable with hexcmp, so i decided to use [Frhed](https://frhed.sourceforge.net/en/).
 
 # First attempt
 As the emulator dont have a memory viewer to fiddle around, i decided to save the current state everytime i break a tile, and then try to diff them. This doesnt seem a good idea.
@@ -31,7 +31,7 @@ As the emulator dont have a memory viewer to fiddle around, i decided to save th
 My second thought was to search if there is already any hack of the game. To my surprise, there is [one](https://www.romhacking.net/hacks/2249/). It is distributed as a IPS file. A format that seems famous around rom hacking. As famous as it is, there are plenty of material explain how it works and how to apply them. This seems a good way to go. To my luck, placing the IPS file along with the rom with the same name, Snes9x will apply it. So i can say that we already have a nice tooling to play along.
 
 # Understanding level format.
-Searching on the internet, i found [this article](http://fileformats.archiveteam.org/wiki/IPS_(binary_patch_format)) which describes how the IPS format is stored. The next step would be to make some script to output the list of hunks in the patch. [Time for some coding.](https://github.com/pudymody/arkanoid-level-editor/blob/master/listHunks/index.js)
+Searching on the internet, i found [this article](https://fileformats.archiveteam.org/wiki/IPS_(binary_patch_format)) which describes how the IPS format is stored. The next step would be to make some script to output the list of hunks in the patch. [Time for some coding.](https://github.com/pudymody/arkanoid-level-editor/blob/master/listHunks/index.js)
 
 My hope was to find some payload which represents some kind of grid with the tiles. That wasnt the case. So, the next step was to investigate how many bricks are in the game, and think of other ways to store it.
 

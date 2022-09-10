@@ -7,6 +7,6 @@ issueId: 49
 
 Today, trying to practice a little with canvas and new html5 technologies i tried to replicate the facebook function where it overlays a flag in your picture.
 
-The only thing you have to do is [enter the website](http://pudymody.github.io/choose-who-to-pray-for/), select a picture and a country and you get a download button.
+The only thing you have to do is [enter the website](https://pudymody.github.io/choose-who-to-pray-for/), select a picture and a country and you get a download button.
 
 You can read the [source code](https://github.com/pudymody/choose-who-to-pray-for) on Github if you like.

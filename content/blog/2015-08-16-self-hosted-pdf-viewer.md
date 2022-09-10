@@ -4,14 +4,14 @@ date: 2015-08-16
 issueId: 22
 ---
 
-In this post we are going to write a command line program which generates a version of the pdf viewer of [Issuu](http://issuu.com/). [Here](https://pudymody.github.io/Isu) you can see an example.
+In this post we are going to write a command line program which generates a version of the pdf viewer of [Issuu](https://issuu.com/). [Here](https://pudymody.github.io/Isu) you can see an example.
 
-First of all you need [NodeJS](http://nodejs.org/), i think there are a lot of posts teaching you how to install it.
-Then we need to install [GraphicsMagick](http://www.graphicsmagick.org/), under windows this is done by an installer, on linux i think you have to add some repositories, but you could google that, there are lots of results. And under mac you could use [Homebrew](http://brew.sh/)
+First of all you need [NodeJS](https://nodejs.org/), i think there are a lot of posts teaching you how to install it.
+Then we need to install [GraphicsMagick](https://www.graphicsmagick.org/), under windows this is done by an installer, on linux i think you have to add some repositories, but you could google that, there are lots of results. And under mac you could use [Homebrew](https://brew.sh/)
 
 Then you need to be sure that *gm* is available in your path, you could check that by opening a console terminal a writing *gm*
 
-You also have to install the [Ghostscript pdf interpreter](http://ghostscript.com/download/gsdnld.html) in the same way.
+You also have to install the [Ghostscript pdf interpreter](https://ghostscript.com/download/gsdnld.html) in the same way.
 
 If you want to use it before reading how i made it, you can install it and read the [docs](https://www.npmjs.com/package/isu)
 ```sh
@@ -19,7 +19,7 @@ npm install -g isu
 ```
 
 Finished installing system dependencies, we begin doing our magic. First we need to start an empty project within a new folder with the command *npm init* and following the steps.
-After that you have to install the [GraphicsMagick binding for nodejs](http://aheckmann.github.io/gm/) with the following command *npm install gm --save*
+After that you have to install the [GraphicsMagick binding for nodejs](https://aheckmann.github.io/gm/) with the following command *npm install gm --save*
 
 Now create a new file called *index.js* with the following text
 

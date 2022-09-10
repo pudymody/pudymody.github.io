@@ -35,7 +35,7 @@ y para usarlo, solo hacen como en php:
 $_GET['ID']
 ```
 
-FUENTE : [http://www.anieto2k.com/2009/09/24/_get-en-javascript/](http://www.anieto2k.com/2009/09/24/_get-en-javascript/)
+FUENTE : [https://www.anieto2k.com/2009/09/24/_get-en-javascript/](https://www.anieto2k.com/2009/09/24/_get-en-javascript/)
 
 Basandome en exactamente el mismo codigo, cree este para utilizar las cookies con $_COOKIE
 

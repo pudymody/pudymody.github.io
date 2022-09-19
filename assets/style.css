@@ -391,8 +391,8 @@ max-height: 100%;
 }
 
 .post__end {
-  width:35%;
-  margin:0 auto;
+  width:50%;
+  margin:3rem auto;
 }
 
 pre.chroma {

@@ -80,7 +80,7 @@ gzdoom -iwad ./freedoom1.wad -file ./textures.wad -file ./MAP01.wad
 You take the correct portals for the string you want to test, and if you arrive to a green room, you could assert that the string is matched. If not, you know it wont.
 
 {{< rawhtml html >}}
-<video src="https://user-images.githubusercontent.com/814791/193956005-3a36f286-e5e2-4b22-a6cf-5c9d8807c12e.mp4" controls="controls" muted="muted" style="max-width:100%;max-height:640px;"></video>
+<video src="/static/videos/regex-doom/regex2doom.mp4" controls="controls" muted="muted" style="max-width:100%;max-height:640px;"></video>
 {{< /rawhtml >}}
 
 In this gameplay you could see that DOOOOM is accepted, but DOOOOMU is not.

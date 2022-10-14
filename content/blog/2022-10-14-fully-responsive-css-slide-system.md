@@ -242,6 +242,18 @@ As we saw in the pseudocode, its value should be *height_image * width_screen / 
 
 And with this, we finally have a fully responsive slide system respecting its parent size. Its important that we dont remove the *aspect-ratio* property from the main. Because if it doesnt have a width or height, it could be calculate from there.
 
+# Updating typography
+The last thing we need to do, is update our fluid typography. Because we were using the container's width as unit, it will not longer work, because now, we need to use our "slide width", wich could be smaller. But this is easy to solve. We define another custom property with the value of the slide's width, and use that one, instead of the 1cqw of before. We also need to remove the *\*100* because our new custom property is already multiplied
+
+```css
+main {
+	--slide_width: calc((var(--_is-width) * 100) + (var(--_is-height) * (16*100/9)));
+	--h1-size__fluid: calc( (var(--h1-size__fluid-slope) * var(--slide_width)) + (var(--h1-size__fluid-intercept) * 1pt));
+}
+
+
+```
+
 # Outro
 We saw that the current state of css features its **SO** powerful. Using container queries, css scroll snap, aspect-ratio and math functions, all new and shiny things, we built something that in the past would require javascript. Althought the version i uploaded to [github](https://pudymody.github.io/slidy/) uses javascript, its only needed for parsing the markdown and having a custom element. I believe that using something like [enhance](https://enhance.dev/) you could remove all js completly.
 

@@ -29,10 +29,12 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Las Intermitencias De La Muerte** by *Jose Saramago*
 * **La Física De Los Superheroes** by *Kakalios*
 * **Que Pasaría Si?** by *Randall Munroe*
-* **El Eternauta** by *Hector Oesterheld*
 * **Juan raro** by *Olaf Stapledon*
 * **La isla del Dr Moreau** by *H. G. Wells*
 * **El ultimo hombre** by *Mary Shelley*
-* **Flores para Algernon** by *Daniel Keyes*
 * **Kentukis** by *Samanta Schweblin*
 * **Cumbres Borrascosas** by *Emily Brontë*
+* **House of Leaves** by *Mark Z. Danielewski*
+* **The Laundry Files** by *Charles Stross*
+* **Las flores del mal** by *Charles Baudelaire*
+* **El conde de Montecristo** by *Alexandre Dumas*

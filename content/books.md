@@ -38,3 +38,4 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Las flores del mal** by *Charles Baudelaire*
 * **El conde de Montecristo** by *Alexandre Dumas*
 * **El desierto de los tártaros** by *Dino Buzzati*
+* **Hijo de la mente** by *John Saul*

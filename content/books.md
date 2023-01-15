@@ -26,7 +26,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Sol Artificial** by *J.P. Zooey*
 * **Muerta En Vida** by *Elizabeth Scott*
 * **Amor Liquido** by *Bauman*
-* **Las Intermitencias De La Muerte** by *Jose Saramago*
 * **La Física De Los Superheroes** by *Kakalios*
 * **Que Pasaría Si?** by *Randall Munroe*
 * **Juan raro** by *Olaf Stapledon*
@@ -38,3 +37,4 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **The Laundry Files** by *Charles Stross*
 * **Las flores del mal** by *Charles Baudelaire*
 * **El conde de Montecristo** by *Alexandre Dumas*
+* **El desierto de los tártaros** by *Dino Buzzati*

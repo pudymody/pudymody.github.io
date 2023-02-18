@@ -1,0 +1,89 @@
+From fa6a5a7c6ba5b2fbca94d987427b32b70591de68 Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Sat, 18 Feb 2023 18:10:36 -0300
+Subject: [PATCH] fix: More media player to html native tags
+
+---
+ browser/main.js | 38 ++++++++------------------------------
+ 1 file changed, 8 insertions(+), 30 deletions(-)
+
+diff --git a/browser/main.js b/browser/main.js
+index 8e7e3ad..c7ff2b8 100644
+--- a/browser/main.js
++++ b/browser/main.js
+@@ -2980,7 +2980,8 @@ function videoClose() {
+     if(videoWin.ReadyState == 1)
+         return(false);
+ 
+-    videoWin.stop();
++		videoWin.pause();
++		videoWin.currentTime = 0;
+     videoCurrentFile = null;
+     videoWin.style.visibility = "hidden";
+ 
+@@ -3031,14 +3032,7 @@ function videoLoad(filePath) {
+     videoDiv.style.visibility = "hidden";
+ 
+ 
+-    videoDiv.innerHTML = "<object id=videoWin CLASSID='CLSID:05589FA1-C356-11CE-BF01-00AA0055595A' " +
+-                         "width=320 height=240 style='position:absolute; top:0; left:0'>" +
+-                         "<param name='FileName' VALUE='" + filePath + "'>" +
+-                         "<param name='ShowControls' VALUE='false'>" +
+-                         "<param name='ShowDisplay' VALUE='false'>" +
+-                         "<param name='BorderStyle' VALUE='0'>" +
+-                         "<param name='AutoStart' VALUE='1'>" +
+-                         "</object>";
++		videoDiv.innerHTML = "<video id='videoWin' width='320' height='240' onended='videoStateChange(2,0)' onplay='videoStateChange(0,2)' style='position:absolute; top:0; left:0' src='"+ filePath+".mp4' autoplay>"
+ 
+     videoDiv.style.visibility = "visible";
+     videoWin.style.visibility = "visible";
+@@ -3604,7 +3598,8 @@ function audioClose() {
+     if(audioWin.ReadyState == 1)
+         return(false);
+ 
+-    audioWin.stop();
++		audioWin.pause();
++		audioWin.currentTime = 0;
+     audioCurrentFile = null;
+ 
+     audioWin.style.visibility = "hidden";
+@@ -3652,14 +3647,8 @@ function audioOnClick(e,imgId) {
+ function audioLoad(filePath) {
+     atmosphereStop();
+ 
+-    audioDiv.innerHTML = "<object id=audioWin CLASSID='CLSID:05589FA1-C356-11CE-BF01-00AA0055595A' " +
+-                         "width=175 height=190 style='position:absolute; top:0; left:0'>" +
+-                         "<param name='FileName' VALUE='" + filePath + "'>" +
+-                         "<param name='ShowControls' VALUE='false'>" +
+-                         "<param name='ShowDisplay' VALUE='false'>" +
+-                         "<param name='BorderStyle' VALUE='0'>" +
+-                         "<param name='AutoStart' VALUE='1'>" +
+-                         "</object>";
++		audioDiv.innerHTML = "";
++		audioDiv.innerHTML = "<audio id='audioWin' width='175' height='190' onended='audioStateChange(2,0)' onplay='audioStateChange(0,2)' style='position:absolute; top:0; left:0' src='"+ filePath+".mp4' autoplay>"
+ }
+ 
+ //===================================================================
+@@ -4230,18 +4219,7 @@ function survShowMediaActual(index) {
+ 
+         atmosphereStop();
+ 
+-        survWriteFrame("<script language=jscript for=survAV event='StateChange(oldState, newState)'>" +
+-                       "parent.survAVStateChange(oldState, newState);" +
+-                       "</script>" +
+-
+-                       "<object id=survAV CLASSID='CLSID:05589FA1-C356-11CE-BF01-00AA0055595A' " +
+-                       "width=320 height=240 style='position:absolute; top:0; left:0'>" +
+-                       "<param name='FileName' VALUE='" + mediaFile + "'>" +
+-                       "<param name='ShowControls' VALUE='false'>" +
+-                       "<param name='ShowDisplay' VALUE='false'>" +
+-                       "<param name='BorderStyle' VALUE='0'>" +
+-                       "<param name='AutoStart' VALUE='1'>" +
+-                       "</object>");
++				survWriteFrame("<video id='survAV' width='320' height='240' onended='parent.survAVStateChange(2,0)' onplay='parent.survAVStateChange(0,2)' style='position:absolute; top:0; left:0' src='"+ mediaFile+".mp4' autoplay>");
+     }
+ 
+     else if(mediaType == "docs") {
+-- 
+2.34.1
+

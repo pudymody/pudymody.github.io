@@ -1,0 +1,25 @@
+From b5ee50f05d462c0e767ec93d01f3fc0da1cac9b7 Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Sat, 4 Feb 2023 19:42:33 -0300
+Subject: [PATCH] fix: SourceIndex property
+
+---
+ browser/main.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/browser/main.js b/browser/main.js
+index 0ed895a..632c5e0 100644
+--- a/browser/main.js
++++ b/browser/main.js
+@@ -1317,7 +1317,7 @@ function doListMouseDown() {
+     currentListBody = null;
+     currentListHead = event.srcElement;
+ 
+-    index = currentListHead.sourceIndex;
++		index = Array.from(document.all).indexOf(currentListHead);
+ 
+     total = document.all.length;
+ 
+-- 
+2.34.1
+

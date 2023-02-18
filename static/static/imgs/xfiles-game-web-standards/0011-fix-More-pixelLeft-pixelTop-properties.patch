@@ -1,0 +1,73 @@
+From 047638a59c787091763df55ef9890b0bd4314533 Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Sat, 18 Feb 2023 00:34:26 -0300
+Subject: [PATCH] fix: More pixelLeft/pixelTop properties
+
+---
+ browser/main.js | 16 +++++++++-------
+ 1 file changed, 9 insertions(+), 7 deletions(-)
+
+diff --git a/browser/main.js b/browser/main.js
+index be56c02..824bde2 100644
+--- a/browser/main.js
++++ b/browser/main.js
+@@ -1458,12 +1458,13 @@ function doScrollDown(scrollDiv, inc) {
+ 
+ function doScrollLeft(scrollDiv) {
+     var style = eval(scrollDiv + ".style");
+-    var newLeft = style.pixelLeft + 20;
++		var pixelLeft = parseInt(style.left, 10);
++    var newLeft = pixelLeft + 20;
+ 
+     if(newLeft >= 0)
+         newLeft = 0;
+ 
+-    style.pixelLeft = newLeft;
++    style.left = newLeft;
+ 
+     if(newLeft == 0)
+         return(false);
+@@ -1475,12 +1476,13 @@ function doScrollRight(scrollDiv) {
+     var list = eval(scrollDiv);
+     var parent = eval(scrollDiv + ".parentElement");
+     var min = parent.clientWidth - list.scrollWidth;
+-    var newLeft = list.style.pixelLeft - 20;
++		var pixelLeft = parseInt(list.style.left, 10);
++    var newLeft = pixelLeft - 20;
+ 
+     if(newLeft < min)
+         newLeft = min;
+ 
+-	list.style.pixelLeft = newLeft;
++	list.style.left = newLeft;
+ 
+     if(newLeft == min)
+         return(false);
+@@ -1494,13 +1496,13 @@ function scrollBottom(scrollDiv) {
+     var parent = eval(scrollDiv + ".parentElement");
+     var min = parent.clientHeight - list.clientHeight;
+ 
+-    list.style.pixelTop = min;
++    list.style.top = min;
+ }
+ 
+ function scrollTop(scrollDiv) {
+     var style = eval(scrollDiv + ".style");
+ 
+-    style.pixelTop = 0;
++    style.top = 0;
+ }
+ 
+ 
+@@ -4392,7 +4394,7 @@ function survShowQtvrAux() {
+ 
+         survQtvrDiv.innerHTML = "<div id=survQtvrDivInner style='position:absolute; left:0; top:0; height:46; width:" + divWidth + "'>" + str + "</div>";
+ 
+-        survQtvrDivInner.style.pixelLeft = survQtvrDiv.clientWidth - survQtvrDivInner.clientWidth;
++        survQtvrDivInner.style.left = survQtvrDiv.clientWidth - survQtvrDivInner.clientWidth;
+ 
+         if(survQtvrDiv.clientWidth >= survQtvrDivInner.clientWidth) {
+             survQtvrScrollLeft.style.visibility = "hidden";
+-- 
+2.34.1
+

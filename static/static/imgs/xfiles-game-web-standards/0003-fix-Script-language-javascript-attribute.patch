@@ -1,0 +1,55 @@
+From 93909bf283380fa16f9dd52c520fe8ece81f7dc7 Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Sat, 4 Feb 2023 19:35:53 -0300
+Subject: [PATCH] fix: Script language javascript attribute
+
+---
+ browser/main11.htm | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/browser/main11.htm b/browser/main11.htm
+index 90b1309..a23b97f 100644
+--- a/browser/main11.htm
++++ b/browser/main11.htm
+@@ -2,30 +2,30 @@
+ <head>
+ <title>X-Files Browser</title>
+ 
+-<script language=jscript src=m_path.js></script>
++<script language="JavaScript" src=m_path.js></script>
+ 
+-<script language=jscript src=cookies.js></script>
++<script language="JavaScript" src=cookies.js></script>
+ 
+-<script language=jscript src=main.js></script>
++<script language="JavaScript" src=main.js></script>
+ 
+-<script language=jscript for=videoWin event="StateChange(oldState, newState)">
++<script language="JavaScript" for=videoWin event="StateChange(oldState, newState)">
+     videoStateChange(oldState, newState);
+ </script>
+ 
+-<script language=jscript for=videoWin event="Error(sCode, descr, source, cancelDisplay)">
++<script language="JavaScript" for=videoWin event="Error(sCode, descr, source, cancelDisplay)">
+     videoError();
+ </script>
+ 
+ 
+-<script language=jscript for=audioWin event="Error(sCode, descr, source, cancelDisplay)">
++<script language="JavaScript" for=audioWin event="Error(sCode, descr, source, cancelDisplay)">
+     audioError();
+ </script>
+ 
+-<script language=jscript for=audioWin event="StateChange(oldState, newState)">
++<script language="JavaScript" for=audioWin event="StateChange(oldState, newState)">
+     audioStateChange(oldState, newState);
+ </script>
+ 
+-<script language=jscript>
++<script language="JavaScript">
+ 
+ //===========================================
+ 
+-- 
+2.34.1
+

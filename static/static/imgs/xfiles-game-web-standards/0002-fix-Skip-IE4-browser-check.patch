@@ -1,0 +1,34 @@
+From 0114d57cc11a153f0bab99790cec8874cee3d45d Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Sat, 4 Feb 2023 19:34:31 -0300
+Subject: [PATCH] fix: Skip IE4 browser check
+
+---
+ browser/start.htm | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/browser/start.htm b/browser/start.htm
+index 9ae00be..6aad85a 100644
+--- a/browser/start.htm
++++ b/browser/start.htm
+@@ -7,6 +7,7 @@
+ 
+ 
+ function init() {
++/*
+     var version, name;
+ 
+     name = navigator.appName
+@@ -17,6 +18,9 @@ function init() {
+ 
+     else
+         loadXfua();
++*/
++
++	loadXfua();
+ }
+ 
+ 
+-- 
+2.34.1
+

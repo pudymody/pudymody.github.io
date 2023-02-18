@@ -1,0 +1,20 @@
+From 00d456f193ac45c8f75df6a28d06019fef33b339 Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Sat, 4 Feb 2023 19:32:03 -0300
+Subject: [PATCH] fix: Change cd2 path from e: drive to cd2 folder
+
+---
+ browser/m_path.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/browser/m_path.js b/browser/m_path.js
+index 6c73ada..d10fe4c 100644
+--- a/browser/m_path.js
++++ b/browser/m_path.js
+@@ -1 +1 @@
+-var mediaPath = "e:"
+\ No newline at end of file
++var mediaPath = "/CD2"
+-- 
+2.34.1
+

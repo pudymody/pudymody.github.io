@@ -1,0 +1,174 @@
+From 4c747910c033514f1473b66c087df7c6a0d09fc9 Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Fri, 10 Feb 2023 18:03:48 -0300
+Subject: [PATCH] fix: Iframe properties
+
+---
+ browser/main.js | 74 ++++++++++++++++++++++++-------------------------
+ 1 file changed, 37 insertions(+), 37 deletions(-)
+
+diff --git a/browser/main.js b/browser/main.js
+index 67aa1f8..be56c02 100644
+--- a/browser/main.js
++++ b/browser/main.js
+@@ -1282,9 +1282,9 @@ function qtvrLoad(filePath, caseNum, filename) {
+             height = 200;
+     }
+ 
+-    qtvrFrame.document.open();
++    qtvrFrame.contentDocument.open();
+ 
+-    qtvrFrame.document.write("<body bgcolor=#000000 onLoad=\"qtvrDiv.style.visibility = 'visible'\">" +
++    qtvrFrame.contentDocument.write("<body bgcolor=#000000 onLoad=\"qtvrDiv.style.visibility = 'visible'\">" +
+ 
+                          "<div id=qtvrDiv style='visibility:hidden; width:320; height:" + height + "'>" +
+ 
+@@ -1293,7 +1293,7 @@ function qtvrLoad(filePath, caseNum, filename) {
+ 
+                          "</div></body>");
+ 
+-    qtvrFrame.document.close();
++    qtvrFrame.contentDocument.close();
+ 
+     qtvrDivOuter.style.visibility = "visible";
+ }
+@@ -3391,7 +3391,7 @@ function commClose() {
+ 
+ 
+ function commLoadPage(url, addToHistory) {
+-    commFrame.location = url;
++    commFrame.src = url;
+ 
+     if(addToHistory) {
+         commHistoryIndex = commHistory.length;
+@@ -3537,7 +3537,7 @@ function loadDiv(divId, innerDivId, filename, headText, callBack) {
+     currentCallBack = callBack;
+     currentHeadText = headText;
+ 
+-    tempFrame.location = filename;
++    tempFrame.src = filename;
+ }
+ 
+ function tempFrameOnLoad() {
+@@ -3547,12 +3547,12 @@ function tempFrameOnLoad() {
+ 
+     if(currentHeadText == "")
+         currentDiv.innerHTML = "<div id=" + currentInnerDiv + " style='position:absolute; left:0; top:0'>" +
+-                               tempFrame.document.body.innerHTML +
++                               tempFrame.contentDocument.body.innerHTML +
+                                "</div>";
+ 
+     else
+         currentDiv.innerHTML = "<div id=" + currentInnerDiv + " style='position:absolute; left:0; top:0'>" +
+-                               currentHeadText + tempFrame.document.body.innerHTML +
++                               currentHeadText + tempFrame.contentDocument.body.innerHTML +
+                                "</div>";
+ 
+     currentDiv = null;
+@@ -3561,7 +3561,7 @@ function tempFrameOnLoad() {
+     if(currentCallBack != null)
+         eval(currentCallBack);
+ 
+-    tempFrame.document.body.innerHTML = "";
++    tempFrame.contentDocument.body.innerHTML = "";
+     currentCallBack = null;
+ }
+ 
+@@ -4307,9 +4307,9 @@ function survDisplayQtvr(filename, node, height) {
+ 
+ function survShowQtvr() {
+ 
+-    survMediaFrame.document.open();
+-    survMediaFrame.document.write("<body bgcolor=#000000 text=#6699FF><center>Accessing Database</center></body>");
+-    survMediaFrame.document.close();
++    survMediaFrame.contentDocument.open();
++    survMediaFrame.contentDocument.write("<body bgcolor=#000000 text=#6699FF><center>Accessing Database</center></body>");
++    survMediaFrame.contentDocument.close();
+ 
+     survSetControls();
+     survMediaScrollUp.style.visibility = "hidden";
+@@ -4548,47 +4548,47 @@ function survSetControls() {
+ 
+ function survWriteFrame(str, doThumbs) {
+ 
+-    survMediaFrame.document.open();
++    survMediaFrame.contentDocument.open();
+ 
+     if(doThumbs == true) {
+-        survMediaFrame.document.write("<script language=jscript>");
++        survMediaFrame.contentDocument.write("<script language=\"JavaScript\">");
+ 
+-        survMediaFrame.document.write("document.onmouseover = mouseOver;");
+-        survMediaFrame.document.write("function mouseOver() {");
+-        survMediaFrame.document.write("    parent.mouseOver(event.srcElement);");
+-        survMediaFrame.document.write("    parent.survShowText(event.srcElement);");
+-        survMediaFrame.document.write("}");
++        survMediaFrame.contentDocument.write("document.onmouseover = mouseOver;");
++        survMediaFrame.contentDocument.write("function mouseOver() {");
++        survMediaFrame.contentDocument.write("    parent.mouseOver(event.srcElement);");
++        survMediaFrame.contentDocument.write("    parent.survShowText(event.srcElement);");
++        survMediaFrame.contentDocument.write("}");
+ 
+-        survMediaFrame.document.write("document.onmouseout = mouseOut;");
+-        survMediaFrame.document.write("function mouseOut() {");
+-        survMediaFrame.document.write("    parent.mouseOut(event.srcElement);");
+-        survMediaFrame.document.write("    parent.survShowText('');");
+-        survMediaFrame.document.write("}");
++        survMediaFrame.contentDocument.write("document.onmouseout = mouseOut;");
++        survMediaFrame.contentDocument.write("function mouseOut() {");
++        survMediaFrame.contentDocument.write("    parent.mouseOut(event.srcElement);");
++        survMediaFrame.contentDocument.write("    parent.survShowText('');");
++        survMediaFrame.contentDocument.write("}");
+ 
+-        survMediaFrame.document.write("document.onclick = onClick;");
+-        survMediaFrame.document.write("function onClick() {");
+-        survMediaFrame.document.write("    parent.survThumbClick(event.srcElement);");
+-        survMediaFrame.document.write("}");
++        survMediaFrame.contentDocument.write("document.onclick = onClick;");
++        survMediaFrame.contentDocument.write("function onClick() {");
++        survMediaFrame.contentDocument.write("    parent.survThumbClick(event.srcElement);");
++        survMediaFrame.contentDocument.write("}");
+ 
+-        survMediaFrame.document.write("</script>");
++        survMediaFrame.contentDocument.write("</script>");
+     }
+ 
+-    survMediaFrame.document.write("<body bgcolor=#000000 onLoad=\"survMediaFrameDiv.style.visibility = 'visible'\">");
++    survMediaFrame.contentDocument.write("<body bgcolor=#000000 onLoad=\"survMediaFrameDiv.style.visibility = 'visible'\">");
+ 
+-    survMediaFrame.document.write("<div id=survMediaFrameDiv style='visibility:hidden'>");
++    survMediaFrame.contentDocument.write("<div id=survMediaFrameDiv style='visibility:hidden'>");
+ 
+-    survMediaFrame.document.write(str);
++    survMediaFrame.contentDocument.write(str);
+ 
+-    survMediaFrame.document.write("</div></body>");
+-    survMediaFrame.document.close();
++    survMediaFrame.contentDocument.write("</div></body>");
++    survMediaFrame.contentDocument.close();
+ }
+ 
+ 
+ function survShowThumbs() {
+ 
+-    survMediaFrame.document.open();
+-    survMediaFrame.document.write("<body bgcolor=#000000 text=#6699FF><center>Accessing Database</center></body>");
+-    survMediaFrame.document.close();
++    survMediaFrame.contentDocument.open();
++    survMediaFrame.contentDocument.write("<body bgcolor=#000000 text=#6699FF><center>Accessing Database</center></body>");
++    survMediaFrame.contentDocument.close();
+ 
+     survQtvrDiv.style.visibility = "hidden";
+     survMediaForwd.style.visibility = "hidden";
+@@ -5307,7 +5307,7 @@ function updateDoLoad(type) {
+         updateShow();
+ 
+     else
+-        updateFrame.location = "dataapp.htm";
++        updateFrame.src = "dataapp.htm";
+ }
+ 
+ 
+-- 
+2.34.1
+

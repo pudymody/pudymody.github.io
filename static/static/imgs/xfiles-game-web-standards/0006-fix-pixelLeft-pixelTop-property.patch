@@ -1,0 +1,83 @@
+From 4c03667bed49b82ec4d0aa73a19adb7428808964 Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Sat, 4 Feb 2023 19:41:47 -0300
+Subject: [PATCH] fix: pixelLeft/pixelTop property
+
+---
+ browser/main.js | 24 ++++++++++++++----------
+ 1 file changed, 14 insertions(+), 10 deletions(-)
+
+diff --git a/browser/main.js b/browser/main.js
+index a850095..0ed895a 100644
+--- a/browser/main.js
++++ b/browser/main.js
+@@ -681,11 +681,11 @@ function doDragOnMouseUp() {
+ 
+     newleft = event.x - diffX;
+ 
+-    curElement.style.pixelLeft = newleft;
++    curElement.style.left = newleft;
+ 
+     newtop = event.y - diffY;
+ 
+-    curElement.style.pixelTop = newtop;
++    curElement.style.top = newtop;
+ 
+     curElement = null;
+ 
+@@ -757,8 +757,10 @@ function doDragMouseDown() {
+ 
+             curElement = parent;
+ 
+-            diffX =  event.clientX - curElement.style.pixelLeft;
+-            diffY = event.clientY - curElement.style.pixelTop;
++						const pixelLeft = parseInt(curElement.style.left, 10);
++						const pixelTop = parseInt(curElement.style.top, 10);
++            diffX =  event.clientX - pixelLeft;
++            diffY = event.clientY - pixelTop;
+ 
+             focusWin(curElement);
+         }
+@@ -1415,15 +1417,16 @@ function doScrollUp(scrollDiv, inc) {
+ 
+     var style = eval(scrollDiv + ".style");
+ 
+-    if(style.pixelTop < 0)
++		const pixelTop = parseInt(style.top,10);
++    if(pixelTop < 0)
+         retVal = true;
+ 
+-    var newTop = style.pixelTop + inc;
++    var newTop = pixelTop + inc;
+ 
+     if(newTop >= 0)
+         newTop = 0;
+ 
+-    style.pixelTop = newTop;
++    style.top = newTop;
+ 
+     return(retVal);
+ }
+@@ -1438,15 +1441,16 @@ function doScrollDown(scrollDiv, inc) {
+     var parent = eval(scrollDiv + ".parentElement");
+     var min = parent.clientHeight - list.clientHeight;
+ 
+-    if(list.style.pixelTop > min)
++		const pixelTop = parseInt(list.style.top, 10);
++    if(pixelTop > min)
+         retVal = true;
+ 
+-    var newTop = list.style.pixelTop - inc;
++    var newTop = pixelTop - inc;
+ 
+     if(newTop < min)
+         newTop = min;
+ 
+-    list.style.pixelTop = newTop;
++    list.style.top = newTop;
+ 
+     return(retVal);
+ }
+-- 
+2.34.1
+

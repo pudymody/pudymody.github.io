@@ -1,0 +1,133 @@
+From 167465b084f27905dff6bab50fe4e38fe35e3e1c Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Sat, 4 Feb 2023 19:40:10 -0300
+Subject: [PATCH] fix: Image filters
+
+---
+ browser/main.js    | 39 +++++++++++----------------------------
+ browser/main11.htm |  5 +++++
+ 2 files changed, 16 insertions(+), 28 deletions(-)
+
+diff --git a/browser/main.js b/browser/main.js
+index 70fc4b7..a850095 100644
+--- a/browser/main.js
++++ b/browser/main.js
+@@ -930,8 +930,8 @@ function mouseOver(anElem) {
+ 
+     else if(elem.name == "survCastImg") {
+ 
+-        if(elem.filters(1).enabled == 0)
+-            elem.filters(0).enabled = 1;
++        if(!elem.classList.contains("filter-invert"))
++            elem.classList.add("filter-light");
+ 
+         if(anElem == null) {
+ //            event.returnValue = false;
+@@ -941,7 +941,7 @@ function mouseOver(anElem) {
+ 
+     else if(elem.name.indexOf("survThumbImg") >= 0) {
+ 
+-        elem.filters(0).enabled = 1;
++        elem.classList.add("filter-light");
+ 
+         if(anElem == null) {
+ //            event.returnValue = false;
+@@ -1002,7 +1002,7 @@ function mouseOut(anElem) {
+ 
+     else if(elem.name == "survCastImg" || elem.name.indexOf("survThumbImg") >= 0) {
+ 
+-        elem.filters(0).enabled = 0;
++        elem.classList.remove("filter-light");
+ 
+         if(anElem == null) {
+             event.returnValue = false;
+@@ -1035,8 +1035,8 @@ function onClick() {
+     }
+ 
+     else if(event.srcElement.name == "survCastImg") {
+-        event.srcElement.filters(0).enabled = 0;
+-        event.srcElement.filters(1).enabled = 1;
++        event.srcElement.classList.remove("filter-light");
++        event.srcElement.classList.add("filter-invert");
+ 
+         eval(prefix + "OnClick('" + event.srcElement.id + "')");
+     }
+@@ -4025,20 +4025,12 @@ function survInit() {
+     str = "<div id=survCastDivInner style='position:absolute; left:0' top:0'>";
+ 
+     for(i = 0; i < survCastArray.length; i++)
+-        str += "<img vspace=3 name=survCastImg src=controls/surv/heads/" + survCastArray[i] + ".jpg id=cast" + survCastArray[i] + " style='filter:light(enabled=0) invert(enabled=0)'><br>";
++        str += "<img vspace=3 name=survCastImg src=controls/surv/heads/" + survCastArray[i] + ".jpg id=cast" + survCastArray[i] + "><br>";
+ 
+     str += "</div>";
+ 
+     survCastDiv.innerHTML = str;
+ 
+-    for(i = 0; i < survCastArray.length; i++) {
+-
+-        img = eval("cast" + survCastArray[i]);
+-
+-        img.filters(0).addAmbient(255,255,255,100);
+-        img.filters(0).addAmbient(255,255,255,100);
+-        img.filters(0).addAmbient(255,255,255,120);
+-    }
+ 
+     survCastScrollUp.style.visibility = "visible";
+     survCastScrollDown.style.visibility = "visible";
+@@ -4072,8 +4064,8 @@ function survClose() {
+ 
+     if(survCurrentChar != null) {
+         oldChar = eval("cast" + survCurrentChar);
+-        oldChar.filters(0).enabled = 0;
+-        oldChar.filters(1).enabled = 0;
++        oldChar.classList.remove("filter-light");
++        oldChar.classList.remove("filter-invert");
+         survCurrentChar = null;
+     }
+ 
+@@ -4425,8 +4417,8 @@ function survCompileThumbs(srcElem) {
+             return;
+ 
+         oldChar = eval("cast" + survCurrentChar);
+-        oldChar.filters(0).enabled = 0;
+-        oldChar.filters(1).enabled = 0;
++        oldChar.classList.remove("filter-light");
++        oldChar.classList.remove("filter-invert");
+     }
+ 
+     survWriteFrame("");
+@@ -4704,15 +4696,6 @@ function survShowThumbsAux() {
+ 
+         survWriteFrame(str, true);
+ 
+-        for(i = 0; i < survCurrentThumbsCount; i++) {
+-
+-            img = eval("survMediaFrame.thumb" + i);
+-
+-            img.filters[0].addAmbient(255,255,255,100);
+-            img.filters[0].addAmbient(255,255,255,100);
+-            img.filters[0].addAmbient(255,255,255,120);
+-        }
+-
+         survTextDiv.style.visibility = "visible";
+ 
+         survMediaScrollDown.style.visibility = "visible";
+diff --git a/browser/main11.htm b/browser/main11.htm
+index 903bdde..1017b6e 100644
+--- a/browser/main11.htm
++++ b/browser/main11.htm
+@@ -1035,6 +1035,11 @@ mediaCaptionArray["docs"] = 950;
+ -->
+ <audio id="atmosphereAudio" src="browser.ogg" autoplay loop></audio>
+ </div>
++<style>
++#survCastDivInner img { --filter-light:; --filter-invert:; filter: var(--filter-light) var(--filter-invert); }
++#survCastDivInner img.filter-light { --filter-light: brightness(220%); }
++#survCastDivInner img.filter-invert { --filter-invert: invert(100%); }
++</style>
+ 
+ <OBJECT ID="tagList" CLASSID="CLSID:333C7BC4-460F-11D0-BC04-0080C7055A83">
+  <PARAM NAME="DataURL" VALUE="tags.txt">
+-- 
+2.34.1
+

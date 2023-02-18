@@ -1,0 +1,109 @@
+From fbebc2deeac0f0db5c6400817dc3e755dfb1cbf4 Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Sat, 18 Feb 2023 19:10:02 -0300
+Subject: [PATCH] fix: UI things that didnt hide when closing
+
+---
+ browser/main.js    | 19 ++++++++++++++++---
+ browser/main11.htm |  4 ++--
+ 2 files changed, 18 insertions(+), 5 deletions(-)
+
+diff --git a/browser/main.js b/browser/main.js
+index c7ff2b8..f361e0e 100644
+--- a/browser/main.js
++++ b/browser/main.js
+@@ -556,6 +556,9 @@ function openWindow(winId) {
+                 survInit();
+ 
+             focusWin(survDragWin);
++						survCastScrollUp.style.visibility = "visible";
++						survCastScrollDown.style.visibility = "visible";
++						survCastDiv.style.visibility = "visible";
+             setAtmosphere();
+ 
+             break;
+@@ -1831,7 +1834,7 @@ function setSortColumn(isKeyword) {
+ 
+     switch(sortMethod) {
+         case "Alphabetical":
+-            filterDiv.innerHTML = "<img id=alpha onClick=searchDoSubsort(event, 'alpha') src=controls/search/alphabet.jpg>";
++            filterDiv.innerHTML = "<img id=alpha onClick=\"searchDoSubsort(event, 'alpha')\" src=controls/search/alphabet.jpg>";
+ 
+             filterDiv.style.visibility = "visible";
+             scrollUp.style.top = 60;
+@@ -1869,7 +1872,7 @@ function setSortColumn(isKeyword) {
+             break;
+ 
+         case "Chronological":
+-            filterDiv.innerHTML = "<img id=date onClick=searchDoSubsort(event, 'date') src=controls/search/date.jpg>";
++            filterDiv.innerHTML = "<img id=date onClick=\"searchDoSubsort(event, 'date')\" src=controls/search/date.jpg>";
+             filterDiv.style.visibility = "visible";
+             scrollUp.style.top = 60;
+ 
+@@ -1891,7 +1894,7 @@ function setSortColumn(isKeyword) {
+ 
+ 
+             filterDiv.innerHTML = "<img id=west name=roll src=controls/search/schal_u.jpg style='position:absolute; left:0; top:10'>" +
+-                                  "<img id=geoMap onClick=searchDoSubsort(event, 'geo') onMouseOut=geoOnMouseOut() onMouseMove=geoOnMouseMove(event) src=controls/search/schmap.jpg style='position:absolute; left:30; top:0'>" +
++                                  "<img id=geoMap onClick=\"searchDoSubsort(event, 'geo')\" onMouseOut=geoOnMouseOut() onMouseMove=geoOnMouseMove(event) src=controls/search/schmap.jpg style='position:absolute; left:30; top:0'>" +
+                                   "<img id=east name=roll src=controls/search/scheu_u.jpg style='position:absolute; left:235; top:10'>";
+ 
+ 
+@@ -3051,6 +3054,8 @@ var caseCurrentFile = null;
+ var caseBookmark = null;
+ 
+ function caseClose() {
++	caseScrollUp.style.visibility = "hidden";
++	caseScrollDown.style.visibility = "hidden";
+     caseCurrentFile = null;
+     setIconState(caseIcon, "inactive");
+     return(true);
+@@ -3208,6 +3213,8 @@ var dossierHistoryIndex = 0;
+ var dossierBookmark = null;
+ 
+ function dossierClose() {
++		dossierScrollDown.style.visibility = "hidden";
++		dossierScrollUp.style.visibility = "hidden";
+     dossierCurrentFile = null;
+     setIconState(dossierIcon, "inactive");
+     return(true);
+@@ -4048,6 +4055,10 @@ function survClose() {
+     survTextDiv.style.visibility = "hidden";
+     survCaseImg.style.visibility = "hidden";
+ 
++		survCastScrollUp.style.visibility = "hidden";
++		survCastScrollDown.style.visibility = "hidden";
++		survCastDiv.style.visibility = "hidden";
++
+     survLockImg.style.visibility = "hidden";
+     survDossierImg.style.visibility = "hidden";
+     survVideoImg.style.visibility = "hidden";
+@@ -5055,6 +5066,8 @@ function helpShow(windowName) {
+ 
+ 
+ function helpClose() {
++	helpScrollDown.style.visibility = "hidden";
++	helpScrollUp.style.visibility = "hidden";
+     return(true);
+ }
+ 
+diff --git a/browser/main11.htm b/browser/main11.htm
+index f0d17be..ed442e8 100644
+--- a/browser/main11.htm
++++ b/browser/main11.htm
+@@ -865,10 +865,10 @@ mediaCaptionArray["docs"] = 950;
+         </div>
+ 
+         <img id=textScrollUp name=scroller src=controls/media/uplrg_u.jpg
+-             style="position:absolute; left:65; top:10; visibility:visible">
++             style="position:absolute; left:65; top:10; visibility:hidden">
+ 
+         <img id=textScrollDown name=scroller src=controls/media/dnlrg_u.jpg
+-             style="position:absolute; left:65; top:300; visibility:visible">
++             style="position:absolute; left:65; top:300; visibility:hidden">
+ 
+     </div>
+ </div>
+-- 
+2.34.1
+

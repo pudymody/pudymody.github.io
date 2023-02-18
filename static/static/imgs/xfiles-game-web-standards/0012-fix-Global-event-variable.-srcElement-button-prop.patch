@@ -1,0 +1,1419 @@
+From 08b36772f991ae54f0e327d9242163a88e9c493d Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Sat, 18 Feb 2023 16:37:21 -0300
+Subject: [PATCH] fix: Global event variable. srcElement&button prop
+
+---
+ browser/main.js    | 319 ++++++++++++++++++++++-----------------------
+ browser/main11.htm | 176 ++++++++++++-------------
+ 2 files changed, 245 insertions(+), 250 deletions(-)
+
+diff --git a/browser/main.js b/browser/main.js
+index 824bde2..ae8ea03 100644
+--- a/browser/main.js
++++ b/browser/main.js
+@@ -292,10 +292,10 @@ function disableAtmosphere() {
+ 
+ //==================================================
+ 
+-function quit() {
+-    document.title = "XFUA: Quit";
+-    event.cancelBubble = true;
+-    event.returnValue = false;
++function quit(e) {
++		document.title = "XFUA: Quit";
++		e.stopPropagation()
++	e.preventDefault();
+ }
+ 
+ 
+@@ -303,32 +303,32 @@ window.onerror = doError;
+ 
+ function doError(errCode, descr) {
+ //    alert("Script error: " + errCode);
+-    event.cancelBubble = true;
+-    event.returnValue = false;
++//		e.stopPropagation()
++//	e.preventDefault();
+     return true;
+ }
+ 
+ 
+ document.onkeydown = doKeyPress;
+ 
+-function doKeyPress() {
++function doKeyPress(e) {
+     var zIndex = 0;
+     var theWin = "";
+     var theKey = null;
+ 
+-    if(event.keyCode == 93) {
++    if(e.keyCode == 93) {
+         alert("\"View Source\" not available");
+         return;
+     }
+ 
+-    if(event.srcElement.id == "keywrdText") {
+-        if(event.keyCode == 13) {
++    if(e.target.id == "keywrdText") {
++        if(e.keyCode == 13) {
+             flashGoButton2();
+             setTimeout("doKeywordSearch()", 10);
+         }
+     }
+ 
+-    else if(event.keyCode == 115 || event.keyCode == 83) {
++    else if(e.keyCode == 115 || e.keyCode == 83) {
+         if(atmosphereOn)
+             disableAtmosphere();
+         else
+@@ -337,7 +337,7 @@ function doKeyPress() {
+ 
+     else {
+ 
+-        switch(event.keyCode) {
++        switch(e.keyCode) {
+ 
+             case 36:
+                 theKey = "home";
+@@ -594,9 +594,9 @@ var generalHistory = new Array();
+ // Functions for media icons
+ //*******************************
+ 
+-function doMediaOnClick() {
++function doMediaOnClick(e) {
+ 
+-    switch(event.srcElement.id) {
++    switch(e.target.id) {
+ 
+         case "caseIcon":
+             focusWin(caseDragWin, false);
+@@ -673,17 +673,17 @@ var topWindow = 1;
+ document.onmousemove = doDragMouseMove;
+ //document.onmouseup = doDragOnMouseUp;
+ 
+-function doDragOnMouseUp() {
++function doDragOnMouseUp(e) {
+     var newleft = 0, newTop = 0;
+ 
+     if(curElement == null)
+         return;
+ 
+-    newleft = event.x - diffX;
++    newleft = e.x - diffX;
+ 
+     curElement.style.left = newleft;
+ 
+-    newtop = event.y - diffY;
++    newtop = e.y - diffY;
+ 
+     curElement.style.top = newtop;
+ 
+@@ -695,12 +695,12 @@ function doDragOnMouseUp() {
+ //    event.cancelBubble = true;
+ }
+ 
+-function doDragMouseMove() {
++function doDragMouseMove(e) {
+ 
+-    if((event.button == 1) && (curElement != null)) {
++    if((e.button == 0) && (curElement != null)) {
+ 
+-        windowDragImg.style.left = event.x - 16;
+-        windowDragImg.style.top = event.y - 16;
++        windowDragImg.style.left = e.x - 16;
++        windowDragImg.style.top = e.y - 16;
+ 
+ //        newleft = event.clientX - diffX;
+ 
+@@ -710,35 +710,35 @@ function doDragMouseMove() {
+ 
+ //        curElement.style.pixelTop = newtop;
+ 
+-        event.returnValue = false;
+-        event.cancelBubble = true;
++				e.stopPropagation()
++	e.preventDefault();
+ 
+-        tempDiv.innerHTML = event.x;
++        tempDiv.innerHTML = e.x;
+ //        tempDiv.innerHTML = "";
+     }
+ }
+ 
+-function doDragStart() {
++function doDragStart(e) {
+ 
+     // Don't do default drag operation.
+ //    if ("DIV" == event.srcElement.tagName)
+-      event.returnValue = false;
++	e.preventDefault();
+ }
+ 
+-function doDragMouseDown() {
++function doDragMouseDown(e) {
+     var parent, prefix;
+ 
+-    if(event.srcElement.id.indexOf("Drag") < 0)
++    if(e.target.id.indexOf("Drag") < 0)
+         return;
+ 
+-    parent = event.srcElement;
++    parent = e.target;
+ 
+     while(parent.id.indexOf("DragWin") < 0)
+         parent = parent.parentElement;
+ 
+-    if ((event.button == 1)) {
++    if ((e.button == 0)) {
+ 
+-        if(event.offsetX > parent.clientWidth - 25) {
++        if(e.offsetX > parent.clientWidth - 25) {
+ 
+             prefix = parent.id.substring(0, parent.id.indexOf("DragWin"));
+ 
+@@ -751,22 +751,22 @@ function doDragMouseDown() {
+ 
+         else {
+ 
+-            windowDragImg.style.left = event.x - 16;
+-            windowDragImg.style.top = event.y - 16;
++            windowDragImg.style.left = e.x - 16;
++            windowDragImg.style.top = e.y - 16;
+             windowDragImg.style.visibility = "visible";
+ 
+             curElement = parent;
+ 
+ 						const pixelLeft = parseInt(curElement.style.left, 10);
+ 						const pixelTop = parseInt(curElement.style.top, 10);
+-            diffX =  event.clientX - pixelLeft;
+-            diffY = event.clientY - pixelTop;
++            diffX =  e.clientX - pixelLeft;
++            diffY = e.clientY - pixelTop;
+ 
+             focusWin(curElement);
+         }
+ 
+-        event.returnValue = false;
+-        event.cancelBubble = true;
++				e.stopPropagation()
++	e.preventDefault();
+     }
+ }
+ 
+@@ -874,11 +874,11 @@ function focusWin(divId, makeVisible) {
+ // Eliminate selection
+ //*******************************
+ 
+-function doSelectStart() {
++function doSelectStart(e) {
+ 
+-    if(event.srcElement.tagName != "INPUT") {
+-        event.returnValue = false;
+-        event.cancelBubble = true;
++    if(e.target.tagName != "INPUT") {
++				e.stopPropagation()
++	e.preventDefault();
+         return true;
+     }
+ }
+@@ -891,11 +891,11 @@ document.onselectstart = doSelectStart;
+ // General rollover button functionality
+ //****************************************
+ 
+-function mouseOver(anElem) {
++function mouseOver(e,anElem) {
+     var srcImg, parent, imgType, elem;
+ 
+     if(anElem == null)
+-        elem = event.srcElement;
++        elem = e.target;
+     else
+         elem = anElem;
+ 
+@@ -965,11 +965,11 @@ function setScrollerState(scrollerId, enabled, type) {
+ }
+ 
+ 
+-function mouseOut(anElem) {
++function mouseOut(e,anElem) {
+     var srcImg, parent, imgType, elem;
+ 
+     if(anElem == null)
+-        elem = event.srcElement;
++        elem = e.target;
+     else
+         elem = anElem;
+ 
+@@ -991,9 +991,9 @@ function mouseOut(anElem) {
+         elem.src = srcImg;
+ 
+         if(anElem == null) {
+-            event.returnValue = false;
+-            event.cancelBubble = true;
+-        }
++							e.stopPropagation()
++	e.preventDefault();
++					}
+ 
+         if(elem.name == "scroller") {
+             parent = elem.parentElement.id;
+@@ -1007,16 +1007,16 @@ function mouseOut(anElem) {
+         elem.classList.remove("filter-light");
+ 
+         if(anElem == null) {
+-            event.returnValue = false;
+-            event.cancelBubble = true;
++						e.stopPropagation()
++	e.preventDefault();
+         }
+     }
+ }
+ 
+-function onClick() {
++function onClick(e) {
+     var parent, prefix;
+ 
+-    parent = event.srcElement;
++    parent = e.target;
+ 
+     while(parent.id.indexOf("DragWin") < 0)
+         parent = parent.parentElement;
+@@ -1025,34 +1025,34 @@ function onClick() {
+ 
+     focusWin(parent);
+ 
+-    if(event.srcElement.name == null)
++    if(e.target.name == null)
+ 	    return;
+ 
+-    if(event.srcElement.name == "roll" || event.srcElement.name == "three") {
+-        if(event.srcElement.name == "three")
+-            if(event.srcElement.src.indexOf("_i.jpg") >= 0 || event.srcElement.src.indexOf("_s.jpg") >= 0)
++    if(e.target.name == "roll" || e.target.name == "three") {
++        if(e.target.name == "three")
++            if(e.target.src.indexOf("_i.jpg") >= 0 || e.target.src.indexOf("_s.jpg") >= 0)
+                 return;
+ 
+-        eval(prefix + "OnClick('" + event.srcElement.id + "')");
++        eval(prefix + "OnClick(e,'" + e.target.id + "')");
+     }
+ 
+-    else if(event.srcElement.name == "survCastImg") {
+-        event.srcElement.classList.remove("filter-light");
+-        event.srcElement.classList.add("filter-invert");
++    else if(e.target.name == "survCastImg") {
++        e.target.classList.remove("filter-light");
++        e.target.classList.add("filter-invert");
+ 
+-        eval(prefix + "OnClick('" + event.srcElement.id + "')");
++        eval(prefix + "OnClick(e,'" + e.target.id + "')");
+     }
+ 
+-    else if(event.srcElement.name.indexOf("survThumbImg") >= 0 || event.srcElement.name == "survQtvrImg") {
+-        eval(prefix + "OnClick('" + event.srcElement.id + "')");
++    else if(e.target.name.indexOf("survThumbImg") >= 0 || e.target.name == "survQtvrImg") {
++        eval(prefix + "OnClick(e,'" + e.target.id + "')");
+     }
+ 
+-    else if(event.srcElement.name == "cscroller") {
+-        eval(prefix + "ScrollOn('" + event.srcElement.id + "')");
++    else if(e.target.name == "cscroller") {
++        eval(prefix + "ScrollOn('" + e.target.id + "')");
+     }
+ 
+-    event.returnValue = false;
+-    event.cancelBubble = true;
++	e.preventDefault();
++		e.stopPropagation()
+ }
+ 
+ //===========================================================
+@@ -1099,11 +1099,11 @@ function stillsClose() {
+     return(true);
+ }
+ 
+-function stillsOnClick(imgId) {
++function stillsOnClick(e,imgId) {
+     switch(imgId) {
+ 
+         case "case":
+-            omw(stillsBookmark.substring(0, 4));
++            omw(e,stillsBookmark.substring(0, 4));
+             break;
+ 
+         case "back":
+@@ -1154,11 +1154,11 @@ function docsClose() {
+     return(true);
+ }
+ 
+-function docsOnClick(imgId) {
++function docsOnClick(e,imgId) {
+     switch(imgId) {
+ 
+         case "case":
+-            omw(docsBookmark.substring(0, 4));
++            omw(e,docsBookmark.substring(0, 4));
+             break;
+ 
+         case "back":
+@@ -1225,11 +1225,11 @@ function qtvrClose() {
+     return(true);
+ }
+ 
+-function qtvrOnClick(imgId) {
++function qtvrOnClick(e,imgId) {
+     switch(imgId) {
+ 
+         case "case":
+-            omw(qtvrBookmark.substring(0, 4));
++            omw(e,qtvrBookmark.substring(0, 4));
+             break;
+ 
+         case "back":
+@@ -1308,14 +1308,14 @@ var currentList = null;
+ var currentListHead = null;
+ var currentListBody = null;
+ 
+-function doListMouseDown() {
++function doListMouseDown(e) {
+     var index, i = 0, total;
+ 
+     if(currentListHead != null)
+         return;
+ 
+     currentListBody = null;
+-    currentListHead = event.srcElement;
++    currentListHead = e.target;
+ 
+ 		index = Array.from(document.all).indexOf(currentListHead);
+ 
+@@ -1335,16 +1335,16 @@ function doListMouseDown() {
+         i++;
+     }
+ 
+-    event.returnValue = false;
+-    event.cancelBubble = true;
++	e.preventDefault();
++		e.stopPropagation()
+ }
+ 
+-function doListMouseUp() {
++function doListMouseUp(e) {
+     currentListBody.style.visibility = "hidden";
+     currentList.style.zIndex = 0;
+ 
+-    if(event.srcElement.id == "listItem" && event.srcElement.innerHTML != "") {
+-        currentListHead.innerHTML = event.srcElement.innerHTML;
++    if(e.target.id == "listItem" && e.target.innerHTML != "") {
++        currentListHead.innerHTML = e.target.innerHTML;
+         listChanged(currentListHead);
+     }
+ 
+@@ -1597,8 +1597,7 @@ function searchKeyPress(key) {
+     }
+ }
+ 
+-function searchOnClick(imgId) {
+-
++function searchOnClick(e,imgId) {
+     switch(imgId) {
+         case "scrollUp":
+             doScrollUp("resultsList");
+@@ -1617,11 +1616,11 @@ function searchOnClick(imgId) {
+             break;
+ 
+         case "east":
+-            searchDoSubsort("geoEast");
++            searchDoSubsort(e,"geoEast");
+             break;
+ 
+         case "west":
+-            searchDoSubsort("geoWest");
++            searchDoSubsort(e,"geoWest");
+             break;
+     }
+ }
+@@ -1679,12 +1678,12 @@ var geoPos = new Array(new Region(1,1,70,110, "w"),
+                        new Region(140,1,190,110, "e"));
+ 
+ 
+-function searchDoSubsort(type) {
++function searchDoSubsort(e,type) {
+     var i, l, r, t, b, x, y;
+     var filter, filterSuffix = "";
+ 
+-    x = event.offsetX;
+-    y = event.offsetY;
++    x = e.offsetX;
++    y = e.offsetY;
+ 
+     if(type == "alpha") {
+         for(i = 0; i < alphaPos.length; i++) {
+@@ -1802,9 +1801,9 @@ function searchDoSubsort(type) {
+     }
+ }
+ 
+-function geoOnMouseMove() {
+-    var x = event.offsetX;
+-    var y = event.offsetY;
++function geoOnMouseMove(e) {
++    var x = e.offsetX;
++    var y = e.offsetY;
+ 
+     if(x < 70)
+         geoMap.src = "controls/search/schmw_r.jpg";
+@@ -1832,7 +1831,7 @@ function setSortColumn(isKeyword) {
+ 
+     switch(sortMethod) {
+         case "Alphabetical":
+-            filterDiv.innerHTML = "<img id=alpha onClick=searchDoSubsort('alpha') src=controls/search/alphabet.jpg>";
++            filterDiv.innerHTML = "<img id=alpha onClick=searchDoSubsort(event, 'alpha') src=controls/search/alphabet.jpg>";
+ 
+             filterDiv.style.visibility = "visible";
+             scrollUp.style.top = 60;
+@@ -1870,7 +1869,7 @@ function setSortColumn(isKeyword) {
+             break;
+ 
+         case "Chronological":
+-            filterDiv.innerHTML = "<img id=date onClick=searchDoSubsort('date') src=controls/search/date.jpg>";
++            filterDiv.innerHTML = "<img id=date onClick=searchDoSubsort(event, 'date') src=controls/search/date.jpg>";
+             filterDiv.style.visibility = "visible";
+             scrollUp.style.top = 60;
+ 
+@@ -1892,7 +1891,7 @@ function setSortColumn(isKeyword) {
+ 
+ 
+             filterDiv.innerHTML = "<img id=west name=roll src=controls/search/schal_u.jpg style='position:absolute; left:0; top:10'>" +
+-                                  "<img id=geoMap onClick=searchDoSubsort('geo') onMouseOut=geoOnMouseOut() onMouseMove=geoOnMouseMove() src=controls/search/schmap.jpg style='position:absolute; left:30; top:0'>" +
++                                  "<img id=geoMap onClick=searchDoSubsort(event, 'geo') onMouseOut=geoOnMouseOut() onMouseMove=geoOnMouseMove(event) src=controls/search/schmap.jpg style='position:absolute; left:30; top:0'>" +
+                                   "<img id=east name=roll src=controls/search/scheu_u.jpg style='position:absolute; left:235; top:10'>";
+ 
+ 
+@@ -2125,7 +2124,7 @@ function displayResults(index) {
+             tagList.recordset.move(index);
+ 
+         str = "<div id=resultsList style='position:absolute; left:0; top:0'>"
+-        str += "<table id=resultsListTable cellpadding=0 border=0 cellspacing=0 onClick=tableClick() style='cursor:hand; font:8pt courier'>"
++        str += "<table id=resultsListTable cellpadding=0 border=0 cellspacing=0 onClick=tableClick(event) style='cursor:hand; font:8pt courier'>"
+ 
+         if(index > 0)
+             str += "<tr id='back'><td><img src=controls/search/more.jpg></td><td><span style='color:#FF0000'>...Back...</span></td></tr>";
+@@ -2182,8 +2181,8 @@ function setScrollers() {
+     }
+ }
+ 
+-function tableClick() {
+-    var parent = event.srcElement, i = 0;
++function tableClick(e) {
++    var parent = e.target, i = 0;
+     var mediaType, caseNum, filename, title, location, update;
+ 
+     while(parent.tagName != "TR")
+@@ -2201,8 +2200,8 @@ function tableClick() {
+ 
+     if(parent.id == "more") {
+         displayResults(searchLastIndex);
+-        event.cancelBubble = true;
+-        event.returnValue = false;
++				e.stopPropagation()
++	e.preventDefault();
+         return;
+     }
+ 
+@@ -2211,8 +2210,8 @@ function tableClick() {
+         searchPreviousIndex -= 25;
+ 
+         displayResults(searchPreviousIndex);
+-        event.cancelBubble = true;
+-        event.returnValue = false;
++				e.stopPropagation()
++	e.preventDefault();
+         return;
+     }
+ 
+@@ -2244,8 +2243,8 @@ function tableClick() {
+     else
+         location = "local";
+ 
+-    event.cancelBubble = true;
+-    event.returnValue = false;
++		e.stopPropagation()
++	e.preventDefault();
+ 
+     showMedia(mediaType, caseNum, title, filename, location, true, true);
+ }
+@@ -2280,8 +2279,8 @@ function searchScrollOff(scrollerId) {
+ }
+ 
+ 
+-function searchRadio(cmd) {
+-    var radioButton = event.srcElement;
++function searchRadio(e,cmd) {
++    var radioButton = e.target;
+     var temp;
+ 
+     if(radioButton.src.indexOf("_u") >= 0) {
+@@ -2298,7 +2297,7 @@ function searchRadio(cmd) {
+ // General functions for media windows
+ //***************************************
+ 
+-function omw(label) {
++function omw(e,label) {
+     var splitArray, record, caseNum, mediaType, filename;
+     var filename, update, location, title, i;
+ 
+@@ -2374,8 +2373,8 @@ function omw(label) {
+ 
+     showMedia(mediaType, caseNum, title, filename, location, true, false);
+ 
+-    event.cancelBubble = true;
+-    event.returnValue = false;
++		e.stopPropagation()
++	e.preventDefault();
+ }
+ 
+ 
+@@ -2675,7 +2674,7 @@ function historyClose() {
+     return(true);
+ }
+ 
+-function historyOnClick(imgId) {
++function historyOnClick(e,imgId) {
+ 
+     switch(imgId) {
+         case "historyScrollUp":
+@@ -2771,7 +2770,7 @@ function showHistory(hist, title) {
+     else {
+ 
+         str = "<div id=historyList style='position:absolute; left:0; top:0'>"
+-        str += "<table cellpadding=0 border=0 cellspacing=0 onClick=historyClick() style='cursor:hand; font:8pt courier'>"
++        str += "<table cellpadding=0 border=0 cellspacing=0 onClick=historyClick(event) style='cursor:hand; font:8pt courier'>"
+ 
+         for(i = len - 1; i >= 0; i--) {
+ 
+@@ -2802,9 +2801,9 @@ function showHistory(hist, title) {
+     focusWin(historyDragWin);
+ }
+ 
+-function historyClick() {
++function historyClick(e) {
+ 
+-    var parent = event.srcElement;
++    var parent = e.target;
+     var mediaType, caseNum, filename, title, location, historyArray;
+ 
+     while(parent.tagName != "TR")
+@@ -2866,7 +2865,7 @@ function newupShow() {
+     tagList.caseSensitive = false;
+ 
+     str = "<div id=newupDivInner style='position:absolute; left:0; top:0'>" +
+-          "<table cellpadding=0 border=0 cellspacing=0 onClick=newupClick() style='cursor:hand'>";
++          "<table cellpadding=0 border=0 cellspacing=0 onClick=newupClick(event) style='cursor:hand'>";
+ 
+     for(i = 0; i < newUpdates.length; i++) {
+ 
+@@ -2931,13 +2930,13 @@ function newupShow() {
+     focusWin(newupDragWin);
+ }
+ 
+-function newupClick() {
+-    var parent = event.srcElement;
++function newupClick(e) {
++    var parent = e.target;
+ 
+     while(parent.tagName != "TR")
+         parent = parent.parentElement;
+ 
+-    omw(parent.id);
++    omw(e,parent.id);
+ }
+ 
+ 
+@@ -2990,11 +2989,11 @@ function videoClose() {
+     return(true);
+ }
+ 
+-function videoOnClick(imgId) {
++function videoOnClick(e,imgId) {
+     switch(imgId) {
+ 
+         case "case":
+-            omw(videoBookmark.substring(0, 4));
++            omw(e,videoBookmark.substring(0, 4));
+             break;
+ 
+         case "back":
+@@ -3116,7 +3115,7 @@ function caseKeyPress(key) {
+ }
+ 
+ 
+-function caseOnClick(imgId) {
++function caseOnClick(e,imgId) {
+ 
+     switch(imgId) {
+ 
+@@ -3269,7 +3268,7 @@ function dossierKeyPress(key) {
+ }
+ 
+ 
+-function dossierOnClick(imgId) {
++function dossierOnClick(e,imgId) {
+ 
+     switch(imgId) {
+         case "dossierScrollUp":
+@@ -3281,7 +3280,7 @@ function dossierOnClick(imgId) {
+             break;
+ 
+         case "case":
+-            omw(dossierBookmark.substring(0, 4));
++            omw(e,dossierBookmark.substring(0, 4));
+             break;
+ 
+         case "back":
+@@ -3463,7 +3462,7 @@ function commClosePrefs(action, newPref) {
+ }
+ 
+ 
+-function commOnClick(imgId) {
++function commOnClick(e,imgId) {
+ 
+     switch(imgId) {
+         case "commScrollUp":
+@@ -3615,12 +3614,11 @@ function audioClose() {
+     return(true);
+ }
+ 
+-
+-function audioOnClick(imgId) {
++function audioOnClick(e,imgId) {
+     switch(imgId) {
+ 
+         case "case":
+-            omw(audioBookmark.substring(0, 4));
++            omw(e,audioBookmark.substring(0, 4));
+             break;
+ 
+         case "back":
+@@ -3729,7 +3727,7 @@ function bookClose() {
+ }
+ 
+ 
+-function bookOnClick(imgId) {
++function bookOnClick(e,imgId) {
+ 
+     switch(imgId) {
+         case "bookScrollUp":
+@@ -3777,10 +3775,9 @@ function bookScrollOff(scrollerId) {
+     clearTimeout(bookScrollTimer);
+ }
+ 
++function bookClick(e) {
+ 
+-function bookClick() {
+-
+-    var parent = event.srcElement;
++    var parent = e.target;
+     var label, suffix;
+ 
+     if(parent.name == "check") {
+@@ -3800,7 +3797,7 @@ function bookClick() {
+ 
+         label = bookmarksArray[parent.id];
+ 
+-        omw(label);
++        omw(e,label);
+     }
+ }
+ 
+@@ -3835,7 +3832,7 @@ function showBookmarks() {
+         len = bookmarksCount;
+ 
+         str = "<div id=bookList style='position:absolute; left:0; top:0'>"
+-        str += "<table width=270 cellpadding=0 border=0 cellspacing=0 onClick=bookClick() style='cursor:hand; font:8pt courier'>"
++        str += "<table width=270 cellpadding=0 border=0 cellspacing=0 onClick=bookClick(event) style='cursor:hand; font:8pt courier'>"
+ 
+         for(i = 0; i < len; i++) {
+ 
+@@ -4080,16 +4077,15 @@ function survClose() {
+     return(true);
+ }
+ 
+-function survShowDossier() {
+-
++function survShowDossier(e) {
+     if(survCurrentChar == "m_covarr")
+-        omw("3x24:m_covarr");
++        omw(e,"3x24:m_covarr");
+     
+     else if(survCurrentChar == "assassin")
+-          omw("2x16:assassin");
++          omw(e,"2x16:assassin");
+ 
+     else
+-        omw("1x00:" + survCurrentChar);
++        omw(e,"1x00:" + survCurrentChar);
+ }
+ 
+ function survFrameOnClick() {
+@@ -4098,8 +4094,7 @@ function survFrameOnClick() {
+ 
+ }
+ 
+-
+-function survShowCaseFile() {
++function survShowCaseFile(e) {
+     var caseNum;
+ 
+     survTagList.recordset.moveFirst();
+@@ -4107,10 +4102,10 @@ function survShowCaseFile() {
+ 
+     caseNum = survTagList.recordset("caseNum") + "";
+ 
+-    omw(caseNum);
++    omw(e,caseNum);
+ }
+ 
+-function survOnClick(imgId) {
++function survOnClick(e,imgId) {
+     var srcElem;
+ 
+     if(imgId.indexOf("cast") >= 0)
+@@ -4123,10 +4118,10 @@ function survOnClick(imgId) {
+         survShowQtvr();
+ 
+     else if(imgId == "survCaseImg")
+-        survShowCaseFile();
++        survShowCaseFile(e);
+ 
+     else if(imgId == "survDossierImg")
+-        survShowDossier();
++        survShowDossier(e);
+ 
+     else if(imgId == "survMediaForwd") {
+         if(survMediaArrayIndex < survMediaArray.length - 1) {
+@@ -4556,20 +4551,20 @@ function survWriteFrame(str, doThumbs) {
+         survMediaFrame.contentDocument.write("<script language=\"JavaScript\">");
+ 
+         survMediaFrame.contentDocument.write("document.onmouseover = mouseOver;");
+-        survMediaFrame.contentDocument.write("function mouseOver() {");
+-        survMediaFrame.contentDocument.write("    parent.mouseOver(event.srcElement);");
+-        survMediaFrame.contentDocument.write("    parent.survShowText(event.srcElement);");
++        survMediaFrame.contentDocument.write("function mouseOver(e) {");
++        survMediaFrame.contentDocument.write("    parent.mouseOver(e,e.target);");
++        survMediaFrame.contentDocument.write("    parent.survShowText(e.target);");
+         survMediaFrame.contentDocument.write("}");
+ 
+         survMediaFrame.contentDocument.write("document.onmouseout = mouseOut;");
+-        survMediaFrame.contentDocument.write("function mouseOut() {");
+-        survMediaFrame.contentDocument.write("    parent.mouseOut(event.srcElement);");
++        survMediaFrame.contentDocument.write("function mouseOut(e) {");
++        survMediaFrame.contentDocument.write("    parent.mouseOut(e,e.target);");
+         survMediaFrame.contentDocument.write("    parent.survShowText('');");
+         survMediaFrame.contentDocument.write("}");
+ 
+         survMediaFrame.contentDocument.write("document.onclick = onClick;");
+-        survMediaFrame.contentDocument.write("function onClick() {");
+-        survMediaFrame.contentDocument.write("    parent.survThumbClick(event.srcElement);");
++        survMediaFrame.contentDocument.write("function onClick(e) {");
++        survMediaFrame.contentDocument.write("    parent.survThumbClick(e.target);");
+         survMediaFrame.contentDocument.write("}");
+ 
+         survMediaFrame.contentDocument.write("</script>");
+@@ -4748,7 +4743,7 @@ var glossHistory = new Array();
+ var glossHistoryIndex = 0;
+ var glossCurrentFile = null;
+ 
+-function glossOnClick(imgId) {
++function glossOnClick(e,imgId) {
+     switch(imgId) {
+ 
+         case "back":
+@@ -4804,13 +4799,13 @@ function glossShowDefinition(caseNum, term) {
+ 
+             alsoTerm = also1.substring(also1.lastIndexOf(":") + 1, also1.length);
+ 
+-            str += "<p>See also: <span style='color:#00FF00; text-decoration:underline; cursor:hand' onClick=\"omw('" + also1 + "')\">" +
++            str += "<p>See also: <span style='color:#00FF00; text-decoration:underline; cursor:hand' onClick=\"omw(event,'" + also1 + "')\">" +
+                    alsoTerm + "</span>";
+ 
+             if(also2 != "") {
+                 alsoTerm = also2.substring(also2.lastIndexOf(":") + 1, also2.length);
+ 
+-                str += ", <span style='color:#00FF00; text-decoration:underline; cursor:hand' onClick=\"omw('" + also2 + "')\">" +
++                str += ", <span style='color:#00FF00; text-decoration:underline; cursor:hand' onClick=\"omw(event,'" + also2 + "')\">" +
+                        alsoTerm + "</span>";
+             }
+         }
+@@ -4921,13 +4916,13 @@ function genHelpShowTopics() {
+     }
+ }
+ 
+-function genHelpClick() {
++function genHelpClick(e) {
+     var topic;
+ 
+-    if(event.srcElement.tagName != "SPAN")
++    if(e.target.tagName != "SPAN")
+         return;
+ 
+-    topic = event.srcElement.innerHTML;
++    topic = e.target.innerHTML;
+ 
+     ghst(topic);
+ }
+@@ -5147,11 +5142,11 @@ function textClose() {
+     return(true);
+ }
+ 
+-function textOnClick(imgId) {
++function textOnClick(e,imgId) {
+     switch(imgId) {
+ 
+         case "case":
+-            omw(textBookmark.substring(0, 4));
++            omw(e,textBookmark.substring(0, 4));
+             break;
+ 
+         case "back":
+@@ -5332,7 +5327,7 @@ function updateScrollOff(scrollerId) {
+     clearTimeout(updateScrollTimer);
+ }
+ 
+-function updateOnClick(imgId) {
++function updateOnClick(e,imgId) {
+ 
+     switch(imgId) {
+ 
+@@ -5359,7 +5354,7 @@ function updateShow() {
+ 
+     if(len > 0) {
+ 
+-        str += "<center><table width=490 cellpadding=0 border=0 cellspacing=0 onClick=updateTableClick() style='cursor:hand'>"
++        str += "<center><table width=490 cellpadding=0 border=0 cellspacing=0 onClick=updateTableClick(event) style='cursor:hand'>"
+ 
+         str += "<tr id=head><td width=120 rowspan=2><img src=controls/comm/updtitle.jpg></td><td rowspan=2><img src=controls/comm/size.jpg></td>" +
+                "<td align=center colspan=3><img src=controls/comm/down.jpg></td></tr>" +
+@@ -5430,8 +5425,8 @@ function updateCancel() {
+     updateShow();
+ }
+ 
+-function updateTableClick() {
+-    var parent = event.srcElement;
++function updateTableClick(e) {
++    var parent = e.target;
+     var updateDir, title, str;
+ 
+     while(parent.tagName != "TR")
+@@ -5519,8 +5514,8 @@ function updateCheckUpdates() {
+     setTimeout("updateCheckUpdates()", 10000);
+ }
+ 
+-function mediaMouseOver() {
+-    var id = event.srcElement.id;
++function mediaMouseOver(e) {
++    var id = e.target.id;
+     var img, prefix;
+ 
+     if(id.indexOf("Icon") < 0)
+diff --git a/browser/main11.htm b/browser/main11.htm
+index 1017b6e..f0d17be 100644
+--- a/browser/main11.htm
++++ b/browser/main11.htm
+@@ -179,19 +179,19 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <img id=mediaCaptionImg src=controls/captions/case6.jpg border=0 style="POSITION:ABSOLUTE;LEFT:200; TOP:200; visibility:hidden">
+ 
+-<img id=windowDragImg onMouseUp=doDragOnMouseUp() src=controls/drag.gif border=0 style="POSITION:ABSOLUTE;LEFT:200; TOP:200; visibility:hidden; z-index:40000">
++<img id=windowDragImg onMouseUp=doDragOnMouseUp(event) src=controls/drag.gif border=0 style="POSITION:ABSOLUTE;LEFT:200; TOP:200; visibility:hidden; z-index:40000">
+ 
+ <iframe id=tempFrame onLoad=tempFrameOnLoad()
+         style="position:absolute; left:20; top:0; width:5; height:5; visibility:hidden">
+ </iframe>
+ 
+-<img id=closeButton name=roll src=controls/exit11_u.jpg border=0 onMouseOver=mouseOver() onMouseOut=mouseOut() onClick=quit()
++<img id=closeButton name=roll src=controls/exit11_u.jpg border=0 onMouseOver=mouseOver(event) onMouseOut=mouseOut(event) onClick=quit(event)
+      style="POSITION:ABSOLUTE; LEFT:1060; TOP:0; visibility:hidden">
+ 
+ <img id=mainCtrlImg alt='' border=0 src=controls/br11_u.jpg onClick=doGenOnClick() onMouseMove=doGenMouseMove()
+      onMouseOut=setMainCtrl('main') style="position:absolute; left:0; top:0; visibility:hidden">
+ 
+-<div id="mediaCtrlLayer" onMouseOver=mediaMouseOver() onMouseOut=mediaMouseOut() onClick=doMediaOnClick() style="POSITION:ABSOLUTE; LEFT:500; TOP:670; visibility:hidden">
++<div id="mediaCtrlLayer" onMouseOver=mediaMouseOver(event) onMouseOut=mediaMouseOut() onClick=doMediaOnClick(event) style="POSITION:ABSOLUTE; LEFT:500; TOP:670; visibility:hidden">
+ <img id=caseIcon hspace=10 src="controls/case11_i.jpg"><img id=dossierIcon hspace=10 src="controls/char11_i.jpg"><img id=videoIcon hspace=10 src="controls/vide11_i.jpg"><img id=audioIcon hspace=10 src="controls/audi11_i.jpg"><img id=stillsIcon hspace=10 src="controls/phot11_i.jpg"><img id=qtvrIcon hspace=10 src="controls/evid11_i.jpg"><img id=textIcon hspace=10 src="controls/text11_i.jpg"><img id=docsIcon hspace=10 src="controls/doc11_i.jpg">
+ </div>
+ 
+@@ -201,16 +201,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- HISTORY WINDOW ------------------------------>
+ 
+-<div id=historyDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=historyDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:120; left:120; width:290; height:350; visibility:hidden">
+ 
+     <img src=controls/media/histwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=historyTitleDrag style="position:absolute; left:70; top:6; width:180; cursor:default">History</span>
+ 
+-    <div id=history marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=history marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:290; height:330">
+ 
+         <div id=historyDiv style="position:absolute; left:10; top:25; height:280; width:275; clip:rect(0 275 280 0)">
+@@ -229,16 +229,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- BOOKMARKS WINDOW ------------------------------>
+ 
+-<div id=bookDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=bookDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:120; left:320; width:290; height:350; visibility:hidden">
+ 
+     <img src=controls/media/bookwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=bookTitleDrag style="position:absolute; left:70; top:6; width:180; cursor:default">Bookmarks</span>
+ 
+-    <div id=book marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=book marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:290; height:330">
+ 
+         <div id=bookDiv style="position:absolute; left:10; top:25; height:280; width:275; clip:rect(0 275 280 0)">
+@@ -256,16 +256,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- STILLS WINDOW ------------------------------>
+ 
+-<div id=stillsDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=stillsDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:100; left:100; width:340; height:279; visibility:hidden; clip:rect(0 340 279 0)">
+ 
+     <img src=controls/media/stillwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=stillsTitleDrag style="position:absolute; left:70; top:6; width:200; cursor:default">Still: </span>
+ 
+-    <div id=stills marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=stills marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:340; height:259">
+ 
+         <img id=case name=roll src=controls/media/case_u.gif><br>
+@@ -289,16 +289,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- CASE FILE WINDOW ------------------------------>
+ 
+-<div id=caseDragWin name=draggable onDragStart=doDragStart() onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=caseDragWin name=draggable onDragStart=doDragStart(event) onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:120; left:120; width:452; height:371; clip:rect(0 452 371 0); visibility:hidden">
+ 
+     <img src=controls/media/casewin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=caseTitleDrag style="position:absolute; left:70; top:6; width: 300; cursor:default">Case File: </span>
+ 
+-    <div id=case marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=case marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:452; height:351; cursor:default">
+ 
+         <img id=case src=controls/media/case_u.gif><br>
+@@ -323,8 +323,8 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- DOSSIER WINDOW ------------------------------>
+ 
+-<div id=dossierDragWin onDragStart=doDragStart() onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=dossierDragWin onDragStart=doDragStart(event) onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:140; left:140; width:452; height:371; clip:rect(0 452 371 0); visibility:hidden">
+ 
+     <img src=controls/media/dosswin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+@@ -333,8 +333,8 @@ mediaCaptionArray["docs"] = 950;
+ 
+  Dossier:
+ 
+-    <div id=dossier marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=dossier marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:452; height:351; cursor:default">
+ 
+         <img id=case name=roll src=controls/media/case_u.gif><br>
+@@ -361,16 +361,16 @@ mediaCaptionArray["docs"] = 950;
+ <!----------------------------- GLOSSARY WINDOW ------------------------------>
+ 
+ 
+-<div id=glossDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=glossDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:300; left:100; width:400; height:200; visibility:hidden; clip:rect(0 400 200 0)">
+ 
+     <img src=controls/media/glosswin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=glossTitleDrag style="position:absolute; left:70; top:6; width:200; cursor:default">Glossary</span>
+ 
+-    <div id=gloss marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=gloss marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:400; height:180">
+ 
+         <img id=back name=roll src=controls/media/back_u.gif><br>
+@@ -388,19 +388,19 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- GENERAL HELP WINDOW ------------------------------>
+ 
+-<div id=genHelpDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=genHelpDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:10; left:50; width:500; height:375; visibility:hidden; clip:rect(0 500 375 0)">
+ 
+     <img src=controls/media/ghelpwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=genHelpTitleDrag style="position:absolute; left:70; top:6; width:200; cursor:default">Help</span>
+ 
+-    <div id=genHelp marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=genHelp marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:500; height:355">
+ 
+-        <div id=genHelpLeftDiv onClick=genHelpClick() style="position:absolute; left:15; top:40; height:275; width:150; clip:rect(0 150 275 0)">
++        <div id=genHelpLeftDiv onClick=genHelpClick(event) style="position:absolute; left:15; top:40; height:275; width:150; clip:rect(0 150 275 0)">
+         </div>
+ 
+         <img id=genHelpLeftScrollUp name=scroller src=controls/search/upsm_u.jpg
+@@ -427,16 +427,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- MEDIA HELP WINDOW ------------------------------>
+ 
+-<div id=helpDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=helpDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:50; left:50; width:200; height:300; visibility:hidden; clip:rect(0 200 300 0)">
+ 
+     <img src=controls/media/helpwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=helpTitleDrag style="position:absolute; left:70; top:6; width:100; cursor:default">Help</span>
+ 
+-    <div id=help marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=help marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:200; height:280">
+ 
+         <div id=helpDiv style="position:absolute; left:12; top:30; height:225; width:175; clip:rect(0 175 225 0)">
+@@ -456,16 +456,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- UPDATES WINDOW ------------------------------>
+ 
+-<div id=updateDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=updateDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:50; left:50; width:532; height:400; visibility:hidden; clip:rect(0 532 400 0)">
+ 
+     <img src=controls/media/updtwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=updateTitleDrag style="position:absolute; left:70; top:6; width:330; cursor:default">Updates</span>
+ 
+-    <div id=update marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=update marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:532; height:380">
+ 
+ <!--
+@@ -493,16 +493,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- NEW UPDATES WINDOW ------------------------------>
+ 
+-<div id=newupDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=newupDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:120; left:120; width:290; height:350; visibility:hidden">
+ 
+     <img src=controls/media/histwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=newupTitleDrag style="position:absolute; left:70; top:6; width:180; cursor:default">New Assets</span>
+ 
+-    <div id=newup marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=newup marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:290; height:330">
+ 
+         <div id=newupDiv style="position:absolute; left:10; top:25; height:280; width:275; clip:rect(0 275 280 0)">
+@@ -522,16 +522,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- SEARCH WINDOW ------------------------------>
+ 
+-<div id=searchDragWin onDragStart=doDragStart() onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=searchDragWin onDragStart=doDragStart(event) onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:50; left:50; width:532; height:400; clip:rect(0 532 400 0); visibility:hidden">
+ 
+     <img src=controls/media/srchwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=searchTitleDrag style="position:absolute; left:70; top:6; width:250; cursor:default">Search</span>
+ 
+-    <div id=search marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=search marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:532; height:380; cursor:default">
+ 
+         <img src=controls/search/srchbkg.jpg style="POSITION:ABSOLUTE;LEFT:0; TOP:4;">
+@@ -547,12 +547,12 @@ mediaCaptionArray["docs"] = 950;
+ 
+                 <img src=controls/search/box1_h.jpg style="position:absolute; left:0; top:0">
+ 
+-                <span id=mainListHead onMouseDown=doListMouseDown() onmouseover="this.style.color='red'" onmouseout="this.style.color='#6699FF'"
++                <span id=mainListHead onMouseDown=doListMouseDown(event) onmouseover="this.style.color='red'" onmouseout="this.style.color='#6699FF'"
+                       style="position:absolute; left:1; top:0; width:100; color:#6699FF">Case Files</span>
+ 
+             </div>
+ 
+-            <div id=listBody onMouseUp=doListMouseUp()
++            <div id=listBody onMouseUp=doListMouseUp(event)
+                  style="position:absolute; top:15; left:0; width:90; visibility:hidden">
+ 
+                 <img src=controls/search/box1_b.jpg style="position:absolute; left:0; top:0">
+@@ -576,11 +576,11 @@ mediaCaptionArray["docs"] = 950;
+ 
+                 <img src=controls/search/box2_h.jpg style="position:absolute; left:0; top:0">
+ 
+-                <span id=caseListHead onMouseDown=doListMouseDown() onmouseover="this.style.color='red'" onmouseout="this.style.color='#6699FF'"
++                <span id=caseListHead onMouseDown=doListMouseDown(event) onmouseover="this.style.color='red'" onmouseout="this.style.color='#6699FF'"
+                       style="position:absolute; width:300; left:1; top:0; color:#6699FF">Extraterrestrial</span>
+             </div>
+ 
+-            <div id=listBody onMouseUp=doListMouseUp()
++            <div id=listBody onMouseUp=doListMouseUp(event)
+                  style="position:absolute; left:0; top:15; visibility:hidden">
+ 
+                 <img src=controls/search/box2_b.jpg style="position:absolute; left:0; top:0">
+@@ -609,11 +609,11 @@ mediaCaptionArray["docs"] = 950;
+ 
+                 <img src=controls/search/box2_h.jpg style="position:absolute; left:0; top:0">
+ 
+-                <span id=evidListHead onMouseDown=doListMouseDown() onmouseover="this.style.color='red'" onmouseout="this.style.color='#6699FF'"
++                <span id=evidListHead onMouseDown=doListMouseDown(event) onmouseover="this.style.color='red'" onmouseout="this.style.color='#6699FF'"
+                       style="position:absolute; left:1; top:0; color:#6699FF">Physical</span>
+             </div>
+ 
+-            <div id=listBody onMouseUp=doListMouseUp()
++            <div id=listBody onMouseUp=doListMouseUp(event)
+                  style="position:absolute; left:0; top:15; width:100; visibility:hidden">
+ 
+                 <img src=controls/search/box4_b.jpg style="position:absolute; left:0; top:0">
+@@ -635,11 +635,11 @@ mediaCaptionArray["docs"] = 950;
+ 
+                 <img src=controls/search/box2_h.jpg style="position:absolute; left:0; top:0">
+ 
+-                <span id=dossierListHead onMouseDown=doListMouseDown() onmouseover="this.style.color='red'" onmouseout="this.style.color='#6699FF'"
++                <span id=dossierListHead onMouseDown=doListMouseDown(event) onmouseover="this.style.color='red'" onmouseout="this.style.color='#6699FF'"
+                       style="position:absolute; left:3; top:1; color:#6699FF">CIA</span>
+             </div>
+ 
+-            <div id=listBody onMouseUp=doListMouseUp()
++            <div id=listBody onMouseUp=doListMouseUp(event)
+                  style="position:absolute; left:0; top:16; width:190; background-color:black; visibility:hidden">
+ 
+                 <img src=controls/search/box5_b.jpg style="position:absolute; left:0; top:0">
+@@ -675,11 +675,11 @@ mediaCaptionArray["docs"] = 950;
+ 
+                 <img src=controls/search/box2_h.jpg style="position:absolute; left:0; top:0">
+ 
+-                <span id=sortListHead onMouseDown=doListMouseDown() onmouseover="this.style.color='red'" onmouseout="this.style.color='#6699FF'"
++                <span id=sortListHead onMouseDown=doListMouseDown(event) onmouseover="this.style.color='red'" onmouseout="this.style.color='#6699FF'"
+                       style="position:absolute; left:1; top:0; color:#6699FF">Alphabetical</span>
+             </div>
+ 
+-            <div id=listBody onMouseUp=doListMouseUp()
++            <div id=listBody onMouseUp=doListMouseUp(event)
+                  style="position:absolute; top:15; left:0; width:100; visibility:hidden">
+ 
+                 <img src=controls/search/box3_b.jpg style="position:absolute; left:0; top:0">
+@@ -702,12 +702,12 @@ mediaCaptionArray["docs"] = 950;
+         <input type=text maxlength=50 id=keywrdText onfocus=doTextFocus() onblur=doTextBlur()
+                style="position:absolute; left:26; top:266; width:150; background-color:#000000; color:#6699FF; font:8pt courier">
+ 
+-        <img id=radioAll src=controls/media/radior_c.jpg onClick=searchRadio("all")
++        <img id=radioAll src=controls/media/radior_c.jpg onClick=searchRadio(event,"all")
+              style="POSITION:ABSOLUTE; LEFT:12; TOP:295;">
+ 
+         <img src=controls/search/srchal_t.jpg style="POSITION:ABSOLUTE; LEFT:35; TOP:305;">
+ 
+-        <img id=radioAny src=controls/media/radior_u.jpg onClick=searchRadio("any")
++        <img id=radioAny src=controls/media/radior_u.jpg onClick=searchRadio(event,"any")
+              style="POSITION:ABSOLUTE; LEFT:12; TOP:317;">
+ 
+         <img src=controls/search/srchan_t.jpg style="POSITION:ABSOLUTE; LEFT:35; TOP:325;">
+@@ -746,16 +746,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- DOC VIEWER WINDOW ------------------------------>
+ 
+-<div id=docsDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=docsDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:100; left:100; width:400; height:350; clip:rect(0 400 350 0); visibility:hidden; z-index:20000">
+ 
+     <img src=controls/media/docwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=docsTitleDrag style="position:absolute; left:70; top:6; width:250; cursor:default">Document: </span>
+ 
+-    <div id=docs marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=docs marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:400; height:330">
+ 
+         <img id=case name=roll src=controls/media/case_u.gif><br>
+@@ -778,8 +778,8 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- VIDEO WINDOW ------------------------------>
+ 
+-<div id=videoDragWin name=draggable onDragStart=doDragStart() onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=videoDragWin name=draggable onDragStart=doDragStart(event) onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:100; left:200; width:340; height:279; clip:rect(0 340 279 0); visibility:hidden; z-index:20001">
+ 
+     <img src=controls/media/videowin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+@@ -787,8 +787,8 @@ mediaCaptionArray["docs"] = 950;
+     <span id=videoTitleDrag style="position:absolute; left:70; top:6; width:230; cursor:default">Video: </span>
+ 
+ 
+-    <div id=video marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=video marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:340; height:259">
+ 
+         <img id=case name=roll src=controls/media/case_u.gif><br>
+@@ -807,8 +807,8 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- AUDIO WINDOW ------------------------------>
+ 
+-<div id=audioDragWin name=draggable onDragStart=doDragStart() onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=audioDragWin name=draggable onDragStart=doDragStart(event) onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:100; left:200; width:204; height:244; clip:rect(0 204 244 0); visibility:hidden; z-index:20002">
+ 
+     <img src=controls/media/audiowin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+@@ -816,8 +816,8 @@ mediaCaptionArray["docs"] = 950;
+     <span id=audioTitleDrag style="position:absolute; left:70; top:6; width:100; cursor:default">audio: </span>
+ 
+ 
+-    <div id=audio marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=audio marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:204; height:224">
+ 
+         <img id=case name=roll src=controls/media/case_u.gif><br>
+@@ -842,16 +842,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- TEXT VIEWER WINDOW ------------------------------>
+ 
+-<div id=textDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=textDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:50; left:50; width:450; height:350; visibility:hidden; clip:rect(0 450 350 0); z-index:20003">
+ 
+     <img src=controls/media/textwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=textTitleDrag style="position:absolute; left:70; top:6; width:330; cursor:default">Text: </span>
+ 
+-    <div id=text marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=text marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:450; height:330">
+ 
+         <img id=case name=roll src=controls/media/case_u.gif><br>
+@@ -876,16 +876,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- QTVR WINDOW ------------------------------>
+ 
+-<div id=qtvrDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=qtvrDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:100; left:100; width:340; height:279; visibility:hidden; clip:rect(0 340 279 0); z-index:20004">
+ 
+     <img src=controls/media/qtvrwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=qtvrTitleDrag style="position:absolute; left:70; top:6; width:200; cursor:default">3D Evidence: </span>
+ 
+-    <div id=qtvr marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=qtvr marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:340; height:259">
+ 
+         <img id=case name=roll src=controls/media/case_u.gif><br>
+@@ -909,16 +909,16 @@ mediaCaptionArray["docs"] = 950;
+ <!----------------------------- SURVEILLANCE WINDOW ------------------------------>
+ 
+ 
+-<div id=survDragWin onDragStart=doDragStart() onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=survDragWin onDragStart=doDragStart(event) onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:150; left:50; width:540; height:400; clip:rect(0 540 400 0); visibility:hidden; z-index:20005">
+ 
+     <img src=controls/media/survwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=survTitleDrag style="position:absolute; left:70; top:6; width:250; cursor:default">Surveillance</span>
+ 
+-    <div id=surv marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=surv marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:532; height:380">
+ 
+ 
+@@ -987,16 +987,16 @@ mediaCaptionArray["docs"] = 950;
+ 
+ <!----------------------------- COMMUNICATION WINDOW ------------------------------>
+ 
+-<div id=commDragWin onDragStart=doDragStart() name=draggable onMouseDown=doDragMouseDown()
+-     onMouseMove=doDragMouseMove() onMouseUp=doDragOnMouseUp()
++<div id=commDragWin onDragStart=doDragStart(event) name=draggable onMouseDown=doDragMouseDown(event)
++     onMouseMove=doDragMouseMove(event) onMouseUp=doDragOnMouseUp(event)
+      style="position:absolute; top:100; left:100; width:500; height:400; visibility:hidden; clip:rect(0 500 400 0); z-index:20006">
+ 
+     <img src=controls/comm/commwin.jpg id=naDrag style="position:absolute; top:0; left:0; cursor:default">
+ 
+     <span id=commTitleDrag style="position:absolute; left:70; top:6; width:250; cursor:default">Communication</span>
+ 
+-    <div id=comm marginwidth=0 marginheight=0 onMouseOver=mouseOver()
+-         onMouseOut=mouseOut() onClick=onClick()
++    <div id=comm marginwidth=0 marginheight=0 onMouseOver=mouseOver(event)
++         onMouseOut=mouseOut(event) onClick=onClick(event)
+          style="position:absolute; top:20; left:0; width:500; height:380">
+ 
+         <img id=home name=roll src=controls/comm/home_u.gif><br>
+-- 
+2.34.1
+

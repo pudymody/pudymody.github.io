@@ -1,0 +1,72 @@
+From a6b353aa49dba85690e17e908b1ae9094dd29e8c Mon Sep 17 00:00:00 2001
+From: Federico Scodelaro <federicoscodelaro@gmail.com>
+Date: Mon, 6 Feb 2023 18:45:30 -0300
+Subject: [PATCH] fix: Javascript language script attribute
+
+---
+ browser/comm.htm    | 4 ++--
+ browser/prefs.htm   | 4 ++--
+ browser/updates.htm | 6 +++---
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/browser/comm.htm b/browser/comm.htm
+index 50ea6c8..9a7ef51 100644
+--- a/browser/comm.htm
++++ b/browser/comm.htm
+@@ -1,7 +1,7 @@
+ <html>
+ <head>
+ 
+-<script language=jscript>
++<script language="JavaScript">
+ 
+ //var fullPath = location.href;
+ //var mainPath = fullPath.substring(0, fullPath.length - 15);
+@@ -31,4 +31,4 @@ function init() {
+ </div>
+ 
+ </body>
+-</html>
+\ No newline at end of file
++</html>
+diff --git a/browser/prefs.htm b/browser/prefs.htm
+index 2be9a08..6f3e317 100644
+--- a/browser/prefs.htm
++++ b/browser/prefs.htm
+@@ -1,7 +1,7 @@
+ <html>
+ <head>
+ 
+-<script language=jscript>
++<script language="JavaScript">
+ 
+ document.onclick = onClick;
+ document.onselectstart = doSelectStart;
+@@ -137,4 +137,4 @@ function doSelectStart() {
+ <img id=cancel hspace=10 src=controls/comm/cancel.jpg></center><br>
+ 
+ </body>
+-</html>
+\ No newline at end of file
++</html>
+diff --git a/browser/updates.htm b/browser/updates.htm
+index bedb4d2..493802b 100644
+--- a/browser/updates.htm
++++ b/browser/updates.htm
+@@ -2,10 +2,10 @@
+ <head>
+ <title>X-Files Browser</title>
+ 
+-<script language=jscript src=cookies.js></script>
+-<script language=jscript src=utils.js></script>
++<script language="JavaScript" src=cookies.js></script>
++<script language="JavaScript" src=utils.js></script>
+ 
+-<script language=jscript>
++<script language="JavaScript">
+ 
+ window.onerror = doError;
+ 
+-- 
+2.34.1
+

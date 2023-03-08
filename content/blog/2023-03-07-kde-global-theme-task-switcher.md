@@ -12,13 +12,13 @@ Yes, i know you can change it from the settings, and thats what i've done. I lik
 
 ![Big icons task switcher](/static/imgs/kde-global-theme-task-switcher/task-switcher-win.jpg)
 
-But i also like sometimes, when its dark at knight to change the global theme to the dark one to feel like a **real haxx0r**. I do it from the settings home page.
+But i also like sometimes, when its dark at night to change the global theme to the dark one to feel like a **real haxx0r**. I do it from the settings home page.
 
 ![Settings home page](/static/imgs/kde-global-theme-task-switcher/settings-home.png)
 
 The problem with this is that it changes my liked task switcher to the default one. My solution to this? Edit the theme. Is the correct one? I dont know, but its A solution and it works for me.
 
-The files i had to edit where */usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents* and */usr/share/plasma/look-and-feel/org.kde.breezedark.desktop/contents* removing the following lines
+The files i had to edit were */usr/share/plasma/look-and-feel/org.kde.breeze.desktop/contents* and */usr/share/plasma/look-and-feel/org.kde.breezedark.desktop/contents* removing the following lines
 
 ```
 [kwinrc][WindowSwitcher]

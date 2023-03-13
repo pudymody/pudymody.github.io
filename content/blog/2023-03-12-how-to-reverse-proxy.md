@@ -26,7 +26,7 @@ Now my final Caddyfile looks like this:
 ```
 domain {
 	redir /fresh /fresh/
-	handle /fresh/* {
+	handle_path /fresh/* {
 		reverse_proxy container_ip {
 			header_up X-Forwarded-Prefix /fresh
 		}

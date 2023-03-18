@@ -584,7 +584,7 @@ Here *$1* corresponds to *atom1*, *$3* to *atom3* and *$2* to *relop*
 
 All the previous *suppose* doesnt present any problem, as this parsers executes from the bottom to the top. For more information look for *Bottom-Up Parsers*
 
-This are the basics to how its implemented. If you read the [source code](IMPLEMENT ME) you will see a lot more things, like a ctx value passed around. This is so we could match against the current row that we are filtering. And hacky ways of checking if strings contains the * symbol, so we convert it to a [regexp](https://en.wikipedia.org/wiki/Regular_expression).
+This are the basics to how its implemented. If you read the [source code](https://github.com/pudymody/tdc-retrofill) you will see a lot more things, like a ctx value passed around. This is so we could match against the current row that we are filtering. And hacky ways of checking if strings contains the * symbol, so we convert it to a [regexp](https://en.wikipedia.org/wiki/Regular_expression).
 
 But as we now are returning a function from our start node whenever we parse a string of this grammar, jison will return us a function that we could use to filter our row, returning true or false if it passes the current filter.
 

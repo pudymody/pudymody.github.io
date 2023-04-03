@@ -259,15 +259,16 @@ h1, h2, h3, h4, h5, h6 { line-height: 1.25; }
 caption, figcaption, label, legend { line-height: 1.375; }
 
 html {
-	font-size: 20px;
-	font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	font-size: 1.25rem;
+	line-height: 1.75rem;
+	font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
 	background: #F5F3FF;
 	color: #2D115A;
 }
 
-body {
-	max-width: 40rem;
-	margin:0 0.75rem;
+main {
+	max-width: 80ch;
+	margin:0 0.75rem 2.5rem 0.75rem;
 }
 
 code {
@@ -306,6 +307,7 @@ blockquote {
 		padding: 0.5rem 0.75rem;
 		border-left: 3px solid;
 		background: #ECE9FF;
+		margin: 0.75rem;
 }
 
 blockquote p:first-child {
@@ -316,6 +318,10 @@ blockquote p:last-child {
 		margin-bottom: 0;
 }
 
+.main-nav {
+	margin-bottom: 2.5rem;
+}
+
 .main-nav ul {
 list-style: none;
 display: flex;
@@ -323,16 +329,30 @@ flex-wrap: wrap;
 justify-content: space-between;
 margin: 0;
 padding: 0;
+color: #f5f3ff;
+background: #2d115a;
+}
+
+.main-nav ul > li {
+	flex-grow: 1;
 }
 
 .main-nav a {
+	text-decoration: none;
+text-align: center;
 		display: block;
-		padding: 1rem;
+		padding: 0.5rem 1rem;
+}
+
+.main-nav a:hover {
+background: #f5f3ff;
+color: #2d115a;
+	text-decoration: underline;
 }
 
 .main-nav .home {
  font-size: 2rem;
-text-align: center;
+	padding: 1rem;
 }
 
 .h-card h1 {
@@ -378,12 +398,41 @@ max-height: 100%;
   padding: 0;
 }
 
+.projects-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill,minmax(min(calc(40ch - .5rem),100%),1fr));
+	gap: 0.5rem;
+}
+
+.projects-list li {
+	border: 1px solid;
+	border-radius: 0.25rem;
+	padding: 0.75rem;
+	color: #f5f3ff;
+	background: #2d115a;
+}
+
+.projects-list article > * + * {
+	margin: 0.5rem 0 0 0;
+}
+
+.projects-list article > h3 {
+	margin: 0;
+}
+
 .h-entry--post {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  padding: 0.25rem;
-  margin-bottom: 0.5rem;
+  padding: 0.5rem 0.25rem;
+	text-decoration: none;
+}
+
+.list li:not(:last-child){
+	border-bottom: 1px solid;
 }
 
 .h-entry--post time {
@@ -496,10 +545,25 @@ pre.chroma {
     background: #2D115A;
   }
 
+	.main-nav ul {
+		background: #f5f3ff;
+		color: #2d115a;
+	}
+
   a:hover {
     background: #F5F3FF;
     color: #2D115A;
   }
+
+	.main-nav a:hover {
+		color: #f5f3ff;
+		background: #2d115a;
+	}
+
+	.projects-list li {
+		background: #f5f3ff;
+		color: #2d115a;
+	}
 
   blockquote {
     background: #401881;
@@ -507,8 +571,8 @@ pre.chroma {
 }
 
 @media (min-width: 46rem){
-		body {
-				margin: 0 3rem;
+		main {
+				margin: 0 auto 3rem auto;
 		}
 
 		.h-entry--post {

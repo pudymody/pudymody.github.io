@@ -1,4 +1,4 @@
-baseURL = "https://pudymody.netlify.app/"
+baseURL = "https://federicoscodelaro.com/"
 languageCode = "en-us"
 title = "Federico Scodelaro"
 googleAnalytics = "UA-75819066-1"
@@ -11,4 +11,4 @@ disableKinds = ["sitemap", "taxonomy", "taxonomyTerm"]
     noClasses = false
     style = 'monokai'
 [params]
-    description = "My name is Federico, or pudymody as i call myself on the interwebz. Im a computer science student currently living in Argentina looking to improve and develope my skills. Fluid in Javascript, know some CSS and HTML, and played with Rust and C#, but willing to learn any language or any technology"
+    description = "My name is Federico, or pudymody as i call myself on the interwebz. Im a computer science student looking to improve and develope my skills. Currently working for Brubank with Golang."

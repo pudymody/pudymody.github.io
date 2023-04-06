@@ -23,3 +23,7 @@ what i think.
 [https://petermolnar.net/article/making-things-private/](https://petermolnar.net/article/making-things-private/)
 
 Maybe likes arent that bad, but the bullshit algorithms and metrics around them.
+
+I also liked this quote from [Notes On Hypertext](https://www.robinrendle.com/notes/notes-on-hypertext/) by [Robin Rendle](https://www.robinrendle.com/)
+
+> I think that’s one quality of a good old blog; *reader agency*. I remember late nights roaming through my favorite blogs and I’d find something, a small trinket of the tiniest little poem, from way back in 2002. And because there were no likes or comments or anything attached to the post, *I* decided it was important.

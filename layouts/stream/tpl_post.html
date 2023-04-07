@@ -26,7 +26,7 @@
 
 		{{ if isset .Params "media" }}
 			<div class="h-entry__media">
-			{{ range .Params.media}}<a href="{{.}}" class="u-photo"><img src="{{.}}" alt=""></a>{{end}}
+			{{ range .Params.media}}<a href="{{.}}" class="u-photo"><img src="{{.}}" loading="lazy"></a>{{end}}
 			</div>
 		{{ end }}
 	</div>

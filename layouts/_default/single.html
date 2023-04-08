@@ -1,19 +1,5 @@
 {{ define "main" }}
 <main>
-<article class="h-entry">
-	<header>
-		<h1 class="p-name">{{ .Title }}</h1>
-		{{ if .Params.date }}<p class="subtitle dt-published">{{ .Date.Format "January 2, 2006" }}</p>{{ end }}
-		{{ if .Params.desc }}<p>{{ .Params.desc }}</p>{{ end }}
-	</header>
-	<section class="e-content">
-
-	{{ if .Params.toc }}
-	{{ .TableOfContents }}
-	{{ end }}
-
-	{{ .Content }}
-	</section>
-</article>
+	{{ partial "article.html" . }}
 </main>
 {{ end }}

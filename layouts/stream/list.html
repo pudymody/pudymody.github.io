@@ -9,7 +9,7 @@
   {{ .Content }}
 
   {{ range (.Paginator 100).Pages }}
-    {{ .Render (printf "tpl_%s" .Params.layout) }}
+		{{ partial "article.html" . }}
   {{ end }}
   <ul class="paginator">
     <li><a {{ if .Paginator.HasPrev }}href="{{ .Paginator.Prev.URL }}"{{ end }}>< Previous</a></li>

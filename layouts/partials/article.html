@@ -1,0 +1,32 @@
+<article class="h-entry">
+	<header>
+		<h1 class="p-name">{{ .Title }}</h1>
+		{{ if .Params.date }}<p class="subtitle dt-published">{{ .Date.Format "January 2, 2006" }}</p>{{ end }}
+		{{ if .Params.desc }}<p>{{ .Params.desc }}</p>{{ end }}
+		{{ if or (isset .Params "originalpost") (isset .Params "inreplyto") (isset .Params "syndicateurl") }}
+			<p>
+			{{ if isset .Params "originalpost" }}
+				Originally <a href="{{.Params.originalPost}}" rel="nofollow" target="_blank" class="u-repost-of">posted</a> by <a href="{{.Params.authorUrl}}" class="p-author h-card" rel="nofollow" target="_blank" >{{.Params.authorName}}</a>
+			{{ end }}
+			{{ if isset .Params "inreplyto" }}
+					in reply of <a href="{{.Params.inreplyto}}" rel="nofollow" target="_blank" >this post</a>
+			{{ end }}
+			{{ if isset .Params "syndicateurl" }}
+				also in:
+				{{ range .Params.syndicateurl}}
+					{{ $url := urls.Parse . }}
+					<a href="{{.}}" class="u-syndication" target="_blank" >{{ $url.Host }}</a>
+				{{end}}
+			{{ end }}
+			</p>
+		{{ end }}
+	</header>
+	<section class="e-content">
+
+	{{ if .Params.toc }}
+	{{ .TableOfContents }}
+	{{ end }}
+
+	{{ .Content }}
+	</section>
+</article>

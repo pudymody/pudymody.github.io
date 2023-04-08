@@ -366,22 +366,8 @@ color: #2d115a;
     margin-right: 1rem;
 }
 
-.h-entry--stream {
-  border-bottom: 1px solid;
-  padding-bottom: 0.875rem;
-  margin-bottom: 0.875rem;
-}
-
-.h-entry__media .u-photo {
-  height: 200px;
-  width: 50%;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.h-entry__media .u-photo img {
-max-width: 100%;
-max-height: 100%;
+.h-feed > article + article {
+	margin-top: 8rem;
 }
 
 .paginator {

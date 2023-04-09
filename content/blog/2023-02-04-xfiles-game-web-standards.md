@@ -127,7 +127,7 @@ Or in modern terms, something that fetches a given url, parses it as a csv, and 
 
 This doesnt work anymore in any browser. In my understanding, browsers dont allow anymore external content outside the browser to be embedded by anyone in any page. *(As in plugins/software like Adobe Flash, Java applets, not as in external images or resources)*. But we have everything in our toolbox to built it, or at least pollyfill it. We have [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) to request the url. We have [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) to use the same or similar html syntaxis. And lots of lots of [csv parsers](https://www.npmjs.com/search?q=csv).
 
-You can read more about how this is made in a future post because it involved writing a parser for a custom language used for filtering data. Which i believe deserves its own post. [Stay tuned](/blog/index.xml) for details.
+You can read more about how this is made in a future post because it involved writing a parser for a custom language used for filtering data. Which i believe deserves its own post. ~~[Stay tuned](/blog/index.xml) for details.~~ [Here it is](/blog/2023-03-17-retrofill-microsoft-activex/)
 
 ## Sound: The old way
 There is also another ActiveX control, but this could be replaced almost without thinking about it. This time is the *CLSID:05589FA1-C356-11CE-BF01-00AA0055595A* one. It was the way of embedding the Windows Media Player. There are some caveats but they are easy to surpase.
@@ -266,6 +266,7 @@ If you somehow have the game and want to apply this changes, here you have all t
 - [0013-fix-More-image-filters.patch](/static/imgs/xfiles-game-web-standards/0013-fix-More-image-filters.patch)
 - [0014-fix-More-media-player-to-html-native-tags.patch](/static/imgs/xfiles-game-web-standards/0014-fix-More-media-player-to-html-native-tags.patch)
 - [0015-fix-UI-things-that-didnt-hide-when-closing.patch](/static/imgs/xfiles-game-web-standards/0015-fix-UI-things-that-didnt-hide-when-closing.patch)
+- [0016-fix-Retrofill-activex.patch](/static/imgs/xfiles-game-web-standards/0016-fix-Retrofill-activex.patch)
 
 # Reference
 Here are some of the links i have in my bookmarks that i have used while doing this.

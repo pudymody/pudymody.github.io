@@ -12,7 +12,14 @@ So, i migrated to [FreshRSS](https://freshrss.org/). The problem was that i had 
 
 Now i could visit my private url and read from wherever i am. Have the read status of them synced. And one of the best things ever, is the [Reading Time extension](https://github.com/FreshRSS/Extensions/tree/master/xExtension-ReadingTime). If im waiting for the bus, i know i could start reading an article or not depending on the approximated time. A feed doesnt provide the full content on it? Never mind, it provides a way to [scrape the content from the webpage](https://freshrss.github.io/FreshRSS/en/users/04_Subscriptions.html).
 
+I also like the [CustomCSS extension](https://github.com/FreshRSS/Extensions/tree/master/xExtension-CustomCSS), which allows me to show my youtube feed like the youtube home page when im in the *reading mode* layout without all the youtube bullshit around them.
+
+![FreshRSS showing my subscription in a youtube like homepage](/static/imgs/quiterss-to-freshrss/youtube-feed.jpg)
+
+Following what [i said previously](/blog/2023-03-11-twitter-timeline/), i decided not to follow big companies and multiauthor blogs, only personal web pages, youtube channels, and some FOSS software news releases.
+
 I think i could allow some *cloudiness* given the benefits it provides. As long as its **on my own server** and i control it.
+
 
 Stop talking and lets go to the tech details
 
@@ -30,4 +37,41 @@ Now with everything in place, we only need to query the unread posts, format the
 ```sql
 insert into entry (id,guid,title,author,content,link,date,lastSeen,is_read,is_favorite,id_feed) 
 select row_number() over (order by '') as id, news.guid, news.title, news.author_name as author, news.description as content, news.link_href as link, strftime("%s", news.published) as date, strftime("%s", news.received) as lastSeen, (news.read == 1) as is_read, (news.starred == 1) as is_favorite, f.id as id_feed from RSS.qr_news as news LEFT JOIN RSS.qr_feeds AS feeds ON (feeds.id = news.feedId) LEFT JOIN feed as f ON (f.url = feeds.xmlUrl) WHERE news.deleted = 0 and news.read = 0 and f.id not null;
+```
+
+And here is the custom css to make it more *"youtuby"*
+```css
+#stream.reader {
+  display: grid;
+  padding: 1rem;
+  gap: 5rem 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+#stream.reader .content {
+    border: none;
+}
+
+#stream.reader .content .date, .enclosure-content, .enclosure-description {
+    display: none;
+}
+
+#stream.reader .content, #stream.reader .content :is(header, .title, .enclosure, .text, p) {
+    padding: 0;
+    margin: 0;
+}
+
+#stream.reader .content .title {
+    font-size: 1.3rem;
+}
+
+#stream.reader .content :is(.title, .subtitle){
+        white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+#stream.reader .flux {
+    padding: 0;
+}
 ```

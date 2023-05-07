@@ -1,4 +1,4 @@
----
+--
 title: "Books"
 desc: "This is a list of books i would like to put my hand on when i have the time"
 ---
@@ -29,13 +29,13 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **La Física De Los Superheroes** by *Kakalios*
 * **Que Pasaría Si?** by *Randall Munroe*
 * **Juan raro** by *Olaf Stapledon*
-* **La isla del Dr Moreau** by *H. G. Wells*
 * **El ultimo hombre** by *Mary Shelley*
 * **Kentukis** by *Samanta Schweblin*
-* **Cumbres Borrascosas** by *Emily Brontë*
 * **House of Leaves** by *Mark Z. Danielewski*
 * **The Laundry Files** by *Charles Stross*
 * **Las flores del mal** by *Charles Baudelaire*
 * **El conde de Montecristo** by *Alexandre Dumas*
 * **El desierto de los tártaros** by *Dino Buzzati*
 * **Hijo de la mente** by *John Saul*
+* **El castillo de Otranto** by *Horace Walpole*
+* **El club de los suicidas** by *Robert Louis Stevenson*

@@ -18,31 +18,47 @@ A game that only crash when QA leaves it over night? From [this twitter thread](
 
 > Our final repro: radios tuned to noise, turned up, and we could reliably crash the game. Fix took 5 minutes after that. Oh, gamedev....
 
+---
+
 ## I cannot print on tuesdays!?!
 
 From [this bug report](https://bugs.launchpad.net/ubuntu/+source/cupsys/+bug/255161/comments/28) it seems that ubuntu wont let you print on tuesdays
 
 > What a fascinating bug!! My wife has complained that open office will never print on Tuesdays!?! Then she demonstrated it. Sure enough, won't print on Tuesday. Other applications print. I think this is the same bug. Here is my guess:
 
+---
+
 ## Using Memory Errors to Attack a Virtual Machine
 This isnt a bug, but the mere idea of someone pointing a lamp to a memory computer to corrupt it and gain access to execute unauthorized code is bizarre and beautiful at the same time to me. [Here is the paper](https://www.cs.princeton.edu/~appel/papers/memerr.pdf)
 
+---
+
 ## The case of the 500-mile email
 If not being able to print on tuesdays was funny to you, imagine these people debugging why [they couldnt send an email to distances longer than 500-miles.](https://www.ibiblio.org/harris/500milemail.html)
+
+---
 
 ## 1983 Soviet nuclear false alarm incident
 When an [error in a radar](https://en.wikipedia.org/wiki/1983_Soviet_nuclear_false_alarm_incident) almost made us live a nuclear war, but someone prevented it by saying:
 
 > Petrov cited his belief and training that any U.S. first strike would be massive, so five missiles seemed an illogical start.
 
+---
+
 ## ARIANE 5
 How an overflow error made the [launch of the ARIANE 5 a failure](https://www-users.cse.umn.edu/~arnold/disasters/ariane5rep.html)
+
+---
 
 ## Bit Flip
 How cosmic rays almost made an election in Belgium useless by flipping a single bit. [Here the full chapter](https://radiolab.org/podcast/bit-flip)
 
+---
+
 ## One in five genetics papers contains errors thanks to Microsoft Excel
 Excel trying to be smart about month names, made [one in five genetics papers contains errors](https://www.science.org/content/article/one-five-genetics-papers-contains-errors-thanks-microsoft-excel)
+
+---
 
 ## How did MS-DOS decide that two seconds was the amount of time to keep the floppy disk cache valid?
 Sometimes user testing is the best way to get some magic numbers.
@@ -53,20 +69,32 @@ Sometimes user testing is the best way to get some magic numbers.
 
 [Here the full article](https://devblogs.microsoft.com/oldnewthing/20190924-00/?p=102915)
 
+---
+
 ## Light Commands
 Hack into anyone's Alexa's microphone by shinning light. [Here the full article](https://lightcommands.com/)
+
+---
 
 ## Side-Channel Attack Turns Power Supply Into Speakers
 Nothing is invulnerable when [you could turn your powersupply into a speaker](https://hackaday.com/2020/05/11/side-channel-attack-turns-power-supply-into-speakers/)
 
+---
+
 ## Illegal numbers
 As computer information could be represented by numbers, laws decided that [some number are illegal](https://en.wikipedia.org/wiki/Illegal_number#Illegal_primes). Beautiful distopian world we live on.
+
+---
 
 ## MSN TV
 As i said [in my previous post](blog/2023-03-23-devices-for-internet/) this set-top-box [was classified as a weapon](https://en.wikipedia.org/wiki/MSN_TV#WebTV_briefly_classified_as_a_weapon) for a little moment.
 
+---
+
 ## Screaming memory
 As technology advances, its easy to laugh at first attempts, but this idea of a ["screaming memory"](https://www.youtube.com/watch?v=TQCr9RV7twk&t=115s) always makes me laugh.
+
+---
 
 ## TV interfering internet connection
 You turn your TV on, and suddenly all the village lost its internet access. [What could be happening?](https://hackaday.com/2020/09/22/second-hand-television-shines-takes-down-entire-villages-internet/)

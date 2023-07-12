@@ -18,4 +18,6 @@ Doing this was my first time using the [ScreenOrientation.lock](https://develope
 
 For the sprites i used [LibreSprite](https://libresprite.github.io/), but being simple pixel art, they could probably be made in any image editor.
 
+The gameplay is simple. Two players with half of the screen each. Both have a current card that changes every round. Whenever you see your card drawn in the middle tap your side and score a point. If you see your opponent's, tap and steal a point. Tap when there is another card and lose a point.
+
 I think i dont have anymore to say. **[Go play it](https://pudymody.github.io/minigames/src/dom)**

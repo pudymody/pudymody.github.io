@@ -16,7 +16,17 @@ As always, here is the code if you want to call it from your devtools or however
 
 ```js
 [...window.getSelection().getRangeAt(0).getClientRects()]
-    .map( e => { const a = document.createElement("mark"); a.style.position = "absolute"; a.style.pointerEvents = "none"; a.style.background = "rgba(255,255,0,.3)"; a.style.left= (e.left+document.documentElement.scrollLeft)+"px"; a.style.top = (e.top+document.documentElement.scrollTop)+"px"; a.style.height = e.height+"px"; a.style.width = e.width+"px"; return a; })
+    .map( e => {
+        const a = document.createElement("mark");
+        a.style.position = "absolute";
+        a.style.pointerEvents = "none";
+        a.style.background = "rgba(255,255,0,.3)";
+        a.style.left= (e.left+document.documentElement.scrollLeft)+"px";
+        a.style.top = (e.top+document.documentElement.scrollTop)+"px";
+        a.style.height = e.height+"px";
+        a.style.width = e.width+"px";
+        return a;
+    })
     .forEach(d => { document.body.appendChild(d); });
 ```
 

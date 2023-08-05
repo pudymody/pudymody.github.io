@@ -98,3 +98,13 @@ As technology advances, its easy to laugh at first attempts, but this idea of a 
 
 ## TV interfering internet connection
 You turn your TV on, and suddenly all the village lost its internet access. [What could be happening?](https://hackaday.com/2020/09/22/second-hand-television-shines-takes-down-entire-villages-internet/)
+
+---
+## Root certificates
+When someone tried to add their own root certificates. [Add Honest Achmed’s root certificate](https://bugzilla.mozilla.org/show_bug.cgi?id=647959), [Add my root CA cert to mozilla’s trusted root CA cert list](https://bugzilla.mozilla.org/show_bug.cgi?id=233458)
+
+> Resolved invalid? What’s the difference between Honest Achmed and the other CAs? Just an audit report? The community should chip in!
+
+---
+## Cars stopping because updates
+> Another event occurred in 2019 when a [Chinese NIO electric automobile](https://www.theverge.com/2019/1/31/18205774/nio-ota-update-traffic-china-es8) stopped in traffic and imprisoned its occupant for over an hour after it was disabled by an over-the-air software update. At least one [Lucid Air EV](https://www.teslarati.com/lucid-air-bricked-after-failed-ota-update) was also disabled the same way in 2022.

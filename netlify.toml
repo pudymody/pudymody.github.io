@@ -1,0 +1,5 @@
+[[redirects]]
+	from = "https://pudymody.netlify.app/*"
+	to = "https://federicoscodelaro.com/:splat"
+	status = 301
+	force = true

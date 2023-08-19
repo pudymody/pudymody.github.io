@@ -453,6 +453,18 @@ blockquote p:last-child {
 	margin:3rem auto;
 }
 
+section > h1, section > h2, section > h3, section > h4, section > h5, section > h6 { position:relative; }
+section > h1::before, section > h2::before, section > h3::before, section > h4::before, section > h5::before, section > h6::before {
+	position: absolute;
+	content: "";
+	top: calc(50% - 3px/2);
+	right: calc(100% + 3px * 2);
+	height: 3px;
+	background: currentColor;
+	width: calc(50vw - 50% - 3px * 2);
+}
+
+
 pre.chroma {
 	overflow-x: auto;
 	border-radius: 5px;

@@ -470,9 +470,6 @@ pre.chroma {
 	overflow-x: auto;
 	border-radius: 5px;
 	padding: 0.5rem;
-	background-image: linear-gradient(rgba(0,0,0,.08) 50%, rgba(0,0,0,0) 50%);
-	background-size: 100% 3.2rem;
-	background-position: 0.5rem 0.5rem;
 }
 
 /* Background */ .bg { color: #f8f8f2; background-color: #272822; }

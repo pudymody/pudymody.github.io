@@ -258,16 +258,55 @@ html { line-height: 1.6; }
 h1, h2, h3, h4, h5, h6 { line-height: 1.25; }
 caption, figcaption, label, legend { line-height: 1.375; }
 
-:root, html[data-theme="light"] {
-	--color-bg: #F5F3FF;
-	--color-fg: #2D115A;
-	--color-blockquote: #ECE9FF;
+:root {
+	--_color-bg: #F5F3FF;
+	--_color-fg: #2D115A;
+	--_color-blockquote: #ECE9FF;
+	--_color-blockquote--dark: #401881;
 }
 
-html[data-theme="dark"] {
-	--color-bg: #2D115A;
-	--color-fg: #F5F3FF;
-	--color-blockquote: #401881;
+/* https://colorhunt.co/palette/27374d526d829db2bfdde6ed */
+html[data-theme="winter"] {
+	--_color-bg: #DDE6ED;
+	--_color-fg: #27374D;
+	--_color-blockquote: #BCCDDB;
+	--_color-blockquote--dark: #384F6F;
+}
+
+/* https://colorhunt.co/palette/eac696c8ae7d76582765451f */
+html[data-theme="autumn"] {
+	--_color-bg: #EAC696;
+	--_color-fg: #65451F;
+	--_color-blockquote: #F3DDC1;
+	--_color-blockquote--dark: #795225;
+}
+
+/* https://coolors.co/palette/f92a82-ed7b84-f5dbcb-d6d5b3-7eb77f */
+html[data-theme="spring"] {
+	--_color-bg: #F5DBCB;
+	--_color-fg: #F92A82;
+	--_color-blockquote: #FFF8F4;
+	--_color-blockquote--dark: #C70658;
+}
+
+/* https://coolors.co/palette/fffae5-fff6cc-fff2b2-ffee99-ffe97f-ffe566-ffe14c-ffdd32-ffd819-ffd400 */
+html[data-theme="summer"] {
+	--_color-bg: #FFFAE5;
+	--_color-fg: #BFAA40;
+	--_color-blockquote: #FFF4C6;
+	--_color-blockquote--dark: #C9B85F;
+}
+
+:root, html[data-mode="light"] {
+	--color-bg: var(--_color-bg); 
+	--color-fg: var(--_color-fg);
+	--color-blockquote: var(--_color-blockquote);
+}
+
+html[data-mode="dark"] {
+	--color-bg: var(--_color-fg); 
+	--color-fg: var(--_color-bg);
+	--color-blockquote: var(--_color-blockquote--dark);
 }
 
 html {
@@ -465,12 +504,6 @@ section > h1::before, section > h2::before, section > h3::before, section > h4::
 	width: calc(50vw - 50% - 3px * 2);
 }
 
-dialog {
-	border-width: 2px;
-	border-color: #2d115a;
-	border-color: var(--color-fg);
-}
-
 pre.chroma {
 	overflow-x: auto;
 	border-radius: 5px;
@@ -565,9 +598,10 @@ pre.chroma {
 
 @media(prefers-color-scheme: dark){
 	:root {
-		--color-bg: #2D115A;
-		--color-fg: #F5F3FF;
-		--color-blockquote: #401881;
+		--color-bg: var(--_color-fg);
+		--color-fg: var(--_color-bg);
+		--color-blockquote: var(--_color-blockquote--dark);
+		--color-blockquote--dark: var(--_color-blockquote);
 	}
 
 	html {
@@ -609,11 +643,6 @@ pre.chroma {
 		background: #401881;
 		background: var(--color-blockquote);
 	}
-
-	dialog {
-		border-color: #f5f3ff;
-		border-color: var(--color-fg);
-	}
 }
 
 @media (min-width: 46rem){
@@ -627,25 +656,10 @@ pre.chroma {
     }
 }
 
-#themeButton {
-	background: transparent;
-	color: inherit;
-	border: none;
-	font-family: inherit;
-	font-size: inherit;
-	padding: 0;
-	margin: 0;
-	cursor: pointer;
-	width: 100%;
-	height: 100%;
-}
-
-#themeButton > svg {
-	width: 1.5rem;
-	height: 1.5rem;
-	margin: 0 auto;
-}
-
-#themeDialog label {
-	display: block;
+#themeForm {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 0.25rem;
+	background: var(--color-blockquote);
 }

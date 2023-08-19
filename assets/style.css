@@ -465,6 +465,11 @@ section > h1::before, section > h2::before, section > h3::before, section > h4::
 	width: calc(50vw - 50% - 3px * 2);
 }
 
+dialog {
+	border-width: 2px;
+	border-color: #2d115a;
+	border-color: var(--color-fg);
+}
 
 pre.chroma {
 	overflow-x: auto;
@@ -604,6 +609,11 @@ pre.chroma {
 		background: #401881;
 		background: var(--color-blockquote);
 	}
+
+	dialog {
+		border-color: #f5f3ff;
+		border-color: var(--color-fg);
+	}
 }
 
 @media (min-width: 46rem){
@@ -615,4 +625,27 @@ pre.chroma {
 		flex-direction: row;
 		margin-bottom: 0;
     }
+}
+
+#themeButton {
+	background: transparent;
+	color: inherit;
+	border: none;
+	font-family: inherit;
+	font-size: inherit;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	width: 100%;
+	height: 100%;
+}
+
+#themeButton > svg {
+	width: 1.5rem;
+	height: 1.5rem;
+	margin: 0 auto;
+}
+
+#themeDialog label {
+	display: block;
 }

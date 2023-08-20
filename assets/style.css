@@ -400,7 +400,7 @@ blockquote p:last-child {
 	text-decoration: none;
 	text-align: center;
 	display: block;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem;
 }
 
 .main-nav a:hover {

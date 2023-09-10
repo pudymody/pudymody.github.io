@@ -108,3 +108,12 @@ When someone tried to add their own root certificates. [Add Honest Achmed’s ro
 ---
 ## Cars stopping because updates
 > Another event occurred in 2019 when a [Chinese NIO electric automobile](https://www.theverge.com/2019/1/31/18205774/nio-ota-update-traffic-china-es8) stopped in traffic and imprisoned its occupant for over an hour after it was disabled by an over-the-air software update. At least one [Lucid Air EV](https://www.teslarati.com/lucid-air-bricked-after-failed-ota-update) was also disabled the same way in 2022.
+
+---
+## Testing software in production in a hospital
+> I've been told the worst thing that can happen to a developer is their code crashes in production? Well.... what happens if that production environment is in a hospital? This video tells the story of one of the Therac-25 incidents, and how Ray Cox ultimately died because of a programming error in a safety critical system.
+
+This isnt funny at all, but another example of how important and delicate is to put software in things that are critical to human beings
+
+[how a simple bug in software ended 6 lives](https://www.youtube.com/watch?v=41Gv-zzICIQ)
+

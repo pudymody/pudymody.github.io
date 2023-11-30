@@ -40,3 +40,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El amor en los tiempos del cólera** by *Gabriel García Márquez*
 * **Destejiendo el arco iris** by *Richard Dawkins*
 * **El hombre que fue jueves** by *G. K. Chesterton*
+* **Bestiario** by *Julio Cortázar*
+* **Historias de cronopios y de famas** by *Julio Cortázar*
+* **El Horla** by *Guy de Maupassant*

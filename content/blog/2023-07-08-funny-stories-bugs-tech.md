@@ -117,3 +117,6 @@ This isnt funny at all, but another example of how important and delicate is to 
 
 [how a simple bug in software ended 6 lives](https://www.youtube.com/watch?v=41Gv-zzICIQ)
 
+---
+## Sometimes hardware bugs exists
+[Rust std fs slower than Python!? No, it's hardware!](https://xuanwo.io/2023/04-rust-std-fs-slower-than-python/) by [Xuanwo](https://xuanwo.io/) its an interesting deep dive into some AMD hardware bugs.

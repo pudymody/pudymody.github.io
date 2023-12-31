@@ -57,3 +57,7 @@ curl "https://jsonplaceholder.typicode.com/users" | jq -r '.[] | "<li class=\"li
 ```
 
 **What the -r flag does is output the content as a raw string, instead of trying to parse everything as a json value**
+
+---
+
+*edit 2023/12/31*: Reading [Scraping Goodreads](https://remysharp.com/2023/11/21/scraping-goodreads) i found out about [jqterm: jq as a service](https://jqterm.com/)

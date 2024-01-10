@@ -1,0 +1,17 @@
+{{- $pc := .Page.Site.Config.Privacy.YouTube -}}
+{{- if not $pc.Disable -}}
+{{- $ytHost := cond $pc.PrivacyEnhanced  "www.youtube-nocookie.com" "www.youtube.com" -}}
+{{- $id := .Get "id" | default (.Get 0) -}}
+{{- $class := .Get "class" | default (.Get 1) -}}
+{{- $title := .Get "title" | default "YouTube Video" }}
+<div {{ with $class }}class="{{ . }}"{{ else }}style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"{{ end }}>
+	<iframe
+		title="{{ $title }}"
+		{{ if not $class }}style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" {{ end }}
+		src="https://{{ $ytHost }}/embed/{{ $id }}"
+   allow="autoplay"
+   allowfullscreen
+   loading="lazy"
+		srcdoc="&lt;style&gt;body{background-image:url(https://i3.ytimg.com/vi/{{ $id }}/hqdefault.jpg);background-repeat:no-repeat;background-size:cover;background-position:center center;display:grid;place-items:center;min-height:97dvh;overflow:hidden;}a{display:block;width:96px;height:96px;overflow:hidden;}a:focus{outline:none;}a:focus circle,a:hover circle{fill:#000;}a:focus circle:first-child + circle,a:hover circle:first-child + circle{stroke-dasharray:.4,.4;}a:focus polygon,a:hover polygon{stroke:#fff;stroke-width:.75;}&lt;/style&gt;&lt;a href='https://{{ $ytHost }}/embed/{{ $id }}?autoplay=1'&gt;&lt;svg viewBox='0 0 16 16' width='96' height='96' xmlns='http://www.w3.org/2000/svg' aria-hidden='true'&gt;&lt;circle cx='50%' cy='50%' r='7.75' fill='none' stroke='#000' stroke-width='.5'/&gt;&lt;circle cx='50%' cy='50%' r='7.25' fill='none' stroke='#fff' stroke-width='.5'/&gt;&lt;circle cx='50%' cy='50%' r='7' fill='#0009'/&gt;&lt;polygon points='12, 8 6, 4.5 6, 11.5' fill='#fff' stroke-linejoin='round'&gt;&lt;/polygon&gt;&lt;/svg&gt;Play&lt;/a&gt;"></iframe>
+</div>
+{{ end -}}

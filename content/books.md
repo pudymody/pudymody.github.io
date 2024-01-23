@@ -43,4 +43,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Historias de cronopios y de famas** by *Julio Cortázar*
 * **El Horla** by *Guy de Maupassant*
 * **La mano izquierda de la oscuridad** by *Ursula K. Le Guin*
-* **Niebla** by *Miguel de Unamuno*
+* **El vizconde demediado** by *Italo Calvino*
+* **El barón rampante** by *Italo Calvino*
+* **El caballero inexistente** by *Italo Calvino*

@@ -46,4 +46,4 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El vizconde demediado** by *Italo Calvino*
 * **El barón rampante** by *Italo Calvino*
 * **El caballero inexistente** by *Italo Calvino*
-* by *Alberto Laiseca*
+* **Matando enanos a garrotazos** by *Alberto Laiseca*

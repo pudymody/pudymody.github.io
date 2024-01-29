@@ -47,3 +47,4 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El barón rampante** by *Italo Calvino*
 * **El caballero inexistente** by *Italo Calvino*
 * **Matando enanos a garrotazos** by *Alberto Laiseca*
+* **El extranjero** by *Albert Camus*

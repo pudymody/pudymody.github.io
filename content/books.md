@@ -40,7 +40,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Destejiendo el arco iris** by *Richard Dawkins*
 * **El hombre que fue jueves** by *G. K. Chesterton*
 * **Bestiario** by *Julio Cortázar*
-* **Historias de cronopios y de famas** by *Julio Cortázar*
 * **El Horla** by *Guy de Maupassant*
 * **La mano izquierda de la oscuridad** by *Ursula K. Le Guin*
 * **El vizconde demediado** by *Italo Calvino*

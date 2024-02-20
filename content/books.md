@@ -32,14 +32,12 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El ultimo hombre** by *Mary Shelley*
 * **House of Leaves** by *Mark Z. Danielewski*
 * **The Laundry Files** by *Charles Stross*
-* **Las flores del mal** by *Charles Baudelaire*
 * **El conde de Montecristo** by *Alexandre Dumas*
 * **El desierto de los tártaros** by *Dino Buzzati*
 * **Hijo de la mente** by *John Saul*
 * **Cien años de soledad** by *Gabriel García Márquez*
 * **Destejiendo el arco iris** by *Richard Dawkins*
 * **El hombre que fue jueves** by *G. K. Chesterton*
-* **Bestiario** by *Julio Cortázar*
 * **El Horla** by *Guy de Maupassant*
 * **La mano izquierda de la oscuridad** by *Ursula K. Le Guin*
 * **El vizconde demediado** by *Italo Calvino*

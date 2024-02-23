@@ -28,7 +28,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Amor Liquido** by *Bauman*
 * **La Física De Los Superheroes** by *Kakalios*
 * **Que Pasaría Si?** by *Randall Munroe*
-* **Juan raro** by *Olaf Stapledon*
 * **El ultimo hombre** by *Mary Shelley*
 * **House of Leaves** by *Mark Z. Danielewski*
 * **The Laundry Files** by *Charles Stross*
@@ -43,5 +42,4 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El vizconde demediado** by *Italo Calvino*
 * **El barón rampante** by *Italo Calvino*
 * **El caballero inexistente** by *Italo Calvino*
-* **Matando enanos a garrotazos** by *Alberto Laiseca*
 * **El extranjero** by *Albert Camus*

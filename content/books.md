@@ -5,7 +5,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 ## Sagas
 * **Millennium** by *Stieg Larsson*
 * **Fundación e Imperio** by *Asimov*
-* **Mundo Disco** by *Terry Pratcher*
 * **Geralt de Rivia** by *Andrzej Sapkowski*
 
 ## Books
@@ -33,13 +32,10 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **The Laundry Files** by *Charles Stross*
 * **El conde de Montecristo** by *Alexandre Dumas*
 * **El desierto de los tártaros** by *Dino Buzzati*
-* **Hijo de la mente** by *John Saul*
 * **Cien años de soledad** by *Gabriel García Márquez*
 * **Destejiendo el arco iris** by *Richard Dawkins*
-* **El hombre que fue jueves** by *G. K. Chesterton*
 * **El Horla** by *Guy de Maupassant*
 * **La mano izquierda de la oscuridad** by *Ursula K. Le Guin*
 * **El vizconde demediado** by *Italo Calvino*
 * **El barón rampante** by *Italo Calvino*
 * **El caballero inexistente** by *Italo Calvino*
-* **El extranjero** by *Albert Camus*

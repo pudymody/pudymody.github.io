@@ -34,7 +34,7 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El desierto de los tártaros** by *Dino Buzzati*
 * **Cien años de soledad** by *Gabriel García Márquez*
 * **Destejiendo el arco iris** by *Richard Dawkins*
-* **El Horla** by *Guy de Maupassant*
+* **Rebecca** by *Daphne du Maurier*
 * **La mano izquierda de la oscuridad** by *Ursula K. Le Guin*
 * **El vizconde demediado** by *Italo Calvino*
 * **El barón rampante** by *Italo Calvino*

@@ -5,7 +5,7 @@ googleAnalytics = "UA-75819066-1"
 enableRobotsTXT = true
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 pluralizeListTitles  = false
-disableKinds = ["sitemap", "taxonomy", "taxonomyTerm"]
+disableKinds = ["sitemap", "taxonomy"]
 [markup]
   [markup.highlight]
     noClasses = false

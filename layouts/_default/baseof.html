@@ -30,7 +30,7 @@
 
   <body>
     <nav class="main-nav">
-			<a href="/" class="home"><b>Federico Scodelaro</b></a>
+			<a href="/" class="home">Federico Scodelaro</a>
       <ul>
         <li>
           <a href="/blog">~/blog</a>
@@ -45,58 +45,147 @@
           <a href="/blog/index.xml">~/rss</a>
         </li>
       </ul>
-			<form id="themeForm" hidden>
-				<div>
-					<label for="mode_system"><input type="radio" name="mode" id="mode_system" value="system" checked>💻 System</label>
-					<label for="mode_light"><input type="radio" name="mode" id="mode_light" value="light">💡 Light</label>
-					<label for="mode_dark"><input type="radio" name="mode" id="mode_dark" value="dark">🔦 Dark</label>
-				</div>
-				<div>
-					<label for="theme_default"><input type="radio" name="theme" id="theme_default" value="default" checked>🤖 Default</label>
-					<label for="theme_spring"><input type="radio" name="theme" id="theme_spring" value="spring">🌸 Spring</label>
-					<label for="theme_summer"><input type="radio" name="theme" id="theme_summer" value="summer">☀️  Summer</label>
-					<label for="theme_autumn"><input type="radio" name="theme" id="theme_autumn" value="autumn">🍂 Autumn</label>
-					<label for="theme_winter"><input type="radio" name="theme" id="theme_winter" value="winter">❄️  Winter</label>
-				</div>
+			<ul class="hide-single-column">
+        <li>
+          <a href="/blog">@twitter</a>
+        </li>
+        <li>
+          <a href="/books">@github</a>
+        </li>
+        <li>
+          <a href="/stream">@telegram</a>
+        </li>
+        <li>
+          <a href="/blog/index.xml">@email</a>
+        </li>
+      </ul>
+			<form class="themeForm hide-single-column" hidden>
+					<input type="radio" name="mode" id="hmode_system" value="system" checked class="sr-only mode_system">
+					<label for="hmode_system">System 💻</label>
+
+					<input type="radio" name="mode" id="hmode_light" value="light" class="sr-only mode_light">
+					<label for="hmode_light">Light 💡</label>
+
+					<input type="radio" name="mode" id="hmode_dark" value="dark" class="sr-only mode_dark">
+					<label for="hmode_dark">Dark 🔦</label>
+
+					<input type="radio" name="theme" id="htheme_default" value="default" checked class="sr-only theme_default">
+					<label for="htheme_default">Default 🤖</label>
+
+					<input type="radio" name="theme" id="htheme_spring" value="spring" class="sr-only theme_spring">
+					<label for="htheme_spring">Spring 🌸</label>
+
+					<input type="radio" name="theme" id="htheme_summer" value="summer" class="sr-only theme_summer">
+					<label for="htheme_summer">Summer ☀️</label>
+
+					<input type="radio" name="theme" id="htheme_autumn" value="autumn" class="sr-only theme_autumn">
+					<label for="htheme_autumn">Autumn 🍂</label>
+
+					<input type="radio" name="theme" id="htheme_winter" value="winter" class="sr-only theme_winter">
+					<label for="htheme_winter">Winter ❄️</label>
 			</form>
-			<script defer>
-				const $themeForm = document.querySelector("#themeForm");
-				$themeForm.addEventListener("change", function(e){
-					if( e.target.name === "mode" ){
-						const mode = e.target.value;
-						if( mode === "system" ){
-							delete document.documentElement.dataset.mode;
-							localStorage.removeItem("mode");
-						}else{
-							document.documentElement.dataset.mode = mode;
-							localStorage.setItem("mode", mode);
-						}
-					}
-
-					if( e.target.name === "theme" ){
-						const theme = e.target.value;
-						if( theme === "default" ){
-							delete document.documentElement.dataset.theme;
-							localStorage.removeItem("theme");
-						}else{
-							document.documentElement.dataset.theme = theme;
-							localStorage.setItem("theme", theme);
-						}
-					}
-					e.preventDefault();
-					return false;
-				})
-
-				if( currentMode !== null ){
-					$themeForm.querySelector("#mode_" + currentMode).checked = true;
-				}
-
-				if( currentTheme !== null ){
-					$themeForm.querySelector("#theme_" + currentTheme).checked = true;
-				}
-				$themeForm.removeAttribute("hidden");
-			</script>
+			
+			<a href="https://cadence.moe/blog/2024-10-05-created-by-a-human-badges" class="hide-single-column">
+				<img src="https://cadence.moe/static/img/created-by-a-human/created-by-a-human-with-a-heart-3x.png" >
+			</a>
     </nav>
     {{ block "main" . }}{{ end }}
+		<nav class="main-nav hide-two-column">
+			<ul>
+        <li>
+          <a href="/blog">@twitter</a>
+        </li>
+        <li>
+          <a href="/books">@github</a>
+        </li>
+        <li>
+          <a href="/stream">@telegram</a>
+        </li>
+        <li>
+          <a href="/blog/index.xml">@email</a>
+        </li>
+      </ul>
+			<form class="themeForm" hidden>
+					<input type="radio" name="mode" id="fmode_system" value="system" checked class="sr-only mode_system">
+					<label for="fmode_system">System 💻</label>
+
+					<input type="radio" name="mode" id="fmode_light" value="light" class="sr-only mode_light">
+					<label for="fmode_light">Light 💡</label>
+
+					<input type="radio" name="mode" id="fmode_dark" value="dark" class="sr-only mode_dark">
+					<label for="fmode_dark">Dark 🔦</label>
+
+					<input type="radio" name="theme" id="ftheme_default" value="default" checked class="sr-only theme_default">
+					<label for="ftheme_default">Default 🤖</label>
+
+					<input type="radio" name="theme" id="ftheme_spring" value="spring" class="sr-only theme_spring">
+					<label for="ftheme_spring">Spring 🌸</label>
+
+					<input type="radio" name="theme" id="ftheme_summer" value="summer" class="sr-only theme_summer">
+					<label for="ftheme_summer">Summer ☀️</label>
+
+					<input type="radio" name="theme" id="ftheme_autumn" value="autumn" class="sr-only theme_autumn">
+					<label for="ftheme_autumn">Autumn 🍂</label>
+
+					<input type="radio" name="theme" id="ftheme_winter" value="winter" class="sr-only theme_winter">
+					<label for="ftheme_winter">Winter ❄️</label>
+			</form>
+			<a href="https://cadence.moe/blog/2024-10-05-created-by-a-human-badges">
+				<img src="https://cadence.moe/static/img/created-by-a-human/created-by-a-human-with-a-heart-3x.png" >
+			</a>
+    </nav>
+		<script defer>
+				const $themeForms = document.querySelectorAll(".themeForm");
+				for(let i = 0; i < $themeForms.length; i++){
+					$themeForms[i].addEventListener("change", function(e){
+						if( e.target.name === "mode" ){
+							const mode = e.target.value;
+							if( mode === "system" ){
+								delete document.documentElement.dataset.mode;
+								localStorage.removeItem("mode");
+							}else{
+								document.documentElement.dataset.mode = mode;
+								localStorage.setItem("mode", mode);
+							}
+							const $modes = document.querySelectorAll(".mode_" + mode);
+							for(let j = 0; j < $modes.length; j++){
+								$modes[j].checked = true;
+							}
+						}
+
+						if( e.target.name === "theme" ){
+							const theme = e.target.value;
+							if( theme === "default" ){
+								delete document.documentElement.dataset.theme;
+								localStorage.removeItem("theme");
+							}else{
+								document.documentElement.dataset.theme = theme;
+								localStorage.setItem("theme", theme);
+							}
+							const $themes = document.querySelectorAll(".theme_" + theme);
+							for(let j = 0; j < $themes.length; j++){
+								$themes[j].checked = true;
+							}
+						}
+						e.preventDefault();
+						return false;
+					})
+
+					if( currentMode !== null ){
+						const $modes = document.querySelectorAll(".mode_" + currentMode);
+						for(let j = 0; j < $modes.length; j++){
+							$modes[j].checked = true;
+						}
+					}
+
+					if( currentTheme !== null ){
+						const $themes = document.querySelectorAll(".theme_" + currentTheme);
+						for(let j = 0; j < $themes.length; j++){
+							$themes[j].checked = true;
+						}
+					}
+					$themeForms[i].removeAttribute("hidden");
+				}
+			</script>
   </body>
 </html>

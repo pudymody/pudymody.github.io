@@ -6,6 +6,10 @@ enableRobotsTXT = true
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 pluralizeListTitles  = false
 disableKinds = ["sitemap", "taxonomy"]
+[caches]
+  [caches.getresource]
+    dir = ':cacheDir/:project'
+    maxAge = "12h" 
 [markup]
   [markup.highlight]
     noClasses = false

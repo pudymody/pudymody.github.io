@@ -1,0 +1,30 @@
+{{/* Get remote data. */}}
+{{ $data := dict }}
+{{ $url := getenv "HUGO_LINKS_ENDPOINT" }}
+{{ with try (resources.GetRemote $url) }}
+  {{ with .Err }}
+    {{ errorf "Unable to get remote resource %s: %s" $url . }}
+  {{ else with .Value }}
+    {{ $data = . | transform.Unmarshal }}
+  {{ else }}
+    {{ errorf "Unable to get remote resource %s" $url }}
+  {{ end }}
+{{ end }}
+
+{{/* Add pages and page resources. */}}
+{{ range $data }}
+
+  {{/* Add page. */}}
+  {{ $content := dict "mediaType" "text/markdown" "value" .content }}
+  {{ $dates := dict "date" (time.AsTime .date) }}
+  {{ $params := dict "layout" "post" "date" (time.AsTime .date)}}
+  {{ $page := dict
+    "content" $content
+    "dates" $dates
+    "kind" "page"
+    "params" $params
+    "path" .url
+    "title" .title
+  }}
+  {{ $.AddPage $page }}
+{{ end }}

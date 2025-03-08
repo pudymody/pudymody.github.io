@@ -39,3 +39,8 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El vizconde demediado** by *Italo Calvino*
 * **El barón rampante** by *Italo Calvino*
 * **El caballero inexistente** by *Italo Calvino*
+* **Mientras agonizo** by *William Faulkner*
+* **La vegetariana** by *Han Kang*
+* **Colmillo blanco** by *Jack London*
+* **La llamada de la selva** by *Jack London*
+* **Jane Eyre** by *Charlotte Brontë*

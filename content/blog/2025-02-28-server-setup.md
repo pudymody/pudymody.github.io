@@ -95,6 +95,29 @@ For reverse proxying, i use [Caddy](https://caddyserver.com/), but i had to allo
 sudo sysctl net.ipv4.ip_unprivileged_port_start=80
 ```
 
+Edit 2025-04-11:
+Here is the way i have setup caddy to reverse proxy. I have a main `Caddyfile` with a custom index for my apps and then a file with every container app in `sites-enabled/domain/container-app`
+
+Caddyfile
+```
+domain {
+    import sites-enabled/domain/*
+
+    header / Content-Type text/html
+    respond / <<HTML
+    HTML content for index
+    HTML 200
+}
+```
+
+container-app example
+```
+redir /subpath /subpath/
+handle_path /subpath/* {
+    reverse_proxy container_name:container:port
+}
+```
+
 ## Future improvements
 The only thing missing is running the containers as a systemd resource to start them whenever the server goes down. But as this currently only host my apps, i can deal with this.
 Maybe some kind of CI/CD? I currently build the images locally, push them to the server, and then run the previous command.

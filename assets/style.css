@@ -324,7 +324,9 @@ body {
 
 main {
 	max-width: 80ch;
-	margin:0 1rem 2.5rem 1rem;
+	width: min(80ch,100%);
+	margin:1rem auto;
+	padding: 1rem;
 }
 
 code {
@@ -350,22 +352,11 @@ header h1, header p {
 header {
 	border-top: 2px solid;
 	border-bottom: 2px solid;
-	border-right: 2px solid;
 	padding: 1rem 1rem 1rem 0;
 	text-align: center;
 	margin-bottom: 1rem;
-	position: relative;
-}
-
-header::before {
-	content: "";
-  position: absolute;
-  top: -2px;
-  bottom: -2px;
-  left: -1rem;
-  border-top: 2px solid;
-  border-bottom: 2px solid;
-  width: 1rem;
+	width: 100vw;
+  margin-left: calc((-100vw + 100%) / 2);
 }
 
 img {
@@ -422,6 +413,38 @@ blockquote p:last-child {
 	font-weight: bold;
 }
 
+.footer-nav {
+	display: grid;
+  text-align: center;
+  background: var(--color-blockquote);
+  grid-template-columns: repeat(auto-fit, minmax(min(150px,100%),1fr));
+}
+
+.footer-nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.footer-nav a {
+	text-decoration: none;
+	display: block;
+	padding: 0.5rem;
+}
+
+.footer-nav a:hover, .footer-nav a.is-active {
+	background: var(--color-bg);
+	color: var(--color-fg);
+}
+
+.human-badge, .human-badge:hover {
+	background: black;
+}
+
+.human-badge img {
+	margin: 0;
+}
+
 .h-card h1 {
 	display: flex;
 	align-items: center;
@@ -457,7 +480,7 @@ blockquote p:last-child {
 	margin: 0;
 	padding: 0;
 	display: grid;
-	grid-template-columns: repeat(auto-fill,minmax(min(calc(40ch - .5rem),100%),1fr));
+	grid-template-columns: repeat(auto-fill,minmax(min(calc(40ch - 2rem),100%),1fr));
 	gap: 0.5rem;
 }
 
@@ -499,22 +522,13 @@ blockquote p:last-child {
 }
 
 section > h1, section > h2, section > h3, section > h4, section > h5, section > h6 {
-	position: relative;
   background: var(--color-blockquote);
   padding: 0.5rem 0;
-	border: 1px solid;
-	border-left: none;
-}
-section > h1::before, section > h2::before, section > h3::before, section > h4::before, section > h5::before, section > h6::before {
-	position: absolute;
-  content: "";
-  top: -1px;
-  left: calc(-1rem - 2px);
-  bottom: -1px;
-  background: var(--color-blockquote);
-  width: calc(1rem + 2px);
 	border-top: 1px solid;
 	border-bottom: 1px solid;
+	width: 100vw;
+  margin-left: calc((-100vw + 100%)/2);
+	text-align: center;
 }
 
 pre.chroma {
@@ -618,32 +632,32 @@ pre.chroma {
 	}
 }
 
-.main-nav a.hide-single-column, .main-nav ul.hide-single-column, .hide-single-column {
-	display: none;
-}
-@media (min-width: 65rem){
-	body {
-		flex-direction: row;
-	}
-	.main-nav {
-		min-height: 100vh;
-		max-width: 300px;
-		border-right: 2px solid;
-	}
-	.main-nav ul {
-		display: block;
-	}
-	.h-entry--post {
-		flex-direction: row;
-		margin-bottom: 0;
-	}
-	.hide-two-column {
-		display: none;
-	}
-	.main-nav a.hide-single-column, .main-nav ul.hide-single-column, .hide-single-column {
-		display: block;
-	}
-}
+/* .main-nav a.hide-single-column, .main-nav ul.hide-single-column, .hide-single-column { */
+/* 	display: none; */
+/* } */
+/* @media (min-width: 65rem){ */
+/* 	body { */
+/* 		flex-direction: row; */
+/* 	} */
+/* 	.main-nav { */
+/* 		min-height: 100vh; */
+/* 		max-width: 300px; */
+/* 		border-right: 2px solid; */
+/* 	} */
+/* 	.main-nav ul { */
+/* 		display: block; */
+/* 	} */
+/* 	.h-entry--post { */
+/* 		flex-direction: row; */
+/* 		margin-bottom: 0; */
+/* 	} */
+/* 	.hide-two-column { */
+/* 		display: none; */
+/* 	} */
+/* 	.main-nav a.hide-single-column, .main-nav ul.hide-single-column, .hide-single-column { */
+/* 		display: block; */
+/* 	} */
+/* } */
 
 .themeForm label {
 	display: block;

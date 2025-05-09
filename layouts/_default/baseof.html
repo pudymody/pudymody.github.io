@@ -45,52 +45,12 @@
           <a href="/blog/index.xml">~/rss</a>
         </li>
       </ul>
-			<ul class="hide-single-column">
-        <li>
-          <a href="https://twitter.com/pudymody">@twitter</a>
-        </li>
-        <li>
-          <a href="https://github.com/pudymody">@github</a>
-        </li>
-        <li>
-          <a href="https://t.me/pudymody">@telegram</a>
-        </li>
-        <li>
-          <a href="mailto:federicoscodelaro@gmail.com">@email</a>
-        </li>
-      </ul>
-			<form class="themeForm hide-single-column" hidden>
-					<input type="radio" name="mode" id="hmode_system" value="system" checked class="sr-only mode_system">
-					<label for="hmode_system">System 💻</label>
-
-					<input type="radio" name="mode" id="hmode_light" value="light" class="sr-only mode_light">
-					<label for="hmode_light">Light 💡</label>
-
-					<input type="radio" name="mode" id="hmode_dark" value="dark" class="sr-only mode_dark">
-					<label for="hmode_dark">Dark 🔦</label>
-
-					<input type="radio" name="theme" id="htheme_default" value="default" checked class="sr-only theme_default">
-					<label for="htheme_default">Default 🤖</label>
-
-					<input type="radio" name="theme" id="htheme_spring" value="spring" class="sr-only theme_spring">
-					<label for="htheme_spring">Spring 🌸</label>
-
-					<input type="radio" name="theme" id="htheme_summer" value="summer" class="sr-only theme_summer">
-					<label for="htheme_summer">Summer ☀️</label>
-
-					<input type="radio" name="theme" id="htheme_autumn" value="autumn" class="sr-only theme_autumn">
-					<label for="htheme_autumn">Autumn 🍂</label>
-
-					<input type="radio" name="theme" id="htheme_winter" value="winter" class="sr-only theme_winter">
-					<label for="htheme_winter">Winter ❄️</label>
-			</form>
-			
-			<a href="https://cadence.moe/blog/2024-10-05-created-by-a-human-badges" class="hide-single-column">
-				<img src="https://cadence.moe/static/img/created-by-a-human/created-by-a-human-with-a-heart-3x.png" >
-			</a>
     </nav>
     {{ block "main" . }}{{ end }}
-		<nav class="main-nav hide-two-column">
+		<a href="https://cadence.moe/blog/2024-10-05-created-by-a-human-badges" class="human-badge">
+			<img src="https://cadence.moe/static/img/created-by-a-human/created-by-a-human-with-a-heart-3x.png" >
+		</a>
+		<nav class="footer-nav hide-two-column">
 			<ul>
         <li>
           <a href="https://twitter.com/pudymody">@twitter</a>
@@ -106,6 +66,7 @@
         </li>
       </ul>
 			<form class="themeForm" hidden>
+				<ul>
 					<input type="radio" name="mode" id="fmode_system" value="system" checked class="sr-only mode_system">
 					<label for="fmode_system">System 💻</label>
 
@@ -114,7 +75,10 @@
 
 					<input type="radio" name="mode" id="fmode_dark" value="dark" class="sr-only mode_dark">
 					<label for="fmode_dark">Dark 🔦</label>
-
+				</ul>
+			</form>
+			<form class="themeForm" hidden>
+				<ul>
 					<input type="radio" name="theme" id="ftheme_default" value="default" checked class="sr-only theme_default">
 					<label for="ftheme_default">Default 🤖</label>
 
@@ -129,10 +93,8 @@
 
 					<input type="radio" name="theme" id="ftheme_winter" value="winter" class="sr-only theme_winter">
 					<label for="ftheme_winter">Winter ❄️</label>
+				</ul>
 			</form>
-			<a href="https://cadence.moe/blog/2024-10-05-created-by-a-human-badges">
-				<img src="https://cadence.moe/static/img/created-by-a-human/created-by-a-human-with-a-heart-3x.png" >
-			</a>
     </nav>
 		<script defer>
 				const $themeForms = document.querySelectorAll(".themeForm");

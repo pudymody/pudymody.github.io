@@ -8,7 +8,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Geralt de Rivia** by *Andrzej Sapkowski*
 
 ## Books
-* **La Luna Es Una Cruel Amante** by *Robert Heinlein*
 * **The Fall Of Chronopolis** by *Barrington J Bayley*
 * **Serving In Time** by *Gordon Eklund*
 * **La Ultima Nave Estelar De La Tierra** by *John Boyd*

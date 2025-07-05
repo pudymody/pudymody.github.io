@@ -31,7 +31,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **The Laundry Files** by *Charles Stross*
 * **El conde de Montecristo** by *Alexandre Dumas*
 * **El desierto de los tártaros** by *Dino Buzzati*
-* **Cien años de soledad** by *Gabriel García Márquez*
 * **Destejiendo el arco iris** by *Richard Dawkins*
 * **Rebecca** by *Daphne du Maurier*
 * **La mano izquierda de la oscuridad** by *Ursula K. Le Guin*
@@ -40,6 +39,4 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El caballero inexistente** by *Italo Calvino*
 * **Mientras agonizo** by *William Faulkner*
 * **La vegetariana** by *Han Kang*
-* **Colmillo blanco** by *Jack London*
-* **La llamada de la selva** by *Jack London*
 * **Jane Eyre** by *Charlotte Brontë*

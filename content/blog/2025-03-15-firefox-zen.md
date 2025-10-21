@@ -76,3 +76,88 @@ If i want an experience without any kind of UI, i can press `ctrl+shift+L`, togg
 ![firefox in normal state](/static/imgs/firefox-zen/normal.jpg)
 ![firefox with focus on the urlbar](/static/imgs/firefox-zen/focus.jpg)
 
+# Update 2025-10-21
+I made more changes, so here they are for posterity:
+
+```css
+:root[titlepreface*="!"]{
+	#browser {
+		--sidebar-launcher-collapsed-width: 10px !important;
+	}
+	&[sidebar-expand-on-hover] #sidebar-main {
+		width: var(--sidebar-launcher-collapsed-width);
+	}
+	#navigator-toolbox {
+		border: none !important;
+	}
+
+	#TabsToolbar, #PersonalToolbar {
+		display: none;
+	}
+
+	#nav-bar {
+		height: 0 !important;
+		min-height: 0 !important;
+		max-height: 0;
+		border: none !important;
+	}
+
+	#urlbar-container {
+		top: 5vh;
+		position: fixed;
+		left: 0;
+		right: 0;
+		width: 80% !important;
+		margin: 0 auto !important;
+	}
+
+	#urlbar {
+		opacity: 0;
+		pointer-events: none;
+
+		&::before {
+			content: "";
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(28, 27, 34, 0.45);
+			display: none;
+		}
+	}
+
+	#urlbar:focus-within {
+		opacity: 1;
+		pointer-events: all;
+
+		&::before {
+			display: block;
+		}
+	}
+
+	tab[discarded], tab[pending=true]{
+		opacity: 0.35;
+	}
+}
+
+.titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"], #vertical-spacer {
+	display: none;
+}
+```
+
+And to have better smooth scrolling take from [Betterfox](https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js):
+
+```js
+user_pref("general.smoothScroll", true);
+user_pref("general.smoothScroll.currentVelocityWeighting", "1");
+user_pref("general.smoothScroll.mouseWheel.durationMinMS", 80);
+user_pref("general.smoothScroll.msdPhysics.continuousMotionMaxDeltaMS", 12);
+user_pref("general.smoothScroll.msdPhysics.enabled", true);
+user_pref("general.smoothScroll.msdPhysics.motionBeginSpringConstant", 600);
+user_pref("general.smoothScroll.msdPhysics.regularSpringConstant", 650);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaMS", 25);
+user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2");
+user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
+user_pref("general.smoothScroll.stopDecelerationWeighting", "1");
+```

@@ -376,3 +376,20 @@ Now i only need to remember a single user and password and i can login to every 
 This is a super simple setup with a single user and a few groups, and this post is almost a copy from the official guide. But i know that in the future if i need to do this again, this is the kind of guide i would like to read instead of jumping between different sections and links. As always, [check the official guide](https://www.authelia.com/configuration/prologue/introduction/).
 
 Taking out the amount of time i lost fighting yaml identation and freshrss stubborness, i believe the setup was also straightforward.
+
+## Update 2025-10-22
+I just found out that Authelia also [handles autorization headers](https://www.authelia.com/reference/guides/proxy-authorization/#headerauthorization), the only thing is that you need to enable it in your configurations. Its also important to define it as the first option and fallback to cookie session.
+
+```yaml
+endpoints:
+## Configure the authz endpoints.
+authz:
+  forward-auth:
+    implementation: 'ForwardAuth'
+    authn_strategies:
+      - name: 'HeaderAuthorization'
+        schemes:
+          - 'Basic'
+        scheme_basic_cache_lifespan: 0
+      - name: 'CookieSession'
+```

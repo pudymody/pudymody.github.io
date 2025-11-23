@@ -17,7 +17,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **La Rebelión De Atlas** by *Ayn Rand*
 * **Divina Comedia** by *Dante Alighieri*
 * **Don Quijote De La Mancha** by *Miguel De Cervantes*
-* **Gödel, Escher, Bach: Un Eterno Y Grácil Bucle** by *Douglas Hofstadter*
 * **How To Live Safely In A Science Fictional Universe** by *Charles Yu*
 * **Bioshock Rapture** by *Shirley John*
 * **Redshirts** by *John Scalzi*
@@ -40,3 +39,4 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Mientras agonizo** by *William Faulkner*
 * **La vegetariana** by *Han Kang*
 * **Jane Eyre** by *Charlotte Brontë*
+* **Si sintieras bajo los pies las estructuras mayores** by *Chuit Roganovich*

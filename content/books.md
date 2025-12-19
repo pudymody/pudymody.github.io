@@ -39,4 +39,3 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Mientras agonizo** by *William Faulkner*
 * **La vegetariana** by *Han Kang*
 * **Jane Eyre** by *Charlotte Brontë*
-* **Si sintieras bajo los pies las estructuras mayores** by *Chuit Roganovich*

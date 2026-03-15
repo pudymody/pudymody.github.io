@@ -72,7 +72,6 @@ parse_params "$@"
 setup_colors
 
 export HUGO_SECURITY_EXEC_ALLOW="^(dart-sass-embedded|go|npx|postcss|nvim)$"
-export HUGO_LINKS_ENDPOINT="https://vps-3194141-x.dattaweb.com/freshrss/favs.php?format=export"
 
 case "${args[0]}" in
 	post)

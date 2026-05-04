@@ -32,7 +32,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El desierto de los tártaros** by *Dino Buzzati*
 * **Destejiendo el arco iris** by *Richard Dawkins*
 * **Rebecca** by *Daphne du Maurier*
-* **La mano izquierda de la oscuridad** by *Ursula K. Le Guin*
 * **El vizconde demediado** by *Italo Calvino*
 * **El barón rampante** by *Italo Calvino*
 * **El caballero inexistente** by *Italo Calvino*

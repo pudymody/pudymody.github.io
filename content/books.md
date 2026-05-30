@@ -37,6 +37,6 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **El caballero inexistente** by *Italo Calvino*
 * **Mientras agonizo** by *William Faulkner*
 * **La vegetariana** by *Han Kang*
-* **Jane Eyre** by *Charlotte Brontë*
 * **Los misterios de Udolfo** by *Ann Radcliffe*
 * **Melmoth el errabundo** by *Charles Maturin*
+* **Como agua para chocolate** by *Laura Esquivel*

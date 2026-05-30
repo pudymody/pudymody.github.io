@@ -40,3 +40,4 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Los misterios de Udolfo** by *Ann Radcliffe*
 * **Melmoth el errabundo** by *Charles Maturin*
 * **Como agua para chocolate** by *Laura Esquivel*
+* **Forastero en tierra extraña** by *Robert A. Heinlein*

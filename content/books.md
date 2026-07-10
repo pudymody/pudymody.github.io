@@ -41,6 +41,5 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Melmoth el errabundo** by *Charles Maturin*
 * **Como agua para chocolate** by *Laura Esquivel*
 * **Forastero en tierra extraña** by *Robert A. Heinlein*
-* **La casa de los espiritus** by *Isabel Allende*
 * **Plop** by *Rafael Pinedo*
 * **Las malas** by *Camila Sosa Villada*

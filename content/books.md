@@ -42,4 +42,3 @@ desc: "This is a list of books i would like to put my hand on when i have the ti
 * **Como agua para chocolate** by *Laura Esquivel*
 * **Forastero en tierra extraña** by *Robert A. Heinlein*
 * **Plop** by *Rafael Pinedo*
-* **Las malas** by *Camila Sosa Villada*

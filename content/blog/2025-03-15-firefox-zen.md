@@ -161,3 +161,84 @@ user_pref("general.smoothScroll.msdPhysics.slowdownMinDeltaRatio", "2");
 user_pref("general.smoothScroll.msdPhysics.slowdownSpringConstant", 250);
 user_pref("general.smoothScroll.stopDecelerationWeighting", "1");
 ```
+
+# Update 2026-07-29
+More updates to be even more minimal
+
+```css
+:root[titlepreface*="!"]{
+	#browser {
+		--sidebar-launcher-collapsed-width: 4px !important;
+	}
+	&[sidebar-expand-on-hover] #sidebar-container {
+		width: var(--sidebar-launcher-collapsed-width);
+	}
+	#navigator-toolbox {
+		border: none !important;
+	}
+	#tabbrowser-tabbox{
+		margin-inline-start: -6px !important;
+
+		&[sidebar-launcher-hovered], &[sidebar-ongoing-animations]{
+			margin-inline-start: -2px !important;
+		}
+	}
+
+	#TabsToolbar, #PersonalToolbar {
+		display: none;
+	}
+
+	#nav-bar {
+		height: 0 !important;
+		min-height: 0 !important;
+		max-height: 0;
+		border: none !important;
+	}
+
+	#urlbar-container {
+		top: 5vh;
+		position: fixed;
+		left: 0;
+		right: 0;
+		width: 80% !important;
+		margin: 0 auto !important;
+	}
+
+	#urlbar {
+		opacity: 0;
+		pointer-events: none;
+
+		&::before {
+			content: "";
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(28, 27, 34, 0.45);
+			display: none;
+		}
+
+		&:popover-open:-moz-window-inactive {
+      opacity: 0 !important;
+    }
+  }
+
+	#urlbar:focus-within {
+		opacity: 1;
+		pointer-events: all;
+
+		&::before {
+			display: block;
+		}
+	}
+
+	tab[discarded], tab[pending=true]{
+		opacity: 0.35;
+	}
+}
+
+.titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"], #vertical-spacer {
+	display: none;
+}
+```

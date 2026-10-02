@@ -242,3 +242,74 @@ More updates to be even more minimal
 	display: none;
 }
 ```
+
+# Update 2026-10-01
+Updates for new nova design and some changes
+```css
+:root[titlepreface*="!"]{
+	 #browser {
+	 	--sidebar-launcher-collapsed-width: 4px !important;
+	 }
+	&[sidebar-expand-on-hover] #sidebar-container {
+		width: var(--sidebar-launcher-collapsed-width);
+	}
+
+	#tabbrowser-tabbox{
+		margin-inline-start: -6px !important;
+
+		&[sidebar-launcher-hovered], &[sidebar-ongoing-animations]{
+			margin-inline-start: -2px !important;
+		}
+	}
+
+	#PersonalToolbar {
+		display: none;
+	}
+
+	.titlebar-spacer[type="pre-tabs"], .titlebar-spacer[type="post-tabs"], #vertical-spacer {
+		display: none;
+	}
+
+	#navigator-toolbox {
+		position: fixed;
+		top: 5vh;
+		left: 10%;
+		right: 10%;
+		z-index:   5 !important;
+		background-color: var(--toolbox-background-color);
+		opacity: 0;
+		pointer-events: none;
+		border-radius: var(--urlbar-border-radius);
+		
+		&:has(moz-urlbar[focused]){
+			opacity: 1;
+			pointer-events: all;
+			
+							
+		}
+	}
+
+	.browserContainer {
+		--content-area-start-radius: 0 !important;
+	}
+
+	:has(moz-urlbar[focused]){
+		#tabbrowser-tabbox::before {
+			content: "";
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(28, 27, 34, 0.45);
+			z-index: 1;
+		}
+	}
+
+	body {
+		&:-moz-window-inactive #navigator-toolbox {
+			background-color: var(--toolbox-background-color-inactive);
+		}
+	}
+}
+```
